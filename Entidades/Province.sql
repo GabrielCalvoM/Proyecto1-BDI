@@ -4,6 +4,14 @@ CREATE TABLE province (
     id_country      NUMBER(3) CONSTRAINT province_idCountry_nn NOT NULL
 );
 
+CREATE SEQUENCE s_province
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 1000000
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE province
     ADD
     CONSTRAINT pk_province PRIMARY KEY (id_province)

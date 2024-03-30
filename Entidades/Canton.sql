@@ -4,6 +4,14 @@ CREATE TABLE canton (
     id_province     NUMBER(6) CONSTRAINT canton_idProvince_nn NOT NULL
 );
 
+CREATE SEQUENCE s_canton
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 100000000
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE canton
     ADD
     CONSTRAINT pk_canton PRIMARY KEY (id_canton)

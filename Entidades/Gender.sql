@@ -3,6 +3,14 @@ CREATE TABLE gender (
     name            VARCHAR2(10) CONSTRAINT gender_name_nn NOT NULL
 );
 
+CREATE SEQUENCE s_gender
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 10
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE gender
     ADD
     CONSTRAINT pk_gender PRIMARY KEY (id_gender)

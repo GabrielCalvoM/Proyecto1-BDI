@@ -1,8 +1,16 @@
 CREATE TABLE nationality (
     id_nationality  NUMBER(10),
-    id_person       NUMBER(6) CONSTRAINT nationality_idPerson_nn NOT NULL,
+    id_person       NUMBER(10) CONSTRAINT nationality_idPerson_nn NOT NULL,
     id_country      NUMBER(3) CONSTRAINT nationality_idCountry_nn NOT NULL
 );
+
+CREATE SEQUENCE s_nationality
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 10000000000
+    NOCACHE
+    NOCYCLE;
 
 ALTER TABLE nationality
     ADD

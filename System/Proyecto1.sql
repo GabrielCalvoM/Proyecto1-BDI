@@ -31,3 +31,4 @@ GRANT connect TO proy1;
 GRANT create session TO proy1;
 GRANT create table TO proy1;
 GRANT create view TO proy1;
+GRANT create sequence TO proy1;

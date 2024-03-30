@@ -4,6 +4,14 @@ CREATE TABLE district (
     id_canton      NUMBER(8) CONSTRAINT district_idCanton_nn NOT NULL
 );
 
+CREATE SEQUENCE s_district
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 100000000
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE district
     ADD
     CONSTRAINT pk_district PRIMARY KEY (id_district)

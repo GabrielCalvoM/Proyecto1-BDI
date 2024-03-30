@@ -3,6 +3,14 @@ CREATE TABLE country (
     name            VARCHAR2(20) CONSTRAINT country_name_nn NOT NULL
 );
 
+CREATE SEQUENCE s_country
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 300
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE country
     ADD
     CONSTRAINT pk_country PRIMARY KEY (id_country)

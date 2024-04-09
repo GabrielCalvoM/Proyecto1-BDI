@@ -33,4 +33,4 @@ ALTER TABLE ArtistRelative
 ALTER TABLE ArtistRelative
     ADD
     CONSTRAINT fk_artistRelative_relationType FOREIGN KEY (id_relationType) 
-    REFERENCES RelationType(id_relationType);
+    REFERENCES RelativeType(id_relativeType);

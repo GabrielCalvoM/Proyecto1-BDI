@@ -1,4 +1,4 @@
-CREATE TABLE Movie (
+CREATE TABLE Series (
     id_series    NUMBER(8),
     name_series  VARCHAR(70),
     id_product  NUMBER(8)

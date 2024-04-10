@@ -17,3 +17,7 @@ ALTER TABLE gender
     USING INDEX
     TABLESPACE proyecto1_ind PCTFREE 20
     STORAGE (INITIAL 10K NEXT 90K PCTINCREASE 0);
+    
+ALTER TABLE gender
+    ADD
+    CONSTRAINT uk_gender_name UNIQUE(name);

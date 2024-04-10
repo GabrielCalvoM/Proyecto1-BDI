@@ -1,6 +1,6 @@
 CREATE TABLE ArtistPhoto (
     id_photo        NUMBER(8),
-    id_artist       NUMBER(6) CONSTRAINT productPhoto_idProduct_mm NOT NULL
+    id_artist       NUMBER(6) CONSTRAINT artistPhoto_idArtist_mm NOT NULL
 );
 
 ALTER TABLE ArtistPhoto

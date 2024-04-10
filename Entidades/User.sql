@@ -8,6 +8,9 @@ CREATE TABLE sysUser (
 );
 
 ALTER TABLE sysUser
+    ADD identification NUMBER(10);
+
+ALTER TABLE sysUser
     ADD
     CONSTRAINT pk_sysUser PRIMARY KEY (id_user)
     USING INDEX

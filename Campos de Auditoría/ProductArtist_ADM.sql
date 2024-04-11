@@ -1,4 +1,4 @@
-ALTER TABLE ProductWriter
+ALTER TABLE ProductArtist
     ADD (
         created_by      VARCHAR2(25),
         creation_date   DATE DEFAULT SYSDATE,   

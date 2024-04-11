@@ -1,10 +1,10 @@
-CREATE TABLE ProductActor (
-    id_productActor     NUMBER(8),
-    id_product              NUMBER(8),
-    id_actor            NUMBER(8)
+CREATE TABLE ProductArtist (
+    id_productArtist              NUMBER(8),
+    id_product                    NUMBER(8),
+    id_artist                     NUMBER(8)
 );
 
-CREATE SEQUENCE s_productActor
+CREATE SEQUENCE s_productArtist
     START WITH 0
     INCREMENT BY 1
     MINVALUE 0
@@ -12,19 +12,19 @@ CREATE SEQUENCE s_productActor
     NOCACHE
     NOCYCLE;
 
-ALTER TABLE ProductActor
+ALTER TABLE ProductArtist
     ADD
-    CONSTRAINT pk_productActor PRIMARY KEY (id_productActor)
+    CONSTRAINT pk_productArtist PRIMARY KEY (id_productArtist)
     USING INDEX
     TABLESPACE proyecto1_ind PCTFREE 20
     STORAGE (INITIAL 10K NEXT 90K PCTINCREASE 0);
 
-ALTER TABLE ProductActor
+ALTER TABLE ProductArtist
     ADD
-    CONSTRAINT fk_productActor_product FOREIGN KEY (id_product) 
+    CONSTRAINT fk_productArtist_product FOREIGN KEY (id_product) 
     REFERENCES Product(id_product);
 
-ALTER TABLE ProductActor
+ALTER TABLE ProductArtist
     ADD
-    CONSTRAINT fk_productActor_actor FOREIGN KEY (id_actor) 
-    REFERENCES Actor(id_actor);
+    CONSTRAINT fk_productArtist_artist FOREIGN KEY (id_artist) 
+    REFERENCES Artist(id_artist);

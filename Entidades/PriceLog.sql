@@ -1,4 +1,4 @@
-DROP TABLE priceLog;
+--DROP TABLE priceLog;
 
 CREATE TABLE priceLog (
     id_log              NUMBER(8),

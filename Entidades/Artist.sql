@@ -1,6 +1,6 @@
 CREATE TABLE Artist (
     id_artist           NUMBER(8),
-    id_ArtistType       NUMBER(8),
+    id_ArtistType       NUMBER(8) CONSTRAINT artist_type_nn NOT NULL,
     biography_artist    VARCHAR(3000),
     trivia_data         VARCHAR(1000)
 );

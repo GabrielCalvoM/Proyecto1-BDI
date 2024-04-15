@@ -1,7 +1,7 @@
 CREATE TABLE ProductArtist (
     id_productArtist              NUMBER(8),
-    id_product                    NUMBER(8),
-    id_artist                     NUMBER(8)
+    id_product                    NUMBER(8) CONSTRAINT productArtist_idProduct_nn NOT NULL,
+    id_artist                     NUMBER(8) CONSTRAINT productArtist_idArtist_nn NOT NULL
 );
 
 CREATE SEQUENCE s_productArtist

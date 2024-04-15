@@ -1,7 +1,7 @@
 CREATE TABLE Series (
     id_series    NUMBER(8),
-    name_series  VARCHAR(70),
-    id_product  NUMBER(8)
+    name_series  VARCHAR(70) CONSTRAINT series_name_nn NOT NULL,
+    id_product  NUMBER(8) CONSTRAINT series_idProduct_nn NOT NULL
 );
 
 CREATE SEQUENCE s_series

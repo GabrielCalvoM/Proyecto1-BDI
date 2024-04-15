@@ -1,9 +1,9 @@
 CREATE TABLE Review (
     id_review   NUMBER(8),
-    score       NUMBER(1),
+    score       NUMBER(1) CONSTRAINT review_score_nn NOT NULL,
     description_review VARCHAR(3000),
-    id_user     NUMBER(8),
-    id_product  NUMBER(8)
+    id_user     NUMBER(8) CONSTRAINT review_idUser_nn NOT NULL,
+    id_product  NUMBER(8) CONSTRAINT review_idProduct_nn NOT NULL
 );
 
 ALTER TABLE Review

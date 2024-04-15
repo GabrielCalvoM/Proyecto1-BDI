@@ -1,6 +1,6 @@
 CREATE TABLE accountType (
     id_accountType  NUMBER(6),
-    name            VARCHAR(20) CONSTRAINT accountType_name_nn NOT NULL
+    name            VARCHAR(20)     CONSTRAINT accountType_name_nn NOT NULL
 );
 
 CREATE SEQUENCE s_accountType

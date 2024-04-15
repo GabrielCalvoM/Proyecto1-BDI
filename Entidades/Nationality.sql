@@ -1,7 +1,7 @@
 CREATE TABLE nationality (
     id_nationality  NUMBER(10),
-    id_person       NUMBER(10) CONSTRAINT nationality_idPerson_nn NOT NULL,
-    id_country      NUMBER(3) CONSTRAINT nationality_idCountry_nn NOT NULL
+    id_person       NUMBER(10)  CONSTRAINT nationality_idPerson_nn NOT NULL,
+    id_country      NUMBER(3)   CONSTRAINT nationality_idCountry_nn NOT NULL
 );
 
 CREATE SEQUENCE s_nationality

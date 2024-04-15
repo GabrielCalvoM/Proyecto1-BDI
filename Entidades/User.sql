@@ -2,9 +2,9 @@ CREATE TABLE sysUser (
     id_user         NUMBER(10),
     email           VARCHAR2(30) CONSTRAINT sysUser_email_nn NOT NULL,
                                  CONSTRAINT uk_sysUser_email UNIQUE (email),
-    phone_number    NUMBER(8) CONSTRAINT sysUser_phoneNumber_nn NOT NULL,
-    id_district     NUMBER(8) CONSTRAINT sysUser_idDistrict_nn NOT NULL,
-    id_type         NUMBER(2) CONSTRAINT sysUser_idType_nn NOT NULL
+    phone_number    NUMBER(8)    CONSTRAINT sysUser_phoneNumber_nn NOT NULL,
+    id_district     NUMBER(8)    CONSTRAINT sysUser_idDistrict_nn NOT NULL,
+    id_type         NUMBER(2)    CONSTRAINT sysUser_idType_nn NOT NULL
 );
 
 ALTER TABLE sysUser

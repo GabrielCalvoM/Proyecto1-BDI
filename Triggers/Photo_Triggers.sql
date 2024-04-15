@@ -6,6 +6,7 @@ BEGIN
     :NEW.created_by := USER;
     :NEW.creation_date := SYSDATE;
 END beforeInsertPhoto;
+/
 
 CREATE OR REPLACE TRIGGER proy1.beforeUpdatePhoto
 BEFORE UPDATE

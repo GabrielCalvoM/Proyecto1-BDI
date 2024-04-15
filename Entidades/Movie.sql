@@ -1,7 +1,7 @@
 CREATE TABLE Movie (
     id_movie    NUMBER(8),
-    name_movie  VARCHAR(70) CONSTRAINT movie_name_nn NOT NULL,
-    id_product  NUMBER(8) CONSTRAINT movie_idProduct_nn NOT NULL
+    name_movie  VARCHAR(70)  CONSTRAINT movie_name_nn NOT NULL,
+    id_product  NUMBER(8)    CONSTRAINT movie_idProduct_nn NOT NULL
 );
 
 CREATE SEQUENCE s_movie

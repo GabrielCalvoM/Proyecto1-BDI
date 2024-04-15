@@ -1,17 +1,17 @@
 -- Crear TableSpace y usuario
 
 CREATE TABLESPACE proyecto1_Data
-    DATAFILE 'C:\app\Gabriel\oradata\BasesI\proyecto1_data01.dbf'
+    DATAFILE 'C:\app\cahuc\oradata\LoscraDB\proyecto1_data01.dbf'
     SIZE 10M
     REUSE
     AUTOEXTEND ON
     NEXT 512k
     MAXSIZE 200M;
        
---  PE: INDEX
+--  Proyecto: INDEX
        
 CREATE TABLESPACE proyecto1_Ind
-    DATAFILE 'C:\app\Gabriel\oradata\BasesI\proyecto1_ind01.dbf'
+    DATAFILE 'C:\app\cahuc\oradata\LoscraDB\proyecto1_ind01.dbf'
     SIZE 10M
     REUSE
     AUTOEXTEND ON
@@ -32,3 +32,4 @@ GRANT create session TO proy1;
 GRANT create table TO proy1;
 GRANT create view TO proy1;
 GRANT create sequence TO proy1;
+GRANT create trigger TO proy1;

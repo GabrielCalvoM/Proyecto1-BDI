@@ -6,6 +6,7 @@ BEGIN
     :NEW.created_by := USER;
     :NEW.creation_date := SYSDATE;
 END beforeInsertSeries;
+/
 
 CREATE OR REPLACE TRIGGER proy1.beforeUpdateSeries
 BEFORE UPDATE

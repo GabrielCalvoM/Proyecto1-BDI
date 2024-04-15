@@ -1,6 +1,6 @@
 CREATE TABLE ArtistType (
     id_artistType       NUMBER(8),
-    name_type           VARCHAR(3000)
+    name_type           VARCHAR(3000) CONSTRAINT artistType_name_nn NOT NULL
 );
 
 ALTER TABLE ArtistType

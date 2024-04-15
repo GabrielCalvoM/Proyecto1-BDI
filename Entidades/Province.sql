@@ -1,7 +1,7 @@
 CREATE TABLE province (
     id_province     NUMBER(6),
-    name            VARCHAR2(20) CONSTRAINT province_name_nn NOT NULL,
-    id_country      NUMBER(3) CONSTRAINT province_idCountry_nn NOT NULL
+    name            VARCHAR2(20)    CONSTRAINT province_name_nn NOT NULL,
+    id_country      NUMBER(3)       CONSTRAINT province_idCountry_nn NOT NULL
 );
 
 CREATE SEQUENCE s_province

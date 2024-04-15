@@ -6,6 +6,7 @@ BEGIN
     :NEW.created_by := USER;
     :NEW.creation_date := SYSDATE;
 END beforeInsertArtist;
+/
 
 CREATE OR REPLACE TRIGGER proy1.beforeUpdateArtist
 BEFORE UPDATE

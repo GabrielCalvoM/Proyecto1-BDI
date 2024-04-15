@@ -2,11 +2,11 @@
 
 CREATE TABLE priceLog (
     id_log              NUMBER(8),
-    previous_price      NUMBER(5, 3) CONSTRAINT priceLog_previousPrice_nn NOT NULL,
-    later_price         NUMBER(5, 3) CONSTRAINT priceLog_laterPrice_nn NOT NULL,
-    change_date         DATE DEFAULT SYSDATE CONSTRAINT priceLog_changedate_nn NOT NULL,
-    id_product          NUMBER(6) CONSTRAINT priceLog_idProduct_nn NOT NULL,
-    id_streamPlatform   NUMBER(6) CONSTRAINT priceLog_idPlatform_nn NOT NULL
+    previous_price      NUMBER(5, 3)            CONSTRAINT priceLog_previousPrice_nn NOT NULL,
+    later_price         NUMBER(5, 3)            CONSTRAINT priceLog_laterPrice_nn NOT NULL,
+    change_date         DATE DEFAULT SYSDATE    CONSTRAINT priceLog_changedate_nn NOT NULL,
+    id_product          NUMBER(6)               CONSTRAINT priceLog_idProduct_nn NOT NULL,
+    id_streamPlatform   NUMBER(6)               CONSTRAINT priceLog_idPlatform_nn NOT NULL
 );
 
 CREATE SEQUENCE s_priceLog

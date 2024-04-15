@@ -2,9 +2,9 @@
 
 CREATE TABLE productOnPlatform (
     id_productOnPlatform    NUMBER(8),
-    price                   NUMBER(5, 3) CONSTRAINT prodPlatform_price_nn NOT NULL,
-    id_product              NUMBER(6) CONSTRAINT prodPlatform_idProduct_nn NOT NULL,
-    id_streamPlatform       NUMBER(5) CONSTRAINT prodPlatform_idPlatform_nn NOT NULL
+    price                   NUMBER(5, 3)    CONSTRAINT prodPlatform_price_nn NOT NULL,
+    id_product              NUMBER(6)       CONSTRAINT prodPlatform_idProduct_nn NOT NULL,
+    id_streamPlatform       NUMBER(5)       CONSTRAINT prodPlatform_idPlatform_nn NOT NULL
 );
 
 CREATE SEQUENCE s_productOnPlatform

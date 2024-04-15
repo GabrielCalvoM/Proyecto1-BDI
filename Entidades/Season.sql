@@ -1,7 +1,7 @@
 CREATE TABLE Season (
-    id_season   NUMBER(8),
+    id_season       NUMBER(8),
     number_season   NUMBER(3) CONSTRAINT season_number_nn NOT NULL,
-    id_series   NUMBER(8) CONSTRAINT season_idSeries_nn NOT NULL
+    id_series       NUMBER(8) CONSTRAINT season_idSeries_nn NOT NULL
 );
 
 CREATE SEQUENCE s_season

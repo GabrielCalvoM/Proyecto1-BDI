@@ -1,8 +1,8 @@
 CREATE TABLE Episode (
     id_episode      NUMBER(8),
-    number_episode  NUMBER(4) CONSTRAINT episode_number_nn NOT NULL, 
-    title_episode   VARCHAR(50),
-    id_season       NUMBER(8) CONSTRAINT episode_idSeason_nn NOT NULL
+    number_episode  NUMBER(4)       CONSTRAINT episode_number_nn NOT NULL, 
+    title_episode   VARCHAR(50)     CONSTRAINT episode_title_nn NOT NULL,
+    id_season       NUMBER(8)       CONSTRAINT episode_idSeason_nn NOT NULL
 );
 
 CREATE SEQUENCE s_episode

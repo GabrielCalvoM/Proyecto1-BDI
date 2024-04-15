@@ -1,7 +1,7 @@
 CREATE TABLE district (
     id_district     NUMBER(8),
-    name            VARCHAR2(20) CONSTRAINT district_name_nn NOT NULL,
-    id_canton      NUMBER(8) CONSTRAINT district_idCanton_nn NOT NULL
+    name            VARCHAR2(20)    CONSTRAINT district_name_nn NOT NULL,
+    id_canton       NUMBER(8)       CONSTRAINT district_idCanton_nn NOT NULL
 );
 
 CREATE SEQUENCE s_district

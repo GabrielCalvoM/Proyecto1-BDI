@@ -32,3 +32,7 @@ GRANT create session TO proy1;
 GRANT create table TO proy1;
 GRANT create view TO proy1;
 GRANT create sequence TO proy1;
+GRANT CREATE ANY INDEX TO proy1;
+GRANT CREATE PROCEDURE TO proy1;
+GRANT CREATE TRIGGER TO proy1;
+alter user proy1 quota unlimited on proyecto1_ind;

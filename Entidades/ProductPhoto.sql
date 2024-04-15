@@ -1,11 +1,12 @@
 CREATE TABLE productPhoto (
+    id_productPhoto NUMBER(8),
     id_photo        NUMBER(8),
     id_product      NUMBER(6) CONSTRAINT productPhoto_idProduct_mm NOT NULL
 );
 
 ALTER TABLE productPhoto
     ADD
-    CONSTRAINT pk_productPhoto PRIMARY KEY (id_photo)
+    CONSTRAINT pk_productPhoto PRIMARY KEY (id_productPhoto)
     USING INDEX
     TABLESPACE proyecto1_ind PCTFREE 20
     STORAGE (INITIAL 10K NEXT 90K PCTINCREASE 0);

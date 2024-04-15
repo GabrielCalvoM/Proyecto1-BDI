@@ -18,4 +18,4 @@ ALTER TABLE Artist
 
 ALTER TABLE Artist
     ADD
-    CONSTRAINT fk_artist_person FOREIGN KEY (id_ArtistType) REFERENCES ArtistType(id_ArtistType);
+    CONSTRAINT fk_artist_type FOREIGN KEY (id_ArtistType) REFERENCES ArtistType(id_ArtistType);

@@ -33,3 +33,4 @@ GRANT create table TO proy1;
 GRANT create view TO proy1;
 GRANT create sequence TO proy1;
 GRANT create trigger TO proy1;
+GRANT create procedure TO proy1;

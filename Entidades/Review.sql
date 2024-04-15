@@ -6,6 +6,14 @@ CREATE TABLE Review (
     id_product          NUMBER(8)       CONSTRAINT review_idProduct_nn NOT NULL
 );
 
+CREATE SEQUENCE s_review
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 10000
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE Review
 ADD CONSTRAINT review_score_limit CHECK (score >= 1 AND score <= 5);
 

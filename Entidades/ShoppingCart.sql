@@ -3,6 +3,15 @@ CREATE TABLE ShoppingCart (
     id_user              NUMBER(10) CONSTRAINT shoppingCart_idUser_nn NOT NULL
 );
 
+CREATE SEQUENCE s_ShoppingCart
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 10000000000
+    NOCACHE
+    NOCYCLE;
+
+
 ALTER TABLE shoppingCart
     ADD
     CONSTRAINT pk_shoppingCart PRIMARY KEY (id_shoppingcart)

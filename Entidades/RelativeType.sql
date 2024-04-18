@@ -1,6 +1,6 @@
 CREATE TABLE RelativeType (
-    id_relativeType NUMBER(8),
-    name_relativeType   VARCHAR(15)
+    id_relativeType     NUMBER(8),
+    name_relativeType   VARCHAR(15) CONSTRAINT relativeType_name_nn NOT NULL
 );
 
 ALTER TABLE RelativeType

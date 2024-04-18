@@ -1,10 +1,10 @@
 CREATE TABLE person (
     id_person       NUMBER(10),
-    first_name      VARCHAR2(20) CONSTRAINT person_firstName_nn NOT NULL,
-    last_name       VARCHAR2(20) CONSTRAINT person_lastName_nn NOT NULL,
-    birth_date      DATE DEFAULT SYSDATE CONSTRAINT person_birthDate_nn NOT NULL,
-    height_artist   NUMBER(3),
-    id_gender       NUMBER(1) CONSTRAINT person_idGender_nn NOT NULL
+    first_name      VARCHAR2(20)          CONSTRAINT person_firstName_nn NOT NULL,
+    last_name       VARCHAR2(20)          CONSTRAINT person_lastName_nn NOT NULL,
+    birth_date      DATE DEFAULT SYSDATE  CONSTRAINT person_birthDate_nn NOT NULL,
+    height_artist   NUMBER(3)             CONSTRAINT person_height_nn NOT NULL,
+    id_gender       NUMBER(1)             CONSTRAINT person_idGender_nn NOT NULL
 );
 
 CREATE SEQUENCE s_person

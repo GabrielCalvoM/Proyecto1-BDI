@@ -26,6 +26,9 @@ CREATE USER proy1
     QUOTA 5M ON system;
     -- PROFILE app_user
     -- PASSWORD EXPIRE;
+    
+ALTER USER proy1
+    QUOTA 10M ON proyecto1_Ind;
    
 GRANT connect TO proy1;
 GRANT create session TO proy1;

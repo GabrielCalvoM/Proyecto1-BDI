@@ -1,16 +1,8 @@
+-- DROP TABLE movie;
+-- DROP SEQUENCE s_movie;
 CREATE TABLE Movie (
-    id_movie    NUMBER(8),
-    name_movie  VARCHAR(70)  CONSTRAINT movie_name_nn NOT NULL,
-    id_product  NUMBER(8)    CONSTRAINT movie_idProduct_nn NOT NULL
+    id_movie    NUMBER(6)
 );
-
-CREATE SEQUENCE s_movie
-    START WITH 0
-    INCREMENT BY 1
-    MINVALUE 0
-    MAXVALUE 10000000000
-    NOCACHE
-    NOCYCLE;
 
 ALTER TABLE Movie
     ADD
@@ -21,4 +13,4 @@ ALTER TABLE Movie
 
 ALTER TABLE Movie
     ADD
-    CONSTRAINT fk_movie_product FOREIGN KEY (id_product) REFERENCES Product(id_product);
+    CONSTRAINT fk_movie_product FOREIGN KEY (id_movie) REFERENCES Product(id_product);

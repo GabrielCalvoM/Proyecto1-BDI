@@ -7,7 +7,16 @@ import Model.*;
 public class Deletions {
     public static void deleteCountry(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call removeCountry(?)}");
+        CallableStatement stmt = con.prepareCall("{call Country_Utils.removeCountry(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void deleteProvince(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call Province_Utils.deleteProvince(?)}");
         stmt.setInt(1, id);
         stmt.execute();
         con.close();

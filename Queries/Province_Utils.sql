@@ -1,6 +1,8 @@
 CREATE OR REPLACE PACKAGE Province_Utils IS
+    -- Get All
+    PROCEDURE getProvinces(provinceCursor OUT SYS_REFCURSOR);
     -- Insert
-    PROCEDURE insertProvince(pId NUMBER, pName VARCHAR2, pId_Country NUMBER);
+    PROCEDURE insertProvince(pName VARCHAR2, pId_Country NUMBER);
     -- Delete
     PROCEDURE deleteProvince(pId NUMBER);
     -- Update
@@ -8,11 +10,23 @@ CREATE OR REPLACE PACKAGE Province_Utils IS
     -- Getter
     FUNCTION getProvinceName (pId NUMBER) RETURN VARCHAR2;
 END Province_Utils;
-/
 
 CREATE OR REPLACE PACKAGE BODY Province_Utils AS
+    -- Get All
+    PROCEDURE getProvinces(provinceCursor OUT SYS_REFCURSOR) 
+    IS
+    BEGIN 
+        OPEN provinceCursor
+        FOR
+        SELECT id_province, name, id_country
+        FROM Province;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+    END getProvinces;
+
     -- Insert
-    PROCEDURE insertProvince(pId NUMBER, pName VARCHAR2, pId_Country NUMBER)
+    PROCEDURE insertProvince(pName VARCHAR2, pId_Country NUMBER)
     IS
     BEGIN
         INSERT INTO proy1.Province (id_Province, name, id_country)

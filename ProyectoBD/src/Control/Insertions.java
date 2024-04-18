@@ -5,8 +5,18 @@ import java.sql.*;
 public class Insertions {
     public static void insertCountry(String name) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call insertCountry(?)}");
+        CallableStatement stmt = con.prepareCall("{call Country_Utils.insertCountry(?)}");
         stmt.setString(1, name);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertProvince(String name, int id_country) throws SQLException{
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call Province_Utils.insertProvince(?, ?)}");
+        stmt.setString(1, name);
+        stmt.setInt(2, id_country);
         stmt.execute();
         con.close();
         stmt.close();

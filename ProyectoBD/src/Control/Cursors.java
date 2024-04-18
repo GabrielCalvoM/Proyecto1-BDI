@@ -35,7 +35,7 @@ public class Cursors {
     
     public static ArrayList<Country> getCountries() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call getCountries(?)}");
+        CallableStatement stmt = con.prepareCall("{call country_utils.getCountries(?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
         stmt.execute();
         ResultSet rs = (ResultSet) stmt.getObject(1);
@@ -50,5 +50,30 @@ public class Cursors {
         con.close();
         stmt.close();
         return countries;
+    }
+    
+    public static ArrayList<Province> getProvinces() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call province_utils.getProvinces(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Province> provinces = new ArrayList<Province>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            int id_country = rs.getInt(3);
+            stmt = con.prepareCall("{ ? = call country_utils.getCountryName(?) }");
+            stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+            stmt.setInt(2, id_country);
+            stmt.execute();
+            String countryName = stmt.getString(1);
+            Province province = new Province(id, name, id_country, countryName);
+            provinces.add(province);
+        }
+        con.close();
+        stmt.close();
+        return provinces;
     }
 }

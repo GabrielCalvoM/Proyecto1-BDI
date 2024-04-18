@@ -1,0 +1,9 @@
+DELETE FROM UserAccount;
+DELETE FROM SYSUSER;
+
+ALTER TABLE SYSUSER DROP CONSTRAINT fk_sysuser_district;
+ALTER TABLE SYSUSER RENAME COLUMN id_district TO id_country;
+
+DROP TABLE district;
+DROP TABLE Canton;
+Drop TABLE Province;

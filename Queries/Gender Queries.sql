@@ -5,8 +5,9 @@ CREATE OR REPLACE PACKAGE gender_utils IS
     
     FUNCTION  getGender(pId IN NUMBER) RETURN VARCHAR2;
     
+    PROCEDURE getGenders(gendersCursor OUT SYS_REFCURSOR);
+    
 END gender_utils;
-/
 
 -- Lógica de procedimientos
 CREATE OR REPLACE PACKAGE BODY gender_utils AS
@@ -72,5 +73,17 @@ CREATE OR REPLACE PACKAGE BODY gender_utils AS
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END;
+    
+    PROCEDURE getGenders(gendersCursor OUT SYS_REFCURSOR) 
+    IS
+    BEGIN 
+        OPEN gendersCursor
+        FOR
+        SELECT id_gender, name
+        FROM Gender;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+    END getGenders;
 
 END gender_utils;

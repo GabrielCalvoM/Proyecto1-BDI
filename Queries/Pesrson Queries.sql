@@ -1,7 +1,7 @@
 CREATE OR REPLACE PACKAGE person_utils IS
-    PROCEDURE insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
+    FUNCTION insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
                            pBirth IN VARCHAR2, pHeight IN NUMBER,
-                           pGender IN NUMBER);
+                           pGender IN NUMBER) RETURN NUMBER;
                            
     PROCEDURE setFirstName(pId IN NUMBER, pFirstName IN VARCHAR2);
     PROCEDURE setLastName(pId IN NUMBER, pLastName IN VARCHAR2);
@@ -17,23 +17,26 @@ CREATE OR REPLACE PACKAGE person_utils IS
     FUNCTION  getGender(pId IN NUMBER) RETURN NUMBER;
 
 END person_utils;
-/
+
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY person_utils AS
 
 -- Insert
-    PROCEDURE insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
+    FUNCTION insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
                            pBirth IN VARCHAR2, pHeight IN NUMBER,
                            pGender IN NUMBER)
+    RETURN NUMBER                            
     IS
-    
+        vIdPerson NUMBER;
     BEGIN
+        SELECT s_person.NEXTVAL INTO vIdPerson FROM DUAL;
         INSERT INTO person (id_person, first_name, last_name, birth_date,
                             height_artist, id_gender)
-            VALUES (s_person.NEXTVAL, pFirstName, pLastName,
+            VALUES (vIdPerson, pFirstName, pLastName,
                     TO_DATE(pBirth, 'DD-MM-YYYY'), pHeight, pGender);
         COMMIT;
+        RETURN vIdPerson;
     
     EXCEPTION
         WHEN VALUE_ERROR THEN

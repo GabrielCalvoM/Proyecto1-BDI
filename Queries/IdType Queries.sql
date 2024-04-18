@@ -5,8 +5,9 @@ CREATE OR REPLACE PACKAGE idType_utils IS
     
     FUNCTION  getType(pId IN NUMBER) RETURN VARCHAR2;
     
+    PROCEDURE getTypes(typesCursor OUT SYS_REFCURSOR);
+    
 END idType_utils;
-/
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY idType_utils AS
@@ -71,5 +72,17 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
         WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     END;
+    
+    PROCEDURE getTypes(typesCursor OUT SYS_REFCURSOR) 
+    IS
+    BEGIN 
+        OPEN typesCursor
+        FOR
+        SELECT id_type, name
+        FROM IdentificationType;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+    END getTypes;
 
 END idType_utils;

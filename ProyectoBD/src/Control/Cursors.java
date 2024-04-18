@@ -5,34 +5,6 @@ import java.util.ArrayList;
 import Model.*;
 
 public class Cursors {
-    public static void getPersonName() throws SQLException {
-        Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call getNamePerson(?)}");
-        stmt.registerOutParameter(1, Types.VARCHAR);
-        stmt.setInt(2, 1);
-        stmt.execute();
-        String name = stmt.getString(1);
-        System.out.println(name);
-        con.close();
-        stmt.close();
-    }
-    
-    public static void getAllNames() throws SQLException {
-        Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call getAllPeople(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
-        String fila;
-        
-        while (rs.next()) {
-            fila = rs.getString(1);
-            System.out.println(fila);
-        }
-        con.close();
-        stmt.close();
-    }
-    
     public static ArrayList<Country> getCountries() throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call country_utils.getCountries(?)}");
@@ -52,28 +24,41 @@ public class Cursors {
         return countries;
     }
     
-    public static ArrayList<Province> getProvinces() throws SQLException {
+    public static ArrayList<IdType> getIdTypes() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call province_utils.getProvinces(?)}");
+        CallableStatement stmt = con.prepareCall("{call idType_utils.getTypes(?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
         stmt.execute();
         ResultSet rs = (ResultSet) stmt.getObject(1);
         
-        ArrayList<Province> provinces = new ArrayList<Province>();
+        ArrayList<IdType> types = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
             String name = rs.getString(2);
-            int id_country = rs.getInt(3);
-            stmt = con.prepareCall("{ ? = call country_utils.getCountryName(?) }");
-            stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
-            stmt.setInt(2, id_country);
-            stmt.execute();
-            String countryName = stmt.getString(1);
-            Province province = new Province(id, name, id_country, countryName);
-            provinces.add(province);
+            IdType type = new IdType(id, name);
+            types.add(type);
         }
         con.close();
         stmt.close();
-        return provinces;
+        return types;
+    }
+    
+    public static ArrayList<Gender> getGenders() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call gender_utils.getGenders(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Gender> genders = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            Gender gender = new Gender(id, name);
+            genders.add(gender);
+        }
+        con.close();
+        stmt.close();
+        return genders;
     }
 }

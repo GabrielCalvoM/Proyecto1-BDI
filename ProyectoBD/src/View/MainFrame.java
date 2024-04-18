@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import java.util.ArrayList;
 import Control.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListModel;
@@ -27,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
         return listModel;
     }
     
-    private <T> ComboBoxModel buildComboModel(ArrayList<T> list) {
+    private <T> DefaultComboBoxModel buildComboModel(ArrayList<T> list) {
         DefaultComboBoxModel comboModel = new DefaultComboBoxModel();
         try {
             for (T element : list) {
@@ -38,6 +40,12 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("Couldn't fetch countries: " + e);
         }
         return comboModel;
+    }
+    
+    private void showError(String error) {
+        ErrorDialog.pack();
+        ErrorDialogTxt.setText(error);
+        ErrorDialog.setVisible(true);
     }
 
     /**
@@ -51,25 +59,27 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
+        ErrorDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        ErrorDialogTxt = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         MainMenu = new javax.swing.JPanel();
-        MainMenuLbl = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        MainMenuLbl = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        MainMenu_SignInButton = new javax.swing.JButton();
         AdminPage = new javax.swing.JPanel();
         AdminMenu = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         AdmMenuBackBtn = new javax.swing.JButton();
         CountriesButton2 = new javax.swing.JButton();
-        EditLocations = new javax.swing.JPanel();
-        EditLocationsMenu = new javax.swing.JPanel();
-        CountriesButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        CountriesButton5 = new javax.swing.JButton();
-        CountriesButton6 = new javax.swing.JButton();
-        CountriesButton7 = new javax.swing.JButton();
-        AdmMenuBackBtn1 = new javax.swing.JButton();
         EditCountries = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -79,38 +89,52 @@ public class MainFrame extends javax.swing.JFrame {
         RemoveCountryBtn = new javax.swing.JButton();
         EditCountBackBtn = new javax.swing.JButton();
         NewCountryTxtfield = new javax.swing.JTextField();
-        EditProvinces = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        EditProvinces_ProvinceList = new javax.swing.JList<>();
-        RemoveProvinceBtn = new javax.swing.JButton();
-        EditCountBackBtn1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        addProvinceNameTxt = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        editProvinces_countryCombo = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        AddCountryBtn1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        EditCantons = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        countryList2 = new javax.swing.JList<>();
-        AddCountryBtn2 = new javax.swing.JButton();
-        RemoveCountryBtn2 = new javax.swing.JButton();
-        EditCountBackBtn2 = new javax.swing.JButton();
-        NewCountryTxtfield2 = new javax.swing.JTextField();
-        EditDistricts = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        countryList3 = new javax.swing.JList<>();
-        AddCountryBtn3 = new javax.swing.JButton();
-        RemoveCountryBtn3 = new javax.swing.JButton();
-        EditCountBackBtn3 = new javax.swing.JButton();
-        NewCountryTxtfield3 = new javax.swing.JTextField();
+        SignInPage = new javax.swing.JPanel();
+        LogInPage = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        login_userTxt = new javax.swing.JTextField();
+        login_passwordTxt = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        RegisterPage1 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        register_lastnameTxt = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        register_nameTxt = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        register_userTxt = new javax.swing.JTextField();
+        register_passwordTxt = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        register_dayCombo = new javax.swing.JComboBox<>();
+        register_monthCombo = new javax.swing.JComboBox<>();
+        register_yearCombo = new javax.swing.JComboBox<>();
+        jLabel23 = new javax.swing.JLabel();
+        register_genderCombo = new javax.swing.JComboBox<>();
+        RegisterPage2 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        register_phoneTxt = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        register_emailTxt = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        register_typesCombo = new javax.swing.JComboBox<>();
+        jLabel30 = new javax.swing.JLabel();
+        register_idTxt = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        register_countryCombo = new javax.swing.JComboBox<>();
 
         jLabel1.setText("jLabel1");
 
@@ -127,15 +151,89 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Usuario");
+
+        jTextField8.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField8.setForeground(new java.awt.Color(255, 255, 255));
+
+        jInternalFrame2.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
+        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
+        jInternalFrame2Layout.setHorizontalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame2Layout.setVerticalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Error!");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        ErrorDialogTxt.setForeground(new java.awt.Color(255, 255, 255));
+        ErrorDialogTxt.setText("Algo salió mal. Por favor intente de nuevo.");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ErrorDialogTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ErrorDialogTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout ErrorDialogLayout = new javax.swing.GroupLayout(ErrorDialog.getContentPane());
+        ErrorDialog.getContentPane().setLayout(ErrorDialogLayout);
+        ErrorDialogLayout.setHorizontalGroup(
+            ErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ErrorDialogLayout.setVerticalGroup(
+            ErrorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MainPanel.setLayout(new java.awt.CardLayout());
 
         MainMenu.setBackground(new java.awt.Color(0, 0, 0));
-
-        MainMenuLbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        MainMenuLbl.setForeground(new java.awt.Color(255, 255, 255));
-        MainMenuLbl.setText("Menu Principal");
 
         jButton2.setBackground(new java.awt.Color(102, 102, 102));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -148,26 +246,67 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
+
+        MainMenuLbl.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        MainMenuLbl.setForeground(new java.awt.Color(255, 255, 255));
+        MainMenuLbl.setText("Belphegor");
+
+        jTextField1.setText("Buscar");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        MainMenu_SignInButton.setBackground(new java.awt.Color(51, 51, 51));
+        MainMenu_SignInButton.setForeground(new java.awt.Color(255, 255, 255));
+        MainMenu_SignInButton.setText("Sign In");
+        MainMenu_SignInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainMenu_SignInButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MainMenu_SignInButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MainMenuLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MainMenu_SignInButton))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout MainMenuLayout = new javax.swing.GroupLayout(MainMenu);
         MainMenu.setLayout(MainMenuLayout);
         MainMenuLayout.setHorizontalGroup(
             MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainMenuLayout.createSequentialGroup()
-                        .addComponent(MainMenuLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(475, 475, 475))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainMenuLayout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(231, 231, 231))))
+                .addGap(250, 250, 250)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         MainMenuLayout.setVerticalGroup(
             MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainMenuLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(MainMenuLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -201,7 +340,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         AdmMenuBackBtn.setBackground(new java.awt.Color(51, 51, 51));
         AdmMenuBackBtn.setForeground(new java.awt.Color(255, 255, 255));
-        AdmMenuBackBtn.setText("Back");
+        AdmMenuBackBtn.setText("Atrás");
         AdmMenuBackBtn.setBorderPainted(false);
         AdmMenuBackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,7 +351,7 @@ public class MainFrame extends javax.swing.JFrame {
         CountriesButton2.setBackground(new java.awt.Color(153, 153, 153));
         CountriesButton2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         CountriesButton2.setForeground(new java.awt.Color(255, 255, 255));
-        CountriesButton2.setText("Ubicaciones");
+        CountriesButton2.setText("Países");
         CountriesButton2.setBorderPainted(false);
         CountriesButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,122 +386,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         AdminPage.add(AdminMenu, "adminMenu");
-
-        EditLocations.setBackground(new java.awt.Color(0, 0, 0));
-        EditLocations.setLayout(new java.awt.CardLayout());
-
-        EditLocationsMenu.setBackground(new java.awt.Color(0, 0, 0));
-
-        CountriesButton1.setBackground(new java.awt.Color(153, 153, 153));
-        CountriesButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CountriesButton1.setForeground(new java.awt.Color(255, 255, 255));
-        CountriesButton1.setText("Paises");
-        CountriesButton1.setBorderPainted(false);
-        CountriesButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CountriesButton1ActionPerformed(evt);
-            }
-        });
-
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Editar ubicaciones");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-        );
-
-        CountriesButton5.setBackground(new java.awt.Color(153, 153, 153));
-        CountriesButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CountriesButton5.setForeground(new java.awt.Color(255, 255, 255));
-        CountriesButton5.setText("Provincias");
-        CountriesButton5.setBorderPainted(false);
-        CountriesButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CountriesButton5ActionPerformed(evt);
-            }
-        });
-
-        CountriesButton6.setBackground(new java.awt.Color(153, 153, 153));
-        CountriesButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CountriesButton6.setForeground(new java.awt.Color(255, 255, 255));
-        CountriesButton6.setText("Cantones");
-        CountriesButton6.setBorderPainted(false);
-        CountriesButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CountriesButton6ActionPerformed(evt);
-            }
-        });
-
-        CountriesButton7.setBackground(new java.awt.Color(153, 153, 153));
-        CountriesButton7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CountriesButton7.setForeground(new java.awt.Color(255, 255, 255));
-        CountriesButton7.setText("Distritos");
-        CountriesButton7.setBorderPainted(false);
-        CountriesButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CountriesButton7ActionPerformed(evt);
-            }
-        });
-
-        AdmMenuBackBtn1.setBackground(new java.awt.Color(51, 51, 51));
-        AdmMenuBackBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        AdmMenuBackBtn1.setText("Back");
-        AdmMenuBackBtn1.setBorderPainted(false);
-        AdmMenuBackBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdmMenuBackBtn1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EditLocationsMenuLayout = new javax.swing.GroupLayout(EditLocationsMenu);
-        EditLocationsMenu.setLayout(EditLocationsMenuLayout);
-        EditLocationsMenuLayout.setHorizontalGroup(
-            EditLocationsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EditLocationsMenuLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(CountriesButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(CountriesButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(CountriesButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(CountriesButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addGroup(EditLocationsMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AdmMenuBackBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        EditLocationsMenuLayout.setVerticalGroup(
-            EditLocationsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditLocationsMenuLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(EditLocationsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CountriesButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CountriesButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CountriesButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CountriesButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(287, 287, 287)
-                .addComponent(AdmMenuBackBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        EditLocations.add(EditLocationsMenu, "locationsMenu");
 
         EditCountries.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -421,7 +444,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         EditCountBackBtn.setBackground(new java.awt.Color(51, 51, 51));
         EditCountBackBtn.setForeground(new java.awt.Color(255, 255, 255));
-        EditCountBackBtn.setText("Back");
+        EditCountBackBtn.setText("Atrás");
         EditCountBackBtn.setBorderPainted(false);
         EditCountBackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -478,438 +501,475 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(RemoveCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditCountBackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(EditCountBackBtn)
                 .addContainerGap())
         );
 
-        EditLocations.add(EditCountries, "countriesCard");
-
-        EditProvinces.setBackground(new java.awt.Color(0, 0, 0));
-
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Editar Provincias");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        EditProvinces_ProvinceList.setBackground(new java.awt.Color(51, 51, 51));
-        EditProvinces_ProvinceList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        EditProvinces_ProvinceList.setForeground(new java.awt.Color(255, 255, 255));
-        EditProvinces_ProvinceList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Costa Rica", "Estados Unidos", "China", "Corea del Sur" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(EditProvinces_ProvinceList);
-
-        RemoveProvinceBtn.setBackground(new java.awt.Color(51, 51, 51));
-        RemoveProvinceBtn.setForeground(new java.awt.Color(255, 255, 255));
-        RemoveProvinceBtn.setText("Eliminar");
-        RemoveProvinceBtn.setBorderPainted(false);
-        RemoveProvinceBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveProvinceBtnActionPerformed(evt);
-            }
-        });
-
-        EditCountBackBtn1.setBackground(new java.awt.Color(51, 51, 51));
-        EditCountBackBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        EditCountBackBtn1.setText("Back");
-        EditCountBackBtn1.setBorderPainted(false);
-        EditCountBackBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditCountBackBtn1ActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setForeground(new java.awt.Color(51, 51, 51));
-
-        addProvinceNameTxt.setBackground(new java.awt.Color(51, 51, 51));
-        addProvinceNameTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        addProvinceNameTxt.setForeground(new java.awt.Color(255, 255, 255));
-        addProvinceNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addProvinceNameTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Nombre");
-
-        editProvinces_countryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Costa Rica ", "Estados Unidos", "China", "Mexico" }));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Pais:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addProvinceNameTxt)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editProvinces_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(193, 193, 193))))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editProvinces_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addProvinceNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-
-        AddCountryBtn1.setBackground(new java.awt.Color(51, 51, 51));
-        AddCountryBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        AddCountryBtn1.setText("Agregar");
-        AddCountryBtn1.setBorderPainted(false);
-        AddCountryBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCountryBtn1ActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Agregar");
-
-        javax.swing.GroupLayout EditProvincesLayout = new javax.swing.GroupLayout(EditProvinces);
-        EditProvinces.setLayout(EditProvincesLayout);
-        EditProvincesLayout.setHorizontalGroup(
-            EditProvincesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EditProvincesLayout.createSequentialGroup()
-                .addGroup(EditProvincesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditProvincesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(EditCountBackBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditProvincesLayout.createSequentialGroup()
-                        .addGroup(EditProvincesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EditProvincesLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(EditProvincesLayout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(RemoveProvinceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addGroup(EditProvincesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditProvincesLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(AddCountryBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81))
-                            .addGroup(EditProvincesLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(17, 17, 17))
-        );
-        EditProvincesLayout.setVerticalGroup(
-            EditProvincesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditProvincesLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(EditProvincesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(EditProvincesLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RemoveProvinceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditProvincesLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AddCountryBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditCountBackBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        EditLocations.add(EditProvinces, "editProvinces");
-
-        EditCantons.setBackground(new java.awt.Color(0, 0, 0));
-
-        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Editar Cantones");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        countryList2.setBackground(new java.awt.Color(51, 51, 51));
-        countryList2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        countryList2.setForeground(new java.awt.Color(255, 255, 255));
-        countryList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Costa Rica", "Estados Unidos", "China", "Corea del Sur" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(countryList2);
-
-        AddCountryBtn2.setBackground(new java.awt.Color(51, 51, 51));
-        AddCountryBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        AddCountryBtn2.setText("Agregar");
-        AddCountryBtn2.setBorderPainted(false);
-        AddCountryBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCountryBtn2ActionPerformed(evt);
-            }
-        });
-
-        RemoveCountryBtn2.setBackground(new java.awt.Color(51, 51, 51));
-        RemoveCountryBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        RemoveCountryBtn2.setText("Eliminar");
-        RemoveCountryBtn2.setBorderPainted(false);
-        RemoveCountryBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveCountryBtn2ActionPerformed(evt);
-            }
-        });
-
-        EditCountBackBtn2.setBackground(new java.awt.Color(51, 51, 51));
-        EditCountBackBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        EditCountBackBtn2.setText("Back");
-        EditCountBackBtn2.setBorderPainted(false);
-        EditCountBackBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditCountBackBtn2ActionPerformed(evt);
-            }
-        });
-
-        NewCountryTxtfield2.setBackground(new java.awt.Color(51, 51, 51));
-        NewCountryTxtfield2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        NewCountryTxtfield2.setForeground(new java.awt.Color(255, 255, 255));
-        NewCountryTxtfield2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewCountryTxtfield2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EditCantonsLayout = new javax.swing.GroupLayout(EditCantons);
-        EditCantons.setLayout(EditCantonsLayout);
-        EditCantonsLayout.setHorizontalGroup(
-            EditCantonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EditCantonsLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(EditCantonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditCantonsLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addComponent(AddCountryBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))
-                    .addGroup(EditCantonsLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(NewCountryTxtfield2)
-                        .addContainerGap())))
-            .addGroup(EditCantonsLayout.createSequentialGroup()
-                .addGroup(EditCantonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditCantonsLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(RemoveCountryBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditCantonsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(EditCountBackBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        EditCantonsLayout.setVerticalGroup(
-            EditCantonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditCantonsLayout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(EditCantonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditCantonsLayout.createSequentialGroup()
-                        .addComponent(NewCountryTxtfield2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(AddCountryBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(RemoveCountryBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditCountBackBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        EditLocations.add(EditCantons, "card3");
-
-        EditDistricts.setBackground(new java.awt.Color(0, 0, 0));
-
-        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Editar Distritos");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        countryList3.setBackground(new java.awt.Color(51, 51, 51));
-        countryList3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        countryList3.setForeground(new java.awt.Color(255, 255, 255));
-        countryList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Costa Rica", "Estados Unidos", "China", "Corea del Sur" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(countryList3);
-
-        AddCountryBtn3.setBackground(new java.awt.Color(51, 51, 51));
-        AddCountryBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        AddCountryBtn3.setText("Agregar");
-        AddCountryBtn3.setBorderPainted(false);
-        AddCountryBtn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCountryBtn3ActionPerformed(evt);
-            }
-        });
-
-        RemoveCountryBtn3.setBackground(new java.awt.Color(51, 51, 51));
-        RemoveCountryBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        RemoveCountryBtn3.setText("Eliminar");
-        RemoveCountryBtn3.setBorderPainted(false);
-        RemoveCountryBtn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveCountryBtn3ActionPerformed(evt);
-            }
-        });
-
-        EditCountBackBtn3.setBackground(new java.awt.Color(51, 51, 51));
-        EditCountBackBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        EditCountBackBtn3.setText("Back");
-        EditCountBackBtn3.setBorderPainted(false);
-        EditCountBackBtn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditCountBackBtn3ActionPerformed(evt);
-            }
-        });
-
-        NewCountryTxtfield3.setBackground(new java.awt.Color(51, 51, 51));
-        NewCountryTxtfield3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        NewCountryTxtfield3.setForeground(new java.awt.Color(255, 255, 255));
-        NewCountryTxtfield3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewCountryTxtfield3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EditDistrictsLayout = new javax.swing.GroupLayout(EditDistricts);
-        EditDistricts.setLayout(EditDistrictsLayout);
-        EditDistrictsLayout.setHorizontalGroup(
-            EditDistrictsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EditDistrictsLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(EditDistrictsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditDistrictsLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addComponent(AddCountryBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))
-                    .addGroup(EditDistrictsLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(NewCountryTxtfield3)
-                        .addContainerGap())))
-            .addGroup(EditDistrictsLayout.createSequentialGroup()
-                .addGroup(EditDistrictsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditDistrictsLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(RemoveCountryBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditDistrictsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(EditCountBackBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        EditDistrictsLayout.setVerticalGroup(
-            EditDistrictsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditDistrictsLayout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(EditDistrictsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditDistrictsLayout.createSequentialGroup()
-                        .addComponent(NewCountryTxtfield3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(AddCountryBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(RemoveCountryBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditCountBackBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        EditLocations.add(EditDistricts, "card3");
-
-        AdminPage.add(EditLocations, "card4");
+        AdminPage.add(EditCountries, "editCountries");
 
         MainPanel.add(AdminPage, "card3");
+
+        SignInPage.setBackground(new java.awt.Color(0, 0, 0));
+        SignInPage.setLayout(new java.awt.CardLayout());
+
+        LogInPage.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Log In");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        login_userTxt.setBackground(new java.awt.Color(51, 51, 51));
+        login_userTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        login_passwordTxt.setBackground(new java.awt.Color(51, 51, 51));
+        login_passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Contraseña");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Usuario");
+
+        jButton3.setText("Ingresar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("No tienes cuenta?");
+
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Crear cuenta");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(51, 51, 51));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Atrás");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LogInPageLayout = new javax.swing.GroupLayout(LogInPage);
+        LogInPage.setLayout(LogInPageLayout);
+        LogInPageLayout.setHorizontalGroup(
+            LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogInPageLayout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addGroup(LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(login_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(login_userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(187, 187, 187))
+            .addGroup(LogInPageLayout.createSequentialGroup()
+                .addGroup(LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LogInPageLayout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4))
+                    .addGroup(LogInPageLayout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(jButton3))
+                    .addGroup(LogInPageLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        LogInPageLayout.setVerticalGroup(
+            LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LogInPageLayout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addGroup(LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(login_userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(40, 40, 40)
+                .addGroup(LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(login_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGap(30, 30, 30)
+                .addComponent(jButton3)
+                .addGap(32, 32, 32)
+                .addGroup(LogInPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addContainerGap())
+        );
+
+        SignInPage.add(LogInPage, "LogInPage");
+
+        RegisterPage1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel10.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Registrarse");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        register_lastnameTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_lastnameTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Apellido");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Nombre");
+
+        jButton6.setBackground(new java.awt.Color(51, 51, 51));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Siguiente");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setBackground(new java.awt.Color(51, 51, 51));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Atrás");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        register_nameTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_nameTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Usuario");
+
+        register_userTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_userTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        register_passwordTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Contraseña");
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Nacimiento");
+
+        register_dayCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        register_monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+
+        register_yearCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Género");
+
+        register_genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
+
+        javax.swing.GroupLayout RegisterPage1Layout = new javax.swing.GroupLayout(RegisterPage1);
+        RegisterPage1.setLayout(RegisterPage1Layout);
+        RegisterPage1Layout.setHorizontalGroup(
+            RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(RegisterPage1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegisterPage1Layout.createSequentialGroup()
+                        .addComponent(jButton8)
+                        .addContainerGap(592, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(register_userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(35, 35, 35)
+                                .addComponent(register_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(register_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(RegisterPage1Layout.createSequentialGroup()
+                                        .addComponent(jLabel23)
+                                        .addGap(46, 46, 46)))
+                                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(register_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(RegisterPage1Layout.createSequentialGroup()
+                                        .addComponent(register_dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton6)
+                                            .addGroup(RegisterPage1Layout.createSequentialGroup()
+                                                .addComponent(register_monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(register_yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(48, 48, 48)))
+                        .addGap(170, 170, 170))))
+        );
+        RegisterPage1Layout.setVerticalGroup(
+            RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RegisterPage1Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(register_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addGap(18, 18, 18)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addGap(29, 29, 29)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(register_dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(register_monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(register_yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(register_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(35, 35, 35)
+                .addComponent(jButton8)
+                .addContainerGap())
+        );
+
+        SignInPage.add(RegisterPage1, "RegisterPage1");
+
+        RegisterPage2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel11.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Registrarse");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        register_phoneTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_phoneTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Teléfono");
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("email");
+
+        registerButton.setBackground(new java.awt.Color(51, 51, 51));
+        registerButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        registerButton.setForeground(new java.awt.Color(255, 255, 255));
+        registerButton.setText("Registrarse");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+
+        jButton9.setBackground(new java.awt.Color(51, 51, 51));
+        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Atrás");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        register_emailTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_emailTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Tipo de identificación");
+
+        register_typesCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        register_typesCombo.setForeground(new java.awt.Color(51, 51, 51));
+        register_typesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula", "Pasaporte", " " }));
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Identificación");
+
+        register_idTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_idTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Nacionalidad");
+
+        register_countryCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        register_countryCombo.setForeground(new java.awt.Color(51, 51, 51));
+        register_countryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+
+        javax.swing.GroupLayout RegisterPage2Layout = new javax.swing.GroupLayout(RegisterPage2);
+        RegisterPage2.setLayout(RegisterPage2Layout);
+        RegisterPage2Layout.setHorizontalGroup(
+            RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(RegisterPage2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegisterPage2Layout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
+                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addGap(35, 35, 35)
+                                .addComponent(register_emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
+                                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel30)
+                                    .addComponent(jLabel31))
+                                .addGap(32, 32, 32)
+                                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(register_phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(register_typesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(register_idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(register_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(170, 170, 170))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(registerButton)
+                .addGap(268, 268, 268))
+        );
+        RegisterPage2Layout.setVerticalGroup(
+            RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RegisterPage2Layout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel25)
+                    .addComponent(register_emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(30, 30, 30)
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(register_typesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(register_idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(register_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(registerButton)
+                .addGap(39, 39, 39)
+                .addComponent(jButton9)
+                .addContainerGap())
+        );
+
+        SignInPage.add(RegisterPage2, "RegisterPage2");
+
+        MainPanel.add(SignInPage, "signInPage");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -953,7 +1013,6 @@ public class MainFrame extends javax.swing.JFrame {
             int index = EditCountries_CountryList.getSelectedIndex();
             ListModel model = EditCountries_CountryList.getModel();
             Country country = (Country)model.getElementAt(index);
-            System.out.println(country);
             Deletions.deleteCountry(country.getId());
         }
         catch (Exception e) {
@@ -968,8 +1027,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveCountryBtnActionPerformed
 
     private void EditCountBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtnActionPerformed
-        CardLayout card = (CardLayout) EditLocations.getLayout();
-        card.show(EditLocations, "locationsMenu");
+        CardLayout card = (CardLayout) AdminPage.getLayout();
+        card.show(AdminPage, "adminMenu");
     }//GEN-LAST:event_EditCountBackBtnActionPerformed
 
     private void AdmMenuBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmMenuBackBtnActionPerformed
@@ -981,141 +1040,167 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NewCountryTxtfieldActionPerformed
 
-    private void CountriesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton1ActionPerformed
-        CardLayout card = (CardLayout) EditLocations.getLayout();
-        card.show(EditLocations, "countriesCard");
-        try {
-        EditCountries_CountryList.setModel(buildListModel(Cursors.getCountries()));
-        }
-        catch (Exception e) {
-            System.out.println("Couldn't fetch countries: " + e);
-            card.show(EditLocations, "locationsMenu");
-        }
-    }//GEN-LAST:event_CountriesButton1ActionPerformed
-
-    private void AddCountryBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCountryBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddCountryBtn2ActionPerformed
-
-    private void RemoveCountryBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveCountryBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RemoveCountryBtn2ActionPerformed
-
-    private void EditCountBackBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditCountBackBtn2ActionPerformed
-
-    private void NewCountryTxtfield2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCountryTxtfield2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NewCountryTxtfield2ActionPerformed
-
-    private void AddCountryBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCountryBtn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddCountryBtn3ActionPerformed
-
-    private void RemoveCountryBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveCountryBtn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RemoveCountryBtn3ActionPerformed
-
-    private void EditCountBackBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditCountBackBtn3ActionPerformed
-
-    private void NewCountryTxtfield3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCountryTxtfield3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NewCountryTxtfield3ActionPerformed
-
     private void CountriesButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton2ActionPerformed
         CardLayout card = (CardLayout) AdminPage.getLayout();
-        card.next(AdminPage);
+        card.show(AdminPage, "editCountries");
+        try {
+        DefaultListModel list = buildListModel(Cursors.getCountries());
+        EditCountries_CountryList.setModel(list);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_CountriesButton2ActionPerformed
 
-    private void CountriesButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton5ActionPerformed
-        CardLayout card = (CardLayout) EditLocations.getLayout();
-        card.show(EditLocations, "editProvinces");
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void MainMenu_SignInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenu_SignInButtonActionPerformed
         try {
-            DefaultListModel listModel = buildListModel(Cursors.getCountries());
-            editProvinces_countryCombo.setModel(buildComboModel(Cursors.getCountries()));
+            DefaultComboBoxModel model = buildComboModel(Cursors.getGenders());
+            register_genderCombo.setModel(model);
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch countries: " + e);
-            card.show(EditLocations, "locationsMenu");
+            showError("Error al recuperar de la base de datos.");
+            return;
         }
+        CardLayout card = (CardLayout) MainPanel.getLayout();
+        card.show(MainPanel, "signInPage");
+    }//GEN-LAST:event_MainMenu_SignInButtonActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        CardLayout card = (CardLayout) MainPanel.getLayout();
+        card.show(MainPanel, "mainMenu");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        boolean exists = false;
         try {
-            EditProvinces_ProvinceList.setModel(buildListModel(Cursors.getProvinces()));
+            exists = Logic.verifyAccountCredentials(login_userTxt.getText(), 
+                    login_passwordTxt.getText());
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch provinces: " + e);
-            card.show(EditLocations, "locationsMenu");
+            System.out.println();
         }
-    }//GEN-LAST:event_CountriesButton5ActionPerformed
+        if (exists) {
+            MainMenu_SignInButton.setText("Welcome");
+            MainMenu_SignInButton.setEnabled(false);
+            CardLayout card = (CardLayout) MainPanel.getLayout();
+            card.show(MainPanel, "mainMenu");
+        }
+        else {
+            showError("Usuario o contraseña incorrectos!");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void CountriesButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CountriesButton6ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        CardLayout card = (CardLayout) SignInPage.getLayout();
+        card.show(SignInPage, "RegisterPage1");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void CountriesButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CountriesButton7ActionPerformed
-
-    private void AdmMenuBackBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmMenuBackBtn1ActionPerformed
-        CardLayout card = (CardLayout) AdminPage.getLayout();
-        card.show(AdminPage, "adminMenu");
-    }//GEN-LAST:event_AdmMenuBackBtn1ActionPerformed
-
-    private void AddCountryBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCountryBtn1ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (register_nameTxt.getText().length() < 1 ||
+        register_lastnameTxt.getText().length() < 1 ||
+        register_userTxt.getText().length() < 1 ||
+        register_passwordTxt.getText().length() < 1 ){
+            showError("Por favor, complete todos los campos");
+            return;
+        }
+        boolean isUniqueUser = false;
         try{
-            String name = addProvinceNameTxt.getText();
-            ComboBoxModel model = editProvinces_countryCombo.getModel();
-            Country country = (Country) model.getSelectedItem();
-            int id_country = country.getId();
-            Insertions.insertProvince(name, id_country);
+            isUniqueUser = Logic.getUsernameUnique(register_userTxt.getText());
         }
         catch (Exception e) {
-            System.out.println("Error insertin province: " + e);
+            showError("Algo salió mal. Por favor intente de nuevo");
         }
-        
-        try {
-            DefaultListModel listModel = buildListModel(Cursors.getCountries());
-            editProvinces_countryCombo.setModel(buildComboModel(Cursors.getCountries()));
-        }
-        catch (Exception e) {
-            System.out.println("Couldn't fetch countries: " + e);
+        if (!isUniqueUser) {
+            showError("El nombre de usuario ya está en uso.");
+            return;
         }
         try {
-            EditProvinces_ProvinceList.setModel(buildListModel(Cursors.getProvinces()));
+            ComboBoxModel modelCountries = buildComboModel(Cursors.getCountries());
+            ComboBoxModel modelIdTypes = buildComboModel(Cursors.getIdTypes());
+            register_countryCombo.setModel(modelCountries);
+            register_typesCombo.setModel(modelIdTypes);
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch provinces: " + e);
+            showError(e.toString());
+            return;
         }
-    }//GEN-LAST:event_AddCountryBtn1ActionPerformed
-
-    private void addProvinceNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProvinceNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addProvinceNameTxtActionPerformed
-
-    private void EditCountBackBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn1ActionPerformed
-        CardLayout card = (CardLayout) EditLocations.getLayout();
-        card.show(EditLocations, "locationsMenu");
-    }//GEN-LAST:event_EditCountBackBtn1ActionPerformed
-
-    private void RemoveProvinceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveProvinceBtnActionPerformed
-        try{
-            int index = EditProvinces_ProvinceList.getSelectedIndex();
-            ListModel model = EditProvinces_ProvinceList.getModel();
-            Province province = (Province) model.getElementAt(index);
-            Deletions.deleteProvince(province.getId());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        try {
+            String birthDate = register_dayCombo.getSelectedItem().toString()
+                + "-" + register_monthCombo.getSelectedItem().toString()
+                + "-" + register_yearCombo.getSelectedItem().toString();
+            LocalDate.parse(birthDate, formatter);
         }
         catch (Exception e) {
-            System.out.println("Failed to delete: " + e);
+            showError("Fecha inválida.");
+            return;
+        }
+        CardLayout card = (CardLayout) SignInPage.getLayout();
+        card.show(SignInPage, "RegisterPage2");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        CardLayout card = (CardLayout) SignInPage.getLayout();
+        card.show(SignInPage, "LogInPage");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        CardLayout card = (CardLayout) SignInPage.getLayout();
+        card.show(SignInPage, "RegisterPage1");
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        if (register_emailTxt.getText().length() < 1 ||
+            register_phoneTxt.getText().length() < 1 ||
+            register_idTxt.getText().length() < 1) {
+                showError("Por favor, complete todos los campos");
+                return;
+        }
+        int phone;
+        int idNumber;
+        try {
+            phone = Integer.parseInt(register_phoneTxt.getText());
+        }
+        catch (Exception e) {
+            showError("Ingrese un teléfono válido.");
+            return;
         }
         try {
-            EditProvinces_ProvinceList.setModel(buildListModel(Cursors.getProvinces()));
+            idNumber = Integer.parseInt(register_idTxt.getText());
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch provinces: " + e);
+            showError("Ingrese una identificación válida.");
+            return;
+        }        
+        String name = register_nameTxt.getText();
+        String lastName = register_lastnameTxt.getText();
+        String username = register_userTxt.getText();
+        String password = register_passwordTxt.getText();
+        String birthDate = register_dayCombo.getSelectedItem().toString()
+          + "-" + register_monthCombo.getSelectedItem().toString()
+          + "-" + register_yearCombo.getSelectedItem().toString();
+        int index = register_genderCombo.getSelectedIndex();
+        ListModel model = register_genderCombo.getModel();
+        Gender gender = (Gender) model.getElementAt(index);
+        String email = register_emailTxt.getText();
+        IdType idType = (IdType) register_typesCombo.getSelectedItem();
+        index = register_countryCombo.getSelectedIndex();
+        model = register_countryCombo.getModel();
+        Country country = (Country)model.getElementAt(index);
+        try {
+            int idPerson = Insertions.insertPerson(name, lastName, birthDate, gender.getId());
+            Insertions.insertUser(idPerson, email, phone, country.getId(), 
+                idType.getId(), idNumber);
+            Insertions.insertAccount(username, password, idPerson, 2, 0);
         }
-    }//GEN-LAST:event_RemoveProvinceBtnActionPerformed
+        catch (Exception e) {
+            showError("Revise los campos e intente nuevamente.");
+        }
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1154,66 +1239,82 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCountryBtn;
-    private javax.swing.JButton AddCountryBtn1;
-    private javax.swing.JButton AddCountryBtn2;
-    private javax.swing.JButton AddCountryBtn3;
     private javax.swing.JButton AdmMenuBackBtn;
-    private javax.swing.JButton AdmMenuBackBtn1;
     private javax.swing.JPanel AdminMenu;
     private javax.swing.JPanel AdminPage;
-    private javax.swing.JButton CountriesButton1;
     private javax.swing.JButton CountriesButton2;
-    private javax.swing.JButton CountriesButton5;
-    private javax.swing.JButton CountriesButton6;
-    private javax.swing.JButton CountriesButton7;
-    private javax.swing.JPanel EditCantons;
     private javax.swing.JButton EditCountBackBtn;
-    private javax.swing.JButton EditCountBackBtn1;
-    private javax.swing.JButton EditCountBackBtn2;
-    private javax.swing.JButton EditCountBackBtn3;
     private javax.swing.JPanel EditCountries;
     private javax.swing.JList<String> EditCountries_CountryList;
-    private javax.swing.JPanel EditDistricts;
-    private javax.swing.JPanel EditLocations;
-    private javax.swing.JPanel EditLocationsMenu;
-    private javax.swing.JPanel EditProvinces;
-    private javax.swing.JList<String> EditProvinces_ProvinceList;
+    private javax.swing.JDialog ErrorDialog;
+    private javax.swing.JLabel ErrorDialogTxt;
+    private javax.swing.JPanel LogInPage;
     private javax.swing.JPanel MainMenu;
     private javax.swing.JLabel MainMenuLbl;
+    private javax.swing.JButton MainMenu_SignInButton;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JTextField NewCountryTxtfield;
-    private javax.swing.JTextField NewCountryTxtfield2;
-    private javax.swing.JTextField NewCountryTxtfield3;
+    private javax.swing.JPanel RegisterPage1;
+    private javax.swing.JPanel RegisterPage2;
     private javax.swing.JButton RemoveCountryBtn;
-    private javax.swing.JButton RemoveCountryBtn2;
-    private javax.swing.JButton RemoveCountryBtn3;
-    private javax.swing.JButton RemoveProvinceBtn;
-    private javax.swing.JTextField addProvinceNameTxt;
-    private javax.swing.JList<String> countryList2;
-    private javax.swing.JList<String> countryList3;
-    private javax.swing.JComboBox<String> editProvinces_countryCombo;
+    private javax.swing.JPanel SignInPage;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField login_passwordTxt;
+    private javax.swing.JTextField login_userTxt;
+    private javax.swing.JButton registerButton;
+    private javax.swing.JComboBox<String> register_countryCombo;
+    private javax.swing.JComboBox<String> register_dayCombo;
+    private javax.swing.JTextField register_emailTxt;
+    private javax.swing.JComboBox<String> register_genderCombo;
+    private javax.swing.JTextField register_idTxt;
+    private javax.swing.JTextField register_lastnameTxt;
+    private javax.swing.JComboBox<String> register_monthCombo;
+    private javax.swing.JTextField register_nameTxt;
+    private javax.swing.JTextField register_passwordTxt;
+    private javax.swing.JTextField register_phoneTxt;
+    private javax.swing.JComboBox<String> register_typesCombo;
+    private javax.swing.JTextField register_userTxt;
+    private javax.swing.JComboBox<String> register_yearCombo;
     // End of variables declaration//GEN-END:variables
 }

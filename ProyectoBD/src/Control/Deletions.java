@@ -13,13 +13,4 @@ public class Deletions {
         con.close();
         stmt.close();
     }
-    
-    public static void deleteProvince(int id) throws SQLException {
-        Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call Province_Utils.deleteProvince(?)}");
-        stmt.setInt(1, id);
-        stmt.execute();
-        con.close();
-        stmt.close();
-    }
 }

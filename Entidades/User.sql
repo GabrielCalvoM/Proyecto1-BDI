@@ -7,6 +7,14 @@ CREATE TABLE sysUser (
     id_type         NUMBER(2)    CONSTRAINT sysUser_idType_nn NOT NULL
 );
 
+CREATE SEQUENCE s_sysUser
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 100000
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE sysUser
     ADD identification NUMBER(10);
 

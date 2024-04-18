@@ -35,6 +35,8 @@ GRANT create session TO proy1;
 GRANT create table TO proy1;
 GRANT create view TO proy1;
 GRANT create sequence TO proy1;
+GRANT create trigger To proy1;
+GRANT create procedure TO proy1;
 GRANT CREATE ANY INDEX TO proy1;
 GRANT CREATE PROCEDURE TO proy1;
 GRANT CREATE TRIGGER TO proy1;

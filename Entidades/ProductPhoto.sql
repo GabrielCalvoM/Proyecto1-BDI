@@ -4,6 +4,14 @@ CREATE TABLE productPhoto (
     id_product      NUMBER(6) CONSTRAINT productPhoto_idProduct_mm NOT NULL
 );
 
+CREATE SEQUENCE s_productPhoto
+    START WITH 0
+    INCREMENT BY 1
+    MINVALUE 0
+    MAXVALUE 100000
+    NOCACHE
+    NOCYCLE;
+
 ALTER TABLE productPhoto
     ADD
     CONSTRAINT pk_productPhoto PRIMARY KEY (id_productPhoto)

@@ -29,3 +29,8 @@ ALTER TABLE productOnPlatform
 ALTER TABLE productOnPlatform
     ADD
     CONSTRAINT fk_prodPlatform_streamPlatform FOREIGN KEY (id_streamPlatform) REFERENCES streamPlatform(id_streamPlatform);
+    
+-- 
+ALTER TABLE productOnPlatform
+    ADD
+    CONSTRAINT prodPlatform_price_min CHECK (price > 0);

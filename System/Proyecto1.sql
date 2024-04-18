@@ -8,7 +8,7 @@ CREATE TABLESPACE proyecto1_Data
     NEXT 512k
     MAXSIZE 200M;
        
---  Poryecto 1: INDEX
+--  Proyecto: INDEX
        
 CREATE TABLESPACE proyecto1_Ind
     DATAFILE 'C:\app\cahuc\oradata\LoscraDB\proyecto1_ind01.dbf'
@@ -35,3 +35,9 @@ GRANT create session TO proy1;
 GRANT create table TO proy1;
 GRANT create view TO proy1;
 GRANT create sequence TO proy1;
+GRANT create trigger To proy1;
+GRANT create procedure TO proy1;
+GRANT CREATE ANY INDEX TO proy1;
+GRANT CREATE PROCEDURE TO proy1;
+GRANT CREATE TRIGGER TO proy1;
+alter user proy1 quota unlimited on proyecto1_ind;

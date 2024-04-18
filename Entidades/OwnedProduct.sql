@@ -1,8 +1,8 @@
 CREATE TABLE ownedProduct (
     id_ownedproduct         NUMBER(10),
-    id_product              NUMBER(6) CONSTRAINT ownedproduct_idProduct_nn NOT NULL,
-    id_user                 NUMBER(6) CONSTRAINT ownedproduct_idWishlist_nn NOT NULL,
-    date_bought             DATE DEFAULT SYSDATE CONSTRAINT ownedProduct_dateBought_nn NOT NULL 
+    id_product              NUMBER(6)               CONSTRAINT ownedproduct_idProduct_nn NOT NULL,
+    id_user                 NUMBER(6)               CONSTRAINT ownedproduct_idWishlist_nn NOT NULL,
+    date_bought             DATE DEFAULT SYSDATE    CONSTRAINT ownedProduct_dateBought_nn NOT NULL 
 );
 
 CREATE SEQUENCE s_ownedProduct

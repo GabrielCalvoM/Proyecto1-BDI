@@ -1,7 +1,7 @@
 CREATE TABLE productOnCatalogue (
     id_productOnCatalogue   NUMBER(10),
-    id_product              NUMBER(6) CONSTRAINT prodCatalogue_idProduct_nn NOT NULL,
-    id_catalogue            NUMBER(6) CONSTRAINT prodCatalogue_idCatalogue_nn NOT NULL
+    id_product              NUMBER(6)   CONSTRAINT prodCatalogue_idProduct_nn NOT NULL,
+    id_catalogue            NUMBER(6)   CONSTRAINT prodCatalogue_idCatalogue_nn NOT NULL
 );
 
 CREATE SEQUENCE s_productOnCatalogue

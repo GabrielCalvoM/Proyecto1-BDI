@@ -6,6 +6,7 @@ BEGIN
     :NEW.created_by := USER;
     :NEW.creation_date := SYSDATE;
 END beforeInsertShoppingCart;
+/
 
 CREATE OR REPLACE TRIGGER proy1.beforeUpdateShoppingCart
 BEFORE UPDATE

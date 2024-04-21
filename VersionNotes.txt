@@ -1,0 +1,11 @@
+
+1. Borrar duration de Product y pasarlo a Movie y a Episode. Cambiar de TIMESTAMP a NUMBER
+(NUMBER para almacenar los minutos de duracion);
+
+
+2. Borrar Name de Movie y de Series, en favor de Title de tabla Product.
+
+3. Drop Table ProductPhoto, y volverla a crear con herencia de Photo. (Sin separar el pk
+del fk) (Solo correr el sql ProductPhoto de entidades).
+
+-------

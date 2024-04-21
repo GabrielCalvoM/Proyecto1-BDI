@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import java.util.ArrayList;
 import Control.*;
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.ListModel;
         
 public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
     }
+    
+    Account userAccount;
     
     private <T> DefaultListModel buildListModel(ArrayList<T> arrList) {
         DefaultListModel listModel = new DefaultListModel();
@@ -67,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         ErrorDialogTxt = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
         MainPanel = new javax.swing.JPanel();
         MainMenu = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -80,6 +87,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         AdmMenuBackBtn = new javax.swing.JButton();
         CountriesButton2 = new javax.swing.JButton();
+        CountriesButton3 = new javax.swing.JButton();
+        CountriesButton4 = new javax.swing.JButton();
         EditCountries = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,6 +98,131 @@ public class MainFrame extends javax.swing.JFrame {
         RemoveCountryBtn = new javax.swing.JButton();
         EditCountBackBtn = new javax.swing.JButton();
         NewCountryTxtfield = new javax.swing.JTextField();
+        EditArtists = new javax.swing.JPanel();
+        EditArtistsMenu = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        EditArtists_ActorsList = new javax.swing.JList<>();
+        EditCountBackBtn1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        EditArtists_DirectorsList = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        EditArtists_WritersList = new javax.swing.JList<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        AddArtist = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        addArtist_nameTxt = new javax.swing.JTextField();
+        addArtist_lastnameTxt = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        addArtist_genderCombo = new javax.swing.JComboBox<>();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        addArtist_height = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        addArtist_typeCombo = new javax.swing.JComboBox<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        addArtist_bioTxt = new javax.swing.JTextArea();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        addArtist_triviaTxt = new javax.swing.JTextArea();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        addArtist_date = new com.toedter.calendar.JDateChooser();
+        jLabel45 = new javax.swing.JLabel();
+        EditArtist = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        editArtist_nameTxt = new javax.swing.JTextField();
+        editArtist_lastnameTxt = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        editArtist_genderCombo = new javax.swing.JComboBox<>();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        editArtist_heightCombo = new javax.swing.JComboBox<>();
+        jLabel42 = new javax.swing.JLabel();
+        editArtist_typeCombo = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        editArtist_bioTxt = new javax.swing.JTextArea();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        editArtist_triviaTxt = new javax.swing.JTextArea();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        editArtist_date = new com.toedter.calendar.JDateChooser();
+        jLabel46 = new javax.swing.JLabel();
+        EditProducts = new javax.swing.JPanel();
+        editProductsMenu = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel51 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        EditProducts_movies = new javax.swing.JList<>();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        EditProducts_series = new javax.swing.JList<>();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        EditCountBackBtn2 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        addMovie = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        addMovie_title = new javax.swing.JTextField();
+        jLabel56 = new javax.swing.JLabel();
+        addMovie_premier = new javax.swing.JComboBox<>();
+        jLabel57 = new javax.swing.JLabel();
+        addMovie_trailer = new javax.swing.JTextField();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        addMovie_synopsis = new javax.swing.JTextArea();
+        EditCountBackBtn3 = new javax.swing.JButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        addMovie_photos = new javax.swing.JList<>();
+        jLabel60 = new javax.swing.JLabel();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        addMovie_duration = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        addSeries = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        addSeries_title = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
+        addSeries_premier = new javax.swing.JComboBox<>();
+        jLabel65 = new javax.swing.JLabel();
+        addSeries_trailer = new javax.swing.JTextField();
+        jLabel67 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        addSeries_synopsis = new javax.swing.JTextArea();
+        EditCountBackBtn4 = new javax.swing.JButton();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        addSeries_photos = new javax.swing.JList<>();
+        jLabel68 = new javax.swing.JLabel();
+        jButton27 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
         SignInPage = new javax.swing.JPanel();
         LogInPage = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -115,11 +249,9 @@ public class MainFrame extends javax.swing.JFrame {
         register_passwordTxt = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        register_dayCombo = new javax.swing.JComboBox<>();
-        register_monthCombo = new javax.swing.JComboBox<>();
-        register_yearCombo = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         register_genderCombo = new javax.swing.JComboBox<>();
+        Register_date = new com.toedter.calendar.JDateChooser();
         RegisterPage2 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -230,6 +362,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         MainPanel.setLayout(new java.awt.CardLayout());
 
@@ -348,7 +481,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        CountriesButton2.setBackground(new java.awt.Color(153, 153, 153));
+        CountriesButton2.setBackground(new java.awt.Color(51, 51, 51));
         CountriesButton2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         CountriesButton2.setForeground(new java.awt.Color(255, 255, 255));
         CountriesButton2.setText("Países");
@@ -359,27 +492,54 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        CountriesButton3.setBackground(new java.awt.Color(51, 51, 51));
+        CountriesButton3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        CountriesButton3.setForeground(new java.awt.Color(255, 255, 255));
+        CountriesButton3.setText("Artistas");
+        CountriesButton3.setBorderPainted(false);
+        CountriesButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CountriesButton3ActionPerformed(evt);
+            }
+        });
+
+        CountriesButton4.setBackground(new java.awt.Color(51, 51, 51));
+        CountriesButton4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        CountriesButton4.setForeground(new java.awt.Color(255, 255, 255));
+        CountriesButton4.setText("Productos");
+        CountriesButton4.setBorderPainted(false);
+        CountriesButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CountriesButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AdminMenuLayout = new javax.swing.GroupLayout(AdminMenu);
         AdminMenu.setLayout(AdminMenuLayout);
         AdminMenuLayout.setHorizontalGroup(
             AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(AdminMenuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AdminMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AdminMenuLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(CountriesButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(CountriesButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(CountriesButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(CountriesButton4)))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
         AdminMenuLayout.setVerticalGroup(
             AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminMenuLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(CountriesButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CountriesButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CountriesButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CountriesButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(281, 281, 281)
                 .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -501,12 +661,1180 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(RemoveCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn)
                 .addContainerGap())
         );
 
         AdminPage.add(EditCountries, "editCountries");
+
+        EditArtists.setLayout(new java.awt.CardLayout());
+
+        EditArtistsMenu.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Editar Artistas");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        EditArtists_ActorsList.setBackground(new java.awt.Color(51, 51, 51));
+        EditArtists_ActorsList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        EditArtists_ActorsList.setForeground(new java.awt.Color(255, 255, 255));
+        EditArtists_ActorsList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Leonardo DiCaprio", "Anne Hathaway", "Brad Pitt", " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(EditArtists_ActorsList);
+
+        EditCountBackBtn1.setBackground(new java.awt.Color(51, 51, 51));
+        EditCountBackBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        EditCountBackBtn1.setText("Atrás");
+        EditCountBackBtn1.setBorderPainted(false);
+        EditCountBackBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCountBackBtn1ActionPerformed(evt);
+            }
+        });
+
+        EditArtists_DirectorsList.setBackground(new java.awt.Color(51, 51, 51));
+        EditArtists_DirectorsList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        EditArtists_DirectorsList.setForeground(new java.awt.Color(255, 255, 255));
+        EditArtists_DirectorsList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Cristopher Nolan", "Quentin Tarantino" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(EditArtists_DirectorsList);
+
+        EditArtists_WritersList.setBackground(new java.awt.Color(51, 51, 51));
+        EditArtists_WritersList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        EditArtists_WritersList.setForeground(new java.awt.Color(255, 255, 255));
+        EditArtists_WritersList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "George R. R. Martin", " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(EditArtists_WritersList);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Actores");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Directores");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Escritores");
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton7.setText("Eliminar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton10.setText("Eliminar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton11.setText("Editar");
+
+        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton12.setText("Eliminar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton13.setText("Editar");
+
+        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton14.setText("Agregar Artista");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EditArtistsMenuLayout = new javax.swing.GroupLayout(EditArtistsMenu);
+        EditArtistsMenu.setLayout(EditArtistsMenuLayout);
+        EditArtistsMenuLayout.setHorizontalGroup(
+            EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EditCountBackBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                        .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton10)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                                .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton12)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        EditArtistsMenuLayout.setVerticalGroup(
+            EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane4)))
+                    .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton7)
+                    .addComponent(jButton11)
+                    .addComponent(jButton10)
+                    .addComponent(jButton13)
+                    .addComponent(jButton12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(EditCountBackBtn1)
+                .addContainerGap())
+        );
+
+        EditArtists.add(EditArtistsMenu, "editArtistsMenu");
+
+        AddArtist.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Agregar Artista");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addContainerGap(488, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Nombre");
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Apellido");
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Nacimiento");
+
+        addArtist_genderCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addArtist_genderCombo.setForeground(new java.awt.Color(51, 51, 51));
+        addArtist_genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Género");
+
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Estatura");
+
+        addArtist_height.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addArtist_height.setForeground(new java.awt.Color(51, 51, 51));
+        addArtist_height.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desconocida", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230" }));
+
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Tipo");
+
+        addArtist_typeCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addArtist_typeCombo.setForeground(new java.awt.Color(51, 51, 51));
+        addArtist_typeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actor", "Escritor" }));
+
+        addArtist_bioTxt.setColumns(20);
+        addArtist_bioTxt.setRows(5);
+        jScrollPane5.setViewportView(addArtist_bioTxt);
+
+        jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Biografía");
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Dato de trivia");
+
+        addArtist_triviaTxt.setColumns(20);
+        addArtist_triviaTxt.setRows(5);
+        jScrollPane6.setViewportView(addArtist_triviaTxt);
+
+        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton15.setText("Agregar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setBackground(new java.awt.Color(51, 51, 51));
+        jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(255, 255, 255));
+        jButton16.setText("Atrás");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel45.setText("cm");
+
+        javax.swing.GroupLayout AddArtistLayout = new javax.swing.GroupLayout(AddArtist);
+        AddArtist.setLayout(AddArtistLayout);
+        AddArtistLayout.setHorizontalGroup(
+            AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddArtistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(AddArtistLayout.createSequentialGroup()
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddArtistLayout.createSequentialGroup()
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddArtistLayout.createSequentialGroup()
+                                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel10))
+                                .addGap(18, 18, 18)
+                                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(addArtist_nameTxt)
+                                    .addComponent(addArtist_lastnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                            .addGroup(AddArtistLayout.createSequentialGroup()
+                                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel32)
+                                    .addComponent(jLabel34))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addArtist_typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(AddArtistLayout.createSequentialGroup()
+                                        .addComponent(addArtist_height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel45))
+                                    .addComponent(addArtist_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6)
+                            .addComponent(jScrollPane5)
+                            .addGroup(AddArtistLayout.createSequentialGroup()
+                                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel33)
+                                    .addComponent(jLabel35))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        AddArtistLayout.setVerticalGroup(
+            AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddArtistLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addArtist_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33))
+                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddArtistLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addArtist_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addArtist_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addArtist_height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel45))
+                        .addGap(18, 18, 18)
+                        .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addArtist_typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(AddArtistLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton16))
+                .addContainerGap())
+        );
+
+        EditArtists.add(AddArtist, "addArtists");
+
+        EditArtist.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel12.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Editar Artista");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(514, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Nombre");
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Apellido");
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Nacimiento");
+
+        editArtist_genderCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        editArtist_genderCombo.setForeground(new java.awt.Color(51, 51, 51));
+        editArtist_genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+
+        jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("Género");
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel41.setText("Estatura");
+
+        editArtist_heightCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        editArtist_heightCombo.setForeground(new java.awt.Color(51, 51, 51));
+        editArtist_heightCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desconocida", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230" }));
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("Tipo");
+
+        editArtist_typeCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        editArtist_typeCombo.setForeground(new java.awt.Color(51, 51, 51));
+        editArtist_typeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actor", "Escritor" }));
+
+        editArtist_bioTxt.setColumns(20);
+        editArtist_bioTxt.setRows(5);
+        jScrollPane7.setViewportView(editArtist_bioTxt);
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel43.setText("Biografía");
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel44.setText("Dato de trivia");
+
+        editArtist_triviaTxt.setColumns(20);
+        editArtist_triviaTxt.setRows(5);
+        jScrollPane8.setViewportView(editArtist_triviaTxt);
+
+        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton17.setText("Guardar");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        jButton18.setBackground(new java.awt.Color(51, 51, 51));
+        jButton18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton18.setForeground(new java.awt.Color(255, 255, 255));
+        jButton18.setText("Atrás");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel46.setText("cm");
+
+        javax.swing.GroupLayout EditArtistLayout = new javax.swing.GroupLayout(EditArtist);
+        EditArtist.setLayout(EditArtistLayout);
+        EditArtistLayout.setHorizontalGroup(
+            EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditArtistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(EditArtistLayout.createSequentialGroup()
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EditArtistLayout.createSequentialGroup()
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditArtistLayout.createSequentialGroup()
+                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel38)
+                                    .addComponent(jLabel37))
+                                .addGap(18, 18, 18)
+                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(editArtist_nameTxt)
+                                    .addComponent(editArtist_lastnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                            .addGroup(EditArtistLayout.createSequentialGroup()
+                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel39)
+                                    .addComponent(jLabel40)
+                                    .addComponent(jLabel41)
+                                    .addComponent(jLabel42))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editArtist_typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(EditArtistLayout.createSequentialGroup()
+                                        .addComponent(editArtist_heightCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel46))
+                                    .addComponent(editArtist_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(editArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8)
+                            .addComponent(jScrollPane7)
+                            .addGroup(EditArtistLayout.createSequentialGroup()
+                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel43)
+                                    .addComponent(jLabel44))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        EditArtistLayout.setVerticalGroup(
+            EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditArtistLayout.createSequentialGroup()
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editArtist_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel43))
+                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditArtistLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editArtist_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editArtist_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editArtist_heightCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel46))
+                        .addGap(18, 18, 18)
+                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editArtist_typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EditArtistLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton18))
+                .addContainerGap())
+        );
+
+        EditArtists.add(EditArtist, "editArtist");
+
+        AdminPage.add(EditArtists, "editArtists");
+
+        EditProducts.setBackground(new java.awt.Color(0, 0, 0));
+        EditProducts.setLayout(new java.awt.CardLayout());
+
+        editProductsMenu.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("Editar Productos");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel51)
+                .addContainerGap(473, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jScrollPane9.setBackground(new java.awt.Color(51, 51, 51));
+
+        EditProducts_movies.setBackground(new java.awt.Color(51, 51, 51));
+        EditProducts_movies.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EditProducts_movies.setForeground(new java.awt.Color(255, 255, 255));
+        EditProducts_movies.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Shutter Island", "Inception", "Interstellar", "Oppenheimer" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane9.setViewportView(EditProducts_movies);
+
+        jScrollPane10.setBackground(new java.awt.Color(51, 51, 51));
+
+        EditProducts_series.setBackground(new java.awt.Color(51, 51, 51));
+        EditProducts_series.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EditProducts_series.setForeground(new java.awt.Color(255, 255, 255));
+        EditProducts_series.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Game Of Thrones", "House of the Dragon", "Attack on Titan", "Death Note" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        EditProducts_series.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                EditProducts_seriesAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane10.setViewportView(EditProducts_series);
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel52.setText("Películas");
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel53.setText("Series");
+
+        EditCountBackBtn2.setBackground(new java.awt.Color(51, 51, 51));
+        EditCountBackBtn2.setForeground(new java.awt.Color(255, 255, 255));
+        EditCountBackBtn2.setText("Atrás");
+        EditCountBackBtn2.setBorderPainted(false);
+        EditCountBackBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCountBackBtn2ActionPerformed(evt);
+            }
+        });
+
+        jButton19.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton19.setText("Editar");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+
+        jButton20.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton20.setText("Eliminar");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+
+        jButton21.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton21.setText("Eliminar");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        jButton22.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jButton22.setText("Editar");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        jButton23.setText("Agregar Serie");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+
+        jButton24.setText("Agregar Película");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout editProductsMenuLayout = new javax.swing.GroupLayout(editProductsMenu);
+        editProductsMenu.setLayout(editProductsMenuLayout);
+        editProductsMenuLayout.setHorizontalGroup(
+            editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(editProductsMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EditCountBackBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(editProductsMenuLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editProductsMenuLayout.createSequentialGroup()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel53)
+                    .addGroup(editProductsMenuLayout.createSequentialGroup()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton22))))
+                .addGap(30, 30, 30)
+                .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        editProductsMenuLayout.setVerticalGroup(
+            editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editProductsMenuLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editProductsMenuLayout.createSequentialGroup()
+                        .addComponent(jLabel52)
+                        .addGap(5, 5, 5)
+                        .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(editProductsMenuLayout.createSequentialGroup()
+                                .addComponent(jButton19)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton20))))
+                    .addGroup(editProductsMenuLayout.createSequentialGroup()
+                        .addComponent(jLabel53)
+                        .addGap(5, 5, 5)
+                        .addGroup(editProductsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(editProductsMenuLayout.createSequentialGroup()
+                                .addComponent(jButton22)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(EditCountBackBtn2)
+                .addContainerGap())
+        );
+
+        EditProducts.add(editProductsMenu, "editProductsMenu");
+
+        addMovie.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel17.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel54.setText("Agregar Película");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel54)
+                .addContainerGap(475, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel55.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel55.setText("Título");
+
+        addMovie_title.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_title.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel56.setText("Estreno");
+
+        addMovie_premier.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_premier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addMovie_premier.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_premier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910", "1909", "1908", "1907", "1906", "1905", "1904", "1903", "1902", "1901", "1900" }));
+
+        jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel57.setText("Tráiler");
+
+        addMovie_trailer.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_trailer.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel58.setText("Duración");
+
+        jLabel59.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel59.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel59.setText("Sinópsis");
+
+        addMovie_synopsis.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_synopsis.setColumns(20);
+        addMovie_synopsis.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_synopsis.setRows(5);
+        jScrollPane12.setViewportView(addMovie_synopsis);
+
+        EditCountBackBtn3.setBackground(new java.awt.Color(51, 51, 51));
+        EditCountBackBtn3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EditCountBackBtn3.setForeground(new java.awt.Color(255, 255, 255));
+        EditCountBackBtn3.setText("Atrás");
+        EditCountBackBtn3.setBorderPainted(false);
+        EditCountBackBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCountBackBtn3ActionPerformed(evt);
+            }
+        });
+
+        addMovie_photos.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_photos.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane13.setViewportView(addMovie_photos);
+
+        jLabel60.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel60.setText("Fotos");
+
+        jButton25.setBackground(new java.awt.Color(51, 51, 51));
+        jButton25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton25.setForeground(new java.awt.Color(255, 255, 255));
+        jButton25.setText("Agregar Foto");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+
+        jButton26.setBackground(new java.awt.Color(51, 51, 51));
+        jButton26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton26.setForeground(new java.awt.Color(255, 255, 255));
+        jButton26.setText("Agregar");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+
+        addMovie_duration.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_duration.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel61.setText("mins");
+
+        javax.swing.GroupLayout addMovieLayout = new javax.swing.GroupLayout(addMovie);
+        addMovie.setLayout(addMovieLayout);
+        addMovieLayout.setHorizontalGroup(
+            addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addMovieLayout.createSequentialGroup()
+                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addMovieLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(EditCountBackBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addMovieLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addMovieLayout.createSequentialGroup()
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel56)
+                                    .addComponent(jLabel55)
+                                    .addComponent(jLabel57))
+                                .addGap(18, 18, 18)
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addMovie_trailer, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addMovie_title, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addMovie_premier, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(addMovieLayout.createSequentialGroup()
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel59)
+                                    .addComponent(jLabel58))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(addMovieLayout.createSequentialGroup()
+                                        .addComponent(addMovie_duration, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel61)))))
+                        .addGap(18, 18, 18)
+                        .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel60)
+                            .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        addMovieLayout.setVerticalGroup(
+            addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addMovieLayout.createSequentialGroup()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addMovieLayout.createSequentialGroup()
+                        .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addMovieLayout.createSequentialGroup()
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel55)
+                                    .addComponent(addMovie_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel56)
+                                    .addComponent(addMovie_premier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel57)
+                                    .addComponent(addMovie_trailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel58)
+                                    .addComponent(addMovie_duration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel61))
+                                .addGap(18, 18, 18)
+                                .addGroup(addMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel59)
+                                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(addMovieLayout.createSequentialGroup()
+                                .addComponent(jLabel60)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton25)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(EditCountBackBtn3))
+                    .addGroup(addMovieLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        EditProducts.add(addMovie, "addMovie");
+
+        addSeries.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel18.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel62.setText("Agregar Serie");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel62)
+                .addContainerGap(508, Short.MAX_VALUE))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel63.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel63.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel63.setText("Título");
+
+        addSeries_title.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_title.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel64.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel64.setText("Estreno");
+
+        addSeries_premier.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_premier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addSeries_premier.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_premier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910", "1909", "1908", "1907", "1906", "1905", "1904", "1903", "1902", "1901", "1900" }));
+
+        jLabel65.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel65.setText("Tráiler");
+
+        addSeries_trailer.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_trailer.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_trailer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSeries_trailerActionPerformed(evt);
+            }
+        });
+
+        jLabel67.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel67.setText("Sinópsis");
+
+        addSeries_synopsis.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_synopsis.setColumns(20);
+        addSeries_synopsis.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_synopsis.setRows(5);
+        jScrollPane14.setViewportView(addSeries_synopsis);
+
+        EditCountBackBtn4.setBackground(new java.awt.Color(51, 51, 51));
+        EditCountBackBtn4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EditCountBackBtn4.setForeground(new java.awt.Color(255, 255, 255));
+        EditCountBackBtn4.setText("Atrás");
+        EditCountBackBtn4.setBorderPainted(false);
+        EditCountBackBtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCountBackBtn4ActionPerformed(evt);
+            }
+        });
+
+        addSeries_photos.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_photos.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane15.setViewportView(addSeries_photos);
+
+        jLabel68.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel68.setText("Fotos");
+
+        jButton27.setBackground(new java.awt.Color(51, 51, 51));
+        jButton27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton27.setForeground(new java.awt.Color(255, 255, 255));
+        jButton27.setText("Agregar Foto");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+
+        jButton28.setBackground(new java.awt.Color(51, 51, 51));
+        jButton28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton28.setForeground(new java.awt.Color(255, 255, 255));
+        jButton28.setText("Agregar");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addSeriesLayout = new javax.swing.GroupLayout(addSeries);
+        addSeries.setLayout(addSeriesLayout);
+        addSeriesLayout.setHorizontalGroup(
+            addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addSeriesLayout.createSequentialGroup()
+                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(EditCountBackBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addSeriesLayout.createSequentialGroup()
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel64)
+                                    .addComponent(jLabel63)
+                                    .addComponent(jLabel65))
+                                .addGap(18, 18, 18)
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addSeries_trailer, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addSeries_title, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addSeries_premier, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(addSeriesLayout.createSequentialGroup()
+                                .addComponent(jLabel67)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel68)
+                            .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        addSeriesLayout.setVerticalGroup(
+            addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addSeriesLayout.createSequentialGroup()
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(addSeriesLayout.createSequentialGroup()
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel63)
+                                    .addComponent(addSeries_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel64)
+                                    .addComponent(addSeries_premier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel65)
+                                    .addComponent(addSeries_trailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel67)
+                                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25))
+                            .addGroup(addSeriesLayout.createSequentialGroup()
+                                .addComponent(jLabel68)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton27)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(EditCountBackBtn4))
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        EditProducts.add(addSeries, "addSeries");
+
+        AdminPage.add(EditProducts, "EditProducts");
 
         MainPanel.add(AdminPage, "card3");
 
@@ -715,12 +2043,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Nacimiento");
 
-        register_dayCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        register_monthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-
-        register_yearCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
-
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Género");
@@ -765,18 +2087,13 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addGroup(RegisterPage1Layout.createSequentialGroup()
                                         .addComponent(jLabel23)
                                         .addGap(46, 46, 46)))
-                                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(register_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(RegisterPage1Layout.createSequentialGroup()
-                                        .addComponent(register_dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton6)
-                                            .addGroup(RegisterPage1Layout.createSequentialGroup()
-                                                .addComponent(register_monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(register_yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(48, 48, 48)))
+                                        .addGap(84, 84, 84)
+                                        .addComponent(jButton6))
+                                    .addComponent(register_genderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Register_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(112, 112, 112)))
                         .addGap(170, 170, 170))))
         );
         RegisterPage1Layout.setVerticalGroup(
@@ -799,17 +2116,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addGap(29, 29, 29)
-                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(27, 27, 27)
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel22)
-                    .addComponent(register_dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(register_monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(register_yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Register_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(register_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(35, 35, 35)
                 .addComponent(jButton8)
@@ -1075,15 +2390,16 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        boolean exists = false;
+        int id = -1;
         try {
-            exists = Logic.verifyAccountCredentials(login_userTxt.getText(), 
+            id = Logic.verifyAccountCredentials(login_userTxt.getText(), 
                     login_passwordTxt.getText());
         }
         catch (Exception e) {
             System.out.println();
         }
-        if (exists) {
+        if (id >= 0) {
+            userAccount = new Account(id, login_userTxt.getText());
             MainMenu_SignInButton.setText("Welcome");
             MainMenu_SignInButton.setEnabled(false);
             CardLayout card = (CardLayout) MainPanel.getLayout();
@@ -1128,12 +2444,9 @@ public class MainFrame extends javax.swing.JFrame {
             showError(e.toString());
             return;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            String birthDate = register_dayCombo.getSelectedItem().toString()
-                + "-" + register_monthCombo.getSelectedItem().toString()
-                + "-" + register_yearCombo.getSelectedItem().toString();
-            LocalDate.parse(birthDate, formatter);
+            String birthDate = formatter.format(Register_date.getDate());
         }
         catch (Exception e) {
             showError("Fecha inválida.");
@@ -1175,14 +2488,20 @@ public class MainFrame extends javax.swing.JFrame {
         catch (Exception e) {
             showError("Ingrese una identificación válida.");
             return;
-        }        
+        } 
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String birthDate;
+        try {
+            birthDate = formatter.format(Register_date.getDate());
+        }
+        catch (Exception e) {
+            showError("Fecha inválida.");
+            return;
+        }
         String name = register_nameTxt.getText();
         String lastName = register_lastnameTxt.getText();
         String username = register_userTxt.getText();
         String password = register_passwordTxt.getText();
-        String birthDate = register_dayCombo.getSelectedItem().toString()
-          + "-" + register_monthCombo.getSelectedItem().toString()
-          + "-" + register_yearCombo.getSelectedItem().toString();
         int index = register_genderCombo.getSelectedIndex();
         ListModel model = register_genderCombo.getModel();
         Gender gender = (Gender) model.getElementAt(index);
@@ -1191,16 +2510,433 @@ public class MainFrame extends javax.swing.JFrame {
         index = register_countryCombo.getSelectedIndex();
         model = register_countryCombo.getModel();
         Country country = (Country)model.getElementAt(index);
+        int idPerson;
         try {
-            int idPerson = Insertions.insertPerson(name, lastName, birthDate, gender.getId());
+            System.out.println(birthDate);
+            idPerson = Insertions.insertPerson(name, lastName, birthDate, 0, gender.getId());
             Insertions.insertUser(idPerson, email, phone, country.getId(), 
                 idType.getId(), idNumber);
             Insertions.insertAccount(username, password, idPerson, 2, 0);
+            System.out.println("Registered");
         }
         catch (Exception e) {
-            showError("Revise los campos e intente nuevamente.");
+            System.out.println(e);
+            showError(e.toString());
+            return;
         }
+        Account account = new Account(0, username, password, idPerson, 2, 0);
+        userInfo userinfo = userInfo.getInstance();
+        userinfo.setAccount(account);
+        MainMenu_SignInButton.setText("Welcome");
+        MainMenu_SignInButton.setEnabled(false);
+        CardLayout card = (CardLayout) MainPanel.getLayout();
+        card.show(MainPanel, "mainMenu");
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void CountriesButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton3ActionPerformed
+        try {
+            DefaultListModel actorsModel = buildListModel(Cursors.getArtistsOfType(1));
+            DefaultListModel directorsModel = buildListModel(Cursors.getArtistsOfType(2));
+            DefaultListModel writersModel = buildListModel(Cursors.getArtistsOfType(3));
+            EditArtists_ActorsList.setModel(actorsModel);
+            EditArtists_DirectorsList.setModel(directorsModel);
+            EditArtists_WritersList.setModel(writersModel);
+        }
+        catch (Exception e) {
+            showError("Error al leer de la base de datos.");
+            System.out.println(e);
+            return;
+        }
+        CardLayout card = (CardLayout) AdminPage.getLayout();
+        card.show(AdminPage, "editArtists");
+    }//GEN-LAST:event_CountriesButton3ActionPerformed
+
+    private void EditCountBackBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn1ActionPerformed
+        CardLayout card = (CardLayout) AdminPage.getLayout();
+        card.show(AdminPage, "adminMenu");
+    }//GEN-LAST:event_EditCountBackBtn1ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        if (addArtist_nameTxt.getText().length() < 1 ||
+            addArtist_lastnameTxt.getText().length() < 1 ||
+            addArtist_bioTxt.getText().length() < 1 ||
+            addArtist_triviaTxt.getText().length() < 1) {
+                showError("Debe llenar todos los datos.");
+                return;
+        }
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String birthDate;
+        try {
+            birthDate = formatter.format(addArtist_date.getDate());
+        }
+        catch (Exception e) {
+            showError("Fecha inválida.");
+            return;
+        }
+        String name = addArtist_nameTxt.getText();
+        String lastName = addArtist_lastnameTxt.getText();
+        int index = addArtist_genderCombo.getSelectedIndex();
+        ListModel model = addArtist_genderCombo.getModel();
+        Gender gender = (Gender) model.getElementAt(index);
+        index = addArtist_typeCombo.getSelectedIndex();
+        model = addArtist_typeCombo.getModel();
+        ArtistType type = (ArtistType) model.getElementAt(index);
+        String bio = addArtist_bioTxt.getText();
+        String trivia = addArtist_triviaTxt.getText();
+        int height;
+        System.out.println(addArtist_height.getSelectedItem().toString());
+        try {
+            height = Integer.parseInt(addArtist_height.getSelectedItem().toString());
+        }
+        catch (NumberFormatException e) {
+            height = 0;
+        }
+        try {
+            int id = Insertions.insertPerson(name, lastName, birthDate, height, gender.getId());
+            Insertions.insertArtist(id, type.getId(), bio, trivia);
+        }
+        catch (Exception e) {
+            showError("Verifique las entradas e intente nuevamente.");
+            return;
+        }
+        try {
+            DefaultListModel actorsModel = buildListModel(Cursors.getArtistsOfType(1));
+            DefaultListModel directorsModel = buildListModel(Cursors.getArtistsOfType(2));
+            DefaultListModel writersModel = buildListModel(Cursors.getArtistsOfType(3));
+            EditArtists_ActorsList.setModel(actorsModel);
+            EditArtists_DirectorsList.setModel(directorsModel);
+            EditArtists_WritersList.setModel(writersModel);
+        }
+        catch (Exception e) {
+            showError("Error al leer de la base de datos.");
+        }
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "editArtistsMenu");
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        try {
+            DefaultComboBoxModel gendersModel = buildComboModel(Cursors.getGenders());
+            addArtist_genderCombo.setModel(gendersModel);
+            DefaultComboBoxModel typesModel = buildComboModel(Cursors.getArtistTypes());
+            addArtist_typeCombo.setModel(typesModel);
+        }
+        catch (Exception e) {
+            showError("Error al leer de la base de datos.");
+            return;
+        }
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "addArtists");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "editArtistsMenu");
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            int index = EditArtists_ActorsList.getSelectedIndex();
+            ListModel model = EditArtists_ActorsList.getModel();
+            Artist artist = (Artist)model.getElementAt(index);
+            Deletions.deleteArtist(artist.getId());
+            DefaultListModel actorsModel = buildListModel(Cursors.getArtistsOfType(1));
+            EditArtists_ActorsList.setModel(actorsModel);
+        }
+        catch (Exception e) {
+            showError("Error al eliminar. Intente nuevamente.");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        try {
+            int index = EditArtists_DirectorsList.getSelectedIndex();
+            ListModel model = EditArtists_DirectorsList.getModel();
+            Artist artist = (Artist)model.getElementAt(index);
+            Deletions.deleteArtist(artist.getId());
+            DefaultListModel directorsModel = buildListModel(Cursors.getArtistsOfType(2));
+            EditArtists_DirectorsList.setModel(directorsModel);
+        }
+        catch (Exception e) {
+            showError("Error al eliminar. Intente nuevamente.");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+            int index = EditArtists_WritersList.getSelectedIndex();
+            ListModel model = EditArtists_WritersList.getModel();
+            Artist artist = (Artist)model.getElementAt(index);
+            Deletions.deleteArtist(artist.getId());
+            DefaultListModel writersModel = buildListModel(Cursors.getArtistsOfType(3));
+            EditArtists_WritersList.setModel(writersModel);
+        }
+        catch (Exception e) {
+            showError("Error al eliminar. Intente nuevamente.");
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "editArtistsMenu");
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CountriesButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton4ActionPerformed
+        CardLayout card = (CardLayout) AdminPage.getLayout();
+        card.show(AdminPage, "EditProducts");
+        try {
+            DefaultListModel movieList = buildListModel(Cursors.getMovies());
+            DefaultListModel seriesList = buildListModel(Cursors.getSeries());
+            EditProducts_series.setModel(seriesList);
+            EditProducts_movies.setModel(movieList);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_CountriesButton4ActionPerformed
+
+    private void EditProducts_seriesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_EditProducts_seriesAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditProducts_seriesAncestorAdded
+
+    private void EditCountBackBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn2ActionPerformed
+        CardLayout card = (CardLayout) AdminPage.getLayout();
+        card.show(AdminPage, "adminMenu");
+    }//GEN-LAST:event_EditCountBackBtn2ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        try{
+            int index = EditProducts_movies.getSelectedIndex();
+            ListModel model = EditProducts_movies.getModel();
+            Movie movie = (Movie) model.getElementAt(index);
+            Deletions.deleteMovie(movie.getId());
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        try {
+            EditProducts_movies.setModel(buildListModel(Cursors.getMovies()));
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't fetch movies.");
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        try{
+            int index = EditProducts_series.getSelectedIndex();
+            ListModel model = EditProducts_series.getModel();
+            Series series = (Series) model.getElementAt(index);
+            Deletions.deleteSeries(series.getId());
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        try {
+            EditProducts_series.setModel(buildListModel(Cursors.getSeries()));
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't fetch series.");
+        }
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void EditCountBackBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn3ActionPerformed
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "editProductsMenu");
+    }//GEN-LAST:event_EditCountBackBtn3ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "addMovie");
+        DefaultListModel model = new DefaultListModel();
+        addMovie_photos.setModel(model);
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showDialog(fc, "Agregar");
+        File imgFile = fc.getSelectedFile();
+        String fileName = imgFile.getAbsolutePath();
+        if (!fileName.toLowerCase().endsWith(".jpg") 
+           && !fileName.toLowerCase().endsWith(".jpeg")) {
+               showError("Solo puede ingresar archivos jpg.");
+               return;
+        }
+        
+        ListModel oldModel = addMovie_photos.getModel();
+        DefaultListModel newModel = new DefaultListModel();
+        for (int i = 0; i < oldModel.getSize(); i++) {
+            newModel.addElement(oldModel.getElementAt(i));
+        }
+        newModel.addElement(imgFile);
+        addMovie_photos.setModel(newModel);
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        if (addMovie_title.getText().length() < 1 ||
+            addMovie_trailer.getText().length() < 1 ||
+            addMovie_duration.getText().length() < 1 ||
+            addMovie_synopsis.getText().length() < 1) {
+                showError("Complete todos los campos.");
+                return;
+        }
+        if (addMovie_photos.getModel().getSize() == 0) {
+            showError("Debe ingresar al menos 1 foto.");
+            return;
+        }
+        
+        int duration;
+        try {
+            duration = Integer.parseInt(addMovie_duration.getText());
+        }
+        catch (Exception e) {
+            showError("Duración inválida.");
+            return;
+        }
+        if (duration > 500 || duration < 1) {
+            showError("Duración inválida.");
+            return;
+        }
+        
+        String title = addMovie_title.getText();
+        int premier = Integer.parseInt(
+                addMovie_premier.getSelectedItem().toString());
+        String trailer = addMovie_trailer.getText();
+        String synopsis = addMovie_synopsis.getText();
+        
+        int idProduct;
+        try {
+            idProduct = Insertions.insertProduct(title, premier, synopsis, trailer);
+            Insertions.insertMovie(idProduct, duration);
+        }
+        catch (Exception e) {
+            showError("Error al insertar");
+            return;
+        }
+        ListModel photoModel = addMovie_photos.getModel();
+        for (int i = 0; i < photoModel.getSize(); i++) {
+            try {
+                File img = (File) photoModel.getElementAt(i);
+                String dir = img.getParent();
+                String fName = img.getName();
+                int photoId = Insertions.insertPhoto(dir, fName);
+                Insertions.insertProductPhoto(photoId, idProduct);
+            }
+            catch (Exception e) {
+                showError("No se pudo insertar la imagen");
+            }
+        }
+        try {
+            EditProducts_movies.setModel(buildListModel(Cursors.getMovies()));
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't fetch movies.");
+        }
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "editProductsMenu");
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void EditCountBackBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn4ActionPerformed
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "editProductsMenu");
+    }//GEN-LAST:event_EditCountBackBtn4ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showDialog(fc, "Agregar");
+        File imgFile = fc.getSelectedFile();
+        String fileName = imgFile.getAbsolutePath();
+        if (!fileName.toLowerCase().endsWith(".jpg") 
+           && !fileName.toLowerCase().endsWith(".jpeg")) {
+               showError("Solo puede ingresar archivos jpg.");
+               return;
+        }
+        
+        ListModel oldModel = addSeries_photos.getModel();
+        DefaultListModel newModel = new DefaultListModel();
+        for (int i = 0; i < oldModel.getSize(); i++) {
+            newModel.addElement(oldModel.getElementAt(i));
+        }
+        newModel.addElement(imgFile);
+        addSeries_photos.setModel(newModel);
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        if (addSeries_title.getText().length() < 1 ||
+            addSeries_trailer.getText().length() < 1 ||
+            addSeries_synopsis.getText().length() < 1) {
+                showError("Complete todos los campos.");
+                return;
+        }
+        if (addSeries_photos.getModel().getSize() == 0) {
+            showError("Debe ingresar al menos 1 foto.");
+            return;
+        }
+        
+        String title = addSeries_title.getText();
+        int premier = Integer.parseInt(
+                addSeries_premier.getSelectedItem().toString());
+        String trailer = addSeries_trailer.getText();
+        String synopsis = addSeries_synopsis.getText();
+        
+        int idProduct;
+        try {
+            idProduct = Insertions.insertProduct(title, premier, synopsis, trailer);
+            Insertions.insertSeries(idProduct);
+        }
+        catch (Exception e) {
+            showError("Error al insertar");
+            return;
+        }
+        ListModel photoModel = addSeries_photos.getModel();
+        for (int i = 0; i < photoModel.getSize(); i++) {
+            try {
+                File img = (File) photoModel.getElementAt(i);
+                String dir = img.getParent();
+                String fName = img.getName();
+                int photoId = Insertions.insertPhoto(dir, fName);
+                Insertions.insertProductPhoto(photoId, idProduct);
+            }
+            catch (Exception e) {
+                showError("No se pudo insertar la imagen");
+            }
+        }
+        try {
+            EditProducts_series.setModel(buildListModel(Cursors.getSeries()));
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't fetch movies.");
+        }
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "editProductsMenu");
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void addSeries_trailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSeries_trailerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addSeries_trailerActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "addSeries");
+        DefaultListModel model = new DefaultListModel();
+        addSeries_photos.setModel(model);
+    }//GEN-LAST:event_jButton23ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1238,14 +2974,30 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AddArtist;
     private javax.swing.JButton AddCountryBtn;
     private javax.swing.JButton AdmMenuBackBtn;
     private javax.swing.JPanel AdminMenu;
     private javax.swing.JPanel AdminPage;
     private javax.swing.JButton CountriesButton2;
+    private javax.swing.JButton CountriesButton3;
+    private javax.swing.JButton CountriesButton4;
+    private javax.swing.JPanel EditArtist;
+    private javax.swing.JPanel EditArtists;
+    private javax.swing.JPanel EditArtistsMenu;
+    private javax.swing.JList<String> EditArtists_ActorsList;
+    private javax.swing.JList<String> EditArtists_DirectorsList;
+    private javax.swing.JList<String> EditArtists_WritersList;
     private javax.swing.JButton EditCountBackBtn;
+    private javax.swing.JButton EditCountBackBtn1;
+    private javax.swing.JButton EditCountBackBtn2;
+    private javax.swing.JButton EditCountBackBtn3;
+    private javax.swing.JButton EditCountBackBtn4;
     private javax.swing.JPanel EditCountries;
     private javax.swing.JList<String> EditCountries_CountryList;
+    private javax.swing.JPanel EditProducts;
+    private javax.swing.JList<String> EditProducts_movies;
+    private javax.swing.JList<String> EditProducts_series;
     private javax.swing.JDialog ErrorDialog;
     private javax.swing.JLabel ErrorDialogTxt;
     private javax.swing.JPanel LogInPage;
@@ -1256,18 +3008,71 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField NewCountryTxtfield;
     private javax.swing.JPanel RegisterPage1;
     private javax.swing.JPanel RegisterPage2;
+    private com.toedter.calendar.JDateChooser Register_date;
     private javax.swing.JButton RemoveCountryBtn;
     private javax.swing.JPanel SignInPage;
+    private javax.swing.JTextArea addArtist_bioTxt;
+    private com.toedter.calendar.JDateChooser addArtist_date;
+    private javax.swing.JComboBox<String> addArtist_genderCombo;
+    private javax.swing.JComboBox<String> addArtist_height;
+    private javax.swing.JTextField addArtist_lastnameTxt;
+    private javax.swing.JTextField addArtist_nameTxt;
+    private javax.swing.JTextArea addArtist_triviaTxt;
+    private javax.swing.JComboBox<String> addArtist_typeCombo;
+    private javax.swing.JPanel addMovie;
+    private javax.swing.JTextField addMovie_duration;
+    private javax.swing.JList<String> addMovie_photos;
+    private javax.swing.JComboBox<String> addMovie_premier;
+    private javax.swing.JTextArea addMovie_synopsis;
+    private javax.swing.JTextField addMovie_title;
+    private javax.swing.JTextField addMovie_trailer;
+    private javax.swing.JPanel addSeries;
+    private javax.swing.JList<String> addSeries_photos;
+    private javax.swing.JComboBox<String> addSeries_premier;
+    private javax.swing.JTextArea addSeries_synopsis;
+    private javax.swing.JTextField addSeries_title;
+    private javax.swing.JTextField addSeries_trailer;
+    private javax.swing.JTextArea editArtist_bioTxt;
+    private com.toedter.calendar.JDateChooser editArtist_date;
+    private javax.swing.JComboBox<String> editArtist_genderCombo;
+    private javax.swing.JComboBox<String> editArtist_heightCombo;
+    private javax.swing.JTextField editArtist_lastnameTxt;
+    private javax.swing.JTextField editArtist_nameTxt;
+    private javax.swing.JTextArea editArtist_triviaTxt;
+    private javax.swing.JComboBox<String> editArtist_typeCombo;
+    private javax.swing.JPanel editProductsMenu;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1284,37 +3089,102 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField login_passwordTxt;
     private javax.swing.JTextField login_userTxt;
     private javax.swing.JButton registerButton;
     private javax.swing.JComboBox<String> register_countryCombo;
-    private javax.swing.JComboBox<String> register_dayCombo;
     private javax.swing.JTextField register_emailTxt;
     private javax.swing.JComboBox<String> register_genderCombo;
     private javax.swing.JTextField register_idTxt;
     private javax.swing.JTextField register_lastnameTxt;
-    private javax.swing.JComboBox<String> register_monthCombo;
     private javax.swing.JTextField register_nameTxt;
     private javax.swing.JTextField register_passwordTxt;
     private javax.swing.JTextField register_phoneTxt;
     private javax.swing.JComboBox<String> register_typesCombo;
     private javax.swing.JTextField register_userTxt;
-    private javax.swing.JComboBox<String> register_yearCombo;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,4 +13,31 @@ public class Deletions {
         con.close();
         stmt.close();
     }
+    
+    public static void deleteArtist(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call Artist_Utils.deleteArtist(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void deleteMovie(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call movie_utils.removeMovie(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void deleteSeries(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call series_utils.removeSeries(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
 }

@@ -17,4 +17,11 @@ public class Account {
             this.id_accountType = id_accountType;
             this.id_catalogue = id_catalogue;
     }
+
+    public Account(int id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+    
+    
 }

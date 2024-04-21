@@ -13,14 +13,14 @@ public class Insertions {
     }
          
     public static int insertPerson(String name, String lastName,
-        String birthDate, int genderId) throws SQLException {
+        String birthDate, int height, int genderId) throws SQLException {
             Connection con = sysConnection.getConnection();
             CallableStatement stmt = con.prepareCall("{? = call person_utils.insertPerson(?,?,?,?,?)}");
             stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
             stmt.setString(2, name);
             stmt.setString(3, lastName);
             stmt.setString(4, birthDate);
-            stmt.setInt(5, 0);
+            stmt.setInt(5, height);
             stmt.setInt(6, genderId);
             stmt.execute();
             int result = stmt.getInt(1);
@@ -56,5 +56,78 @@ public class Insertions {
             stmt.execute();
             con.close();
             stmt.close();
+    }
+    
+    public static void insertArtist(int id, int idType, String biography, 
+    String trivia) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call Artist_utils.insertArtist(?,?,?,?)}");
+        stmt.setInt(1, id);
+        stmt.setInt(2, idType);
+        stmt.setString(3, biography);
+        stmt.setString(4, trivia);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static int insertProduct(String title, int year, String synopsis, 
+        String trailer) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call product_utils.insertProduct(?,?,?,?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setString(2, title);
+        stmt.setInt(3, year);
+        stmt.setString(4, synopsis);
+        stmt.setString(5, trailer);
+        stmt.execute();
+        int id = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return id;
+    }
+    
+    public static void insertMovie(int IdProduct, int duration) throws SQLException{
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call movie_utils.insertMovie(?,?)}");
+        stmt.setInt(1, IdProduct);
+        stmt.setInt(2, duration);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertSeries(int IdProduct) throws SQLException{
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call series_utils.insertSeries(?)}");
+        stmt.setInt(1, IdProduct);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static int insertPhoto(String dir, String file) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call photo_utils.insertPhoto(?,?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setString(2, dir);
+        stmt.setString(3, file);
+        stmt.execute();
+        int id = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return id;
+    }
+    
+    
+    
+    public static void insertProductPhoto(int idPhoto, int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ProductPhoto_utils.insertProductPhoto(?,?)}");
+        stmt.setInt(1, idPhoto);
+        stmt.setInt(2, idProduct);
+        stmt.execute();
+        con.close();
+        stmt.close();
     }
 }

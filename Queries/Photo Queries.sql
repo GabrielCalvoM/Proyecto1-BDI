@@ -1,24 +1,29 @@
 CREATE OR REPLACE PACKAGE photo_utils IS
-    PROCEDURE insertPhoto(pDir IN VARCHAR2, pName IN VARCHAR2);
+    FUNCTION insertPhoto(pDir IN VARCHAR2, pName IN VARCHAR2) RETURN NUMBER;
+    
+    PROCEDURE removePhoto(pId NUMBER);
     
     PROCEDURE setPhoto(pId IN NUMBER, pDir IN VARCHAR2, pName IN VARCHAR2);
     
     FUNCTION  getPhoto(pId IN NUMBER) RETURN BFILE;
 
 END photo_utils;
-/
+
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY photo_utils AS
 
 -- Insert
-    PROCEDURE insertPhoto(pDir IN VARCHAR2, pName IN VARCHAR2)
+    FUNCTION insertPhoto(pDir IN VARCHAR2, pName IN VARCHAR2)
+    RETURN NUMBER
     IS
-    
+        vId_Photo NUMBER;
     BEGIN
+        SELECT s_photo.NEXTVAL INTO vId_Photo FROM DUAL;
         INSERT INTO photo (id_photo, picture)
-            VALUES (s_photo.NEXTVAL, BFILENAME(pDir, pName));
+            VALUES (vId_Photo, BFILENAME(pDir, pName));
         COMMIT;
+        RETURN vId_Photo;
     
     EXCEPTION
         WHEN VALUE_ERROR THEN
@@ -28,7 +33,14 @@ CREATE OR REPLACE PACKAGE BODY photo_utils AS
         WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
+    END;
     
+    PROCEDURE removePhoto(pId NUMBER)
+    IS
+    BEGIN
+        DELETE FROM Photo
+        WHERE id_photo = pId;
+        COMMIT;
     END;
 
 -- Setters

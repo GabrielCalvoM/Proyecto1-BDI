@@ -92,12 +92,17 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
     FUNCTION checkUserPassword (pUsername VARCHAR, pPassword VARCHAR) 
     RETURN NUMBER
     IS
-        vCount NUMBER;
+        vId NUMBER;
     BEGIN 
-        SELECT COUNT(*) INTO vCount
+        SELECT id_account INTO vId
         FROM UserAccount 
         WHERE username = pUsername AND accountPassword = pPassword;
-        RETURN vCount;
+        RETURN vId;
+        
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+        RETURN -1;
+    
     END checkUserPassword;
     
     FUNCTION getUsernameUnique(pUsername VARCHAR2) RETURN NUMBER

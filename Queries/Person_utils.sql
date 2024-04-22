@@ -18,11 +18,6 @@ CREATE OR REPLACE PACKAGE person_utils IS
 
 END person_utils;
 
-UPDATE UserAccount
-SET id_accounttype = 1
-WHERE id_account = 8;
-
-
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY person_utils AS

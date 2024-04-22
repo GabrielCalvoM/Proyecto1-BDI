@@ -1,9 +1,11 @@
 CREATE OR REPLACE PACKAGE productArtist_utils IS
     PROCEDURE insertProductArtist(pProduct IN NUMBER, pArtist IN NUMBER);
+    PROCEDURE deleteArtistsForProduct(pIdProduct NUMBER);
     
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER);
     PROCEDURE setArtist(pId IN NUMBER, pArtist IN NUMBER);
     
+    PROCEDURE getArtistsInProduct(pIdProduct NUMBER, artistCursor OUT SYS_REFCURSOR);
     FUNCTION  getProduct(pId IN NUMBER) RETURN NUMBER;
     FUNCTION  getArtist(pId IN NUMBER) RETURN NUMBER;
     FUNCTION  getAllProducts(pArtist IN NUMBER) RETURN SYS_REFCURSOR;
@@ -34,6 +36,14 @@ CREATE OR REPLACE PACKAGE BODY productArtist_utils aS
             ROLLBACK;
     
     END;
+    
+    PROCEDURE deleteArtistsForProduct(pIdProduct NUMBER)
+    IS
+    BEGIN
+        DELETE FROM ProductArtist
+        WHERE id_product = pIdProduct;
+        COMMIT;
+    END deleteArtistsForProduct;
     
 -- Setters
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER)
@@ -75,6 +85,17 @@ CREATE OR REPLACE PACKAGE BODY productArtist_utils aS
     END;
     
 -- Getters
+
+    PROCEDURE getArtistsInProduct(pIdProduct NUMBER, artistCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN artistCursor
+        FOR
+        SELECT id_artist
+        FROM ProductArtist
+        WHERE id_product = pIdProduct;
+    END getArtistsInProduct;
+
     FUNCTION getProduct(pId IN NUMBER)
     RETURN NUMBER
     IS

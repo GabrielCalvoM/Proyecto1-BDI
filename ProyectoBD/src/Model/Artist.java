@@ -16,10 +16,11 @@ public class Artist {
         this.trivia_data = trivia_data;
     }
     
-    public Artist(int id, String name, String type, String birth, 
+    public Artist(int id, String name, String type, int idType, String birth, 
         String bio, String trivia, int height) {
             this.id = id;
             this.name = name;
+            id_artistType = idType;
             artistType = type;
             birthDate = birth;
             biography_artist = bio;

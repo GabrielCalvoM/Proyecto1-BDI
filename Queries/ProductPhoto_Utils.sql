@@ -3,6 +3,8 @@ CREATE OR REPLACE PACKAGE ProductPhoto_Utils IS
     PROCEDURE insertProductPhoto(pId_Photo NUMBER, pId_Product NUMBER);
     -- Delete
     PROCEDURE deleteProductPhoto(pIdProduct NUMBER);
+    -- Get
+    FUNCTION getProductMainImg(pIdProduct NUMBER) RETURN VARCHAR2;
 END ProductPhoto_Utils;
 /
 
@@ -43,5 +45,17 @@ CREATE OR REPLACE PACKAGE BODY ProductPhoto_Utils AS
             dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
     
     END deleteProductPhoto;
+    
+    FUNCTION getProductMainImg(pIdProduct NUMBER)
+    RETURN VARCHAR2
+    IS
+        vPath VARCHAR2(100);
+    BEGIN
+        SELECT ph.picture INTO vPath
+        FROM ProductPhoto pph
+        LEFT JOIN Photo ph ON pph.id_productPhoto = ph.id_photo
+        WHERE pph.id_product = pIdProduct;
+        RETURN vPath;
+    END getProductMainImg;
 
 END ProductPhoto_Utils;

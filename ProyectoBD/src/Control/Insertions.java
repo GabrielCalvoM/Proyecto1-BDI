@@ -106,12 +106,11 @@ public class Insertions {
         stmt.close();
     }
     
-    public static int insertPhoto(String dir, String file) throws SQLException {
+    public static int insertPhoto(String path) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call photo_utils.insertPhoto(?,?)}");
+        CallableStatement stmt = con.prepareCall("{? = call photo_utils.insertPhoto(?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
-        stmt.setString(2, dir);
-        stmt.setString(3, file);
+        stmt.setString(2, path);
         stmt.execute();
         int id = stmt.getInt(1);
         con.close();
@@ -119,13 +118,21 @@ public class Insertions {
         return id;
     }
     
-    
-    
     public static void insertProductPhoto(int idPhoto, int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call ProductPhoto_utils.insertProductPhoto(?,?)}");
         stmt.setInt(1, idPhoto);
         stmt.setInt(2, idProduct);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertProductArtist(int idProduct, int idArtist) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call productArtist_utils.insertProductArtist(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idArtist);
         stmt.execute();
         con.close();
         stmt.close();

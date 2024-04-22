@@ -10,8 +10,10 @@ CREATE OR REPLACE PACKAGE artist_Utils IS
     
     PROCEDURE getArtistTypes(artistCursor OUT SYS_REFCURSOR);
     
+    FUNCTION getTypeOfArtist(pId NUMBER) RETURN NUMBER;
+    
     PROCEDURE getArtist(pId NUMBER, pFirst_name OUT VARCHAR2, pLast_name OUT VARCHAR2, 
-    pArtistType OUT VARCHAR2, pBiography OUT VARCHAR2, pTrivia OUT VARCHAR2,
+    pArtistType OUT VARCHAR2, pArtistTypeId OUT NUMBER, pBiography OUT VARCHAR2, pTrivia OUT VARCHAR2,
     pDate OUT VARCHAR2, pHeight OUT NUMBER);
 END artist_Utils;
 
@@ -85,23 +87,28 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
                 dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
     END getArtistTypes;
     
+    FUNCTION getTypeOfArtist(pId NUMBER) RETURN NUMBER
+    IS
+        vIdType NUMBER;
+    BEGIN
+        SELECT id_artisttype INTO vIdType
+        FROM Artist
+        WHERE id_artist = pId;
+        RETURN vIdType;
+    END getTypeOfArtist;
+    
     PROCEDURE getArtist(pId NUMBER, pFirst_name OUT VARCHAR2, pLast_name OUT VARCHAR2, 
-    pArtistType OUT VARCHAR2, pBiography OUT VARCHAR2, pTrivia OUT VARCHAR2,
+    pArtistType OUT VARCHAR2, pArtistTypeId OUT NUMBER, pBiography OUT VARCHAR2, pTrivia OUT VARCHAR2,
     pDate OUT VARCHAR2, pHeight OUT NUMBER)
     IS
     BEGIN
-        SELECT p.first_name, p.last_name, t.name_type, a.biography_artist, a.trivia_data, 
+        SELECT p.first_name, p.last_name, t.name_type, a.id_artisttype, a.biography_artist, a.trivia_data, 
         p.birth_date, p.height_artist
-        INTO pFirst_name, pLast_name, pArtistType, pBiography, pTrivia, pDate, pHeight
+        INTO pFirst_name, pLast_name, pArtistType, pArtistTypeId, pBiography, pTrivia, pDate, pHeight
         FROM Artist a
         JOIN Person p ON a.id_artist = p.id_person
         JOIN ArtistType t ON a.id_artisttype = t.id_artisttype
         WHERE a.id_artist = pId;
-        
-        EXCEPTION
-            WHEN OTHERS THEN
-                dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-        
     END getArtist;
 
 END Artist_Utils;

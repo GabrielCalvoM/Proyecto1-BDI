@@ -2,6 +2,7 @@ CREATE OR REPLACE PACKAGE movie_utils IS
     PROCEDURE insertMovie(pIdProduct NUMBER, pDuration NUMBER);
     PROCEDURE removeMovie(pId NUMBER);
     PROCEDURE getAllMovies(movieCursor OUT SYS_REFCURSOR);
+    PROCEDURE getNmovies(pNum NUMBER, movieCursor OUT SYS_REFCURSOR);
 END movie_utils;
 
 
@@ -38,6 +39,7 @@ CREATE OR REPLACE PACKAGE BODY movie_utils AS
         productPhoto_utils.deleteProductPhoto(vIdProduct);
         DELETE FROM Movie
         WHERE id_movie = pId;
+        productArtist_utils.deleteArtistsForProduct(vIdProduct);
         product_utils.removeProduct(vIdProduct);
         COMMIT;
     END removeMovie;
@@ -49,10 +51,23 @@ CREATE OR REPLACE PACKAGE BODY movie_utils AS
         FOR
         SELECT m.id_movie, p.title
         FROM Movie m
-        LEFT JOIN Product p on m.id_product = p.id_product;
+        LEFT JOIN Product p ON m.id_product = p.id_product;
     EXCEPTION
         WHEN OTHERS THEN
             dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
     END getAllMovies;
+    
+    PROCEDURE getNmovies(pNum NUMBER, movieCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN movieCursor
+        FOR
+        SELECT title, id_movie, id_product
+        FROM(
+        SELECT p.title, m.id_movie, m.id_product
+        FROM Movie m
+        LEFT JOIN Product p ON m.id_product = p.id_product)
+        WHERE ROWNUM <= pNum;
+    END getNmovies;
 
 END movie_utils;

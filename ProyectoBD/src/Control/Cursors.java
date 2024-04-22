@@ -102,6 +102,8 @@ public class Cursors {
         return artists;
     }
     
+    
+    
     public static Artist getArtist(int id) throws SQLException {
         System.out.println("start");
         Connection con = sysConnection.getConnection();

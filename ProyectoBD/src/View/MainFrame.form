@@ -2086,8 +2086,11 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="jScrollPane4" min="-2" pref="163" max="-2" attributes="0"/>
-                                              <EmptySpace pref="23" max="32767" attributes="0"/>
-                                              <Component id="jButton14" min="-2" pref="122" max="-2" attributes="0"/>
+                                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="AddArtist_Button" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <Component id="AddArtistRelative_Button" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2129,7 +2132,9 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                      <Component id="jButton14" min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="AddArtist_Button" min="-2" pref="42" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="AddArtistRelative_Button" min="-2" pref="42" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -2141,7 +2146,7 @@
                                   <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="76" max="32767" attributes="0"/>
+                              <EmptySpace pref="85" max="32767" attributes="0"/>
                               <Component id="EditCountBackBtn1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -2393,7 +2398,7 @@
                         <Property name="text" type="java.lang.String" value="Editar"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton14">
+                    <Component class="javax.swing.JButton" name="AddArtist_Button">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="12" style="1"/>
@@ -2401,7 +2406,18 @@
                         <Property name="text" type="java.lang.String" value="Agregar Artista"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddArtist_ButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="AddArtistRelative_Button">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Agregar Familiares"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddArtistRelative_ButtonActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -2425,10 +2441,10 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButton16" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="addArtist_backButton" min="-2" pref="62" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jButton15" min="-2" pref="101" max="-2" attributes="0"/>
+                                      <Component id="addArtist_acceptButton" min="-2" pref="101" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2465,7 +2481,7 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane6" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane6" pref="318" max="32767" attributes="0"/>
                                           <Component id="jScrollPane5" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2529,10 +2545,10 @@
                                       <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="74" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton15" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" pref="88" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="addArtist_backButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addArtist_acceptButton" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -2862,7 +2878,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="jButton15">
+                    <Component class="javax.swing.JButton" name="addArtist_acceptButton">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="12" style="1"/>
@@ -2870,10 +2886,10 @@
                         <Property name="text" type="java.lang.String" value="Agregar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addArtist_acceptButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton16">
+                    <Component class="javax.swing.JButton" name="addArtist_backButton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2887,7 +2903,7 @@
                         <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addArtist_backButtonActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="addArtist_date">

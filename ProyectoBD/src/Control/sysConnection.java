@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class sysConnection {
         public static Connection getConnection() {
-         String DBname = "jdbc:oracle:thin:@//localhost:1521/XE"; // Carlos Connection
+        String DBname = "jdbc:oracle:thin:@//localhost:1521/LoscraDB"; // Carlos Connection: jdbc:oracle:thin:@//localhost:1521/LoscraDB
         //String DBname = "jdbc:oracle:thin:@localhost:1521:XE"; // Adrian Connection
         String user = "proy1";
         String password = "proy1";

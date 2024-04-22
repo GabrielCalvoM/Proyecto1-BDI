@@ -290,7 +290,8 @@ public class MainFrame extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        AddArtist_Button = new javax.swing.JButton();
+        AddArtistRelative_Button = new javax.swing.JButton();
         AddArtist = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -311,8 +312,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         addArtist_triviaTxt = new javax.swing.JTextArea();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        addArtist_acceptButton = new javax.swing.JButton();
+        addArtist_backButton = new javax.swing.JButton();
         addArtist_date = new com.toedter.calendar.JDateChooser();
         jLabel45 = new javax.swing.JLabel();
         EditArtist = new javax.swing.JPanel();
@@ -1789,11 +1790,19 @@ public class MainFrame extends javax.swing.JFrame {
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jButton13.setText("Editar");
 
-        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton14.setText("Agregar Artista");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        AddArtist_Button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddArtist_Button.setText("Agregar Artista");
+        AddArtist_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                AddArtist_ButtonActionPerformed(evt);
+            }
+        });
+
+        AddArtistRelative_Button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddArtistRelative_Button.setText("Agregar Familiares");
+        AddArtistRelative_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddArtistRelative_ButtonActionPerformed(evt);
             }
         });
 
@@ -1828,8 +1837,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(AddArtist_Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddArtistRelative_Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
@@ -1859,7 +1870,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jScrollPane4)))
                     .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AddArtist_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(AddArtistRelative_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -1868,7 +1881,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jButton10)
                     .addComponent(jButton13)
                     .addComponent(jButton12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn1)
                 .addContainerGap())
         );
@@ -1954,21 +1967,21 @@ public class MainFrame extends javax.swing.JFrame {
         addArtist_triviaTxt.setRows(5);
         jScrollPane6.setViewportView(addArtist_triviaTxt);
 
-        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton15.setText("Agregar");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        addArtist_acceptButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addArtist_acceptButton.setText("Agregar");
+        addArtist_acceptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                addArtist_acceptButtonActionPerformed(evt);
             }
         });
 
-        jButton16.setBackground(new java.awt.Color(51, 51, 51));
-        jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(255, 255, 255));
-        jButton16.setText("Atrás");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        addArtist_backButton.setBackground(new java.awt.Color(51, 51, 51));
+        addArtist_backButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addArtist_backButton.setForeground(new java.awt.Color(255, 255, 255));
+        addArtist_backButton.setText("Atrás");
+        addArtist_backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                addArtist_backButtonActionPerformed(evt);
             }
         });
 
@@ -1985,9 +1998,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(AddArtistLayout.createSequentialGroup()
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addArtist_backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addArtist_acceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddArtistLayout.createSequentialGroup()
                         .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AddArtistLayout.createSequentialGroup()
@@ -2015,7 +2028,7 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(addArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                             .addComponent(jScrollPane5)
                             .addGroup(AddArtistLayout.createSequentialGroup()
                                 .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2063,10 +2076,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16))
+                .addGap(18, 88, Short.MAX_VALUE)
+                .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addArtist_backButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addArtist_acceptButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -4276,7 +4289,7 @@ public class MainFrame extends javax.swing.JFrame {
         card.show(AdminPage, "adminMenu");
     }//GEN-LAST:event_EditCountBackBtn1ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void addArtist_acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArtist_acceptButtonActionPerformed
         if (addArtist_nameTxt.getText().length() < 1 ||
             addArtist_lastnameTxt.getText().length() < 1 ||
             addArtist_bioTxt.getText().length() < 1 ||
@@ -4332,9 +4345,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         CardLayout card = (CardLayout) EditArtists.getLayout();
         card.show(EditArtists, "editArtistsMenu");
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_addArtist_acceptButtonActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void AddArtist_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddArtist_ButtonActionPerformed
         try {
             DefaultComboBoxModel gendersModel = buildComboModel(Cursors.getGenders());
             addArtist_genderCombo.setModel(gendersModel);
@@ -4347,12 +4360,12 @@ public class MainFrame extends javax.swing.JFrame {
         }
         CardLayout card = (CardLayout) EditArtists.getLayout();
         card.show(EditArtists, "addArtists");
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_AddArtist_ButtonActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void addArtist_backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArtist_backButtonActionPerformed
         CardLayout card = (CardLayout) EditArtists.getLayout();
         card.show(EditArtists, "editArtistsMenu");
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_addArtist_backButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
@@ -4990,6 +5003,21 @@ public class MainFrame extends javax.swing.JFrame {
         previousCard = "ViewAllProducts";
     }//GEN-LAST:event_jButton50ActionPerformed
 
+    private void AddArtistRelative_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddArtistRelative_ButtonActionPerformed
+        try {
+            // Hacer un cursor de todas las personas en la base de datos
+            // Mostrar las personas en un menú
+            // Seleccionar la persona desde el menu y tomar la marcada
+            // Poner un combo box para que se seleccione el tipo de relacion (hermano, pareja o padre)
+            // Boton de aceptar para agregarle a la tabla de ArtistRelative, cancelar para no
+        }
+        catch (Exception e) {
+            showError("Error al leer de la base de datos.");
+            return;
+        }
+        // Regresar a la previousCard
+    }//GEN-LAST:event_AddArtistRelative_ButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5027,6 +5055,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
+    private javax.swing.JButton AddArtistRelative_Button;
+    private javax.swing.JButton AddArtist_Button;
     private javax.swing.JButton AddCountryBtn;
     private javax.swing.JButton AdmMenuBackBtn;
     private javax.swing.JButton AdmMenuBackBtn1;
@@ -5074,6 +5104,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel SignInPage;
     private javax.swing.JPanel ViewAllProducts;
     private javax.swing.JPanel ViewMovie;
+    private javax.swing.JButton addArtist_acceptButton;
+    private javax.swing.JButton addArtist_backButton;
     private javax.swing.JTextArea addArtist_bioTxt;
     private com.toedter.calendar.JDateChooser addArtist_date;
     private javax.swing.JComboBox<String> addArtist_genderCombo;
@@ -5118,9 +5150,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;

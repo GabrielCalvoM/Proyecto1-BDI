@@ -7,7 +7,7 @@ public class Series {
     private String name;
     private int id_product;
     
-    public Series(int id, String name, int id_product) {
+    public Series(int id, int id_product, String name) {
         this.id = id;
         this.name = name;
         this.id_product = id_product;

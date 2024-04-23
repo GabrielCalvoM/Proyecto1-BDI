@@ -49,7 +49,7 @@ CREATE OR REPLACE PACKAGE BODY movie_utils AS
     BEGIN 
         OPEN movieCursor
         FOR
-        SELECT m.id_movie, p.title
+        SELECT m.id_movie, p.title, m.id_product
         FROM Movie m
         LEFT JOIN Product p ON m.id_product = p.id_product;
     EXCEPTION

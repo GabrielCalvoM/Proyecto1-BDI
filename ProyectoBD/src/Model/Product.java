@@ -35,5 +35,8 @@ public class Product {
         return trailer;
     }
     
-    
+    @Override
+    public String toString() {
+        return title;
+    }
 }

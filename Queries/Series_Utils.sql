@@ -45,7 +45,7 @@ CREATE OR REPLACE PACKAGE BODY Series_Utils AS
     BEGIN 
         OPEN seriesCursor
         FOR
-        SELECT s.id_series, p.title
+        SELECT s.id_series, p.title, s.id_product
         FROM Series s
         LEFT JOIN Product p ON s.id_product = p.id_product;
     EXCEPTION

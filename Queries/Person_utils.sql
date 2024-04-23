@@ -21,7 +21,7 @@ CREATE OR REPLACE PACKAGE person_utils IS
 END person_utils;
 /
 
--- Lógica de Procedimientos
+-- Lï¿½gica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY person_utils AS
 
 -- Insert
@@ -42,11 +42,11 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
     
     EXCEPTION
         WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
+            DBMS_OUTPUT.PUT_LINE('Uno de los parï¿½metros excede la longitud
                                  permitida');
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
     
     END insertPerson;
@@ -62,13 +62,13 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
     
     EXCEPTION
         WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es vï¿½lido');
             ROLLBACK;
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
             
     END deletePerson;
@@ -85,10 +85,10 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
             
     END setFirstName;
@@ -104,10 +104,10 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
             
     END setLastName;
@@ -123,10 +123,10 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
             
     END setBirth;
@@ -142,10 +142,10 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
             
     END setHeight;
@@ -161,10 +161,10 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             ROLLBACK;
             
     END setGender;
@@ -184,7 +184,7 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
     
     END getId;
     
@@ -202,9 +202,9 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
             
     END getFirstName;
     
@@ -222,9 +222,9 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
     
     END getLastName;
     
@@ -242,9 +242,9 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
     
     END getBirth;
     
@@ -262,9 +262,9 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
     
     END getHeight;
     
@@ -282,9 +282,9 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id ' || pId);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
     
     END getGender;
     

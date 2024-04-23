@@ -1,11 +1,11 @@
 CREATE OR REPLACE PACKAGE RelativeType_Utils IS
     -- Insert
-    PROCEDURE insertRelativeType(pId NUMBER, pName VARCHAR);
+    PROCEDURE insertRelativeType(pName VARCHAR);
     -- Delete
     PROCEDURE deleteRelativeType(pId NUMBER);
     -- Update
     PROCEDURE updateRelativeTypeName (pId NUMBER, pName VARCHAR2);
-    -- Getter
+    -- Getters
     FUNCTION getRelativeTypeName (pId NUMBER) RETURN VARCHAR2;
 
 END RelativeType_Utils;
@@ -13,7 +13,7 @@ END RelativeType_Utils;
 
 CREATE OR REPLACE PACKAGE BODY RelativeType_Utils AS
     -- Insert
-    PROCEDURE insertRelativeType(pId NUMBER, pName VARCHAR)
+    PROCEDURE insertRelativeType(pName VARCHAR)
     IS
     BEGIN
         INSERT INTO proy1.RelativeType (id_RelativeType, name_RelativeType)

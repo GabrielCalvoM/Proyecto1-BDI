@@ -12,4 +12,26 @@ public class Series {
         this.name = name;
         this.id_product = id_product;
     }
+
+    public Series(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId_product() {
+        return id_product;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }

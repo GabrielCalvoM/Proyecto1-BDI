@@ -1,7 +1,9 @@
 CREATE OR REPLACE PACKAGE person_utils IS
-    PROCEDURE insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
+    FUNCTION insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
                            pBirth IN VARCHAR2, pHeight IN NUMBER,
-                           pGender IN NUMBER);
+                           pGender IN NUMBER) RETURN NUMBER;
+                           
+    PROCEDURE deletePerson(pId IN NUMBER);
                            
     PROCEDURE setFirstName(pId IN NUMBER, pFirstName IN VARCHAR2);
     PROCEDURE setLastName(pId IN NUMBER, pLastName IN VARCHAR2);
@@ -23,17 +25,20 @@ END person_utils;
 CREATE OR REPLACE PACKAGE BODY person_utils AS
 
 -- Insert
-    PROCEDURE insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
+    FUNCTION insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
                            pBirth IN VARCHAR2, pHeight IN NUMBER,
                            pGender IN NUMBER)
+    RETURN NUMBER                            
     IS
-    
+        vIdPerson NUMBER;
     BEGIN
+        SELECT s_person.NEXTVAL INTO vIdPerson FROM DUAL;
         INSERT INTO person (id_person, first_name, last_name, birth_date,
                             height_artist, id_gender)
-            VALUES (s_person.NEXTVAL, pFirstName, pLastName,
+            VALUES (vIdPerson, pFirstName, pLastName,
                     TO_DATE(pBirth, 'DD-MM-YYYY'), pHeight, pGender);
         COMMIT;
+        RETURN vIdPerson;
     
     EXCEPTION
         WHEN VALUE_ERROR THEN
@@ -45,6 +50,28 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
             ROLLBACK;
     
     END;
+    
+-- Delete
+    PROCEDURE deletePerson(pId IN NUMBER)
+    IS
+    
+    BEGIN
+        DELETE FROM person
+        WHERE id_person = pId;
+        COMMIT;
+    
+    EXCEPTION
+        WHEN INVALID_NUMBER THEN
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
+            ROLLBACK;
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            ROLLBACK;
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            ROLLBACK;
+            
+    END deletePerson;
             
 -- Setters
     PROCEDURE setFirstName(pId IN NUMBER, pFirstName IN VARCHAR2)

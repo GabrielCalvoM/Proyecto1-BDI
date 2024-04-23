@@ -1,9 +1,12 @@
 CREATE OR REPLACE PACKAGE idType_utils IS
     PROCEDURE insertType(pType IN VARCHAR2);
     
+    PROCEDURE deleteType(pId IN NUMBER);
+    
     PROCEDURE setType(pId IN NUMBER, pType IN VARCHAR2);
     
     FUNCTION  getType(pId IN NUMBER) RETURN VARCHAR2;
+    PROCEDURE getTypes(typesCursor OUT SYS_REFCURSOR);
     
 END idType_utils;
 /
@@ -29,7 +32,29 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
             
-    END;
+    END insertType;
+    
+-- Delete
+    PROCEDURE deleteType(pId IN NUMBER)
+    IS
+    
+    BEGIN
+        DELETE FROM identificationType
+        WHERE id_type = pId;
+        COMMIT;
+    
+    EXCEPTION
+        WHEN INVALID_NUMBER THEN
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
+            ROLLBACK;
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            ROLLBACK;
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            ROLLBACK;
+            
+    END deleteType;
 
 -- Setters
     PROCEDURE setType(pId IN NUMBER, pType IN VARCHAR2)
@@ -49,10 +74,10 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
         
-    END;
+    END setType;
     
 -- Getters
-    FUNCTION  getType(pId IN NUMBER)
+    FUNCTION getType(pId IN NUMBER)
     RETURN VARCHAR2
     IS
         vName     VARCHAR2(20);
@@ -70,6 +95,18 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
             DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el nombre ' || pId);
         WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-    END;
+    END getType;
+    
+    PROCEDURE getTypes(typesCursor OUT SYS_REFCURSOR) 
+    IS
+    BEGIN 
+        OPEN typesCursor
+        FOR
+        SELECT id_type, name
+        FROM IdentificationType;
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+    END getTypes;
 
 END idType_utils;

@@ -1,6 +1,8 @@
 CREATE OR REPLACE PACKAGE nationality_utils IS
     PROCEDURE insertNationality(pIdPerson IN NUMBER, pIdCountry IN NUMBER);
     
+    PROCEDURE deleteNationality(pId IN NUMBER);
+    
     PROCEDURE setPerson(pIdNationality IN NUMBER, pIdPerson IN NUMBER);
     PROCEDURE setCountry(pIdNationality IN NUMBER, pIdCountry IN NUMBER);
     
@@ -30,7 +32,29 @@ CREATE OR REPLACE PACKAGE BODY nationality_utils AS
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
     
-    END;
+    END insertNationality;
+    
+-- Delete
+    PROCEDURE deleteNationality(pId IN NUMBER)
+    IS
+    
+    BEGIN
+        DELETE FROM nationality
+        WHERE id_nationality = pId;
+        COMMIT;
+    
+    EXCEPTION
+        WHEN INVALID_NUMBER THEN
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
+            ROLLBACK;
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            ROLLBACK;
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            ROLLBACK;
+            
+    END deleteNationality;
 
 -- Setters
     PROCEDURE setPerson(pIdNationality IN NUMBER, pIdPerson IN NUMBER)
@@ -51,7 +75,7 @@ CREATE OR REPLACE PACKAGE BODY nationality_utils AS
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
             
-    END;
+    END setPerson;
     
     PROCEDURE setCountry(pIdNationality IN NUMBER, pIdCountry IN NUMBER)
     IS
@@ -71,7 +95,7 @@ CREATE OR REPLACE PACKAGE BODY nationality_utils AS
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
             
-    END;
+    END setCountry;
 
 -- Getters
     FUNCTION getAllNationalities(pIdPerson IN NUMBER)
@@ -95,6 +119,6 @@ CREATE OR REPLACE PACKAGE BODY nationality_utils AS
         WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
-    END;
+    END getAllNationalities;
 
 END nationality_utils;

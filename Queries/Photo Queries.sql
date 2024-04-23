@@ -1,9 +1,9 @@
 CREATE OR REPLACE PACKAGE photo_utils IS
-    PROCEDURE insertPhoto(pDir IN VARCHAR2, pName IN VARCHAR2);
+    FUNCTION insertPhoto(pPath IN VARCHAR2) RETURN NUMBER;
     
-    PROCEDURE setPhoto(pId IN NUMBER, pDir IN VARCHAR2, pName IN VARCHAR2);
+    PROCEDURE removePhoto(pId NUMBER);
     
-    FUNCTION  getPhoto(pId IN NUMBER) RETURN BFILE;
+    FUNCTION  getPhoto(pId IN NUMBER) RETURN VARCHAR2;
 
 END photo_utils;
 /
@@ -12,13 +12,16 @@ END photo_utils;
 CREATE OR REPLACE PACKAGE BODY photo_utils AS
 
 -- Insert
-    PROCEDURE insertPhoto(pDir IN VARCHAR2, pName IN VARCHAR2)
+    FUNCTION insertPhoto(pPath VARCHAR2)
+    RETURN NUMBER
     IS
-    
+        vId_Photo NUMBER;
     BEGIN
-        INSERT INTO photo (id_photo, picture)
-            VALUES (s_photo.NEXTVAL, BFILENAME(pDir, pName));
+        SELECT s_photo.NEXTVAL INTO vId_Photo FROM DUAL;
+        INSERT INTO photo(id_photo, picture)
+        VALUES (vId_Photo, pPath);
         COMMIT;
+        RETURN vId_Photo;
     
     EXCEPTION
         WHEN VALUE_ERROR THEN
@@ -28,35 +31,21 @@ CREATE OR REPLACE PACKAGE BODY photo_utils AS
         WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
+    END insertPhoto;
     
-    END;
-
--- Setters
-    PROCEDURE setPhoto(pId IN NUMBER, pDir IN VARCHAR2, pName IN VARCHAR2)
+    PROCEDURE removePhoto(pId NUMBER)
     IS
-    
     BEGIN
-        UPDATE photo
-        SET picture = BFILENAME(pDir, pName)
+        DELETE FROM Photo
         WHERE id_photo = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id '|| pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-    
-    END;
+    END removePhoto;
 
 -- Getters
     FUNCTION getPhoto(pId IN NUMBER)
-    RETURN BFILE
+    RETURN VARCHAR2
     IS
-        vPicture    BFILE;
-    
+        vPicture VARCHAR2(100);
     BEGIN
         SELECT picture
         INTO vPicture
@@ -72,6 +61,6 @@ CREATE OR REPLACE PACKAGE BODY photo_utils AS
         WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
-    END;
+    END getPhoto;
 
 END photo_utils;

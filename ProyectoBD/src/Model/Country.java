@@ -19,6 +19,6 @@ public class Country {
     
    @Override
     public String toString() {
-        return Integer.toString(id) + " " + name;
+        return name;
     }
 }

@@ -1,22 +1,19 @@
 CREATE OR REPLACE PACKAGE Series_Utils IS
     -- Insert
-    PROCEDURE insertSeries(pId NUMBER, pName VARCHAR2, pid_product NUMBER);
+    PROCEDURE insertSeries(pId_product NUMBER);
     -- Delete
-    PROCEDURE deleteSeries(pId NUMBER);
-    -- Update
-    PROCEDURE updateSeriesName (pId NUMBER, pName VARCHAR2);
-    -- Getter
-    FUNCTION getSeriesName (pId NUMBER) RETURN VARCHAR2;
+    PROCEDURE removeSeries(pId NUMBER);
+    PROCEDURE getAllSeries (seriesCursor OUT SYS_REFCURSOR);
 END Series_Utils;
 /
 
 CREATE OR REPLACE PACKAGE BODY Series_Utils AS
     -- Insert
-    PROCEDURE insertSeries(pId NUMBER, pName VARCHAR2, pid_product NUMBER)
+    PROCEDURE insertSeries(pId_product NUMBER)
     IS
     BEGIN
-        INSERT INTO proy1.Series (id_Series, name_series, id_product)
-               VALUES (s_Series.nextval, pName, pid_product);
+        INSERT INTO proy1.Series (id_Series, id_product)
+               VALUES (s_Series.nextval, pId_product);
         COMMIT;
     
     EXCEPTION 
@@ -28,56 +25,32 @@ CREATE OR REPLACE PACKAGE BODY Series_Utils AS
     END insertSeries;
 
     -- Delete
-    PROCEDURE deleteSeries(pId NUMBER)
+    PROCEDURE removeSeries(pId NUMBER)
     IS
+        vIdProduct NUMBER;
     BEGIN
-        DELETE FROM proy1.Series
-        WHERE id_Series = pId;
+        SELECT s.id_product INTO vIdProduct
+        FROM Series s
+        LEFT JOIN Product p ON s.id_product = p.id_product
+        WHERE s.id_series = pId;
+        productPhoto_utils.deleteProductPhoto(vIdProduct);
+        DELETE FROM Series
+        WHERE id_series = pId;
+        product_utils.removeProduct(vIdProduct);
         COMMIT;
+    END removeSeries;
     
-    EXCEPTION 
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('El parametro ingeresado no es valido');
-        WHEN OTHERS THEN
-            dbms_output.put_line('Error inesperado');
-    
-    END deleteSeries;
-    
-    -- Update
-    PROCEDURE updateSeriesName (pId NUMBER, pName VARCHAR2)
+    PROCEDURE getAllSeries (seriesCursor OUT SYS_REFCURSOR)
     IS
-        BEGIN
-        UPDATE proy1.Series
-        SET name_series = pName
-        WHERE id_Series = pId;
-        COMMIT;
-    
-    EXCEPTION 
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('El parametro ingeresado no es valido');
-        WHEN OTHERS THEN
-            dbms_output.put_line('Error inesperado');
-    
-    END updateSeriesName;
-    
-    -- Getter
-    FUNCTION getSeriesName (pId NUMBER) RETURN VARCHAR2
-    IS
-        vName VARCHAR(20);
-    BEGIN
-        SELECT name_series INTO vName
-        FROM Series
-        WHERE id_Series = pId;
-        RETURN vName;
-    
+    BEGIN 
+        OPEN seriesCursor
+        FOR
+        SELECT s.id_series, p.title
+        FROM Series s
+        LEFT JOIN Product p ON s.id_product = p.id_product;
     EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-            RETURN ' ';
         WHEN OTHERS THEN
             dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-            RETURN ' ';
-    
-    END getSeriesName;
+    END getAllSeries;
     
 END Series_Utils;

@@ -102,14 +102,10 @@ public class Cursors {
         return artists;
     }
     
-    
-    
     public static Artist getArtist(int id) throws SQLException {
-        System.out.println("start");
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call artist_utils.getArtist(?,?,?,?,?,?,?,?,?)}");
         stmt.setInt(1, id);
-        System.out.println("register params.");
         stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
@@ -119,7 +115,6 @@ public class Cursors {
         stmt.registerOutParameter(8, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(9, oracle.jdbc.OracleTypes.NUMBER);
         stmt.execute();
-        System.out.println("executed");
         
        String name = (String) stmt.getObject(2);
        String lastName = (String) stmt.getObject(3);
@@ -129,12 +124,10 @@ public class Cursors {
        String trivia = (String) stmt.getObject(7);
        String date = (String) stmt.getObject(8);
        int height = (int) stmt.getInt(9);
-       System.out.println("got values.");
        Artist artist = new Artist(id, name + " " + lastName, type, typeId, date, 
        bio, trivia, height);
         con.close();
         stmt.close();
-        System.out.println("finished.");
        return artist;
     }
     

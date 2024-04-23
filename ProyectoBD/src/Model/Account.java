@@ -22,6 +22,30 @@ public class Account {
         this.id = id;
         this.username = username;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public int getId_accountType() {
+        return id_accountType;
+    }
+
+    public int getId_catalogue() {
+        return id_catalogue;
+    }
     
     
 }

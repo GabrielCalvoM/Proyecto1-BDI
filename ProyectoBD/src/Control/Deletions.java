@@ -49,4 +49,14 @@ public class Deletions {
         con.close();
         stmt.close();
     }
+    
+    public static void deleteFromWishlist(int idWishlist, int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.deleteWishedProduct(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idWishlist);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
 }

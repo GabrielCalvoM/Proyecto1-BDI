@@ -18,9 +18,11 @@ public class Account {
             this.id_catalogue = id_catalogue;
     }
 
-    public Account(int id, String username) {
+    public Account(int id, String username, int id_user, int id_accountType) {
         this.id = id;
         this.username = username;
+        this.id_user = id_user;
+        this.id_accountType = id_accountType;
     }
 
     public int getId() {

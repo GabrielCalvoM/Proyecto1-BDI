@@ -542,15 +542,29 @@ public class SignInPage extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int id = -1;
+        int idUser;
         try {
             id = Logic.verifyAccountCredentials(login_userTxt.getText(),
                 login_passwordTxt.getText());
         }
         catch (Exception e) {
-            System.out.println();
+            mainFrame.showError("Error al leer de la base de datos.");
         }
         if (id >= 0) {
-            mainFrame.userAccount = new Account(id, login_userTxt.getText());
+            try {
+                idUser = Cursors.getAccountUserId(id);
+            }
+            catch (Exception e) {
+                mainFrame.showError("Error al leer de la base de datos.");
+                return;
+            }
+            try {
+                mainFrame.userAccount = Cursors.getAccount(id);
+            }
+            catch (Exception e) {
+                mainFrame.showError("Error al recuperar datos de cuenta.");
+                return;
+            }
             mainFrame.showPage("MainMenu", new MainMenu(mainFrame));
         }
         else {
@@ -659,7 +673,6 @@ public class SignInPage extends javax.swing.JPanel {
         Country country = (Country)model.getElementAt(index);
         int idPerson;
         try {
-            System.out.println(birthDate);
             idPerson = Insertions.insertPerson(name, lastName, birthDate, 0, gender.getId());
             Insertions.insertUser(idPerson, email, phone, country.getId(),
                 idType.getId(), idNumber);
@@ -672,8 +685,7 @@ public class SignInPage extends javax.swing.JPanel {
             return;
         }
         Account account = new Account(0, username, password, idPerson, 2, 0);
-        userInfo userinfo = userInfo.getInstance();
-        userinfo.setAccount(account);
+        mainFrame.userAccount = account;
         mainFrame.showPage("MainMenu", new MainMenu(mainFrame));
     }//GEN-LAST:event_registerButtonActionPerformed
 

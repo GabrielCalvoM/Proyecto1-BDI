@@ -77,19 +77,6 @@ public class ViewProducts extends javax.swing.JPanel {
         jButton51 = new javax.swing.JButton();
         jScrollPane24 = new javax.swing.JScrollPane();
         viewProducts_series = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        ViewAllProducts1 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        MainMenuLbl4 = new javax.swing.JLabel();
-        jLabel90 = new javax.swing.JLabel();
-        jLabel91 = new javax.swing.JLabel();
-        jScrollPane25 = new javax.swing.JScrollPane();
-        viewProducts_movies1 = new javax.swing.JTable();
-        jButton53 = new javax.swing.JButton();
-        jButton54 = new javax.swing.JButton();
-        jButton55 = new javax.swing.JButton();
-        jScrollPane26 = new javax.swing.JScrollPane();
-        viewProducts_series1 = new javax.swing.JTable();
 
         ViewAllProducts.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -245,191 +232,6 @@ public class ViewProducts extends javax.swing.JPanel {
         });
         jScrollPane24.setViewportView(viewProducts_series);
 
-        ViewAllProducts1.setBackground(new java.awt.Color(0, 0, 0));
-
-        jPanel22.setBackground(new java.awt.Color(51, 51, 51));
-
-        MainMenuLbl4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        MainMenuLbl4.setForeground(new java.awt.Color(255, 255, 255));
-        MainMenuLbl4.setText("Belphegor");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(MainMenuLbl4)
-                .addContainerGap(573, Short.MAX_VALUE))
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(MainMenuLbl4, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jLabel90.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel90.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel90.setText("Series");
-
-        jLabel91.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel91.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel91.setText("Películas");
-
-        viewProducts_movies1.setBackground(new java.awt.Color(51, 51, 51));
-        viewProducts_movies1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        viewProducts_movies1.setForeground(new java.awt.Color(255, 255, 255));
-        viewProducts_movies1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Título", "Puntuación", "Estreno"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane25.setViewportView(viewProducts_movies1);
-
-        jButton53.setBackground(new java.awt.Color(51, 51, 51));
-        jButton53.setForeground(new java.awt.Color(255, 255, 255));
-        jButton53.setText("Ver");
-        jButton53.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton53ActionPerformed(evt);
-            }
-        });
-
-        jButton54.setBackground(new java.awt.Color(51, 51, 51));
-        jButton54.setForeground(new java.awt.Color(255, 255, 255));
-        jButton54.setText("Ver");
-        jButton54.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton54ActionPerformed(evt);
-            }
-        });
-
-        jButton55.setBackground(new java.awt.Color(51, 51, 51));
-        jButton55.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton55.setForeground(new java.awt.Color(255, 255, 255));
-        jButton55.setText("Atrás");
-        jButton55.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton55ActionPerformed(evt);
-            }
-        });
-
-        viewProducts_series1.setBackground(new java.awt.Color(51, 51, 51));
-        viewProducts_series1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        viewProducts_series1.setForeground(new java.awt.Color(255, 255, 255));
-        viewProducts_series1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Título", "Puntuación", "Estreno"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane26.setViewportView(viewProducts_series1);
-
-        javax.swing.GroupLayout ViewAllProducts1Layout = new javax.swing.GroupLayout(ViewAllProducts1);
-        ViewAllProducts1.setLayout(ViewAllProducts1Layout);
-        ViewAllProducts1Layout.setHorizontalGroup(
-            ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(ViewAllProducts1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel91)
-                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel90)
-                    .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
-            .addGroup(ViewAllProducts1Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jButton53)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton54)
-                .addGap(125, 125, 125))
-            .addGroup(ViewAllProducts1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton55)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        ViewAllProducts1Layout.setVerticalGroup(
-            ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ViewAllProducts1Layout.createSequentialGroup()
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel91)
-                    .addComponent(jLabel90))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ViewAllProducts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton53)
-                    .addComponent(jButton54))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jButton55)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(ViewAllProducts1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(ViewAllProducts1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
         javax.swing.GroupLayout ViewAllProductsLayout = new javax.swing.GroupLayout(ViewAllProducts);
         ViewAllProducts.setLayout(ViewAllProductsLayout);
         ViewAllProductsLayout.setHorizontalGroup(
@@ -455,11 +257,6 @@ public class ViewProducts extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jButton51)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(ViewAllProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ViewAllProductsLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         ViewAllProductsLayout.setVerticalGroup(
             ViewAllProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,11 +277,6 @@ public class ViewProducts extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jButton51)
                 .addContainerGap())
-            .addGroup(ViewAllProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ViewAllProductsLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -525,7 +317,7 @@ public class ViewProducts extends javax.swing.JPanel {
         TableModel model = viewProducts_movies.getModel();
         int index = viewProducts_movies.getSelectedRow();
         Product product = (Product) model.getValueAt(index, 0);
-        mainFrame.showPage("ViewMove", new ViewMovie(mainFrame, this, "ViewProducts",
+        mainFrame.showPage("ViewMove", new ViewMovie(mainFrame, this,
         product));
     }//GEN-LAST:event_jButton49ActionPerformed
 
@@ -544,50 +336,25 @@ public class ViewProducts extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton50ActionPerformed
 
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
-        mainFrame.showPage("MainMenu", new MainMenu(mainFrame));
+        mainFrame.showPage("NewPage", prev);
     }//GEN-LAST:event_jButton51ActionPerformed
-
-    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton53ActionPerformed
-
-    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton54ActionPerformed
-
-    private void jButton55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton55ActionPerformed
-        mainFrame.showPage("MainMenu", prev);
-    }//GEN-LAST:event_jButton55ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MainMenuLbl3;
-    private javax.swing.JLabel MainMenuLbl4;
     private javax.swing.JButton MainMenu_SignInButton3;
     private javax.swing.JPanel ViewAllProducts;
-    private javax.swing.JPanel ViewAllProducts1;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton49;
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
-    private javax.swing.JButton jButton53;
-    private javax.swing.JButton jButton54;
-    private javax.swing.JButton jButton55;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
-    private javax.swing.JScrollPane jScrollPane25;
-    private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable viewProducts_movies;
-    private javax.swing.JTable viewProducts_movies1;
     private javax.swing.JTable viewProducts_series;
-    private javax.swing.JTable viewProducts_series1;
     // End of variables declaration//GEN-END:variables
 }

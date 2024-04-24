@@ -158,4 +158,23 @@ public class Insertions {
         con.close();
         stmt.close();
     }
+
+    public static void createWishlist(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call wishlist_utils.insertWishlist(?)}");
+        stmt.setInt(1, idUser);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertWishedProduct(int idProduct, int idWishlist) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.insertWishedProduct(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idWishlist);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
 }

@@ -338,4 +338,63 @@ public class Cursors {
         return categories;
     }
     
+    public static int getWishlistId(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call wishlist_utils.getWishlistId(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setInt(2, idUser);
+        stmt.execute();
+        int result = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
+    public static int getAccountUserId(int idAccount) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call account_utils.getUserId(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setInt(2, idAccount);
+        stmt.execute();
+        int result = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
+    public static ArrayList<Product> getProductsInWishlist(int idWishlist) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.getProductsInWishlist(?,?)}");
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(1, idWishlist);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static Account getAccount(int idAccount) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call account_utils.getAccount(?,?,?,?)}");
+        stmt.setInt(1, idAccount);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.execute();
+        String username = stmt.getString(2);
+        int id_user = stmt.getInt(3);
+        int id_type = stmt.getInt(4);
+        Account result = new Account(idAccount, username, id_user, id_type);
+        con.close();
+        stmt.close();
+        return result;
+    }
 }

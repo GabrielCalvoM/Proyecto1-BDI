@@ -22,8 +22,7 @@ public class MainMenu extends javax.swing.JPanel {
         loadMainMenu();
         
         if (mainFrame.userAccount != null) {
-            signInButton.setText("Bienvenido");
-            signInButton.setEnabled(false);
+            signInButton.setText("Mi Cuenta");
         }
     }
     
@@ -121,7 +120,6 @@ public class MainMenu extends javax.swing.JPanel {
         movie5_name = new javax.swing.JLabel();
         jButton38 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         MainMenu.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -473,17 +471,6 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 8)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Admin");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout MainMenuLayout = new javax.swing.GroupLayout(MainMenu);
         MainMenu.setLayout(MainMenuLayout);
         MainMenuLayout.setHorizontalGroup(
@@ -494,21 +481,16 @@ public class MainMenu extends javax.swing.JPanel {
                 .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainMenuLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainMenuLayout.createSequentialGroup()
-                        .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(MainMenuLayout.createSequentialGroup()
-                                .addComponent(jLabel49)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton38))
-                            .addGroup(MainMenuLayout.createSequentialGroup()
-                                .addComponent(jLabel50)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton47)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel49)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton38))
+                    .addGroup(MainMenuLayout.createSequentialGroup()
+                        .addComponent(jLabel50)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton47)))
+                .addContainerGap(552, Short.MAX_VALUE))
             .addGroup(MainMenuLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -538,14 +520,11 @@ public class MainMenu extends javax.swing.JPanel {
                     .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(MainMenuLayout.createSequentialGroup()
-                        .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel50)
-                            .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2))
+                .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50)
+                    .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -576,16 +555,17 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-        mainFrame.showPage("SignInPage", new SignInPage(mainFrame, this));
+        if (mainFrame.userAccount == null) {
+            mainFrame.showPage("SignInPage", new SignInPage(mainFrame, this));
+        }
+        else {
+            mainFrame.showPage("ManageAccount", new ManageAccount(mainFrame, this));
+        }
     }//GEN-LAST:event_signInButtonActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mainFrame.showPage("AdminPage", new AdminPage(mainFrame, this));
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         try{
-            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, "MainMenu", 
+            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, 
                 Cursors.getProduct(menuMovies.get(0).getIdProduct())));
         }
         catch (Exception e) {
@@ -595,7 +575,7 @@ public class MainMenu extends javax.swing.JPanel {
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
         try{
-            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, "MainMenu", 
+            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, 
                 Cursors.getProduct(menuMovies.get(1).getIdProduct())));
         }
         catch (Exception e) {
@@ -605,7 +585,7 @@ public class MainMenu extends javax.swing.JPanel {
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
         try{
-            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, "MainMenu", 
+            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, 
                 Cursors.getProduct(menuMovies.get(2).getIdProduct())));
         }
         catch (Exception e) {
@@ -615,7 +595,7 @@ public class MainMenu extends javax.swing.JPanel {
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
         try{
-            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, "MainMenu", 
+            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, 
                 Cursors.getProduct(menuMovies.get(3).getIdProduct())));
         }
         catch (Exception e) {
@@ -625,7 +605,7 @@ public class MainMenu extends javax.swing.JPanel {
 
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
         try{
-            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, "MainMenu", 
+            mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, 
                 Cursors.getProduct(menuMovies.get(4).getIdProduct())));
         }
         catch (Exception e) {
@@ -645,7 +625,6 @@ public class MainMenu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainMenu;
     private javax.swing.JLabel MainMenuLbl;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton38;

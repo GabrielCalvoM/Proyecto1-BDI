@@ -4,18 +4,22 @@
  */
 package View;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Gabriel
  */
 public class CategoryPage extends javax.swing.JPanel {
     MainFrame mainFrame;
+    JPanel previous;
 
     /**
      * Creates new form CategoryPage
      */
-    public CategoryPage(MainFrame mainFrame) {
+    public CategoryPage(MainFrame mainFrame, JPanel previous) {
         this.mainFrame = mainFrame;
+        this.previous = previous;
         initComponents();
     }
 
@@ -30,10 +34,14 @@ public class CategoryPage extends javax.swing.JPanel {
 
         PTitle = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        EditCategory = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
+        PTitle.setBackground(new java.awt.Color(51, 51, 51));
+
+        Title.setBackground(new java.awt.Color(51, 51, 51));
         Title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("Categorías");
@@ -52,10 +60,24 @@ public class CategoryPage extends javax.swing.JPanel {
             .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        EditCategory.setBackground(new java.awt.Color(51, 51, 51));
+        EditCategory.setForeground(new java.awt.Color(255, 255, 255));
+        EditCategory.setText("Editar Categorías");
+        EditCategory.setBorderPainted(false);
+        EditCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EditCategoryActionPerformed(evt);
+            }
+        });
+
+        BackButton.setBackground(new java.awt.Color(51, 51, 51));
+        BackButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(204, 204, 204));
+        BackButton.setText("Atrás");
+        BackButton.setBorderPainted(false);
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
             }
         });
 
@@ -65,28 +87,42 @@ public class CategoryPage extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addGap(130, 130, 130)
+                .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addComponent(BackButton)
+                .addGap(27, 27, 27))
         );
+
+        EditCategory.getAccessibleContext().setAccessibleParent(EditCategory);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainFrame.showPage("ViewProducts", new ViewProducts(mainFrame, this));
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void EditCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategoryActionPerformed
+        mainFrame.showPage("ViewCategory", new ViewCategory(mainFrame, this));
+    }//GEN-LAST:event_EditCategoryActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        mainFrame.showPage("AdminPage", this.previous);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
+    private javax.swing.JButton EditCategory;
     private javax.swing.JPanel PTitle;
     private javax.swing.JLabel Title;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

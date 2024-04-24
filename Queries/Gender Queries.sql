@@ -11,7 +11,7 @@ CREATE OR REPLACE PACKAGE gender_utils IS
 END gender_utils;
 /
 
--- Lógica de procedimientos
+-- Lï¿½gica de procedimientos
 CREATE OR REPLACE PACKAGE BODY gender_utils AS
 
 -- Insert
@@ -22,39 +22,8 @@ CREATE OR REPLACE PACKAGE BODY gender_utils AS
         INSERT INTO gender (id_gender, name)
             VALUES (s_gender.NEXTVAL, pName);
     COMMIT;
-    
-    EXCEPTION 
-        WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
-                                 permitida');
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-    
-    END insertGender;
-    
--- Delete
-    PROCEDURE deleteGender(pId IN NUMBER)
-    IS
-    
-    BEGIN
-        DELETE FROM gender
-        WHERE id_gender = pId;
-        COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
-            ROLLBACK;
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-            
-    END deleteGender;
+
+    END;
 
 -- Setters
     PROCEDURE setGender(pId IN NUMBER, pName IN VARCHAR2)
@@ -66,15 +35,7 @@ CREATE OR REPLACE PACKAGE BODY gender_utils AS
         WHERE id_gender = pId;
         COMMIT;
     
-    EXCEPTION 
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el nombre ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-    
-    END setGender;
+    END;
 
 -- Getters
     FUNCTION  getGender(pId IN NUMBER)
@@ -88,15 +49,7 @@ CREATE OR REPLACE PACKAGE BODY gender_utils AS
         WHERE id_gender = pId;
         RETURN (vName);
     
-    EXCEPTION 
-        WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-    
-    END getGender;
+    END;
     
     PROCEDURE getGenders(gendersCursor OUT SYS_REFCURSOR) 
     IS
@@ -105,9 +58,7 @@ CREATE OR REPLACE PACKAGE BODY gender_utils AS
         FOR
         SELECT id_gender, name
         FROM Gender;
-    EXCEPTION
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+
     END getGenders;
 
 END gender_utils;

@@ -82,6 +82,51 @@ public class Cursors {
         return types;
     }
     
+    public static ArrayList<RelativeType> getRelativeTypes() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call relativeType_utils.getRelativeTypes(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<RelativeType> types = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            RelativeType type = new RelativeType(id, name);
+            types.add(type);
+        }
+        con.close();
+        stmt.close();
+        return types;
+    }
+    
+    public static ArrayList<ArtistRelative> getArtistRelatives(int id_artist) throws SQLException {
+       Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ArtistRelative_Utils.getArtistRelatives(?, ?)}");
+        stmt.setInt(1, id_artist);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        
+        ArrayList<ArtistRelative> relatives = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            int id_relative = rs.getInt(2);
+            String name = rs.getString(3) + " " + rs.getString(4);
+            int id_relation = rs.getInt(5);
+            
+            //System.out.println("A: " + id + ", " + id_artist + ", " + id_relative + "| " + name + " | " + id_relation + " | ");
+            
+            ArtistRelative relative = new ArtistRelative(id, id_artist, id_relative, id_relation, name);
+            relatives.add(relative);
+        }
+        con.close();
+        stmt.close();
+        return relatives;
+    }
+    
     public static ArrayList<Artist> getArtistsOfType(int idType) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call artist_utils.getArtistsOfType(?, ?)}");
@@ -101,6 +146,26 @@ public class Cursors {
         con.close();
         stmt.close();
         return artists;
+    }
+    
+    public static Person getPerson(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call person_utils.getPerson(?,?,?,?,?)}");
+        stmt.setInt(1, id);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.execute();
+        
+       String name = (String) stmt.getObject(2);
+       String lastName = (String) stmt.getObject(3);
+       String date = (String) stmt.getObject(4);
+       int gender = (int) stmt.getInt(5);
+       Person person = new Person(id, name, lastName, date, gender);
+        con.close();
+        stmt.close();
+       return person;
     }
     
     public static Artist getArtist(int id) throws SQLException {
@@ -253,4 +318,24 @@ public class Cursors {
         stmt.close();
         return result;
     }
+    
+    public static ArrayList<Category> getCategories() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call category_utils.getCategory(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Category> categories = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            Category category = new Category(id, name);
+            categories.add(category);
+        }
+        con.close();
+        stmt.close();
+        return categories;
+    }
+    
 }

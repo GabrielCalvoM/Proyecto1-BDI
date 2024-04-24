@@ -7,6 +7,8 @@ CREATE OR REPLACE PACKAGE RelativeType_Utils IS
     PROCEDURE updateRelativeTypeName (pId NUMBER, pName VARCHAR2);
     -- Getters
     FUNCTION getRelativeTypeName (pId NUMBER) RETURN VARCHAR2;
+    
+    PROCEDURE getRelativeTypes(RelativeTypesCursor OUT SYS_REFCURSOR);
 
 END RelativeType_Utils;
 /
@@ -79,5 +81,15 @@ CREATE OR REPLACE PACKAGE BODY RelativeType_Utils AS
             RETURN ' ';
     
     END getRelativeTypeName;
+    
+    PROCEDURE getRelativeTypes(RelativeTypesCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN 
+        OPEN RelativeTypesCursor
+        FOR
+        SELECT id_relativeType, name_relativeType
+        FROM RelativeType;
 
+    END getRelativeTypes;
+    
 END RelativeType_Utils;

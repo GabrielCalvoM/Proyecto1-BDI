@@ -23,13 +23,10 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
     PROCEDURE insertArtist(pId NUMBER, pId_type NUMBER, pBiography VARCHAR2, pTrivia VARCHAR2)
     IS
     BEGIN
-        INSERT INTO Artist
+        INSERT INTO Artist(id_artist, id_artisttype, biography_artist, trivia_data)
         VALUES (pId, pId_type, pBiography, pTrivia);
         COMMIT;
         
-        EXCEPTION
-            WHEN OTHERS THEN
-                dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
 
     END insertArtist;
     
@@ -42,10 +39,6 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
         WHERE pID = id_person;
         COMMIT;
         
-    EXCEPTION
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-        
     END deleteArtist;
     
     PROCEDURE updateArtist(pId NUMBER, pId_type NUMBER, pBiography VARCHAR2, pTrivia VARCHAR2)
@@ -55,9 +48,6 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
         SET id_artistType = pId_Type, biography_artist = pBiography, trivia_data = pTrivia
         WHERE id_artist = pId;
         
-        EXCEPTION
-            WHEN OTHERS THEN
-                dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
                 
     END updateArtist;
     
@@ -71,9 +61,7 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
         JOIN Person p
         ON a.id_artist = p.id_person
         WHERE id_artistType = pId_type;
-        EXCEPTION
-            WHEN OTHERS THEN
-                dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+
     END getArtistsOfType;
     
     PROCEDURE getArtistTypes(artistCursor OUT SYS_REFCURSOR)
@@ -83,9 +71,7 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
         FOR
         SELECT id_artistType, name_type
         FROM ArtistType;
-        EXCEPTION
-            WHEN OTHERS THEN
-                dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+
     END getArtistTypes;
     
     FUNCTION getTypeOfArtist(pId NUMBER) RETURN NUMBER

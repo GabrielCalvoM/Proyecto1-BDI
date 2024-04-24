@@ -20,11 +20,11 @@ public class Artist {
         String bio, String trivia, int height) {
             this.id = id;
             this.name = name;
-            id_artistType = idType;
-            artistType = type;
-            birthDate = birth;
-            biography_artist = bio;
-            trivia_data = trivia;
+            this.id_artistType = idType;
+            this.artistType = type;
+            this.birthDate = birth;
+            this.biography_artist = bio;
+            this.trivia_data = trivia;
     }
     
     public Artist(int id, String name) {
@@ -51,8 +51,10 @@ public class Artist {
     public String getName() {
         return name;
     }
-    
-    
+
+    public String getArtistType() {
+        return artistType;
+    }
     
    @Override
     public String toString() {

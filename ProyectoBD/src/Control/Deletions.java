@@ -23,6 +23,15 @@ public class Deletions {
         stmt.close();
     }
     
+    public static void deleteArtistRelative(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ArtistRelative_Utils.deleteArtistRelative(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
     public static void deleteMovie(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call movie_utils.removeMovie(?)}");

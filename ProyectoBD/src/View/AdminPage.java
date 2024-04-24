@@ -6,6 +6,7 @@ import Control.*;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -61,13 +62,13 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        UpdateActor_Button = new javax.swing.JButton();
+        DeleteActor_Button = new javax.swing.JButton();
+        DeleteDirector_Button = new javax.swing.JButton();
+        UpdateDirector_Button = new javax.swing.JButton();
+        DeleteWriter_Button = new javax.swing.JButton();
+        UpdateWriter_Button = new javax.swing.JButton();
+        InsertArtist_Button = new javax.swing.JButton();
         AddArtist = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -92,7 +93,7 @@ public class AdminPage extends javax.swing.JPanel {
         jButton16 = new javax.swing.JButton();
         addArtist_date = new com.toedter.calendar.JDateChooser();
         jLabel45 = new javax.swing.JLabel();
-        EditArtist = new javax.swing.JPanel();
+        UpdateArtist = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
@@ -116,6 +117,7 @@ public class AdminPage extends javax.swing.JPanel {
         jButton18 = new javax.swing.JButton();
         editArtist_date = new com.toedter.calendar.JDateChooser();
         jLabel46 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         EditProducts = new javax.swing.JPanel();
         editProductsMenu = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -497,49 +499,49 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Escritores");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        UpdateActor_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        UpdateActor_Button.setText("Editar");
+        UpdateActor_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UpdateActor_ButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton7.setText("Eliminar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        DeleteActor_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        DeleteActor_Button.setText("Eliminar");
+        DeleteActor_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                DeleteActor_ButtonActionPerformed(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton10.setText("Eliminar");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        DeleteDirector_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        DeleteDirector_Button.setText("Eliminar");
+        DeleteDirector_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                DeleteDirector_ButtonActionPerformed(evt);
             }
         });
 
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton11.setText("Editar");
+        UpdateDirector_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        UpdateDirector_Button.setText("Editar");
 
-        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton12.setText("Eliminar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        DeleteWriter_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        DeleteWriter_Button.setText("Eliminar");
+        DeleteWriter_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                DeleteWriter_ButtonActionPerformed(evt);
             }
         });
 
-        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton13.setText("Editar");
+        UpdateWriter_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        UpdateWriter_Button.setText("Editar");
 
-        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton14.setText("Agregar Artista");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        InsertArtist_Button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InsertArtist_Button.setText("Agregar Artista");
+        InsertArtist_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                InsertArtist_ButtonActionPerformed(evt);
             }
         });
 
@@ -558,32 +560,32 @@ public class AdminPage extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UpdateActor_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7)))
+                                .addComponent(DeleteActor_Button)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(UpdateDirector_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton10)))
+                                .addComponent(DeleteDirector_Button)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(InsertArtist_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(UpdateWriter_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton12)))
+                                        .addComponent(DeleteWriter_Button)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -605,16 +607,16 @@ public class AdminPage extends javax.swing.JPanel {
                             .addComponent(jScrollPane4)))
                     .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(InsertArtist_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton7)
-                    .addComponent(jButton11)
-                    .addComponent(jButton10)
-                    .addComponent(jButton13)
-                    .addComponent(jButton12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                    .addComponent(UpdateActor_Button)
+                    .addComponent(DeleteActor_Button)
+                    .addComponent(UpdateDirector_Button)
+                    .addComponent(DeleteDirector_Button)
+                    .addComponent(UpdateWriter_Button)
+                    .addComponent(DeleteWriter_Button))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn1)
                 .addContainerGap())
         );
@@ -636,7 +638,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addContainerGap(490, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,6 +655,12 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Apellido");
+
+        addArtist_nameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addArtist_nameTxtActionPerformed(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
@@ -818,7 +826,7 @@ public class AdminPage extends javax.swing.JPanel {
 
         EditArtists.add(AddArtist, "addArtists");
 
-        EditArtist.setBackground(new java.awt.Color(0, 0, 0));
+        UpdateArtist.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel12.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -917,101 +925,107 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("cm");
 
-        javax.swing.GroupLayout EditArtistLayout = new javax.swing.GroupLayout(EditArtist);
-        EditArtist.setLayout(EditArtistLayout);
-        EditArtistLayout.setHorizontalGroup(
-            EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("Familiares del Artista");
+
+        javax.swing.GroupLayout UpdateArtistLayout = new javax.swing.GroupLayout(UpdateArtist);
+        UpdateArtist.setLayout(UpdateArtistLayout);
+        UpdateArtistLayout.setHorizontalGroup(
+            UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditArtistLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateArtistLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(EditArtistLayout.createSequentialGroup()
+                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(UpdateArtistLayout.createSequentialGroup()
                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditArtistLayout.createSequentialGroup()
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EditArtistLayout.createSequentialGroup()
-                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UpdateArtistLayout.createSequentialGroup()
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(UpdateArtistLayout.createSequentialGroup()
+                                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel38)
                                     .addComponent(jLabel37))
                                 .addGap(18, 18, 18)
-                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(editArtist_nameTxt)
                                     .addComponent(editArtist_lastnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
-                            .addGroup(EditArtistLayout.createSequentialGroup()
-                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(UpdateArtistLayout.createSequentialGroup()
+                                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel39)
                                     .addComponent(jLabel40)
                                     .addComponent(jLabel41)
                                     .addComponent(jLabel42))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(editArtist_typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(EditArtistLayout.createSequentialGroup()
+                                    .addGroup(UpdateArtistLayout.createSequentialGroup()
                                         .addComponent(editArtist_heightCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(8, 8, 8)
                                         .addComponent(jLabel46))
                                     .addComponent(editArtist_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(editArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane8)
                             .addComponent(jScrollPane7)
-                            .addGroup(EditArtistLayout.createSequentialGroup()
-                                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(UpdateArtistLayout.createSequentialGroup()
+                                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel43)
                                     .addComponent(jLabel44))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        EditArtistLayout.setVerticalGroup(
-            EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditArtistLayout.createSequentialGroup()
+        UpdateArtistLayout.setVerticalGroup(
+            UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UpdateArtistLayout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editArtist_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel43))
-                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditArtistLayout.createSequentialGroup()
+                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UpdateArtistLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editArtist_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editArtist_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(editArtist_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(editArtist_heightCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel46))
                         .addGap(18, 18, 18)
-                        .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editArtist_typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(EditArtistLayout.createSequentialGroup()
+                    .addGroup(UpdateArtistLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(EditArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18))
                 .addContainerGap())
         );
 
-        EditArtists.add(EditArtist, "editArtist");
+        EditArtists.add(UpdateArtist, "editArtist");
 
         AdminPage.add(EditArtists, "editArtists");
 
@@ -1811,7 +1825,7 @@ public class AdminPage extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1918,11 +1932,37 @@ public class AdminPage extends javax.swing.JPanel {
         card.show(AdminPage, "adminMenu");
     }//GEN-LAST:event_EditCountBackBtn1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void UpdateActor_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActor_ButtonActionPerformed
+        try {
+            int index = EditArtists_ActorsList.getSelectedIndex();
+            ListModel model = EditArtists_ActorsList.getModel();
+            Artist artist = (Artist) model.getElementAt(index);
+            Person person = Cursors.getPerson(artist.getId());
+            DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
+            editArtist_genderCombo.setModel(gendersModel);
+            DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
+            editArtist_typeCombo.setModel(typesModel);
+            
+            editArtist_nameTxt.setText(person.getFirst_Name());
+            editArtist_lastnameTxt.setText(person.getLast_Name());
+            DateFormat format = new SimpleDateFormat("dd-MMM-yy");
+            editArtist_date.setDate( format.parse((person.getBirthDate())));
+            editArtist_bioTxt.setText(artist.getBiography_artist());
+            System.out.println(artist.getBiography_artist());
+            editArtist_triviaTxt.setText(artist.getTrivia_data());
+            System.out.println(artist.getTrivia_data());
+            
+            CardLayout card = (CardLayout) EditArtists.getLayout();
+            card.show(EditArtists, "editArtist");
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al actualizar. Intente nuevamente.");
+            System.out.println("[Error] " + e.getMessage());
+        }
+    
+    }//GEN-LAST:event_UpdateActor_ButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void DeleteActor_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActor_ButtonActionPerformed
         try {
             int index = EditArtists_ActorsList.getSelectedIndex();
             ListModel model = EditArtists_ActorsList.getModel();
@@ -1934,9 +1974,9 @@ public class AdminPage extends javax.swing.JPanel {
         catch (Exception e) {
             mainFrame.showError("Error al eliminar. Intente nuevamente.");
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_DeleteActor_ButtonActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void DeleteDirector_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteDirector_ButtonActionPerformed
         try {
             int index = EditArtists_DirectorsList.getSelectedIndex();
             ListModel model = EditArtists_DirectorsList.getModel();
@@ -1948,9 +1988,9 @@ public class AdminPage extends javax.swing.JPanel {
         catch (Exception e) {
             mainFrame.showError("Error al eliminar. Intente nuevamente.");
         }
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_DeleteDirector_ButtonActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void DeleteWriter_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteWriter_ButtonActionPerformed
         try {
             int index = EditArtists_WritersList.getSelectedIndex();
             ListModel model = EditArtists_WritersList.getModel();
@@ -1962,9 +2002,9 @@ public class AdminPage extends javax.swing.JPanel {
         catch (Exception e) {
             mainFrame.showError("Error al eliminar. Intente nuevamente.");
         }
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_DeleteWriter_ButtonActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void InsertArtist_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertArtist_ButtonActionPerformed
         try {
             DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
             addArtist_genderCombo.setModel(gendersModel);
@@ -1977,7 +2017,7 @@ public class AdminPage extends javax.swing.JPanel {
         }
         CardLayout card = (CardLayout) EditArtists.getLayout();
         card.show(EditArtists, "addArtists");
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_InsertArtist_ButtonActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         if (addArtist_nameTxt.getText().length() < 1 ||
@@ -2043,7 +2083,64 @@ public class AdminPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
+        if (editArtist_nameTxt.getText().length() < 1 ||
+            editArtist_lastnameTxt.getText().length() < 1 ||
+            editArtist_bioTxt.getText().length() < 1 ||
+            editArtist_triviaTxt.getText().length() < 1) {
+            mainFrame.showError("Debe llenar todos los datos.");
+            return;
+        }
+
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String birthDate;
+        try {
+            birthDate = formatter.format(editArtist_date.getDate());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Fecha inválida.");
+            return;
+        }
+        
+        String name = editArtist_nameTxt.getText();
+        String lastName = editArtist_lastnameTxt.getText();
+        int index = editArtist_genderCombo.getSelectedIndex();
+        ListModel model = editArtist_genderCombo.getModel();
+        Gender gender = (Gender) model.getElementAt(index);
+        index = editArtist_typeCombo.getSelectedIndex();
+        model = editArtist_typeCombo.getModel();
+        ArtistType type = (ArtistType) model.getElementAt(index);
+        String bio = editArtist_bioTxt.getText();
+        String trivia = editArtist_triviaTxt.getText();
+        int height;
+        System.out.println(editArtist_heightCombo.getSelectedItem().toString());
+        try {
+            height = Integer.parseInt(editArtist_heightCombo.getSelectedItem().toString());
+        }
+        catch (NumberFormatException e) {
+            height = 0;
+        }
+        try {
+            int id = EditArtists_ActorsList.getSelectedIndex();
+            Updates.updatePerson(id, name, lastName, birthDate, height, gender.getId());
+            Updates.updateArtist(id, type.getId(), bio, trivia);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Verifique las entradas e intente nuevamente.");
+            return;
+        }
+        try {
+            DefaultListModel actorsModel = mainFrame.buildListModel(Cursors.getArtistsOfType(1));
+            DefaultListModel directorsModel = mainFrame.buildListModel(Cursors.getArtistsOfType(2));
+            DefaultListModel writersModel = mainFrame.buildListModel(Cursors.getArtistsOfType(3));
+            EditArtists_ActorsList.setModel(actorsModel);
+            EditArtists_DirectorsList.setModel(directorsModel);
+            EditArtists_WritersList.setModel(writersModel);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al leer de la base de datos.");
+        }
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "editArtistsMenu");
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -2397,6 +2494,10 @@ public class AdminPage extends javax.swing.JPanel {
         card.show(EditProducts, "editProductsMenu");
     }//GEN-LAST:event_jButton28ActionPerformed
 
+    private void addArtist_nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArtist_nameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addArtist_nameTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
@@ -2407,7 +2508,9 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton CountriesButton2;
     private javax.swing.JButton CountriesButton3;
     private javax.swing.JButton CountriesButton4;
-    private javax.swing.JPanel EditArtist;
+    private javax.swing.JButton DeleteActor_Button;
+    private javax.swing.JButton DeleteDirector_Button;
+    private javax.swing.JButton DeleteWriter_Button;
     private javax.swing.JPanel EditArtists;
     private javax.swing.JPanel EditArtistsMenu;
     private javax.swing.JList<String> EditArtists_ActorsList;
@@ -2423,8 +2526,13 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JPanel EditProducts;
     private javax.swing.JList<String> EditProducts_movies;
     private javax.swing.JList<String> EditProducts_series;
+    private javax.swing.JButton InsertArtist_Button;
     private javax.swing.JTextField NewCountryTxtfield;
     private javax.swing.JButton RemoveCountryBtn;
+    private javax.swing.JButton UpdateActor_Button;
+    private javax.swing.JPanel UpdateArtist;
+    private javax.swing.JButton UpdateDirector_Button;
+    private javax.swing.JButton UpdateWriter_Button;
     private javax.swing.JTextArea addArtist_bioTxt;
     private com.toedter.calendar.JDateChooser addArtist_date;
     private javax.swing.JComboBox<String> addArtist_genderCombo;
@@ -2464,17 +2572,12 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JTextArea editArtist_triviaTxt;
     private javax.swing.JComboBox<String> editArtist_typeCombo;
     private javax.swing.JPanel editProductsMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -2488,7 +2591,6 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;

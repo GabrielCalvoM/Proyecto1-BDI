@@ -51,8 +51,10 @@ public class Artist {
     public String getName() {
         return name;
     }
-    
-    
+
+    public String getArtistType() {
+        return artistType;
+    }
     
    @Override
     public String toString() {

@@ -2,12 +2,15 @@ CREATE OR REPLACE PACKAGE person_utils IS
     FUNCTION insertPerson(pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
                            pBirth IN VARCHAR2, pHeight IN NUMBER,
                            pGender IN NUMBER) RETURN NUMBER;
-                           
+     
     PROCEDURE setFirstName(pId IN NUMBER, pFirstName IN VARCHAR2);
     PROCEDURE setLastName(pId IN NUMBER, pLastName IN VARCHAR2);
     PROCEDURE setBirth(pId IN NUMBER, pBirth IN VARCHAR2);
     PROCEDURE setHeight(pId IN NUMBER, pHeight IN NUMBER);
     PROCEDURE setGender(pId IN NUMBER, pGender IN NUMBER);
+    
+    PROCEDURE updatePerson(pId IN NUMBER, pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
+                pBirth IN VARCHAR2, pHeight IN VARCHAR2, pGender IN VARCHAR2);
     
     FUNCTION  getId RETURN NUMBER;
     FUNCTION  getFirstName(pId IN NUMBER) RETURN VARCHAR2;
@@ -15,9 +18,12 @@ CREATE OR REPLACE PACKAGE person_utils IS
     FUNCTION  getBirth(pId IN NUMBER) RETURN VARCHAR2;
     FUNCTION  getHeight(pId IN NUMBER) RETURN NUMBER;
     FUNCTION  getGender(pId IN NUMBER) RETURN NUMBER;
+    
+    PROCEDURE getPerson(pId NUMBER, pFirst_name OUT VARCHAR2, pLast_name OUT VARCHAR2, 
+    pDate OUT VARCHAR2, pGender OUT NUMBER);
 
 END person_utils;
-
+/
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY person_utils AS
@@ -38,15 +44,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         COMMIT;
         RETURN vIdPerson;
     
-    EXCEPTION
-        WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
-                                 permitida');
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-    
     END;
             
 -- Setters
@@ -58,14 +55,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         SET first_name = pFirstName
         WHERE id_person = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END;
     
@@ -77,14 +66,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         SET last_name = pLastName
         WHERE id_person = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END;
     
@@ -96,14 +77,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         SET birth_date = TO_DATE(pBirth, 'DD-MM-YYYY')
         WHERE id_person = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END;
     
@@ -115,14 +88,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         SET height_artist = pHeight
         WHERE id_person = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END;
     
@@ -134,16 +99,19 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         SET id_gender = pGender
         WHERE id_person = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END;
+
+    PROCEDURE updatePerson(pId IN NUMBER, pFirstName IN VARCHAR2, pLastName IN VARCHAR2,
+                pBirth IN VARCHAR2, pHeight IN VARCHAR2, pGender IN VARCHAR2)
+    IS
+        BEGIN
+            setFirstName(pId, pFirstName);
+            setLastName(pId, pLastName);
+            setBirth(pId, pBirth);
+            setHeight(pId, pHeight);
+            setGender(pHeight, pGender);
+        END;
 
 -- Getters
     FUNCTION getId
@@ -157,10 +125,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         FROM dual;
         COMMIT;
         RETURN (vId);
-        
-    EXCEPTION
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END;
     
@@ -175,12 +139,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         FROM person
         WHERE id_person = pId;
         RETURN (vFirstName);
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             
     END;
     
@@ -195,12 +153,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         FROM person
         WHERE id_person = pId;
         RETURN (vLastName);
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END;
     
@@ -215,12 +167,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         FROM person
         WHERE id_person = pId;
         RETURN (vBirth);
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END;
     
@@ -236,11 +182,6 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         WHERE id_person = pId;
         RETURN (vHeight);
         
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END;
     
@@ -255,13 +196,18 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
         FROM person
         WHERE id_person = pId;
         RETURN (vGender);
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-    
+
     END;
+    
+    PROCEDURE getPerson(pId NUMBER, pFirst_name OUT VARCHAR2, pLast_name OUT VARCHAR2, 
+    pDate OUT VARCHAR2, pGender OUT NUMBER)
+    IS
+    BEGIN
+        SELECT p.first_name, p.last_name, p.birth_date, p.id_Gender
+        INTO pFirst_name, pLast_name, pDate, pGender
+        FROM Person p
+        WHERE p.id_person = pId;
+    END getPerson;
+    
     
 END person_utils;

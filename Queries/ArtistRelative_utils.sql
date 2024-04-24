@@ -26,11 +26,6 @@ CREATE OR REPLACE PACKAGE BODY ArtistRelative_Utils AS
                VALUES (s_ArtistRelative.nextval, pId_Artist, pId_Relative, pId_RelationType);
         COMMIT;
     
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
     END insertArtistRelative;
 
     -- Delete
@@ -40,13 +35,7 @@ CREATE OR REPLACE PACKAGE BODY ArtistRelative_Utils AS
         DELETE FROM proy1.ArtistRelative
         WHERE id_ArtistRelative = pId;
         COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
+        
     END deleteArtistRelative;
     
     -- Update
@@ -57,12 +46,6 @@ CREATE OR REPLACE PACKAGE BODY ArtistRelative_Utils AS
         SET id_relationType = pId_Relation
         WHERE id_ArtistRelative = pId;
         COMMIT;
-    
-    EXCEPTION 
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('El parametro ingeresado no es valido');
-        WHEN OTHERS THEN
-            dbms_output.put_line('Error inesperado');
     
     END updateArtistRelativeRelation;
     
@@ -75,14 +58,6 @@ CREATE OR REPLACE PACKAGE BODY ArtistRelative_Utils AS
         FROM ArtistRelative
         WHERE id_ArtistRelative = pId;
         RETURN vId_Relation;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-            RETURN ' ';
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-            RETURN ' ';
     
     END getArtistRelativeRelation;
     

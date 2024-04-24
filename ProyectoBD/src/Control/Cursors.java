@@ -102,6 +102,26 @@ public class Cursors {
         return artists;
     }
     
+    public static Person getPerson(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call person_utils.getPerson(?,?,?,?,?)}");
+        stmt.setInt(1, id);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.execute();
+        
+       String name = (String) stmt.getObject(2);
+       String lastName = (String) stmt.getObject(3);
+       String date = (String) stmt.getObject(4);
+       int gender = (int) stmt.getInt(5);
+       Person person = new Person(id, name, lastName, date, gender);
+        con.close();
+        stmt.close();
+       return person;
+    }
+    
     public static Artist getArtist(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call artist_utils.getArtist(?,?,?,?,?,?,?,?,?)}");

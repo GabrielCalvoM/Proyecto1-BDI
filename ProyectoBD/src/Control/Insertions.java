@@ -71,6 +71,18 @@ public class Insertions {
         stmt.close();
     }
     
+    public static void insertArtistRelative(int id_artist, int id_relative, int id_type)
+    throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ArtistRelative_utils.insertArtistRelative(?,?,?)}");
+        stmt.setInt(1, id_artist);
+        stmt.setInt(2, id_relative);
+        stmt.setInt(3, id_type);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
     public static int insertProduct(String title, int year, String synopsis, 
         String trailer) throws SQLException {
         Connection con = sysConnection.getConnection();

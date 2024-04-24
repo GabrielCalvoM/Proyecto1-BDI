@@ -106,11 +106,12 @@ CREATE OR REPLACE PACKAGE BODY person_utils AS
                 pBirth IN VARCHAR2, pHeight IN VARCHAR2, pGender IN VARCHAR2)
     IS
         BEGIN
-            setFirstName(pId, pFirstName);
-            setLastName(pId, pLastName);
-            setBirth(pId, pBirth);
-            setHeight(pId, pHeight);
-            setGender(pHeight, pGender);
+            UPDATE person
+            SET first_name = pFirstName, last_name = pLastName, 
+                birth_date = TO_DATE(pBirth, 'DD-MM-YYYY'),
+                height_artist = pHeight, id_gender = pGender
+            WHERE id_person = pId;
+            COMMIT;
         END;
 
 -- Getters

@@ -25,3 +25,6 @@ ALTER TABLE person
 ALTER TABLE person
     ADD
     CONSTRAINT fk_person_gender FOREIGN KEY (id_gender) REFERENCES gender(id_gender);
+    
+
+--EXECUTE person_utils.updatePerson(16, 'Bill', 'Sida', TO_DATE('12-12-1212', 'DD-MM-YYYY'), 0, 1);

@@ -81,6 +81,25 @@ public class Cursors {
         return types;
     }
     
+    public static ArrayList<RelativeType> getRelativeTypes() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call relativeType_utils.getRelativeTypes(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<RelativeType> types = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            RelativeType type = new RelativeType(id, name);
+            types.add(type);
+        }
+        con.close();
+        stmt.close();
+        return types;
+    }
+    
     public static ArrayList<Artist> getArtistsOfType(int idType) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call artist_utils.getArtistsOfType(?, ?)}");

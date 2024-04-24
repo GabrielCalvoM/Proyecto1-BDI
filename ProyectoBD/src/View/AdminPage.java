@@ -15,6 +15,7 @@ import javax.swing.ListModel;
 public class AdminPage extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel previous;
+    Artist currentArtist;
     
     public AdminPage(MainFrame mainFrame, JPanel previous) {
         this.previous = previous;
@@ -117,7 +118,22 @@ public class AdminPage extends javax.swing.JPanel {
         jButton18 = new javax.swing.JButton();
         editArtist_date = new com.toedter.calendar.JDateChooser();
         jLabel46 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        ArtistRelatives_Button = new javax.swing.JButton();
+        ArtistRelative_Settings = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        artistRelative_nameTxt = new javax.swing.JTextField();
+        artistRelative_lastnameTxt = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        artistRelative_date = new com.toedter.calendar.JDateChooser();
+        artistRelative_genderCombo = new javax.swing.JComboBox<>();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        artistRelative_relationCombo = new javax.swing.JComboBox<>();
+        jButton29 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
         EditProducts = new javax.swing.JPanel();
         editProductsMenu = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -525,6 +541,11 @@ public class AdminPage extends javax.swing.JPanel {
 
         UpdateDirector_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         UpdateDirector_Button.setText("Editar");
+        UpdateDirector_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateDirector_ButtonActionPerformed(evt);
+            }
+        });
 
         DeleteWriter_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         DeleteWriter_Button.setText("Eliminar");
@@ -536,6 +557,11 @@ public class AdminPage extends javax.swing.JPanel {
 
         UpdateWriter_Button.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         UpdateWriter_Button.setText("Editar");
+        UpdateWriter_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateWriter_ButtonActionPerformed(evt);
+            }
+        });
 
         InsertArtist_Button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         InsertArtist_Button.setText("Agregar Artista");
@@ -925,8 +951,13 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("cm");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Familiares del Artista");
+        ArtistRelatives_Button.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ArtistRelatives_Button.setText("Familiares del Artista");
+        ArtistRelatives_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArtistRelatives_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout UpdateArtistLayout = new javax.swing.GroupLayout(UpdateArtist);
         UpdateArtist.setLayout(UpdateArtistLayout);
@@ -974,7 +1005,7 @@ public class AdminPage extends javax.swing.JPanel {
                                     .addComponent(jLabel43)
                                     .addComponent(jLabel44))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ArtistRelatives_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         UpdateArtistLayout.setVerticalGroup(
@@ -1017,7 +1048,7 @@ public class AdminPage extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(ArtistRelatives_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1026,6 +1057,144 @@ public class AdminPage extends javax.swing.JPanel {
         );
 
         EditArtists.add(UpdateArtist, "editArtist");
+
+        ArtistRelative_Settings.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel13.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("Familiares");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel48)
+                .addContainerGap(550, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("Nombre");
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel50.setText("Apellido");
+
+        jLabel66.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel66.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel66.setText("Nacimiento");
+
+        artistRelative_genderCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        artistRelative_genderCombo.setForeground(new java.awt.Color(51, 51, 51));
+        artistRelative_genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+
+        jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel69.setText("Género");
+
+        jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel70.setText("Relación");
+
+        artistRelative_relationCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        artistRelative_relationCombo.setForeground(new java.awt.Color(51, 51, 51));
+        artistRelative_relationCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+
+        jButton29.setBackground(new java.awt.Color(51, 51, 51));
+        jButton29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton29.setForeground(new java.awt.Color(255, 255, 255));
+        jButton29.setText("Atrás");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
+
+        jButton30.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton30.setText("Guardar");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ArtistRelative_SettingsLayout = new javax.swing.GroupLayout(ArtistRelative_Settings);
+        ArtistRelative_Settings.setLayout(ArtistRelative_SettingsLayout);
+        ArtistRelative_SettingsLayout.setHorizontalGroup(
+            ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ArtistRelative_SettingsLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ArtistRelative_SettingsLayout.createSequentialGroup()
+                        .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel50)
+                            .addComponent(jLabel49))
+                        .addGap(27, 27, 27)
+                        .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(artistRelative_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(artistRelative_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ArtistRelative_SettingsLayout.createSequentialGroup()
+                        .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel66)
+                            .addComponent(jLabel69)
+                            .addComponent(jLabel70))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(artistRelative_relationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(artistRelative_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(artistRelative_date, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ArtistRelative_SettingsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        ArtistRelative_SettingsLayout.setVerticalGroup(
+            ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ArtistRelative_SettingsLayout.createSequentialGroup()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(artistRelative_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(artistRelative_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(artistRelative_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(artistRelative_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(artistRelative_relationCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton29))
+                .addContainerGap())
+        );
+
+        EditArtists.add(ArtistRelative_Settings, "card5");
 
         AdminPage.add(EditArtists, "editArtists");
 
@@ -1936,8 +2105,10 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_ActorsList.getSelectedIndex();
             ListModel model = EditArtists_ActorsList.getModel();
-            Artist artist = (Artist) model.getElementAt(index);
-            Person person = Cursors.getPerson(artist.getId());
+            currentArtist = (Artist) model.getElementAt(index);
+            Person person = Cursors.getPerson(currentArtist.getId());
+            
+            
             DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
             editArtist_genderCombo.setModel(gendersModel);
             DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
@@ -1947,10 +2118,10 @@ public class AdminPage extends javax.swing.JPanel {
             editArtist_lastnameTxt.setText(person.getLast_Name());
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
-            editArtist_bioTxt.setText(artist.getBiography_artist());
-            System.out.println(artist.getBiography_artist());
-            editArtist_triviaTxt.setText(artist.getTrivia_data());
-            System.out.println(artist.getTrivia_data());
+            editArtist_bioTxt.setText(currentArtist.getBiography_artist());
+            System.out.println(currentArtist.getBiography_artist());
+            editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
+            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");
@@ -2046,6 +2217,9 @@ public class AdminPage extends javax.swing.JPanel {
         ArtistType type = (ArtistType) model.getElementAt(index);
         String bio = addArtist_bioTxt.getText();
         String trivia = addArtist_triviaTxt.getText();
+        //System.out.println(bio);
+        //System.out.println(trivia);
+
         int height;
         System.out.println(addArtist_height.getSelectedItem().toString());
         try {
@@ -2120,9 +2294,11 @@ public class AdminPage extends javax.swing.JPanel {
             height = 0;
         }
         try {
-            int id = EditArtists_ActorsList.getSelectedIndex();
+            int id = currentArtist.getId();
             Updates.updatePerson(id, name, lastName, birthDate, height, gender.getId());
             Updates.updateArtist(id, type.getId(), bio, trivia);
+            //DefaultListModel actorsModel = mainFrame.buildListModel(Cursors.getArtistsOfType(1));
+            //EditArtists_ActorsList.setModel(actorsModel);
         }
         catch (Exception e) {
             mainFrame.showError("Verifique las entradas e intente nuevamente.");
@@ -2498,6 +2674,137 @@ public class AdminPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addArtist_nameTxtActionPerformed
 
+    private void ArtistRelatives_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArtistRelatives_ButtonActionPerformed
+        try {
+            DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
+            artistRelative_genderCombo.setModel(gendersModel);
+            DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getRelativeTypes());
+            artistRelative_relationCombo.setModel(typesModel);
+        }
+        catch (Exception e) {
+            mainFrame.showError("[ERROR] Fallo al leer de la base de datos");
+            System.out.println(e.getMessage());
+        }
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "card5"); // ArtistRelative_Settings card
+    }//GEN-LAST:event_ArtistRelatives_ButtonActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "editArtist");
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        if (artistRelative_nameTxt.getText().length() < 1 || artistRelative_lastnameTxt.getText().length() < 1) {
+            mainFrame.showError("Debe llenar todos los datos.");
+            return;
+        }
+        
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String birthDate;
+        try {
+            birthDate = formatter.format(artistRelative_date.getDate());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Fecha inválida.");
+            return;
+        }
+        
+        String name = artistRelative_nameTxt.getText();
+        String lastName = artistRelative_lastnameTxt.getText();
+        int index = artistRelative_genderCombo.getSelectedIndex();
+        ListModel model = artistRelative_genderCombo.getModel();
+        Gender gender = (Gender) model.getElementAt(index);
+        index = artistRelative_relationCombo.getSelectedIndex();
+        model = artistRelative_relationCombo.getModel();
+        RelativeType type = (RelativeType) model.getElementAt(index);
+        
+        try {
+            int id_relative = Insertions.insertPerson(name, lastName, birthDate, 0, index);
+            Insertions.insertArtistRelative(currentArtist.getId(), id_relative, type.getId());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Verifique las entradas e intente nuevamente.");
+            System.out.println(e.getMessage());
+            return;
+        }
+        
+        try {
+            DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
+            editArtist_genderCombo.setModel(gendersModel);
+            DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
+            editArtist_typeCombo.setModel(typesModel);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al leer de la base de datos.");
+            return;
+        }
+        CardLayout card = (CardLayout) EditArtists.getLayout();
+        card.show(EditArtists, "editArtist");
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void UpdateDirector_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateDirector_ButtonActionPerformed
+        try {
+            int index = EditArtists_DirectorsList.getSelectedIndex();
+            ListModel model = EditArtists_DirectorsList.getModel();
+            currentArtist = (Artist) model.getElementAt(index);
+            Person person = Cursors.getPerson(currentArtist.getId());
+            
+            
+            DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
+            editArtist_genderCombo.setModel(gendersModel);
+            DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
+            editArtist_typeCombo.setModel(typesModel);
+            
+            editArtist_nameTxt.setText(person.getFirst_Name());
+            editArtist_lastnameTxt.setText(person.getLast_Name());
+            DateFormat format = new SimpleDateFormat("dd-MMM-yy");
+            editArtist_date.setDate( format.parse((person.getBirthDate())));
+            editArtist_bioTxt.setText(currentArtist.getBiography_artist());
+            System.out.println(currentArtist.getBiography_artist());
+            editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
+            System.out.println(currentArtist.getTrivia_data());
+            
+            CardLayout card = (CardLayout) EditArtists.getLayout();
+            card.show(EditArtists, "editArtist");
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al actualizar. Intente nuevamente.");
+            System.out.println("[Error] " + e.getMessage());
+        }                                               
+    }//GEN-LAST:event_UpdateDirector_ButtonActionPerformed
+
+    private void UpdateWriter_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateWriter_ButtonActionPerformed
+        try {
+            int index = EditArtists_WritersList.getSelectedIndex();
+            ListModel model = EditArtists_WritersList.getModel();
+            currentArtist = (Artist) model.getElementAt(index);
+            Person person = Cursors.getPerson(currentArtist.getId());
+            
+            
+            DefaultComboBoxModel gendersModel = mainFrame.buildComboModel(Cursors.getGenders());
+            editArtist_genderCombo.setModel(gendersModel);
+            DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
+            editArtist_typeCombo.setModel(typesModel);
+            
+            editArtist_nameTxt.setText(person.getFirst_Name());
+            editArtist_lastnameTxt.setText(person.getLast_Name());
+            DateFormat format = new SimpleDateFormat("dd-MMM-yy");
+            editArtist_date.setDate( format.parse((person.getBirthDate())));
+            editArtist_bioTxt.setText(currentArtist.getBiography_artist());
+            System.out.println(currentArtist.getBiography_artist());
+            editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
+            System.out.println(currentArtist.getTrivia_data());
+            
+            CardLayout card = (CardLayout) EditArtists.getLayout();
+            card.show(EditArtists, "editArtist");
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al actualizar. Intente nuevamente.");
+            System.out.println("[Error] " + e.getMessage());
+        }                                                 
+    }//GEN-LAST:event_UpdateWriter_ButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
@@ -2505,6 +2812,8 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton AdmMenuBackBtn;
     private javax.swing.JPanel AdminMenu;
     private javax.swing.JPanel AdminPage;
+    private javax.swing.JPanel ArtistRelative_Settings;
+    private javax.swing.JButton ArtistRelatives_Button;
     private javax.swing.JButton CountriesButton2;
     private javax.swing.JButton CountriesButton3;
     private javax.swing.JButton CountriesButton4;
@@ -2563,6 +2872,11 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JTextArea addSeries_synopsis;
     private javax.swing.JTextField addSeries_title;
     private javax.swing.JTextField addSeries_trailer;
+    private com.toedter.calendar.JDateChooser artistRelative_date;
+    private javax.swing.JComboBox<String> artistRelative_genderCombo;
+    private javax.swing.JTextField artistRelative_lastnameTxt;
+    private javax.swing.JTextField artistRelative_nameTxt;
+    private javax.swing.JComboBox<String> artistRelative_relationCombo;
     private javax.swing.JTextArea editArtist_bioTxt;
     private com.toedter.calendar.JDateChooser editArtist_date;
     private javax.swing.JComboBox<String> editArtist_genderCombo;
@@ -2577,7 +2891,6 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -2587,6 +2900,8 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
+    private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
@@ -2613,7 +2928,10 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -2630,9 +2948,12 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
@@ -2640,6 +2961,7 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;

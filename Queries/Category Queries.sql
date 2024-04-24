@@ -6,7 +6,7 @@ CREATE OR REPLACE PACKAGE category_utils IS
     PROCEDURE setCategory(pId IN NUMBER, pName IN VARCHAR2);
     
     FUNCTION  getCategory(pId IN NUMBER) RETURN VARCHAR2;
-    PROCEDURE getCategorys(categorysCursor OUT SYS_REFCURSOR);
+    PROCEDURE getAllCategories(categoryCursor OUT SYS_REFCURSOR);
     
 END category_utils;
 /
@@ -62,14 +62,14 @@ CREATE OR REPLACE PACKAGE BODY category_utils AS
     
     END;
     
-    PROCEDURE getCategorys(categorysCursor OUT SYS_REFCURSOR) 
+    PROCEDURE getAllCategories(categoryCursor OUT SYS_REFCURSOR) 
     IS
     BEGIN 
-        OPEN categorysCursor
+        OPEN categoryCursor
         FOR
         SELECT id_category, name
         FROM Category;
 
-    END getCategorys;
+    END getAllCategories;
 
 END category_utils;

@@ -5,7 +5,11 @@
 package View;
 
 import Control.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -14,6 +18,7 @@ import javax.swing.JPanel;
 public class ViewCategory extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel previous;
+    HashMap<String, Integer> categorias;
 
     /**
      * Creates new form CreateCategory
@@ -22,6 +27,7 @@ public class ViewCategory extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.previous = previous;
         initComponents();
+        this.getCategory();
     }
 
     /**
@@ -64,8 +70,9 @@ public class ViewCategory extends javax.swing.JPanel {
             .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
         );
 
-        WrittenCategory.setEditable(false);
         WrittenCategory.setBackground(new java.awt.Color(51, 51, 51));
+        WrittenCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        WrittenCategory.setForeground(new java.awt.Color(255, 255, 255));
         WrittenCategory.setToolTipText("");
 
         BackButton.setBackground(new java.awt.Color(51, 51, 51));
@@ -95,8 +102,15 @@ public class ViewCategory extends javax.swing.JPanel {
         DelButton.setForeground(new java.awt.Color(204, 204, 204));
         DelButton.setText("Eliminar");
         DelButton.setBorderPainted(false);
+        DelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelButtonActionPerformed(evt);
+            }
+        });
 
         CategoryList.setBackground(new java.awt.Color(51, 51, 51));
+        CategoryList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        CategoryList.setForeground(new java.awt.Color(255, 255, 255));
         CategoryList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "No hay categorías disponibles" };
             public int getSize() { return strings.length; }
@@ -110,9 +124,9 @@ public class ViewCategory extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addGap(114, 114, 114)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +141,7 @@ public class ViewCategory extends javax.swing.JPanel {
                         .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,8 +151,8 @@ public class ViewCategory extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(WrittenCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addComponent(WrittenCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -158,21 +172,39 @@ public class ViewCategory extends javax.swing.JPanel {
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         String name = this.WrittenCategory.getText();
         try {
-            Insertions.insertCountry(name);
+            Insertions.insertCategory(name);
         }
         catch (Exception e) {
             System.out.println("Error inserting: " + e);
             return;
         }
-        this.WrittenCategory.setText("");
+        this.getCategory();
+    }//GEN-LAST:event_AddButtonActionPerformed
+
+    private void DelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelButtonActionPerformed
+        try{
+            int index = this.CategoryList.getSelectedIndex();
+            ListModel model = this.CategoryList.getModel();
+            String category = (String)model.getElementAt(index);
+            Deletions.deleteCategory(categorias.get(category));
+        }
+        catch (Exception e) {
+            System.out.println("Failed to delete" + e);
+        }
+        this.getCategory();
+    }//GEN-LAST:event_DelButtonActionPerformed
+    
+    private void getCategory() {
         try {
-            this.CategoryList.setModel(mainFrame.buildListModel(Cursors.getCategories()));
+            this.categorias = Cursors.getCategories();
+            this.WrittenCategory.setText("");
+            DefaultListModel categories = mainFrame.buildListModel(new ArrayList<String>(this.categorias.keySet()));
+            this.CategoryList.setModel(categories);
         }
         catch (Exception e) {
             System.out.println("Couldn't fetch categories: " + e);
         }
-    }//GEN-LAST:event_AddButtonActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;

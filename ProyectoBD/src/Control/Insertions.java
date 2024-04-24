@@ -149,4 +149,13 @@ public class Insertions {
         con.close();
         stmt.close();
     }
+    
+    public static void insertCategory(String name) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call category_utils.insertCategory(?)}");
+        stmt.setString(1, name);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
 }

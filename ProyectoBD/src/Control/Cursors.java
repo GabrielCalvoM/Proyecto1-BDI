@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import Model.Country;
 import Model.*;
+import java.util.HashMap;
 
 public class Cursors {
     public static ArrayList<Country> getCountries() throws SQLException {
@@ -319,19 +320,18 @@ public class Cursors {
         return result;
     }
     
-    public static ArrayList<Category> getCategories() throws SQLException {
+    public static HashMap<String, Integer> getCategories() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call category_utils.getCategory(?)}");
+        CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
         stmt.execute();
         ResultSet rs = (ResultSet) stmt.getObject(1);
         
-        ArrayList<Category> categories = new ArrayList<>();
+        HashMap<String, Integer> categories = new HashMap<>();
         while(rs.next()) {
             int id = rs.getInt(1);
             String name = rs.getString(2);
-            Category category = new Category(id, name);
-            categories.add(category);
+            categories.put(name, id);
         }
         con.close();
         stmt.close();

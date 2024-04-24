@@ -31,4 +31,8 @@ public class Updates {
         con.close();
         stmt.close();
     }
+    
+    public static void updateArtistRelative(int id, String name, int id_relationType) {
+        // TODO
+    }
 }

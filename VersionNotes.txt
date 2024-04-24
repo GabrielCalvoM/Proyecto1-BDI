@@ -12,3 +12,8 @@ del fk) (Solo correr el sql ProductPhoto de entidades).
 (Antes BFILE (muy complicado))
 
 -------
+
+Programa elaborado por:
+	Adrián Zamora Chavarría
+	Carlos Cabrera de la Espriella
+	Gabriel Calvo Montero

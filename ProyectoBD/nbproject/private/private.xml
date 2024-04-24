@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/View/AdminPage.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>2102</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Control/sysConnection.java</file>
+            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Model/Person.java</file>
+            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Model/Artist.java</file>
+            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Control/Updates.java</file>
+            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Control/Insertions.java</file>
+            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Model/RelativeType.java</file>
             <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Control/Cursors.java</file>
             <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/View/AdminPage.java</file>
-            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/View/MainFrame.java</file>
+            <file>file:/C:/Users/cahuc/OneDrive/Escritorio/BASES%20DE%20DATOS/Proyecto1-BDI/ProyectoBD/src/Control/Deletions.java</file>
         </group>
     </open-files>
 </project-private>

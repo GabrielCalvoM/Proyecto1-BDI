@@ -25,4 +25,14 @@ public class Logic {
         int result = stmt.getInt(1);
         return result < 1;
     }
+    
+    public static String getRelation(int id_relation) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call RelativeType_utils.getRelativeTypeName(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.setInt(2, id_relation);
+        stmt.execute();
+        String result = stmt.getString(1);
+        return result;
+    } 
 }

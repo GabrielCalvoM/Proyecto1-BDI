@@ -100,6 +100,32 @@ public class Cursors {
         return types;
     }
     
+    public static ArrayList<ArtistRelative> getArtistRelatives(int id_artist) throws SQLException {
+       Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ArtistRelative_Utils.getArtistRelatives(?, ?)}");
+        stmt.setInt(1, id_artist);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        
+        ArrayList<ArtistRelative> relatives = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            int id_relative = rs.getInt(2);
+            String name = rs.getString(3) + " " + rs.getString(4);
+            int id_relation = rs.getInt(5);
+            
+            //System.out.println("A: " + id + ", " + id_artist + ", " + id_relative + "| " + name + " | " + id_relation + " | ");
+            
+            ArtistRelative relative = new ArtistRelative(id, id_artist, id_relative, id_relation, name);
+            relatives.add(relative);
+        }
+        con.close();
+        stmt.close();
+        return relatives;
+    }
+    
     public static ArrayList<Artist> getArtistsOfType(int idType) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call artist_utils.getArtistsOfType(?, ?)}");

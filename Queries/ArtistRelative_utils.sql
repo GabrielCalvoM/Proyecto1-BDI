@@ -9,9 +9,9 @@ CREATE OR REPLACE PACKAGE ArtistRelative_Utils IS
     -- Getter
     FUNCTION getArtistRelativeRelation (pId NUMBER) RETURN NUMBER;
     
-    /*
-    PROCEDURE getArtistsRelativesOfType(pId_type NUMBER, relativeCursor OUT SYS_REFCURSOR);
+    PROCEDURE getArtistRelatives(pId_Artist NUMBER, relativeCursor OUT SYS_REFCURSOR);
     
+    /*
     PROCEDURE getArtistRelativeTypes(relativeCursor OUT SYS_REFCURSOR);
     */
 END ArtistRelative_Utils;
@@ -61,22 +61,18 @@ CREATE OR REPLACE PACKAGE BODY ArtistRelative_Utils AS
     
     END getArtistRelativeRelation;
     
-    -- Get specific Type
-    /*
-    PROCEDURE getArtistRelativesOfType(pId_Type NUMBER, relativeCursor OUT SYS_REFCURSOR)
+    -- Get relatives
+    PROCEDURE getArtistRelatives(pId_Artist NUMBER, relativeCursor OUT SYS_REFCURSOR)
     IS
     BEGIN
         OPEN relativeCursor
         FOR
-        SELECT r.id_relative, p.first_name, p.last_name
+        SELECT r.id_artistrelative, r.id_relative, p.first_name, p.last_name, r.id_relationtype
         FROM ArtistRelative r
-        INNER JOIN Person p
+        JOIN Person p
         ON r.id_relative = p.id_person
-        WHERE id_relativeType = pId_Type;
+        WHERE id_artist = pId_Artist;
         
-        EXCEPTION
-            WHEN OTHERS THEN
-                dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    END getArtistRelativesOfType;
-    */
+    END getArtistRelatives;
+
 END ArtistRelative_Utils;

@@ -2197,7 +2197,8 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_ActorsList.getSelectedIndex();
             ListModel model = EditArtists_ActorsList.getModel();
-            currentArtist = (Artist) model.getElementAt(index);
+            Artist modelArtist = (Artist) model.getElementAt(index);
+            currentArtist = Cursors.getArtist(modelArtist.getId());
             Person person = Cursors.getPerson(currentArtist.getId());
             
             
@@ -2211,9 +2212,7 @@ public class AdminPage extends javax.swing.JPanel {
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
-            System.out.println(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
-            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");
@@ -2815,7 +2814,8 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_DirectorsList.getSelectedIndex();
             ListModel model = EditArtists_DirectorsList.getModel();
-            currentArtist = (Artist) model.getElementAt(index);
+            Artist modelArtist = (Artist) model.getElementAt(index);
+            currentArtist = Cursors.getArtist(modelArtist.getId());
             Person person = Cursors.getPerson(currentArtist.getId());
             
             
@@ -2829,9 +2829,7 @@ public class AdminPage extends javax.swing.JPanel {
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
-            System.out.println(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
-            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");
@@ -2846,7 +2844,8 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_WritersList.getSelectedIndex();
             ListModel model = EditArtists_WritersList.getModel();
-            currentArtist = (Artist) model.getElementAt(index);
+            Artist modelArtist = (Artist) model.getElementAt(index);
+            currentArtist = Cursors.getArtist(modelArtist.getId());
             Person person = Cursors.getPerson(currentArtist.getId());
             
             
@@ -2860,9 +2859,7 @@ public class AdminPage extends javax.swing.JPanel {
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
-            System.out.println(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
-            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");

@@ -84,14 +84,15 @@ public class Insertions {
     }
     
     public static int insertProduct(String title, int year, String synopsis, 
-        String trailer) throws SQLException {
+        String trailer, float price) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call product_utils.insertProduct(?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{? = call product_utils.insertProduct(?,?,?,?,?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
         stmt.setString(2, title);
         stmt.setInt(3, year);
         stmt.setString(4, synopsis);
         stmt.setString(5, trailer);
+        stmt.setFloat(6, price);
         stmt.execute();
         int id = stmt.getInt(1);
         con.close();

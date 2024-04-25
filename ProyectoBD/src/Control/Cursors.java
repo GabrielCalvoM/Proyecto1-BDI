@@ -200,18 +200,20 @@ public class Cursors {
     
     public static Product getProduct(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call product_utils.getProduct(?,?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call product_utils.getProduct(?,?,?,?,?,?)}");
         stmt.setInt(1, id);
         stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.NUMBER);
         stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(6, oracle.jdbc.OracleTypes.NUMBER);
         stmt.execute();
         String title = stmt.getString(2);
         int year = stmt.getInt(3);
         String synopsis = stmt.getString(4);
         String trailer = stmt.getString(5);
-        Product product = new Product(id, title, year, synopsis, trailer);
+        float price = stmt.getFloat(6);
+        Product product = new Product(id, title, year, synopsis, trailer, price);
         con.close();
         stmt.close();
         return product;

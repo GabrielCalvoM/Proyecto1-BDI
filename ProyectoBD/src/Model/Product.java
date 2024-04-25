@@ -37,6 +37,6 @@ public class Product {
     
     @Override
     public String toString() {
-        return title;
+        return title + " (" + this.premier + ")";
     }
 }

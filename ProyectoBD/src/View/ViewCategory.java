@@ -18,7 +18,7 @@ import javax.swing.ListModel;
 public class ViewCategory extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel previous;
-    HashMap<String, Integer> categorias;
+    HashMap<String, Integer> categories;
 
     /**
      * Creates new form CreateCategory
@@ -27,7 +27,7 @@ public class ViewCategory extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.previous = previous;
         initComponents();
-        this.getCategory();
+        this.initializeCategory();
     }
 
     /**
@@ -54,7 +54,7 @@ public class ViewCategory extends javax.swing.JPanel {
 
         Title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
-        Title.setText("Edit Categorías");
+        Title.setText("Editar Categorías");
 
         javax.swing.GroupLayout PTitleLayout = new javax.swing.GroupLayout(PTitle);
         PTitle.setLayout(PTitleLayout);
@@ -124,9 +124,9 @@ public class ViewCategory extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(101, 101, 101)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +178,7 @@ public class ViewCategory extends javax.swing.JPanel {
             System.out.println("Error inserting: " + e);
             return;
         }
-        this.getCategory();
+        this.initializeCategory();
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void DelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelButtonActionPerformed
@@ -186,20 +186,20 @@ public class ViewCategory extends javax.swing.JPanel {
             int index = this.CategoryList.getSelectedIndex();
             ListModel model = this.CategoryList.getModel();
             String category = (String)model.getElementAt(index);
-            Deletions.deleteCategory(categorias.get(category));
+            Deletions.deleteCategory(categories.get(category));
         }
         catch (Exception e) {
             System.out.println("Failed to delete" + e);
         }
-        this.getCategory();
+        this.initializeCategory();
     }//GEN-LAST:event_DelButtonActionPerformed
     
-    private void getCategory() {
+    private void initializeCategory() {
         try {
-            this.categorias = Cursors.getCategories();
+            this.categories = Cursors.getCategories();
             this.WrittenCategory.setText("");
-            DefaultListModel categories = mainFrame.buildListModel(new ArrayList<String>(this.categorias.keySet()));
-            this.CategoryList.setModel(categories);
+            DefaultListModel categoryModel = mainFrame.buildListModel(new ArrayList<String>(this.categories.keySet()));
+            this.CategoryList.setModel(categoryModel);
         }
         catch (Exception e) {
             System.out.println("Couldn't fetch categories: " + e);

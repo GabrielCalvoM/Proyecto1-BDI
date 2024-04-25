@@ -217,6 +217,28 @@ public class Cursors {
         return product;
     }
     
+    public static ArrayList<Product> getProducts() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call product_utils.getAllProducts(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            int premiereYear = rs.getInt(3);
+            String synopsis = rs.getString(4);
+            String trailer = rs.getString(5);
+            Product product = new Product(id, name, premiereYear, synopsis, trailer);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
     public static ArrayList<Movie> getMovies() throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call movie_utils.getAllMovies(?)}");

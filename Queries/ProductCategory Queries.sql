@@ -2,6 +2,8 @@ CREATE OR REPLACE PACKAGE productCategory_utils IS
     PROCEDURE insertProductCategory(pProduct IN NUMBER, pCategory IN NUMBER);
     
     PROCEDURE deleteProductCategory(pId IN NUMBER);
+    PROCEDURE deleteAllCategories(pCategory IN NUMBER);
+    PROCEDURE deleteAllProducts(pProduct IN NUMBER);
     
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER);
     PROCEDURE setCategory(pId IN NUMBER, pCategory IN NUMBER);
@@ -56,6 +58,49 @@ CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
             ROLLBACK;
             
     END deleteProductCategory;
+    
+    
+    PROCEDURE deleteAllCategories(pCategory IN NUMBER)
+    IS
+    
+    BEGIN
+        DELETE FROM productCategory
+        WHERE id_productCategory = pId;
+        COMMIT;
+    
+    EXCEPTION
+        WHEN INVALID_NUMBER THEN
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
+            ROLLBACK;
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            ROLLBACK;
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            ROLLBACK;
+            
+    END deleteAllCategories;
+    
+    PROCEDURE deleteAllProducts(pProduct IN NUMBER)
+    IS
+    
+    BEGIN
+        DELETE FROM productCategory
+        WHERE id_productCategory = pId;
+        COMMIT;
+    
+    EXCEPTION
+        WHEN INVALID_NUMBER THEN
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
+            ROLLBACK;
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
+            ROLLBACK;
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+            ROLLBACK;
+            
+    END deleteAllProducts;
     
 -- Setters
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER)

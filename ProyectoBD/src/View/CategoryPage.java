@@ -34,8 +34,9 @@ public class CategoryPage extends javax.swing.JPanel {
 
         PTitle = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
-        EditCategory = new javax.swing.JButton();
+        EditCategoryButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
+        ViewProductCategoryButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -60,13 +61,13 @@ public class CategoryPage extends javax.swing.JPanel {
             .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
         );
 
-        EditCategory.setBackground(new java.awt.Color(51, 51, 51));
-        EditCategory.setForeground(new java.awt.Color(255, 255, 255));
-        EditCategory.setText("Editar Categorías");
-        EditCategory.setBorderPainted(false);
-        EditCategory.addActionListener(new java.awt.event.ActionListener() {
+        EditCategoryButton.setBackground(new java.awt.Color(51, 51, 51));
+        EditCategoryButton.setForeground(new java.awt.Color(255, 255, 255));
+        EditCategoryButton.setText("Editar Categorías");
+        EditCategoryButton.setBorderPainted(false);
+        EditCategoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditCategoryActionPerformed(evt);
+                EditCategoryButtonActionPerformed(evt);
             }
         });
 
@@ -81,48 +82,66 @@ public class CategoryPage extends javax.swing.JPanel {
             }
         });
 
+        ViewProductCategoryButton.setBackground(new java.awt.Color(51, 51, 51));
+        ViewProductCategoryButton.setForeground(new java.awt.Color(255, 255, 255));
+        ViewProductCategoryButton.setText("Categorías de Productos");
+        ViewProductCategoryButton.setBorderPainted(false);
+        ViewProductCategoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProductCategoryButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(545, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(EditCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ViewProductCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136)
-                .addComponent(EditCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EditCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ViewProductCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(BackButton)
                 .addGap(27, 27, 27))
         );
 
-        EditCategory.getAccessibleContext().setAccessibleParent(EditCategory);
+        EditCategoryButton.getAccessibleContext().setAccessibleParent(EditCategoryButton);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EditCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategoryActionPerformed
+    private void EditCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCategoryButtonActionPerformed
         mainFrame.showPage("ViewCategory", new ViewCategory(mainFrame, this));
-    }//GEN-LAST:event_EditCategoryActionPerformed
+    }//GEN-LAST:event_EditCategoryButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         mainFrame.showPage("AdminPage", this.previous);
     }//GEN-LAST:event_BackButtonActionPerformed
 
+    private void ViewProductCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductCategoryButtonActionPerformed
+        mainFrame.showPage("ViewProductCategory", new ViewProductCategory(mainFrame, this));
+    }//GEN-LAST:event_ViewProductCategoryButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
-    private javax.swing.JButton EditCategory;
+    private javax.swing.JButton EditCategoryButton;
     private javax.swing.JPanel PTitle;
     private javax.swing.JLabel Title;
+    private javax.swing.JButton ViewProductCategoryButton;
     // End of variables declaration//GEN-END:variables
 }

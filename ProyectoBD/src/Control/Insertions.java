@@ -178,4 +178,17 @@ public class Insertions {
         con.close();
         stmt.close();
     }
+    
+    public static void insertReview(String comment, int score, int idUser, int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call review_utils.insertReview(?,?,?,?)}");
+        stmt.setInt(1, score);
+        stmt.setString(2, comment);
+        stmt.setInt(3, idUser);
+        stmt.setInt(4, idProduct);
+        stmt.execute();
+        con.close();
+        stmt.close();
+        
+    }
 }

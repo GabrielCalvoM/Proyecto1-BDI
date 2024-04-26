@@ -19,15 +19,7 @@ CREATE OR REPLACE PACKAGE BODY SysUser_Utils AS
     BEGIN
         INSERT INTO proy1.SysUser (id_User, email, phone_number, id_country, id_type, identification)
                VALUES (pId, pEmail, pPhone_number, pId_country, pId_type, pId_number);
-        COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
-    
+        COMMIT;    
     END insertSysUser;
 
     -- Delete
@@ -36,14 +28,7 @@ CREATE OR REPLACE PACKAGE BODY SysUser_Utils AS
     BEGIN
         DELETE FROM proy1.SysUser
         WHERE id_user = pId;
-        COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
+        COMMIT;    
     END deleteSysUser;
     
     -- Update
@@ -53,14 +38,7 @@ CREATE OR REPLACE PACKAGE BODY SysUser_Utils AS
         UPDATE proy1.SysUser
         SET email = pEmail, phone_number = pPhone_number
         WHERE id_user = pId;
-        COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
+        COMMIT;    
     END updateSysUser;
     
     -- Getter
@@ -72,16 +50,7 @@ CREATE OR REPLACE PACKAGE BODY SysUser_Utils AS
         SELECT phone_number, email  INTO vPhone_Number, vEmail
         FROM SysUser
         WHERE id_user = pId;
-        RETURN 'PHONE: ' || vPhone_Number || ', E-MAIL: ' || vEmail;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-            RETURN ' ';
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-            RETURN ' ';
-    
+        RETURN 'PHONE: ' || vPhone_Number || ', E-MAIL: ' || vEmail;    
     END getSysUser;
 
 END SysUser_Utils;

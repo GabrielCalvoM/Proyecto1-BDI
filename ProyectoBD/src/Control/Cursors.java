@@ -399,4 +399,38 @@ public class Cursors {
         stmt.close();
         return result;
     }
+    
+    public static ArrayList<Review> getProductReviews(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call review_utils.getProductReviews(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Review> reviews = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            int score = rs.getInt(2);
+            String comment = rs.getString(3);
+            int idUser = rs.getInt(4);
+            Review review = new Review(id, score, comment, idUser, idProduct);
+            reviews.add(review);
+        }
+        con.close();
+        stmt.close();
+        return reviews;
+    }
+    
+    public static String getUsernameByUserId(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call account_utils.getUsernameByUserId(?)}");
+        stmt.setInt(2, idUser);
+        stmt.registerOutParameter(1,  oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.execute();
+        String username = stmt.getString(1);
+        con.close();
+        stmt.close();
+        return username;
+    }
 }

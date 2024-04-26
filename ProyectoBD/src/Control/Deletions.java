@@ -69,4 +69,13 @@ public class Deletions {
         con.close();
         stmt.close();
     }
+    
+    public static void deleteReview(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call review_utils.deleteReview(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
 }

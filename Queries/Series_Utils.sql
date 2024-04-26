@@ -36,6 +36,7 @@ CREATE OR REPLACE PACKAGE BODY Series_Utils AS
         productPhoto_utils.deleteProductPhoto(vIdProduct);
         DELETE FROM Series
         WHERE id_series = pId;
+        productArtist_utils.deleteArtistsForProduct(vIdProduct);
         product_utils.removeProduct(vIdProduct);
         COMMIT;
     END removeSeries;

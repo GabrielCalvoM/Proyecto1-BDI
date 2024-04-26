@@ -200,18 +200,20 @@ public class Cursors {
     
     public static Product getProduct(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call product_utils.getProduct(?,?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call product_utils.getProduct(?,?,?,?,?,?)}");
         stmt.setInt(1, id);
         stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.NUMBER);
         stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
         stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(6, oracle.jdbc.OracleTypes.NUMBER);
         stmt.execute();
         String title = stmt.getString(2);
         int year = stmt.getInt(3);
         String synopsis = stmt.getString(4);
         String trailer = stmt.getString(5);
-        Product product = new Product(id, title, year, synopsis, trailer);
+        float price = stmt.getFloat(6);
+        Product product = new Product(id, title, year, synopsis, trailer, price);
         con.close();
         stmt.close();
         return product;
@@ -231,7 +233,7 @@ public class Cursors {
             int premiereYear = rs.getInt(3);
             String synopsis = rs.getString(4);
             String trailer = rs.getString(5);
-            Product product = new Product(id, name, premiereYear, synopsis, trailer);
+            Product product = new Product(id, name, premiereYear, synopsis, trailer, 0);
             products.add(product);
         }
         con.close();
@@ -354,6 +356,25 @@ public class Cursors {
             int id = rs.getInt(1);
             String name = rs.getString(2);
             categories.put(name, id);
+        }
+        con.close();
+        stmt.close();
+        return categories;
+    }
+    
+    public static HashMap<Integer, Integer> getProductCategory(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call productCategory_utils.getAllCategories(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(2, idProduct);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        HashMap<Integer, Integer> categories = new HashMap<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            int idCategory = rs.getInt(2);
+            categories.put(idCategory, id);
         }
         con.close();
         stmt.close();

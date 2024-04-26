@@ -8,7 +8,8 @@ CREATE OR REPLACE PACKAGE Account_Utils IS
     PROCEDURE updateAccount(pId NUMBER, pUsername VARCHAR2, pPassword VARCHAR2, 
     pId_User NUMBER);
     -- Getter
-    FUNCTION getAccount(pId NUMBER) RETURN VARCHAR2;
+    PROCEDURE getAccount(pId NUMBER, pUsername OUT VARCHAR2, pId_user OUT NUMBER, pId_type OUT NUMBER);
+    FUNCTION getUserId(pId NUMBER) RETURN NUMBER;
     FUNCTION checkUserPassword (pUsername VARCHAR, pPassword VARCHAR) RETURN NUMBER;
     FUNCTION getUsernameUnique(pUsername VARCHAR2) RETURN NUMBER;
 END Account_Utils;
@@ -69,25 +70,26 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
     END updateAccount;
     
     -- Getter
-    FUNCTION getAccount (pId NUMBER) 
-    RETURN VARCHAR2
+    PROCEDURE getAccount(pId NUMBER, pUsername OUT VARCHAR2, pId_user OUT NUMBER, pId_type OUT NUMBER)
     IS
-        vUsername   NUMBER;
-        vPassword   VARCHAR(30);
+        vUsername VARCHAR2(20);
+        vId_user NUMBER;
+        vId_type NUMBER;
     BEGIN
-        SELECT username, accountpassword into vUsername, vPassword
+        SELECT username, id_user, id_accounttype INTO pUsername, pId_user, pId_type
         FROM UserAccount
         WHERE id_account = pId;
-        RETURN 'Username: ' || vUsername || ', Password: ' || vPassword;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-            RETURN ' ';
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-            RETURN ' ';
     END getAccount;
+
+    FUNCTION getUserId(pId NUMBER) RETURN NUMBER
+    IS
+        vId_user NUMBER;
+    BEGIN
+        SELECT id_user INTO vId_user
+        FROM UserAccount
+        WHERE pId = id_account;
+        RETURN vId_user;
+    END getUserId;
     
     FUNCTION checkUserPassword (pUsername VARCHAR, pPassword VARCHAR) 
     RETURN NUMBER

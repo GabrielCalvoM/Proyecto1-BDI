@@ -133,7 +133,8 @@ public class CategoryPage extends javax.swing.JPanel {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void ViewProductCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductCategoryButtonActionPerformed
-        mainFrame.showPage("ViewProductCategory", new ViewProductCategory(mainFrame, this));
+        ViewProductCategory nuevaVentana = new ViewProductCategory(mainFrame, this);
+        mainFrame.showPage("ViewProductCategory", nuevaVentana);
     }//GEN-LAST:event_ViewProductCategoryButtonActionPerformed
 
 

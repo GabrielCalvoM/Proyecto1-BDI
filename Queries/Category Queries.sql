@@ -30,6 +30,7 @@ CREATE OR REPLACE PACKAGE BODY category_utils AS
     IS
     
     BEGIN
+        productCategory_utils.deleteAllCategories(pId);
         DELETE FROM category
         WHERE id_category = pId;
         COMMIT;

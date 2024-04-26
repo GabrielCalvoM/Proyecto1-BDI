@@ -201,6 +201,9 @@ public class AdminPage extends javax.swing.JPanel {
         addMovie_director = new javax.swing.JComboBox<>();
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
+        addMovie_categoryLbl2 = new javax.swing.JLabel();
+        priceTxt = new javax.swing.JTextField();
+        addMovie_categoryLbl3 = new javax.swing.JLabel();
         addSeries = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel62 = new javax.swing.JLabel();
@@ -238,7 +241,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(543, Short.MAX_VALUE))
+                .addContainerGap(596, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,7 +625,7 @@ public class AdminPage extends javax.swing.JPanel {
                         .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                                 .addComponent(InsertArtist_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                                 .addGroup(EditArtistsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -662,7 +665,7 @@ public class AdminPage extends javax.swing.JPanel {
                     .addComponent(DeleteDirector_Button)
                     .addComponent(UpdateWriter_Button)
                     .addComponent(DeleteWriter_Button))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn1)
                 .addContainerGap())
         );
@@ -684,7 +687,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(511, Short.MAX_VALUE))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -887,7 +890,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel36)
-                .addContainerGap(535, Short.MAX_VALUE))
+                .addContainerGap(602, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1249,7 +1252,7 @@ public class AdminPage extends javax.swing.JPanel {
                 .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteArtistRelative_Button)
                     .addComponent(jButton29))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         EditArtists.add(ArtistRelative_Settings, "card5");
@@ -1465,7 +1468,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel54)
-                .addContainerGap(499, Short.MAX_VALUE))
+                .addContainerGap(500, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1638,7 +1641,7 @@ public class AdminPage extends javax.swing.JPanel {
                                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton25)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(EditCountBackBtn3))
                     .addGroup(addMovieLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1663,7 +1666,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel72)
-                .addContainerGap(499, Short.MAX_VALUE))
+                .addContainerGap(500, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1677,6 +1680,9 @@ public class AdminPage extends javax.swing.JPanel {
         addMovie_categoryLbl.setForeground(new java.awt.Color(255, 255, 255));
         addMovie_categoryLbl.setText("Categoría:");
 
+        addMovie_category.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_category.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addMovie_category.setForeground(new java.awt.Color(255, 255, 255));
         addMovie_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Drama", "Comedia", "Terror", "Suspenso", "Amor" }));
 
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1743,7 +1749,10 @@ public class AdminPage extends javax.swing.JPanel {
         addMovie_categoryLbl1.setForeground(new java.awt.Color(255, 255, 255));
         addMovie_categoryLbl1.setText("Director");
 
-        addMovie_director.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cristohper Nolan", "Quentin Tarantino", "Martin Scorsese", "Seteven Spielberg" }));
+        addMovie_director.setBackground(new java.awt.Color(51, 51, 51));
+        addMovie_director.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addMovie_director.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_director.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cristopher Nolan", "Quentin Tarantino", "Martin Scorsese", "Seteven Spielberg" }));
 
         jButton36.setText("Agregar");
         jButton36.addActionListener(new java.awt.event.ActionListener() {
@@ -1762,6 +1771,18 @@ public class AdminPage extends javax.swing.JPanel {
             }
         });
 
+        addMovie_categoryLbl2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addMovie_categoryLbl2.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_categoryLbl2.setText("Precio");
+
+        priceTxt.setBackground(new java.awt.Color(51, 51, 51));
+        priceTxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        priceTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        addMovie_categoryLbl3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addMovie_categoryLbl3.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_categoryLbl3.setText("usd");
+
         javax.swing.GroupLayout addMovie2Layout = new javax.swing.GroupLayout(addMovie2);
         addMovie2.setLayout(addMovie2Layout);
         addMovie2Layout.setHorizontalGroup(
@@ -1776,6 +1797,10 @@ public class AdminPage extends javax.swing.JPanel {
                         .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMovie2Layout.createSequentialGroup()
                         .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addMovie2Layout.createSequentialGroup()
+                                .addComponent(addMovie_categoryLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addMovie_category, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(addMovie2Layout.createSequentialGroup()
                                     .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1798,16 +1823,20 @@ public class AdminPage extends javax.swing.JPanel {
                                     .addComponent(jLabel78)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel79)
-                                    .addGap(15, 15, 15)))
+                                    .addGap(15, 15, 15))))
+                        .addGap(42, 42, 42)
+                        .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(addMovie2Layout.createSequentialGroup()
-                                .addComponent(addMovie_categoryLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMovie_category, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
                                 .addComponent(addMovie_categoryLbl1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addMovie_director, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(addMovie_director, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addMovie2Layout.createSequentialGroup()
+                                .addComponent(addMovie_categoryLbl2)
+                                .addGap(18, 18, 18)
+                                .addComponent(priceTxt)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addMovie_categoryLbl3)
+                        .addGap(0, 192, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addMovie2Layout.setVerticalGroup(
@@ -1832,7 +1861,12 @@ public class AdminPage extends javax.swing.JPanel {
                             .addGap(55, 55, 55)
                             .addComponent(jButton34)
                             .addGap(51, 51, 51))
-                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(addMovie_categoryLbl2)
+                                .addComponent(priceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addMovie_categoryLbl3))
+                            .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(12, 12, 12)
                 .addGroup(addMovie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addMovie2Layout.createSequentialGroup()
@@ -1872,7 +1906,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel62)
-                .addContainerGap(531, Short.MAX_VALUE))
+                .addContainerGap(533, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1952,7 +1986,7 @@ public class AdminPage extends javax.swing.JPanel {
         jButton28.setBackground(new java.awt.Color(51, 51, 51));
         jButton28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton28.setForeground(new java.awt.Color(255, 255, 255));
-        jButton28.setText("Agregar");
+        jButton28.setText("No funciona");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
@@ -2027,7 +2061,7 @@ public class AdminPage extends javax.swing.JPanel {
                                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addComponent(EditCountBackBtn4))
                     .addGroup(addSeriesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -2163,7 +2197,8 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_ActorsList.getSelectedIndex();
             ListModel model = EditArtists_ActorsList.getModel();
-            currentArtist = (Artist) model.getElementAt(index);
+            Artist modelArtist = (Artist) model.getElementAt(index);
+            currentArtist = Cursors.getArtist(modelArtist.getId());
             Person person = Cursors.getPerson(currentArtist.getId());
             
             
@@ -2177,9 +2212,7 @@ public class AdminPage extends javax.swing.JPanel {
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
-            System.out.println(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
-            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");
@@ -2584,10 +2617,25 @@ public class AdminPage extends javax.swing.JPanel {
             addMovie_premier.getSelectedItem().toString());
         String trailer = addMovie_trailer.getText();
         String synopsis = addMovie_synopsis.getText();
-        int duration = Integer.parseInt(addMovie_duration.getText());
+        int duration;
+        float price;
+        try {
+            duration = Integer.parseInt(addMovie_duration.getText());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Duración inválida");
+            return;
+        }
+        try {
+            price = Float.parseFloat(priceTxt.getText());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Precio inválido");
+            return;
+        }
         int idProduct;
         try {
-            idProduct = Insertions.insertProduct(title, premier, synopsis, trailer);
+            idProduct = Insertions.insertProduct(title, premier, synopsis, trailer, price);
             Insertions.insertMovie(idProduct, duration);
         }
         catch (Exception e) {
@@ -2680,52 +2728,7 @@ public class AdminPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        if (addSeries_title.getText().length() < 1 ||
-            addSeries_trailer.getText().length() < 1 ||
-            addSeries_synopsis.getText().length() < 1) {
-            mainFrame.showError("Complete todos los campos.");
-            return;
-        }
-        if (addSeries_photos.getModel().getSize() == 0) {
-            mainFrame.showError("Debe ingresar al menos 1 foto.");
-            return;
-        }
 
-        String title = addSeries_title.getText();
-        int premier = Integer.parseInt(
-            addSeries_premier.getSelectedItem().toString());
-        String trailer = addSeries_trailer.getText();
-        String synopsis = addSeries_synopsis.getText();
-
-        int idProduct;
-        try {
-            idProduct = Insertions.insertProduct(title, premier, synopsis, trailer);
-            Insertions.insertSeries(idProduct);
-        }
-        catch (Exception e) {
-            mainFrame.showError("Error al insertar");
-            return;
-        }
-        ListModel photoModel = addSeries_photos.getModel();
-        for (int i = 0; i < photoModel.getSize(); i++) {
-            try {
-                File img = (File) photoModel.getElementAt(i);
-                String path = img.getAbsolutePath();
-                int photoId = Insertions.insertPhoto(path);
-                Insertions.insertProductPhoto(photoId, idProduct);
-            }
-            catch (Exception e) {
-                mainFrame.showError("No se pudo insertar la imagen");
-            }
-        }
-        try {
-            EditProducts_series.setModel(mainFrame.buildListModel(Cursors.getSeries()));
-        }
-        catch (Exception e) {
-            System.out.println("Couldn't fetch movies.");
-        }
-        CardLayout card = (CardLayout) EditProducts.getLayout();
-        card.show(EditProducts, "editProductsMenu");
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void addArtist_nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArtist_nameTxtActionPerformed
@@ -2811,7 +2814,8 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_DirectorsList.getSelectedIndex();
             ListModel model = EditArtists_DirectorsList.getModel();
-            currentArtist = (Artist) model.getElementAt(index);
+            Artist modelArtist = (Artist) model.getElementAt(index);
+            currentArtist = Cursors.getArtist(modelArtist.getId());
             Person person = Cursors.getPerson(currentArtist.getId());
             
             
@@ -2825,9 +2829,7 @@ public class AdminPage extends javax.swing.JPanel {
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
-            System.out.println(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
-            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");
@@ -2842,7 +2844,8 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             int index = EditArtists_WritersList.getSelectedIndex();
             ListModel model = EditArtists_WritersList.getModel();
-            currentArtist = (Artist) model.getElementAt(index);
+            Artist modelArtist = (Artist) model.getElementAt(index);
+            currentArtist = Cursors.getArtist(modelArtist.getId());
             Person person = Cursors.getPerson(currentArtist.getId());
             
             
@@ -2856,9 +2859,7 @@ public class AdminPage extends javax.swing.JPanel {
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
             editArtist_date.setDate( format.parse((person.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
-            System.out.println(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
-            System.out.println(currentArtist.getTrivia_data());
             
             CardLayout card = (CardLayout) EditArtists.getLayout();
             card.show(EditArtists, "editArtist");
@@ -2948,6 +2949,8 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> addMovie_category;
     private javax.swing.JLabel addMovie_categoryLbl;
     private javax.swing.JLabel addMovie_categoryLbl1;
+    private javax.swing.JLabel addMovie_categoryLbl2;
+    private javax.swing.JLabel addMovie_categoryLbl3;
     private javax.swing.JComboBox<String> addMovie_director;
     private javax.swing.JTextField addMovie_duration;
     private javax.swing.JList<String> addMovie_photos;
@@ -3080,5 +3083,6 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextField priceTxt;
     // End of variables declaration//GEN-END:variables
 }

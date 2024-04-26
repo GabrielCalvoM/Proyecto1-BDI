@@ -40,7 +40,6 @@ public class ViewMovie extends javax.swing.JPanel {
         }
         catch (Exception e) {
             mainFrame.showError("Error al cargar película.");
-            System.out.println(e);
             return;
         }
         DefaultListModel actorsModel = new DefaultListModel();
@@ -52,10 +51,8 @@ public class ViewMovie extends javax.swing.JPanel {
             }
             catch (Exception e) {
                 mainFrame.showError("Error al recuperar artista.");
-                System.out.println(e);
                 continue;
             }
-            System.out.println(artist.getId_artistType());
             switch (artist.getId_artistType()) {
                 case 1:
                     actorsModel.addElement(artist);
@@ -70,11 +67,13 @@ public class ViewMovie extends javax.swing.JPanel {
                     break;
             }
         }
+        
         movie_actors.setModel(actorsModel);
         movie_writers.setModel(writersModel);
         movie_title.setText(product.getTitle());
         movie_synopsis.setText(product.getSynopsis());
         movie_premier.setText("Estreno: " + Integer.toString(product.getPremier()));
+        movie_buy.setText("Comprar: $" + Float.toString(product.getPrice()));
         
         if (mainFrame.userAccount != null) {
             try {
@@ -535,7 +534,6 @@ public class ViewMovie extends javax.swing.JPanel {
             }
             catch (Exception e) {
                 mainFrame.showError("Error al añadir a favoritos"); 
-                System.out.println(e);
             }
             movie_favorites.setText("Quitar");
             isWished = true;

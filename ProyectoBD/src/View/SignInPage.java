@@ -461,7 +461,7 @@ public class SignInPage extends javax.swing.JPanel {
                         .addComponent(jButton9)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
-                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addGap(0, 22, Short.MAX_VALUE)
                         .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
                                 .addComponent(jLabel25)
@@ -555,6 +555,7 @@ public class SignInPage extends javax.swing.JPanel {
                 idUser = Cursors.getAccountUserId(id);
             }
             catch (Exception e) {
+            System.out.println("B");
                 mainFrame.showError("Error al leer de la base de datos.");
                 return;
             }
@@ -573,6 +574,14 @@ public class SignInPage extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            ComboBoxModel model = mainFrame.buildComboModel(Cursors.getGenders());
+            this.register_genderCombo.setModel(model);
+        }
+        catch (Exception e) {
+            mainFrame.showError(e.toString());
+            return;
+        }
         CardLayout card = (CardLayout) SignInPage.getLayout();
         card.show(SignInPage, "RegisterPage1");
     }//GEN-LAST:event_jButton4ActionPerformed

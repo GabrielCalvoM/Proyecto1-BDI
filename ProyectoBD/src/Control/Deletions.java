@@ -60,6 +60,15 @@ public class Deletions {
         stmt.close();
     }
     
+    public static void removeCategoryProduct (int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call productCategory_utils.deleteProductCategory(?)}");
+        stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
     public static void deleteFromWishlist(int idWishlist, int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.deleteWishedProduct(?,?)}");

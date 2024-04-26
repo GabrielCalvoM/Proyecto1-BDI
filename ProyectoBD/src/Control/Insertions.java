@@ -189,6 +189,15 @@ public class Insertions {
         stmt.execute();
         con.close();
         stmt.close();
-        
+    }
+    
+    public static void insertProductCategory(int idProduct, int idCategory) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call productCategory_utils.insertProductCategory(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idCategory);
+        stmt.execute();
+        con.close();
+        stmt.close();
     }
 }

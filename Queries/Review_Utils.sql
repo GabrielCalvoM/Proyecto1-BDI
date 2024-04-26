@@ -8,8 +8,9 @@ CREATE OR REPLACE PACKAGE Review_Utils IS
     -- Getter
     FUNCTION getReview(pId NUMBER) RETURN VARCHAR2;
     PROCEDURE getProductReviews(pId_Product NUMBER, reviewCursor OUT SYS_REFCURSOR);
+    FUNCTION getAverageRating(pId_Product NUMBER) RETURN FLOAT;
 END Review_Utils;
-/
+
 
 CREATE OR REPLACE PACKAGE BODY Review_Utils AS
     -- Insert
@@ -92,5 +93,20 @@ CREATE OR REPLACE PACKAGE BODY Review_Utils AS
         FROM Review
         WHERE id_product = pId_Product;
     END getProductReviews;
+    
+    FUNCTION getAverageRating(pId_Product NUMBER) RETURN FLOAT
+    IS
+        vAverage FLOAT;
+    BEGIN    
+        SELECT AVG(CAST(score AS FLOAT)) INTO vAverage
+        FROM Review
+        WHERE id_product = pId_Product;
+        
+        IF vAverage IS NULL THEN
+            RETURN -1;
+        ELSE
+            RETURN vAverage;
+        END IF;
+    END getAverageRating;
 
 END Review_Utils;

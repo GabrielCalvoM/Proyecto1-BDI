@@ -6,6 +6,7 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -27,9 +28,6 @@ public class ViewMovie extends javax.swing.JPanel {
         isWished = false;
         initComponents();
         loadInfo();
-        /*mainFrame.setVisible(true);
-        mainFrame.pack();
-        mainFrame.repaint();*/
     }
     
     private void loadInfo() {
@@ -40,6 +38,7 @@ public class ViewMovie extends javax.swing.JPanel {
         }
         catch (Exception e) {
             mainFrame.showError("Error al cargar película.");
+                System.out.println(e);
             return;
         }
         DefaultListModel actorsModel = new DefaultListModel();
@@ -67,13 +66,31 @@ public class ViewMovie extends javax.swing.JPanel {
                     break;
             }
         }
-        
+        String category = "Categoría: -";
+        try {
+            category = "Categoría: " + Cursors.getProductCategory(product.getId());
+        }
+        catch (Exception e) {}
+        movie_category.setText(category);
         movie_actors.setModel(actorsModel);
         movie_writers.setModel(writersModel);
         movie_title.setText(product.getTitle());
         movie_synopsis.setText(product.getSynopsis());
         movie_premier.setText("Estreno: " + Integer.toString(product.getPremier()));
         movie_buy.setText("Comprar: $" + Float.toString(product.getPrice()));
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        String avgRatingString = "-";
+        float avgRating = -1;
+        try{
+            avgRating = Cursors.getAverageRating(product.getId());
+        }
+        catch(Exception e) {
+            mainFrame.showError("Error al cargar puntuación.");
+            System.out.println(e);
+        }
+        if (avgRating > -1)
+            avgRatingString = decimalFormat.format(avgRating);
+        ratingTxt.setText(avgRatingString);
         
         if (mainFrame.userAccount != null) {
             try {
@@ -125,7 +142,7 @@ public class ViewMovie extends javax.swing.JPanel {
         MainMenuLbl2 = new javax.swing.JLabel();
         movie_title = new javax.swing.JLabel();
         movie_img = new javax.swing.JLabel();
-        jLabel70 = new javax.swing.JLabel();
+        ratingTxt = new javax.swing.JLabel();
         jScrollPane16 = new javax.swing.JScrollPane();
         movie_synopsis = new javax.swing.JTextArea();
         movie_category = new javax.swing.JLabel();
@@ -178,9 +195,9 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_title.setForeground(new java.awt.Color(255, 255, 255));
         movie_title.setText("Shutter Island");
 
-        jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel70.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel70.setText("4.8");
+        ratingTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ratingTxt.setForeground(new java.awt.Color(255, 255, 255));
+        ratingTxt.setText("4.8");
 
         movie_synopsis.setEditable(false);
         movie_synopsis.setBackground(new java.awt.Color(51, 51, 51));
@@ -190,11 +207,12 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_synopsis.setLineWrap(true);
         movie_synopsis.setRows(5);
         movie_synopsis.setText("Aqui va la sinopsis\n");
+        movie_synopsis.setWrapStyleWord(true);
         jScrollPane16.setViewportView(movie_synopsis);
 
         movie_category.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         movie_category.setForeground(new java.awt.Color(255, 255, 255));
-        movie_category.setText("Categoría: Acción");
+        movie_category.setText("Categoría: -");
 
         jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel73.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,7 +371,7 @@ public class ViewMovie extends javax.swing.JPanel {
                                                 .addComponent(movie_favorites)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel70)
+                                    .addComponent(ratingTxt)
                                     .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel73)
                                     .addComponent(movie_category)
@@ -415,7 +433,7 @@ public class ViewMovie extends javax.swing.JPanel {
                         .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ViewMovieLayout.createSequentialGroup()
                                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel70)
+                                    .addComponent(ratingTxt)
                                     .addComponent(jLabel75))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,7 +563,6 @@ public class ViewMovie extends javax.swing.JPanel {
     private javax.swing.JLabel MainMenuLbl2;
     private javax.swing.JPanel ViewMovie;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
@@ -568,5 +585,6 @@ public class ViewMovie extends javax.swing.JPanel {
     private javax.swing.JButton movie_viewActor;
     private javax.swing.JButton movie_viewWriter;
     private javax.swing.JList<String> movie_writers;
+    private javax.swing.JLabel ratingTxt;
     // End of variables declaration//GEN-END:variables
 }

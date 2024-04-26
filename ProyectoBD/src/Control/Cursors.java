@@ -340,6 +340,25 @@ public class Cursors {
         return categories;
     }
     
+        public static ArrayList<Category> getCategoriesArr() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Category> categories = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            Category category = new Category(id, name);
+            categories.add(category);
+        }
+        con.close();
+        stmt.close();
+        return categories;
+    }
+    
     public static int getWishlistId(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{? = call wishlist_utils.getWishlistId(?)}");
@@ -432,5 +451,29 @@ public class Cursors {
         con.close();
         stmt.close();
         return username;
+    }
+    
+    public static float getAverageRating(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call review_utils.getAverageRating(?)}");
+        stmt.setInt(2, idProduct);
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.FLOAT);
+        stmt.execute();
+        float result = stmt.getFloat(1);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
+    public static String getProductCategory(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call productCategory_utils.getProductCategory(?)}");
+        stmt.setInt(2, idProduct);
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.execute();
+        String category = stmt.getString(1);
+        con.close();
+        stmt.close();
+        return category;
     }
 }

@@ -28,8 +28,18 @@ public class ViewProducts extends javax.swing.JPanel {
             System.out.println(e);
             return;
         }
-        DefaultTableModel movieModel = new DefaultTableModel();
-        DefaultTableModel seriesModel = new DefaultTableModel();
+        DefaultTableModel movieModel = new DefaultTableModel()  {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        DefaultTableModel seriesModel = new DefaultTableModel()  {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         String[] columns = {"Título", "Puntuación", "Año"};
         movieModel.setColumnIdentifiers(columns);
         seriesModel.setColumnIdentifiers(columns);

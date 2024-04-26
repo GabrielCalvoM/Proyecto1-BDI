@@ -9,9 +9,10 @@ CREATE OR REPLACE PACKAGE Account_Utils IS
     pId_User NUMBER);
     -- Getter
     PROCEDURE getAccount(pId NUMBER, pUsername OUT VARCHAR2, pId_user OUT NUMBER, pId_type OUT NUMBER);
-    FUNCTION getUserId(pId NUMBER) RETURN NUMBER;
     FUNCTION checkUserPassword (pUsername VARCHAR, pPassword VARCHAR) RETURN NUMBER;
     FUNCTION getUsernameUnique(pUsername VARCHAR2) RETURN NUMBER;
+    FUNCTION getUserId(pId NUMBER) RETURN NUMBER;
+    FUNCTION getUsernameByUserId(pId_user NUMBER) RETURN VARCHAR2;
 END Account_Utils;
 /
 
@@ -116,5 +117,25 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
         WHERE pUsername = username;
         RETURN vCount;
     END getUsernameUnique;
+    
+    FUNCTION getUserId(pId NUMBER) RETURN NUMBER
+    IS
+        vId_user NUMBER;
+    BEGIN
+        SELECT id_user INTO vId_user
+        FROM UserAccount
+        WHERE pId = id_account;
+        RETURN vId_user;
+    END getUserId;
+    
+    FUNCTION getUsernameByUserId(pId_user NUMBER) RETURN VARCHAR2
+    IS
+        vUsername VARCHAR2(20);
+    BEGIN
+        SELECT username INTO vUsername
+        FROM UserAccount
+        WHERE id_user = pId_user;
+        RETURN vUsername;
+    END getUsernameByUserId;
 
 END Account_Utils;

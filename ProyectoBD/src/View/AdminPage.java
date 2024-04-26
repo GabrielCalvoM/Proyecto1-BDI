@@ -1683,7 +1683,6 @@ public class AdminPage extends javax.swing.JPanel {
         addMovie_category.setBackground(new java.awt.Color(51, 51, 51));
         addMovie_category.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         addMovie_category.setForeground(new java.awt.Color(255, 255, 255));
-        addMovie_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Drama", "Comedia", "Terror", "Suspenso", "Amor" }));
 
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
@@ -2543,6 +2542,7 @@ public class AdminPage extends javax.swing.JPanel {
             DefaultListModel actorsModel = mainFrame.buildListModel(Cursors.getArtistsOfType(1));
             DefaultComboBoxModel directorsModel = mainFrame.buildComboModel(Cursors.getArtistsOfType(2));
             DefaultListModel writersModel = mainFrame.buildListModel(Cursors.getArtistsOfType(3));
+            DefaultComboBoxModel categoriesModel = mainFrame.buildComboModel(Cursors.getCategoriesArr());
             DefaultListModel emptyModel1 = new DefaultListModel();
             DefaultListModel emptyModel2 = new DefaultListModel();
             addMovie_availableActors.setModel(actorsModel);
@@ -2550,6 +2550,7 @@ public class AdminPage extends javax.swing.JPanel {
             addMovie_availableWriters.setModel(writersModel);
             addMovie_actors.setModel(emptyModel1);
             addMovie_writers.setModel(emptyModel2);
+            addMovie_category.setModel(categoriesModel);
         }
         catch (Exception e) {
             mainFrame.showError("Error al leer de la base de datos.");
@@ -2637,9 +2638,15 @@ public class AdminPage extends javax.swing.JPanel {
         try {
             idProduct = Insertions.insertProduct(title, premier, synopsis, trailer, price);
             Insertions.insertMovie(idProduct, duration);
+            ListModel categoryModel = addMovie_category.getModel();
+            int index = addMovie_category.getSelectedIndex();
+            Category category = (Category) categoryModel.getElementAt(index);
+            System.out.println(category.getId());
+            Insertions.insertProductCategory(idProduct, category.getId());
         }
         catch (Exception e) {
             mainFrame.showError("Error al insertar");
+            System.out.println(e);
             return;
         }
         ListModel photoModel = addMovie_photos.getModel();

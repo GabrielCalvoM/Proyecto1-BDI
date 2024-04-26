@@ -281,8 +281,6 @@ public class SignInPage extends javax.swing.JPanel {
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Género");
 
-        register_genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
-
         javax.swing.GroupLayout RegisterPage1Layout = new javax.swing.GroupLayout(RegisterPage1);
         RegisterPage1.setLayout(RegisterPage1Layout);
         RegisterPage1Layout.setHorizontalGroup(
@@ -549,6 +547,7 @@ public class SignInPage extends javax.swing.JPanel {
         }
         catch (Exception e) {
             mainFrame.showError("Error al leer de la base de datos.");
+                         System.out.println(e);
         }
         if (id >= 0) {
             try {
@@ -557,6 +556,7 @@ public class SignInPage extends javax.swing.JPanel {
             catch (Exception e) {
             System.out.println("B");
                 mainFrame.showError("Error al leer de la base de datos.");
+                             System.out.println(e);
                 return;
             }
             try {
@@ -564,6 +564,7 @@ public class SignInPage extends javax.swing.JPanel {
             }
             catch (Exception e) {
                 mainFrame.showError("Error al recuperar datos de cuenta.");
+                System.out.println(e);
                 return;
             }
             mainFrame.showPage("MainMenu", new MainMenu(mainFrame));
@@ -575,13 +576,13 @@ public class SignInPage extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
-            ComboBoxModel model = mainFrame.buildComboModel(Cursors.getGenders());
-            this.register_genderCombo.setModel(model);
+            ComboBoxModel modelGenders = mainFrame.buildComboModel(Cursors.getGenders());
+            register_genderCombo.setModel(modelGenders);
         }
-        catch (Exception e) {
-            mainFrame.showError(e.toString());
-            return;
+        catch(Exception e) {
+            
         }
+        
         CardLayout card = (CardLayout) SignInPage.getLayout();
         card.show(SignInPage, "RegisterPage1");
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -686,11 +687,11 @@ public class SignInPage extends javax.swing.JPanel {
             Insertions.insertUser(idPerson, email, phone, country.getId(),
                 idType.getId(), idNumber);
             Insertions.insertAccount(username, password, idPerson, 2, 0);
+            Insertions.createWishlist(idPerson);
             System.out.println("Registered");
         }
         catch (Exception e) {
             System.out.println(e);
-            mainFrame.showError(e.toString());
             return;
         }
         Account account = new Account(0, username, password, idPerson, 2, 0);

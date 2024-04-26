@@ -1,18 +1,20 @@
 CREATE OR REPLACE PACKAGE Review_Utils IS
     -- Insert
-    PROCEDURE insertReview(pId NUMBER, pScore NUMBER, pDescription VARCHAR, pId_User NUMBER, pId_Product NUMBER);
+    PROCEDURE insertReview(pScore NUMBER, pDescription VARCHAR, pId_User NUMBER, pId_Product NUMBER);
     -- Delete
     PROCEDURE deleteReview(pId NUMBER);
     -- Update
     PROCEDURE updateReview(pId NUMBER, pScore NUMBER, pDescription VARCHAR);
     -- Getter
     FUNCTION getReview(pId NUMBER) RETURN VARCHAR2;
+    PROCEDURE getProductReviews(pId_Product NUMBER, reviewCursor OUT SYS_REFCURSOR);
+    FUNCTION getAverageRating(pId_Product NUMBER) RETURN FLOAT;
 END Review_Utils;
-/
+
 
 CREATE OR REPLACE PACKAGE BODY Review_Utils AS
     -- Insert
-    PROCEDURE insertReview(pId NUMBER, pScore NUMBER, pDescription VARCHAR, pId_User NUMBER, pId_Product NUMBER)
+    PROCEDURE insertReview(pScore NUMBER, pDescription VARCHAR, pId_User NUMBER, pId_Product NUMBER)
     IS
     BEGIN
         INSERT INTO proy1.Review (id_Review, score, description_review, id_user, id_product)
@@ -81,5 +83,30 @@ CREATE OR REPLACE PACKAGE BODY Review_Utils AS
             RETURN ' ';
     
     END getReview;
+    
+    PROCEDURE getProductReviews(pId_Product NUMBER, reviewCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN reviewCursor
+        FOR
+        SELECT id_review, score, description_review, id_user
+        FROM Review
+        WHERE id_product = pId_Product;
+    END getProductReviews;
+    
+    FUNCTION getAverageRating(pId_Product NUMBER) RETURN FLOAT
+    IS
+        vAverage FLOAT;
+    BEGIN    
+        SELECT AVG(CAST(score AS FLOAT)) INTO vAverage
+        FROM Review
+        WHERE id_product = pId_Product;
+        
+        IF vAverage IS NULL THEN
+            RETURN -1;
+        ELSE
+            RETURN vAverage;
+        END IF;
+    END getAverageRating;
 
 END Review_Utils;

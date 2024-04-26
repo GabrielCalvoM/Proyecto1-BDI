@@ -159,16 +159,6 @@ public class Insertions {
         con.close();
         stmt.close();
     }
-    
-    public static void assignCategory(int product, int category) throws SQLException {
-        Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call productCategory_utils.insertProductCategory(?, ?)}");
-        stmt.setInt(1, product);
-        stmt.setInt(2, category);
-        stmt.execute();
-        con.close();
-        stmt.close();
-    }
 
     public static void createWishlist(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
@@ -184,6 +174,28 @@ public class Insertions {
         CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.insertWishedProduct(?,?)}");
         stmt.setInt(1, idProduct);
         stmt.setInt(2, idWishlist);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertReview(String comment, int score, int idUser, int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call review_utils.insertReview(?,?,?,?)}");
+        stmt.setInt(1, score);
+        stmt.setString(2, comment);
+        stmt.setInt(3, idUser);
+        stmt.setInt(4, idProduct);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertProductCategory(int idProduct, int idCategory) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call productCategory_utils.insertProductCategory(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idCategory);
         stmt.execute();
         con.close();
         stmt.close();

@@ -362,19 +362,19 @@ public class Cursors {
         return categories;
     }
     
-    public static HashMap<Integer, Integer> getProductCategory(int idProduct) throws SQLException {
+        public static ArrayList<Category> getCategoriesArr() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call productCategory_utils.getAllCategories(?)}");
+        CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.setInt(2, idProduct);
         stmt.execute();
         ResultSet rs = (ResultSet) stmt.getObject(1);
         
-        HashMap<Integer, Integer> categories = new HashMap<>();
+        ArrayList<Category> categories = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
-            int idCategory = rs.getInt(2);
-            categories.put(idCategory, id);
+            String name = rs.getString(2);
+            Category category = new Category(id, name);
+            categories.add(category);
         }
         con.close();
         stmt.close();
@@ -439,5 +439,63 @@ public class Cursors {
         con.close();
         stmt.close();
         return result;
+    }
+    
+    public static ArrayList<Review> getProductReviews(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call review_utils.getProductReviews(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Review> reviews = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            int score = rs.getInt(2);
+            String comment = rs.getString(3);
+            int idUser = rs.getInt(4);
+            Review review = new Review(id, score, comment, idUser, idProduct);
+            reviews.add(review);
+        }
+        con.close();
+        stmt.close();
+        return reviews;
+    }
+    
+    public static String getUsernameByUserId(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call account_utils.getUsernameByUserId(?)}");
+        stmt.setInt(2, idUser);
+        stmt.registerOutParameter(1,  oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.execute();
+        String username = stmt.getString(1);
+        con.close();
+        stmt.close();
+        return username;
+    }
+    
+    public static float getAverageRating(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call review_utils.getAverageRating(?)}");
+        stmt.setInt(2, idProduct);
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.FLOAT);
+        stmt.execute();
+        float result = stmt.getFloat(1);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
+    public static String getProductCategory(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call productCategory_utils.getProductCategory(?)}");
+        stmt.setInt(2, idProduct);
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.execute();
+        String category = stmt.getString(1);
+        con.close();
+        stmt.close();
+        return category;
     }
 }

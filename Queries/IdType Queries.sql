@@ -22,15 +22,7 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
         INSERT INTO identificationType (id_type, name)
             VALUES (s_identificationType.NEXTVAL, pType);
         COMMIT;
-            
-    EXCEPTION 
-        WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
-                                 permitida');
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
+        
             
     END insertType;
     
@@ -65,15 +57,7 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
         SET name = pType
         WHERE id_type = pId;
         COMMIT;
-        
-    EXCEPTION 
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el nombre ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-        
+
     END setType;
     
 -- Getters
@@ -88,13 +72,7 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
         WHERE id_gender = pId;
         RETURN (vName);
         
-    EXCEPTION 
-        WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el nombre ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
+
     END getType;
     
     PROCEDURE getTypes(typesCursor OUT SYS_REFCURSOR) 
@@ -104,9 +82,7 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
         FOR
         SELECT id_type, name
         FROM IdentificationType;
-    EXCEPTION
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
+
     END getTypes;
 
 END idType_utils;

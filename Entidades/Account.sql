@@ -31,6 +31,6 @@ ALTER TABLE userAccount
     ADD
     CONSTRAINT fk_userAccount_accountType FOREIGN KEY (id_accountType) REFERENCES accountType(id_accountType);
     
-ALTER TABLE userAccount
-    ADD
-    CONSTRAINT fk_userAccount_catalogue FOREIGN KEY (id_catalogue) REFERENCES catalogue(id_catalogue);
+--ALTER TABLE userAccount
+--    ADD
+--    CONSTRAINT fk_userAccount_catalogue FOREIGN KEY (id_catalogue) REFERENCES catalogue(id_catalogue);

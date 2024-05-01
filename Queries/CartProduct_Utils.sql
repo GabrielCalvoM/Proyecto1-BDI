@@ -6,7 +6,7 @@ create or replace PACKAGE CartProduct_Utils IS
 
     PROCEDURE getProductsInCart(pId_Cart NUMBER, productsCursors OUT SYS_REFCURSOR);
 END CartProduct_Utils;
-
+/
 
 create or replace PACKAGE BODY CartProduct_Utils AS
     -- Insert

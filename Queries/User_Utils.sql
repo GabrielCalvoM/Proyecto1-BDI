@@ -9,7 +9,7 @@ CREATE OR REPLACE PACKAGE SysUser_Utils IS
     -- Getter
     FUNCTION getSysUser(pId NUMBER) RETURN VARCHAR2;
 END SysUser_Utils;
-
+/
 
 CREATE OR REPLACE PACKAGE BODY SysUser_Utils AS
     -- Insert

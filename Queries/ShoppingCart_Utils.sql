@@ -6,7 +6,7 @@ create or replace PACKAGE ShoppingCart_Utils IS
     -- Get
     FUNCTION getCartId(pId_User NUMBER) RETURN NUMBER;
 END ShoppingCart_Utils;
-
+/
 
 create or replace PACKAGE BODY ShoppingCart_Utils AS
     -- Insert

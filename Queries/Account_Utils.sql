@@ -22,16 +22,12 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
     pId_User NUMBER, pId_AccountType NUMBER, pId_Catalogue NUMBER)
     IS
     BEGIN
-        INSERT INTO UserAccount
+        INSERT INTO UserAccount(id_account, username, accountPassword, id_user,
+                id_accountType, id_catalogue)
                 VALUES (s_useraccount.nextval, pUsername, pPassword, pId_User,
                 pId_AccountType, pId_Catalogue);
         COMMIT;
     
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
     
     
     END insertAccount;
@@ -44,12 +40,6 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
         WHERE id_user = pId;
         COMMIT;
     
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
     END deleteAccount;
     
     -- Update
@@ -61,13 +51,7 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
         SET username = pUsername, accountpassword = pPassword, id_user = pId_user
         WHERE id_user = pId;
         COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
+
     END updateAccount;
     
     -- Getter
@@ -91,10 +75,6 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
         FROM UserAccount 
         WHERE username = pUsername AND accountPassword = pPassword;
         RETURN vId;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-        RETURN -1;
     
     END checkUserPassword;
     

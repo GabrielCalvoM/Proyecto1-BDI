@@ -6,7 +6,7 @@ create or replace PACKAGE Wishlist_Utils IS
     -- Get
     FUNCTION getWishlistId(pId_User NUMBER) RETURN NUMBER;
 END Wishlist_Utils;
-
+/
 
 create or replace PACKAGE BODY Wishlist_Utils AS
     -- Insert

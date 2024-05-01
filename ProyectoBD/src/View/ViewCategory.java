@@ -175,7 +175,7 @@ public class ViewCategory extends javax.swing.JPanel {
             Insertions.insertCategory(name);
         }
         catch (Exception e) {
-            System.out.println("Error inserting: " + e);
+            mainFrame.showError("Debe llenar todos los datos.");
             return;
         }
         this.getCategory();
@@ -189,7 +189,7 @@ public class ViewCategory extends javax.swing.JPanel {
             Deletions.deleteCategory(categorias.get(category));
         }
         catch (Exception e) {
-            System.out.println("Failed to delete" + e);
+            mainFrame.showError("Debe seleccionar una categoría de la lista.");
         }
         this.getCategory();
     }//GEN-LAST:event_DelButtonActionPerformed
@@ -202,7 +202,7 @@ public class ViewCategory extends javax.swing.JPanel {
             this.CategoryList.setModel(categories);
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch categories: " + e);
+            mainFrame.showError("Error al leer de la base de datos.");
         }
     }
 

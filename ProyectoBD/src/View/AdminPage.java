@@ -2148,7 +2148,7 @@ public class AdminPage extends javax.swing.JPanel {
             Insertions.insertCountry(name);
         }
         catch (Exception e) {
-            System.out.println("Error inserting: " + e);
+            mainFrame.showError("Debe llenar todos los datos.");
             return;
         }
         NewCountryTxtfield.setText("");
@@ -2156,7 +2156,7 @@ public class AdminPage extends javax.swing.JPanel {
             EditCountries_CountryList.setModel(mainFrame.buildListModel(Cursors.getCountries()));
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch countries: " + e);
+            mainFrame.showError("Error al leer de la base de datos.");
         }
     }//GEN-LAST:event_AddCountryBtnActionPerformed
 
@@ -2168,13 +2168,13 @@ public class AdminPage extends javax.swing.JPanel {
             Deletions.deleteCountry(country.getId());
         }
         catch (Exception e) {
-            System.out.println("Failed to delete" + e);
+            mainFrame.showError("Debe seleccionar un país de la lista.");
         }
         try {
             EditCountries_CountryList.setModel(mainFrame.buildListModel(Cursors.getCountries()));
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch countries: " + e);
+            mainFrame.showError("Error al escribir en la base de datos.");
         }
     }//GEN-LAST:event_RemoveCountryBtnActionPerformed
 
@@ -2441,7 +2441,7 @@ public class AdminPage extends javax.swing.JPanel {
             EditProducts_movies.setModel(mainFrame.buildListModel(Cursors.getMovies()));
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch movies.");
+            mainFrame.showError("Error al leer de la base de datos.");
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
@@ -2459,7 +2459,7 @@ public class AdminPage extends javax.swing.JPanel {
             EditProducts_series.setModel(mainFrame.buildListModel(Cursors.getSeries()));
         }
         catch (Exception e) {
-            System.out.println("Couldn't fetch series.");
+            mainFrame.showError("Error al leer de la base de datos.");
         }
     }//GEN-LAST:event_jButton21ActionPerformed
 

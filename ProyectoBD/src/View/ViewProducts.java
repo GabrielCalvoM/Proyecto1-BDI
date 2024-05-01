@@ -324,8 +324,12 @@ public class ViewProducts extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton48ActionPerformed
 
     private void jButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton49ActionPerformed
-        TableModel model = viewProducts_movies.getModel();
         int index = viewProducts_movies.getSelectedRow();
+        if (index < 0) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        TableModel model = viewProducts_movies.getModel();
         Product product = (Product) model.getValueAt(index, 0);
         mainFrame.showPage("ViewMove", new ViewMovie(mainFrame, this,
         product));

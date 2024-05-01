@@ -687,6 +687,7 @@ public class SignInPage extends javax.swing.JPanel {
                 idType.getId(), idNumber);
             Insertions.insertAccount(username, password, idPerson, 2, 0);
             Insertions.createWishlist(idPerson);
+            Insertions.createCart(idPerson);
             System.out.println("Registered");
         }
         catch (Exception e) {

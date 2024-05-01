@@ -371,6 +371,18 @@ public class Cursors {
         return result;
     }
     
+        public static int getCartId(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call shoppingCart_utils.getCartId(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setInt(2, idUser);
+        stmt.execute();
+        int result = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
     public static int getAccountUserId(int idAccount) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{? = call account_utils.getUserId(?)}");
@@ -388,6 +400,25 @@ public class Cursors {
         CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.getProductsInWishlist(?,?)}");
         stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
         stmt.setInt(1, idWishlist);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static ArrayList<Product> getProductsInCart(int idCart) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call cartProduct_utils.getProductsInCart(?,?)}");
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(1, idCart);
         stmt.execute();
         
         ResultSet rs = (ResultSet) stmt.getObject(2);

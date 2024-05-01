@@ -169,11 +169,30 @@ public class Insertions {
         stmt.close();
     }
     
+    public static void createCart(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call shoppingCart_utils.insertShoppingCart(?)}");
+        stmt.setInt(1, idUser);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
     public static void insertWishedProduct(int idProduct, int idWishlist) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.insertWishedProduct(?,?)}");
         stmt.setInt(1, idProduct);
         stmt.setInt(2, idWishlist);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+        public static void insertCartProduct(int idProduct, int idCart) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call cartProduct_utils.insertCartProduct(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idCart);
         stmt.execute();
         con.close();
         stmt.close();

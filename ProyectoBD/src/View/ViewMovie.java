@@ -19,6 +19,7 @@ public class ViewMovie extends javax.swing.JPanel {
     MainFrame mainFrame;
     Product product;
     boolean isWished;
+    boolean isInCart;
     
     public ViewMovie(MainFrame mainFrame, JPanel previousPanel,
             Product product) {
@@ -26,6 +27,7 @@ public class ViewMovie extends javax.swing.JPanel {
         this.previousPanel = previousPanel;
         this.product = product;
         isWished = false;
+        isInCart = false;
         initComponents();
         loadInfo();
     }
@@ -100,6 +102,20 @@ public class ViewMovie extends javax.swing.JPanel {
                     if (product.getTitle().equals(p.getTitle())) {
                         movie_favorites.setText("Quitar");
                         isWished = true;
+                    }
+                }
+            }
+            catch (Exception e) {
+                mainFrame.showError("Error al recuperar favoritos.");
+                System.out.println(e);
+            }
+            try {
+                int idCart = Cursors.getCartId(mainFrame.userAccount.getId_user());
+                ArrayList<Product> cartProducts = Cursors.getProductsInCart(idCart);
+                for (Product p : cartProducts) {
+                    if (product.getTitle().equals(p.getTitle())) {
+                        movie_buy.setText("    En Carrito    ");
+                        isInCart = true;
                     }
                 }
             }
@@ -507,7 +523,34 @@ public class ViewMovie extends javax.swing.JPanel {
     }//GEN-LAST:event_movie_viewWriterActionPerformed
 
     private void movie_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_buyActionPerformed
-        // TODO add your handling code here:
+        if (mainFrame.userAccount == null) {
+            mainFrame.showPage("SignInPage", new SignInPage(mainFrame, this));
+            return;
+        }
+        if (!isInCart) {
+            try{
+                int idCart = Cursors.getCartId(mainFrame.userAccount.getId_user());
+                Insertions.insertCartProduct(product.getId(), idCart);
+            }
+            catch (Exception e) {
+                mainFrame.showError("Error al añadir al carrito."); 
+                return;
+            }
+            movie_buy.setText("    En Carrito    ");
+            isInCart = true;
+        }
+        else{
+            try {
+                int idCart =  Cursors.getCartId(mainFrame.userAccount.getId_user());
+                Deletions.deleteFromCart(idCart, product.getId());
+            }
+            catch (Exception e) {
+                mainFrame.showError("Error al quitar del carrito.");
+                return;
+            }
+            movie_buy.setText("Comprar: $" + product.getPrice());
+            isInCart = false;
+        }
     }//GEN-LAST:event_movie_buyActionPerformed
 
     private void movie_favoritesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_favoritesActionPerformed

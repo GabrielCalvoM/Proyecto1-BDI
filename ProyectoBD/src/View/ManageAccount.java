@@ -6,6 +6,8 @@ import Control.*;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
@@ -58,10 +60,12 @@ public class ManageAccount extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         ViewProductBtn1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        PayButton = new javax.swing.JButton();
         total = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         cartTable = new javax.swing.JTable();
+        PayCheckBox = new javax.swing.JCheckBox();
+        PayTextField = new javax.swing.JTextField();
 
         setLayout(new java.awt.CardLayout());
 
@@ -270,17 +274,14 @@ public class ManageAccount extends javax.swing.JPanel {
                         .addComponent(jButton6))
                     .addGroup(FavoritesLayout.createSequentialGroup()
                         .addGap(282, 282, 282)
-                        .addComponent(ViewProductBtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(FavoritesLayout.createSequentialGroup()
-                .addGroup(FavoritesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ViewProductBtn))
                     .addGroup(FavoritesLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(FavoritesLayout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FavoritesLayout.setVerticalGroup(
             FavoritesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,10 +346,15 @@ public class ManageAccount extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Pagar");
+        PayButton.setBackground(new java.awt.Color(51, 51, 51));
+        PayButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        PayButton.setForeground(new java.awt.Color(255, 255, 255));
+        PayButton.setText("Pagar");
+        PayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayButtonActionPerformed(evt);
+            }
+        });
 
         total.setForeground(new java.awt.Color(255, 255, 255));
         total.setText("Total: $44.87");
@@ -371,33 +377,46 @@ public class ManageAccount extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(cartTable);
 
+        PayCheckBox.setText("Pago por Tarjeta");
+        PayCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayCheckBoxActionPerformed(evt);
+            }
+        });
+
+        PayTextField.setText("Ingrese su número de tarjeta.");
+        PayTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
         Cart.setLayout(CartLayout);
         CartLayout.setHorizontalGroup(
             CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(AppBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CartLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addGap(264, 264, 264))
+                    .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ViewProductBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton7))
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addComponent(ViewProductBtn1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
-            .addGroup(CartLayout.createSequentialGroup()
-                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PayTextField)
+                            .addComponent(PayCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 124, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(PayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         CartLayout.setVerticalGroup(
             CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,18 +425,23 @@ public class ManageAccount extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addComponent(PayCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(ViewProductBtn1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton7))
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(total)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(total)
+                            .addComponent(ViewProductBtn1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(PayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -522,6 +546,51 @@ public class ManageAccount extends javax.swing.JPanel {
         mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
     }//GEN-LAST:event_ViewProductBtn1ActionPerformed
 
+    private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
+        if (!PayCheckBox.isSelected() || PayTextField.getText().length() < 1) {
+            mainFrame.showError("Debe marcar la opción e ingresar su tarjeta");
+            return;
+        }
+        try {
+            int number = Integer.parseInt(PayTextField.getText());
+        }
+        catch(Exception e) {
+            mainFrame.showError("Ingrese un número de tarjeta válido.");
+            return;
+        }
+        try {
+            
+            int idUser = mainFrame.userAccount.getId_user();
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String purchaseDate = formatter.format(currentDate);
+            
+            TableModel model = cartTable.getModel();
+            
+            for (int i = 0; i < cartTable.getModel().getRowCount(); i++) {
+                Product product = (Product) model.getValueAt(i, 0);
+                int idProduct = product.getId();
+                Insertions.InsertOwnedProduct(idProduct, idUser, purchaseDate);
+                Deletions.deleteFromCart(idUser, idProduct);
+            }
+            
+            cartTable.removeAll();
+        }
+        catch(Exception e) {
+            mainFrame.showError("Error al escribir en la base de datos.");
+            System.out.println(e.getMessage());
+            return;
+        }
+    }//GEN-LAST:event_PayButtonActionPerformed
+
+    private void PayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PayTextFieldActionPerformed
+
+    private void PayCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PayCheckBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AppBar;
@@ -533,6 +602,9 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JLabel MainMenuLbl3;
     private javax.swing.JLabel MainMenuLbl4;
     private javax.swing.JPanel Menu;
+    private javax.swing.JButton PayButton;
+    private javax.swing.JCheckBox PayCheckBox;
+    private javax.swing.JTextField PayTextField;
     private javax.swing.JButton ViewProductBtn;
     private javax.swing.JButton ViewProductBtn1;
     private javax.swing.JTable cartTable;
@@ -541,7 +613,6 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JButton favs_button;
     private javax.swing.JLabel helloTxt;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

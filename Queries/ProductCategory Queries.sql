@@ -12,7 +12,7 @@ CREATE OR REPLACE PACKAGE productCategory_utils IS
     FUNCTION getProductCategory(pId_Product NUMBER) RETURN VARCHAR2;
 
 END productCategory_utils;
-
+/
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY productCategory_utils IS

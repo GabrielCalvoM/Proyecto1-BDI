@@ -188,11 +188,22 @@ public class Insertions {
         stmt.close();
     }
     
-        public static void insertCartProduct(int idProduct, int idCart) throws SQLException {
+    public static void insertCartProduct(int idProduct, int idCart) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call cartProduct_utils.insertCartProduct(?,?)}");
         stmt.setInt(1, idProduct);
         stmt.setInt(2, idCart);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+       
+    public static void InsertOwnedProduct(int idProduct, int idUser, String purchaseDate) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.insertOwnedProduct(?,?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idUser);
+        stmt.setString(3, purchaseDate);
         stmt.execute();
         con.close();
         stmt.close();

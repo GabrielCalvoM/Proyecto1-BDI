@@ -26,15 +26,6 @@ CREATE OR REPLACE PACKAGE BODY product_utils AS
                     pTrailer, pPrice);
         COMMIT;
         RETURN vIdProduct;
-        
-    EXCEPTION
-        WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
-                                 permitida');
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
     
     END;
     

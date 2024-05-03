@@ -2896,7 +2896,7 @@ public class AdminPage extends javax.swing.JPanel {
     }//GEN-LAST:event_DeleteArtistRelative_ButtonActionPerformed
 
     private void CategoriesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriesButtonActionPerformed
-        mainFrame.showPage("categoryPage", new CategoryPage(mainFrame, this));
+        mainFrame.showPage("viewCategory", new ViewCategory(mainFrame, this));
     }//GEN-LAST:event_CategoriesButtonActionPerformed
 
 

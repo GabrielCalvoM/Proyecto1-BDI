@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE Wishlist_Utils IS
     -- Insert
-    PROCEDURE insertWishlist(pId NUMBER, pId_User NUMBER);
+    PROCEDURE insertWishlist(pId_User NUMBER);
     -- Delete
     PROCEDURE deleteWishlist(pId NUMBER);
 END Wishlist_Utils;
@@ -8,7 +8,7 @@ END Wishlist_Utils;
 
 CREATE OR REPLACE PACKAGE BODY Wishlist_Utils AS
     -- Insert
-    PROCEDURE insertWishlist(pId NUMBER, pId_User NUMBER)
+    PROCEDURE insertWishlist(pId_User NUMBER)
     IS
     BEGIN
         INSERT INTO proy1.Wishlist (id_Wishlist, id_User)

@@ -166,7 +166,7 @@ public class ViewCategory extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        mainFrame.showPage("categoryPage", this.previous);
+        mainFrame.showPage("AdminPage", this.previous);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed

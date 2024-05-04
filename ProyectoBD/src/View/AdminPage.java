@@ -3,9 +3,12 @@ import Model.*;
 import java.awt.CardLayout;
 import javax.swing.DefaultListModel;
 import Control.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
@@ -16,11 +19,32 @@ public class AdminPage extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel previous;
     Artist currentArtist;
+    int seasonsCount = 1;
+    ArrayList<DefaultListModel> seasonEpisodes;
     
     public AdminPage(MainFrame mainFrame, JPanel previous) {
         this.previous = previous;
         this.mainFrame = mainFrame;
+        seasonEpisodes = new ArrayList<>();
+        DefaultListModel model = new DefaultListModel();
+        seasonEpisodes.add(model);
         initComponents();
+        seasonsCombo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = seasonsCombo.getSelectedIndex();
+                episodesList.setModel(seasonEpisodes.get(index));
+            }
+        });
+    }
+    
+    private void generateSeasonModel() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (int i = 0; i < seasonsCount; i++) {
+            String num = Integer.toString(i+1);
+            model.addElement("Temporada " + num);
+        }
+        seasonsCombo.setModel(model);
     }
 
     /**
@@ -32,6 +56,17 @@ public class AdminPage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        enterEpisode = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        seasonText = new javax.swing.JLabel();
+        episodeNameTxt = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        durationTxt = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
         AdminPage = new javax.swing.JPanel();
         AdminMenu = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -223,6 +258,152 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel68 = new javax.swing.JLabel();
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        seasonsAmount = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        seasonsCombo = new javax.swing.JComboBox<>();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        episodesList = new javax.swing.JList<>();
+        jLabel12 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        addSeries2 = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel73 = new javax.swing.JLabel();
+        addMovie_categoryLbl4 = new javax.swing.JLabel();
+        addSeries_category = new javax.swing.JComboBox<>();
+        jLabel71 = new javax.swing.JLabel();
+        jScrollPane23 = new javax.swing.JScrollPane();
+        addSeries_availableActors = new javax.swing.JList<>();
+        jScrollPane24 = new javax.swing.JScrollPane();
+        addSeries_actors = new javax.swing.JList<>();
+        jLabel80 = new javax.swing.JLabel();
+        jButton38 = new javax.swing.JButton();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        addSeries_availableWriters = new javax.swing.JList<>();
+        jLabel81 = new javax.swing.JLabel();
+        jButton39 = new javax.swing.JButton();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        addSeries_writers = new javax.swing.JList<>();
+        jLabel82 = new javax.swing.JLabel();
+        addMovie_categoryLbl5 = new javax.swing.JLabel();
+        addSeries_director = new javax.swing.JComboBox<>();
+        jButton40 = new javax.swing.JButton();
+        jButton41 = new javax.swing.JButton();
+        addMovie_categoryLbl6 = new javax.swing.JLabel();
+        seriesPriceTxt = new javax.swing.JTextField();
+        addMovie_categoryLbl7 = new javax.swing.JLabel();
+
+        enterEpisode.setAlwaysOnTop(true);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel4.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel4.setForeground(new java.awt.Color(51, 51, 51));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Agregar Episodio");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        seasonText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        seasonText.setForeground(new java.awt.Color(255, 255, 255));
+        seasonText.setText("Temporada X");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Duración");
+
+        jButton4.setText("Agregar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Nombre");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("mins");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(seasonText, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jButton4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel17)
+                            .addGap(85, 85, 85))
+                        .addComponent(episodeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(58, 58, 58))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(seasonText, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(episodeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(46, 46, 46))
+        );
+
+        javax.swing.GroupLayout enterEpisodeLayout = new javax.swing.GroupLayout(enterEpisode.getContentPane());
+        enterEpisode.getContentPane().setLayout(enterEpisodeLayout);
+        enterEpisodeLayout.setHorizontalGroup(
+            enterEpisodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        enterEpisodeLayout.setVerticalGroup(
+            enterEpisodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         AdminPage.setBackground(new java.awt.Color(0, 0, 0));
         AdminPage.setLayout(new java.awt.CardLayout());
@@ -1922,7 +2103,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel62)
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addContainerGap(508, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1967,7 +2148,9 @@ public class AdminPage extends javax.swing.JPanel {
         addSeries_synopsis.setBackground(new java.awt.Color(51, 51, 51));
         addSeries_synopsis.setColumns(20);
         addSeries_synopsis.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_synopsis.setLineWrap(true);
         addSeries_synopsis.setRows(5);
+        addSeries_synopsis.setWrapStyleWord(true);
         jScrollPane14.setViewportView(addSeries_synopsis);
 
         EditCountBackBtn4.setBackground(new java.awt.Color(51, 51, 51));
@@ -2002,10 +2185,66 @@ public class AdminPage extends javax.swing.JPanel {
         jButton28.setBackground(new java.awt.Color(51, 51, 51));
         jButton28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton28.setForeground(new java.awt.Color(255, 255, 255));
-        jButton28.setText("No funciona");
+        jButton28.setText("Siguiente");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("-");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Temporadas");
+
+        seasonsAmount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        seasonsAmount.setForeground(new java.awt.Color(255, 255, 255));
+        seasonsAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        seasonsAmount.setText("1");
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Agregar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        seasonsCombo.setBackground(new java.awt.Color(51, 51, 51));
+        seasonsCombo.setForeground(new java.awt.Color(255, 255, 255));
+        seasonsCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Temporada 1" }));
+        seasonsCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seasonsComboActionPerformed(evt);
+            }
+        });
+
+        episodesList.setBackground(new java.awt.Color(51, 51, 51));
+        episodesList.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane16.setViewportView(episodesList);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Episodios");
+
+        jButton3.setBackground(new java.awt.Color(51, 51, 51));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("+");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -2036,14 +2275,31 @@ public class AdminPage extends javax.swing.JPanel {
                                     .addComponent(addSeries_premier, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(addSeriesLayout.createSequentialGroup()
                                 .addComponent(jLabel67)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24)
-                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel68)
-                            .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(addSeriesLayout.createSequentialGroup()
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
+                                    .addGroup(addSeriesLayout.createSequentialGroup()
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(seasonsAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(seasonsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addGroup(addSeriesLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jButton2)))))
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addSeriesLayout.setVerticalGroup(
@@ -2051,41 +2307,296 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(addSeriesLayout.createSequentialGroup()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel63)
+                            .addComponent(addSeries_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel64)
+                            .addComponent(addSeries_premier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel65)
+                            .addComponent(addSeries_trailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addComponent(jLabel68)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton27)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addSeriesLayout.createSequentialGroup()
-                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(seasonsAmount)
+                            .addComponent(jButton3)
+                            .addComponent(jLabel67))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(seasonsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 194, Short.MAX_VALUE))
+                    .addGroup(addSeriesLayout.createSequentialGroup()
+                        .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addSeriesLayout.createSequentialGroup()
-                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel63)
-                                    .addComponent(addSeries_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel64)
-                                    .addComponent(addSeries_premier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel65)
-                                    .addComponent(addSeries_trailer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel67)
-                                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(25, 25, 25))
+                                    .addComponent(EditCountBackBtn4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(addSeriesLayout.createSequentialGroup()
-                                .addComponent(jLabel68)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(EditCountBackBtn4))
-                    .addGroup(addSeriesLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
 
         EditProducts.add(addSeries, "addSeries");
+
+        addSeries2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel21.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel73.setText("Agregar Serie");
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel73)
+                .addContainerGap(508, Short.MAX_VALUE))
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        addMovie_categoryLbl4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addMovie_categoryLbl4.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_categoryLbl4.setText("Categoría:");
+
+        addSeries_category.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_category.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addSeries_category.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel71.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel71.setText("Actores");
+
+        addSeries_availableActors.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_availableActors.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_availableActors.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane23.setViewportView(addSeries_availableActors);
+
+        addSeries_actors.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_actors.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane24.setViewportView(addSeries_actors);
+
+        jLabel80.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel80.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel80.setText("Agregados");
+
+        jButton38.setBackground(new java.awt.Color(51, 51, 51));
+        jButton38.setForeground(new java.awt.Color(255, 255, 255));
+        jButton38.setText("Agregar");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+
+        addSeries_availableWriters.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_availableWriters.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_availableWriters.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane25.setViewportView(addSeries_availableWriters);
+
+        jLabel81.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel81.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel81.setText("Escritores");
+
+        jButton39.setBackground(new java.awt.Color(51, 51, 51));
+        jButton39.setForeground(new java.awt.Color(255, 255, 255));
+        jButton39.setText("Agregar");
+        jButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton39ActionPerformed(evt);
+            }
+        });
+
+        addSeries_writers.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_writers.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane26.setViewportView(addSeries_writers);
+
+        jLabel82.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel82.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel82.setText("Agregados");
+
+        addMovie_categoryLbl5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addMovie_categoryLbl5.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_categoryLbl5.setText("Director");
+
+        addSeries_director.setBackground(new java.awt.Color(51, 51, 51));
+        addSeries_director.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addSeries_director.setForeground(new java.awt.Color(255, 255, 255));
+        addSeries_director.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cristopher Nolan", "Quentin Tarantino", "Martin Scorsese", "Seteven Spielberg" }));
+
+        jButton40.setText("Agregar");
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
+
+        jButton41.setBackground(new java.awt.Color(51, 51, 51));
+        jButton41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton41.setForeground(new java.awt.Color(255, 255, 255));
+        jButton41.setText("Atrás");
+        jButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton41ActionPerformed(evt);
+            }
+        });
+
+        addMovie_categoryLbl6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addMovie_categoryLbl6.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_categoryLbl6.setText("Precio");
+
+        seriesPriceTxt.setBackground(new java.awt.Color(51, 51, 51));
+        seriesPriceTxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        seriesPriceTxt.setForeground(new java.awt.Color(255, 255, 255));
+
+        addMovie_categoryLbl7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addMovie_categoryLbl7.setForeground(new java.awt.Color(255, 255, 255));
+        addMovie_categoryLbl7.setText("usd");
+
+        javax.swing.GroupLayout addSeries2Layout = new javax.swing.GroupLayout(addSeries2);
+        addSeries2.setLayout(addSeries2Layout);
+        addSeries2Layout.setHorizontalGroup(
+            addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addSeries2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSeries2Layout.createSequentialGroup()
+                        .addComponent(jButton41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addSeries2Layout.createSequentialGroup()
+                        .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addSeries2Layout.createSequentialGroup()
+                                .addComponent(addMovie_categoryLbl4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addSeries_category, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(addSeries2Layout.createSequentialGroup()
+                                    .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(addSeries2Layout.createSequentialGroup()
+                                            .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButton38))
+                                        .addComponent(jLabel71))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel80)
+                                        .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(addSeries2Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton39)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addSeries2Layout.createSequentialGroup()
+                                    .addComponent(jLabel81)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel82)
+                                    .addGap(15, 15, 15))))
+                        .addGap(42, 42, 42)
+                        .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(addSeries2Layout.createSequentialGroup()
+                                .addComponent(addMovie_categoryLbl5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addSeries_director, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addSeries2Layout.createSequentialGroup()
+                                .addComponent(addMovie_categoryLbl6)
+                                .addGap(18, 18, 18)
+                                .addComponent(seriesPriceTxt)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addMovie_categoryLbl7)
+                        .addGap(0, 167, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        addSeries2Layout.setVerticalGroup(
+            addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addSeries2Layout.createSequentialGroup()
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addMovie_categoryLbl4)
+                    .addComponent(addSeries_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMovie_categoryLbl5)
+                    .addComponent(addSeries_director, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSeries2Layout.createSequentialGroup()
+                        .addComponent(jLabel71)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(addSeries2Layout.createSequentialGroup()
+                            .addComponent(jLabel80)
+                            .addGap(55, 55, 55)
+                            .addComponent(jButton38)
+                            .addGap(51, 51, 51))
+                        .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(addMovie_categoryLbl6)
+                                .addComponent(seriesPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addMovie_categoryLbl7))
+                            .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(12, 12, 12)
+                .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSeries2Layout.createSequentialGroup()
+                        .addComponent(jLabel82)
+                        .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addSeries2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addSeries2Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jButton39))))
+                    .addGroup(addSeries2Layout.createSequentialGroup()
+                        .addComponent(jLabel81)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(addSeries2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton41)
+                    .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        EditProducts.add(addSeries2, "addSeries2");
 
         AdminPage.add(EditProducts, "EditProducts");
 
@@ -2722,39 +3233,6 @@ public class AdminPage extends javax.swing.JPanel {
         card.show(EditProducts, "addMovie");
     }//GEN-LAST:event_jButton37ActionPerformed
 
-    private void addSeries_trailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSeries_trailerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addSeries_trailerActionPerformed
-
-    private void EditCountBackBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn4ActionPerformed
-        CardLayout card = (CardLayout) EditProducts.getLayout();
-        card.show(EditProducts, "editProductsMenu");
-    }//GEN-LAST:event_EditCountBackBtn4ActionPerformed
-
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        JFileChooser fc = new JFileChooser();
-        fc.showDialog(fc, "Agregar");
-        File imgFile = fc.getSelectedFile();
-        String fileName = imgFile.getAbsolutePath();
-        if (!fileName.toLowerCase().endsWith(".jpg")
-            && !fileName.toLowerCase().endsWith(".jpeg")) {
-            mainFrame.showError("Solo puede ingresar archivos jpg.");
-            return;
-        }
-
-        ListModel oldModel = addSeries_photos.getModel();
-        DefaultListModel newModel = new DefaultListModel();
-        for (int i = 0; i < oldModel.getSize(); i++) {
-            newModel.addElement(oldModel.getElementAt(i));
-        }
-        newModel.addElement(imgFile);
-        addSeries_photos.setModel(newModel);
-    }//GEN-LAST:event_jButton27ActionPerformed
-
-    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-
-    }//GEN-LAST:event_jButton28ActionPerformed
-
     private void addArtist_nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArtist_nameTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addArtist_nameTxtActionPerformed
@@ -2920,6 +3398,280 @@ public class AdminPage extends javax.swing.JPanel {
         mainFrame.showPage("StatGraphics", new UserStatsGraphic(mainFrame, this));
     }//GEN-LAST:event_UserStatsButtonActionPerformed
 
+    private void addSeries_trailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSeries_trailerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addSeries_trailerActionPerformed
+
+    private void EditCountBackBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCountBackBtn4ActionPerformed
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "editProductsMenu");
+    }//GEN-LAST:event_EditCountBackBtn4ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showDialog(fc, "Agregar");
+        File imgFile;
+        String fileName;
+        try {
+            imgFile = fc.getSelectedFile();
+            fileName = imgFile.getAbsolutePath();
+        }
+        catch (Exception e) {
+            return;
+        }
+        if (!fileName.toLowerCase().endsWith(".jpg")
+            && !fileName.toLowerCase().endsWith(".jpeg")) {
+            mainFrame.showError("Solo puede ingresar archivos jpg.");
+            return;
+        }
+
+        ListModel oldModel = addSeries_photos.getModel();
+        DefaultListModel newModel = new DefaultListModel();
+        for (int i = 0; i < oldModel.getSize(); i++) {
+            newModel.addElement(oldModel.getElementAt(i));
+        }
+        newModel.addElement(imgFile);
+        addSeries_photos.setModel(newModel);
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        if (addSeries_title.getText().length() < 1 ||
+            addSeries_trailer.getText().length() < 1 ||
+            addSeries_synopsis.getText().length() < 1) {
+            mainFrame.showError("Complete todos los campos.");
+            return;
+        }
+        if (addSeries_photos.getModel().getSize() == 0) {
+            mainFrame.showError("Debe ingresar al menos 1 foto.");
+            return;
+        }
+
+        try {
+            DefaultListModel actorsModel = mainFrame.buildListModel(Cursors.getArtistsOfType(1));
+            DefaultComboBoxModel directorsModel = mainFrame.buildComboModel(Cursors.getArtistsOfType(2));
+            DefaultListModel writersModel = mainFrame.buildListModel(Cursors.getArtistsOfType(3));
+            DefaultComboBoxModel categoriesModel = mainFrame.buildComboModel(Cursors.getCategoriesArr());
+            DefaultListModel emptyModel1 = new DefaultListModel();
+            DefaultListModel emptyModel2 = new DefaultListModel();
+            addSeries_availableActors.setModel(actorsModel);
+            addSeries_director.setModel(directorsModel);
+            addSeries_availableWriters.setModel(writersModel);
+            addSeries_actors.setModel(emptyModel1);
+            addSeries_writers.setModel(emptyModel2);
+            addSeries_category.setModel(categoriesModel);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al leer de la base de datos.");
+            System.out.println(e);
+            return;
+        }
+
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "addSeries2");
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (seasonsCount == 1) {
+            return;
+        }
+        seasonsCount--;
+        seasonsAmount.setText(Integer.toString(seasonsCount));
+        seasonEpisodes.remove(seasonEpisodes.size() - 1);
+        generateSeasonModel();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        enterEpisode.setSize(400, 300);
+        enterEpisode.setLocationRelativeTo(this);
+        seasonText.setText(seasonsCombo.getSelectedItem().toString());
+        enterEpisode.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void seasonsComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seasonsComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seasonsComboActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        seasonsCount++;
+        seasonsAmount.setText(Integer.toString(seasonsCount));
+        DefaultListModel model = new DefaultListModel();
+        seasonEpisodes.add(model);
+        generateSeasonModel();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        int index = addSeries_availableActors.getSelectedIndex();
+        if (index == -1) {
+            mainFrame.showError("Debe seleccionar un elemento");
+            return;
+        }
+        ListModel avModel = addSeries_availableActors.getModel();
+        ListModel selectModel = addSeries_actors.getModel();
+        Artist actor = (Artist) avModel.getElementAt(index);
+        for (int i = 0; i < selectModel.getSize(); i++) {
+            Artist selectedActor = (Artist) selectModel.getElementAt(i);
+            if (selectedActor.getId() == actor.getId()) {
+                mainFrame.showError("El actor ya ha sido agregado.");
+                return;
+            }
+        }
+        DefaultListModel newModel = new DefaultListModel();
+        for (int i = 0; i < selectModel.getSize(); i++) {
+            Artist selectedActor = (Artist) selectModel.getElementAt(i);
+            newModel.addElement(selectedActor);
+        }
+        newModel.addElement(actor);
+        addSeries_actors.setModel(newModel);
+    }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        int index = addSeries_availableWriters.getSelectedIndex();
+        if (index == -1) {
+            mainFrame.showError("Debe seleccionar un elemento");
+            return;
+        }
+        ListModel avModel = addSeries_availableWriters.getModel();
+        ListModel selectModel = addSeries_writers.getModel();
+        Artist actor = (Artist) avModel.getElementAt(index);
+        for (int i = 0; i < selectModel.getSize(); i++) {
+            Artist selectedActor = (Artist) selectModel.getElementAt(i);
+            if (selectedActor.getId() == actor.getId()) {
+                mainFrame.showError("El escritor ya ha sido agregado.");
+                return;
+            }
+        }
+        DefaultListModel newModel = new DefaultListModel();
+        for (int i = 0; i < selectModel.getSize(); i++) {
+            Artist selectedActor = (Artist) selectModel.getElementAt(i);
+            newModel.addElement(selectedActor);
+        }
+        newModel.addElement(actor);
+        addSeries_writers.setModel(newModel);
+    }//GEN-LAST:event_jButton39ActionPerformed
+
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        String title = addSeries_title.getText();
+        int premier = Integer.parseInt(
+            addSeries_premier.getSelectedItem().toString());
+        String trailer = addSeries_trailer.getText();
+        String synopsis = addSeries_synopsis.getText();
+        float price;
+        try {
+            price = Float.parseFloat(seriesPriceTxt.getText());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Precio inválido");
+            return;
+        }
+        int idProduct;
+        int idSeries;
+        try {
+            idProduct = Insertions.insertProduct(title, premier, synopsis, trailer, price);
+            idSeries = Insertions.insertSeries(idProduct);
+            ListModel categoryModel = addSeries_category.getModel();
+            int index = addSeries_category.getSelectedIndex();
+            Category category = (Category) categoryModel.getElementAt(index);
+            Insertions.insertProductCategory(idProduct, category.getId());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al insertar");
+            System.out.println(e);
+            return;
+        }
+
+        //Insert Seasons and Episodes
+        for (int i = 0; i < seasonsCount; i++) {
+            try{
+                int idSeason = Insertions.insertSeason(i+1, idSeries);
+                DefaultListModel model = seasonEpisodes.get(i);
+                for (int j = 0; j < model.size(); j++) {
+                    Episode ep = (Episode) model.getElementAt(j);
+                    Insertions.insertEpisode(j+1, ep.getTitle(), idSeason, ep.getDuration());
+                }
+            }
+            catch(Exception e) {
+                mainFrame.showError("Error al crear temporada.");
+                System.out.println(e);
+            }
+        }
+
+        ListModel photoModel = addSeries_photos.getModel();
+        for (int i = 0; i < photoModel.getSize(); i++) {
+            try {
+                File img = (File) photoModel.getElementAt(i);
+                String path = img.getAbsolutePath();
+                int photoId = Insertions.insertPhoto(path);
+                Insertions.insertProductPhoto(photoId, idProduct);
+            }
+            catch (Exception e) {
+                mainFrame.showError("No se pudo insertar la imagen");
+            }
+        }
+        ListModel actorsModel = addSeries_actors.getModel();
+        for (int i = 0; i < actorsModel.getSize(); i++) {
+            Artist artist = (Artist) actorsModel.getElementAt(i);
+            try {
+                Insertions.insertProductArtist(idProduct, artist.getId());
+            }
+            catch(Exception e) {
+                mainFrame.showError("Error al asignar actor: ." + artist.getName());
+            }
+        }
+        ListModel writersModel = addSeries_writers.getModel();
+        for (int i = 0; i < writersModel.getSize(); i++) {
+            Artist artist = (Artist) writersModel.getElementAt(i);
+            try {
+                Insertions.insertProductArtist(idProduct, artist.getId());
+            }
+            catch(Exception e) {
+                mainFrame.showError("Error al asignar escritor: ." + artist.getName());
+            }
+        }
+        ListModel directorsModel = addSeries_director.getModel();
+        int index = addSeries_director.getSelectedIndex();
+        Artist director = (Artist) directorsModel.getElementAt(index);
+        try {
+            Insertions.insertProductArtist(idProduct, director.getId());
+        }
+        catch(Exception e) {
+            mainFrame.showError("Error al asignar director.");
+        }
+        try {
+            EditProducts_series.setModel(mainFrame.buildListModel(Cursors.getSeries()));
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't fetch series.");
+        }
+        CardLayout card = (CardLayout) EditProducts.getLayout();
+        card.show(EditProducts, "editProductsMenu");
+    }//GEN-LAST:event_jButton40ActionPerformed
+
+    private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton41ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String name = episodeNameTxt.getText();
+        int duration;
+        try {
+            duration = Integer.parseInt(durationTxt.getText());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Duración inválida");
+            return;
+        }
+        if (duration >= 300) {
+            mainFrame.showError("Duración inválida");
+            return;
+        }
+        episodeNameTxt.setText("");
+        durationTxt.setText("");
+        DefaultListModel model = seasonEpisodes.get(seasonsCombo.getSelectedIndex());
+        Episode ep = new Episode(model.getSize()+1, name, duration);
+        model.addElement(ep);
+        enterEpisode.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
@@ -2980,6 +3732,10 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JLabel addMovie_categoryLbl1;
     private javax.swing.JLabel addMovie_categoryLbl2;
     private javax.swing.JLabel addMovie_categoryLbl3;
+    private javax.swing.JLabel addMovie_categoryLbl4;
+    private javax.swing.JLabel addMovie_categoryLbl5;
+    private javax.swing.JLabel addMovie_categoryLbl6;
+    private javax.swing.JLabel addMovie_categoryLbl7;
     private javax.swing.JComboBox<String> addMovie_director;
     private javax.swing.JTextField addMovie_duration;
     private javax.swing.JList<String> addMovie_photos;
@@ -2989,16 +3745,24 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JTextField addMovie_trailer;
     private javax.swing.JList<String> addMovie_writers;
     private javax.swing.JPanel addSeries;
+    private javax.swing.JPanel addSeries2;
+    private javax.swing.JList<String> addSeries_actors;
+    private javax.swing.JList<String> addSeries_availableActors;
+    private javax.swing.JList<String> addSeries_availableWriters;
+    private javax.swing.JComboBox<String> addSeries_category;
+    private javax.swing.JComboBox<String> addSeries_director;
     private javax.swing.JList<String> addSeries_photos;
     private javax.swing.JComboBox<String> addSeries_premier;
     private javax.swing.JTextArea addSeries_synopsis;
     private javax.swing.JTextField addSeries_title;
     private javax.swing.JTextField addSeries_trailer;
+    private javax.swing.JList<String> addSeries_writers;
     private com.toedter.calendar.JDateChooser artistRelative_date;
     private javax.swing.JComboBox<String> artistRelative_genderCombo;
     private javax.swing.JTextField artistRelative_lastnameTxt;
     private javax.swing.JTextField artistRelative_nameTxt;
     private javax.swing.JComboBox<String> artistRelative_relationCombo;
+    private javax.swing.JTextField durationTxt;
     private javax.swing.JTextArea editArtist_bioTxt;
     private com.toedter.calendar.JDateChooser editArtist_date;
     private javax.swing.JComboBox<String> editArtist_genderCombo;
@@ -3008,11 +3772,16 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JTextArea editArtist_triviaTxt;
     private javax.swing.JComboBox<String> editArtist_typeCombo;
     private javax.swing.JPanel editProductsMenu;
+    private javax.swing.JDialog enterEpisode;
+    private javax.swing.JTextField episodeNameTxt;
+    private javax.swing.JList<String> episodesList;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -3023,13 +3792,25 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
+    private javax.swing.JButton jButton39;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
+    private javax.swing.JButton jButton41;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -3077,19 +3858,27 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -3100,11 +3889,16 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
+    private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3113,5 +3907,9 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField priceTxt;
+    private javax.swing.JLabel seasonText;
+    private javax.swing.JLabel seasonsAmount;
+    private javax.swing.JComboBox<String> seasonsCombo;
+    private javax.swing.JTextField seriesPriceTxt;
     // End of variables declaration//GEN-END:variables
 }

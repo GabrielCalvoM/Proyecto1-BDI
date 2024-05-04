@@ -55,7 +55,7 @@ public class ViewProducts extends javax.swing.JPanel {
             }
 
             for (Series serie : series) {
-                Product product = Cursors.getProduct(serie.getId_product());
+                Product product = Cursors.getProduct(serie.getIdProduct());
                 Object[] row = new Object[3];
                 row[0] = product;
                 row[1] = "4.6";

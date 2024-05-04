@@ -1,7 +1,7 @@
 CREATE OR REPLACE PACKAGE productCategory_utils IS
     PROCEDURE insertProductCategory(pProduct IN NUMBER, pCategory IN NUMBER);
     
-    PROCEDURE deleteProductCategory(pId IN NUMBER);
+    PROCEDURE deleteProductCategory(pId_Product IN NUMBER);
     
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER);
     PROCEDURE setCategory(pId IN NUMBER, pCategory IN NUMBER);
@@ -28,25 +28,12 @@ CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
     END insertProductCategory;
     
 -- Delete
-    PROCEDURE deleteProductCategory(pId IN NUMBER)
+    PROCEDURE deleteProductCategory(pId_Product IN NUMBER)
     IS
-    
     BEGIN
-        DELETE FROM productCategory
-        WHERE id_productCategory = pId;
-        COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
-            ROLLBACK;
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-            
+        DELETE FROM ProductCategory
+        WHERE id_product = pId_Product;
+        COMMIT;            
     END deleteProductCategory;
     
 -- Setters

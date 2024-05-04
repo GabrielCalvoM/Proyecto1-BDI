@@ -26,7 +26,7 @@ public class Series {
         return name;
     }
 
-    public int getId_product() {
+    public int getIdProduct() {
         return id_product;
     }
     

@@ -280,6 +280,27 @@ public class Cursors {
         return movies;
     }
     
+    public static ArrayList<Series> getNseries(int n) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call series_utils.getNseries(?, ?)}");
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(1, n);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        
+        ArrayList<Series> series = new ArrayList<>();
+        while(rs.next()) {
+            String name = rs.getString(1);
+            int idSeries = rs.getInt(2);
+            int idProduct = rs.getInt(3);
+            Series serie = new Series(idSeries, idProduct, name);
+            series.add(serie);
+        }
+        con.close();
+        stmt.close();
+        return series;
+    }
+    
     public static String getProductMainImg(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{? = call productPhoto_utils.getProductMainImg(?)}");

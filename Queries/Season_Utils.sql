@@ -1,31 +1,27 @@
 CREATE OR REPLACE PACKAGE Season_Utils IS
     -- Insert
-    PROCEDURE insertSeason(pId NUMBER, pNumber_season NUMBER, pId_series NUMBER);
+    FUNCTION insertSeason(pNumber_season NUMBER, pId_series NUMBER) RETURN NUMBER;
     -- Delete
     PROCEDURE deleteSeason(pId NUMBER);
+    PROCEDURE deleteAllSeasons(pId_series NUMBER);
     -- Update
     PROCEDURE updateSeasonNumber(pId NUMBER, pNewNum NUMBER);
     -- Getter
     FUNCTION getSeasonNumber(pId NUMBER) RETURN VARCHAR2;
 END Season_Utils;
-/
 
 CREATE OR REPLACE PACKAGE BODY Season_Utils AS
     -- Insert
-    PROCEDURE insertSeason(pId NUMBER, pNumber_season NUMBER, pId_series NUMBER)
+    FUNCTION insertSeason(pNumber_season NUMBER, pId_series NUMBER)
+    RETURN NUMBER
     IS
+        vIdSeason NUMBER;
     BEGIN
-        INSERT INTO proy1.Season (id_Season, number_season, Id_series)
-               VALUES (s_Season.nextval, pnumber_season, pId_series);
+        SELECT s_Season.nextval INTO vIdSeason FROM DUAL;
+        INSERT INTO proy1.Season (id_season, number_season, Id_series)
+               VALUES (vIdSeason, pnumber_season, pId_series);
         COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
-    
+        RETURN vIdSeason;
     END insertSeason;
 
     -- Delete
@@ -43,6 +39,21 @@ CREATE OR REPLACE PACKAGE BODY Season_Utils AS
             dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
     
     END deleteSeason;
+    
+    PROCEDURE deleteAllSeasons(pId_series NUMBER)
+    IS
+    BEGIN
+        FOR s IN (
+            SELECT id_season FROM SEASON
+            WHERE id_series = pId_series)
+            LOOP
+            episode_utils.deleteAllEpisodes(s.id_season);
+        END LOOP;
+        
+        DELETE FROM Season
+        WHERE id_series = pId_series;
+        COMMIT;
+    END deleteAllSeasons;
     
     -- Update
     PROCEDURE updateSeasonNumber(pId NUMBER, pNewNum NUMBER)
@@ -70,14 +81,6 @@ CREATE OR REPLACE PACKAGE BODY Season_Utils AS
         FROM season
         WHERE id_season = pId;
         RETURN 'Season ' || vNum;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-            RETURN ' ';
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-            RETURN ' ';
     
     END getSeasonNumber;
 

@@ -321,7 +321,7 @@ public class Cursors {
         stmt.close();
         return result;
     }
-    
+        
     public static HashMap<String, Integer> getCategories() throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
@@ -340,7 +340,31 @@ public class Cursors {
         return categories;
     }
     
-        public static ArrayList<Category> getCategoriesArr() throws SQLException {
+    public static ArrayList<Person> getUsersPersonalData() throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call sysUser_utils.getAllUsers(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Person> users = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String first_name = rs.getString(2);
+            String last_name = rs.getString(3);
+            String birth_date = rs.getString(4);
+            int id_gender = rs.getInt(1);
+            
+            Person p = new Person(id, first_name, last_name, birth_date, id_gender);
+            users.add(p);
+        }
+        
+        con.close();
+        stmt.close();
+        return users;
+    }
+    
+    public static ArrayList<Category> getCategoriesArr() throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
         stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);

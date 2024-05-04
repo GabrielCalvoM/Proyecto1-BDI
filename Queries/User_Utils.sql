@@ -8,6 +8,7 @@ CREATE OR REPLACE PACKAGE SysUser_Utils IS
     PROCEDURE updateSysUser(pId NUMBER, pEmail VARCHAR2, pPhone_number NUMBER);
     -- Getter
     FUNCTION getSysUser(pId NUMBER) RETURN VARCHAR2;
+    PROCEDURE getAllUsers(userCursor OUT SYS_REFCURSOR); 
 END SysUser_Utils;
 /
 
@@ -52,5 +53,16 @@ CREATE OR REPLACE PACKAGE BODY SysUser_Utils AS
         WHERE id_user = pId;
         RETURN 'PHONE: ' || vPhone_Number || ', E-MAIL: ' || vEmail;    
     END getSysUser;
+    
+    PROCEDURE getAllUsers (userCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN 
+        OPEN userCursor
+        FOR
+        SELECT p.id_person, p.first_name, p.last_name, p.birth_date, p.id_gender
+        FROM sysUser u INNER JOIN person p
+        ON u.id_user = p.id_person;
 
+    END getAllUsers;
+    
 END SysUser_Utils;

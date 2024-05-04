@@ -353,7 +353,7 @@ public class Cursors {
             String first_name = rs.getString(2);
             String last_name = rs.getString(3);
             String birth_date = rs.getString(4);
-            int id_gender = rs.getInt(1);
+            int id_gender = rs.getInt(5);
             
             Person p = new Person(id, first_name, last_name, birth_date, id_gender);
             users.add(p);

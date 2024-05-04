@@ -8,6 +8,7 @@ import Control.Cursors;
 import Model.Person;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -22,6 +23,7 @@ import org.jfree.data.general.DefaultPieDataset;
 public class UserStatsGraphic extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel previous;
+    
 
     
     public UserStatsGraphic(MainFrame mainFrame, JPanel previous) {
@@ -30,36 +32,138 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void showUserChart(int genderRange) {
+    public void showUserChart(int genderRange, int ageRange) {
         try {
         
         // Obtener datos
-        int femaleCount = 0;
-        int maleCount = 0;
         
         ArrayList<Person> users = Cursors.getUsersPersonalData();
+        ArrayList<Person> maleList = new ArrayList<>();
+        ArrayList<Person> femaleList = new ArrayList<>();
+        ArrayList<Person> childList = new ArrayList<>();
+        ArrayList<Person> youthList = new ArrayList<>();
+        ArrayList<Person> adultList = new ArrayList<>();
+        ArrayList<Person> elderList = new ArrayList<>();
+        
         for (int i = 0; i < users.size(); i++) {
+            // Datos de la persona
             Person user = users.get(i);
+            int gender = user.getId_gender();
             System.out.println(user.getId_gender());
-            //System.out.println(user.getId_gender() % 2 + 1);
-            if (user.getId_gender() == 2) femaleCount = femaleCount + 1;
-            if (user.getId_gender() == 1) maleCount = maleCount + 1;
+            int year = Integer.parseInt(user.getBirthDate().substring(0, 4));
+            int age = 2024 - year;
+            
+            if (gender == 1) maleList.add(user);
+            if (gender == 2) femaleList.add(user);
+            if (age <= 18) childList.add(user);
+            else if (age <= 35) youthList.add(user);
+            else if (age <= 65) adultList.add(user);
+            else if (age >= 66) elderList.add(user);
         }
        
-        System.out.println(femaleCount + "\t" + maleCount);
-        
         // Asignar datos por filtro
-        
         DefaultPieDataset dataset = new DefaultPieDataset();
-        if (genderRange == 0) {
-            dataset.setValue("Mujeres", femaleCount);
-            dataset.setValue("Hombres",  maleCount);
+        
+        if (genderRange == 0 && ageRange == 0) {
+            dataset.setValue("Total", users.size());
         }
-        else if (genderRange == 1) {
-            dataset.setValue("Hombres", maleCount);
+        else if (genderRange != 0 && ageRange == 0) {
+            dataset.setValue("Hombres", maleList.size());
+            dataset.setValue("Mujeres", femaleList.size());
         }
-        else if (genderRange == 2) {
-            dataset.setValue("Mujeres", femaleCount);
+        else if (genderRange == 0 && ageRange != 0) {
+            dataset.setValue(" <= 18 años ", childList.size());
+            dataset.setValue(" 19 a 35 años ", youthList.size());
+            dataset.setValue(" 36 a 65 años ", adultList.size());
+            dataset.setValue(" 66 >= años ", childList.size());
+        }
+        else if (genderRange == 1 && ageRange == 0) {
+            for (int i = 0; i < femaleList.size(); i++) {
+                if (childList.contains(femaleList.get(i))) 
+                    childList.remove(i);
+                if (youthList.contains(femaleList.get(i))) 
+                    youthList.remove(i);
+                if (adultList.contains(femaleList.get(i))) 
+                    adultList.remove(i);
+                if (elderList.contains(femaleList.get(i))) 
+                    elderList.remove(i);
+            }
+            dataset.setValue(" <= 18 años ", childList.size());
+            dataset.setValue(" 19 a 35 años ", youthList.size());
+            dataset.setValue(" 36 a 65 años ", adultList.size());
+            dataset.setValue(" 66 >= años ", childList.size());
+        }
+        else if (genderRange == 2 && ageRange == 0) {
+            for (int i = 0; i < maleList.size(); i++) {
+                if (childList.contains(maleList.get(i))) 
+                    childList.remove(i);
+                if (youthList.contains(maleList.get(i))) 
+                    youthList.remove(i);
+                if (adultList.contains(maleList.get(i))) 
+                    adultList.remove(i);
+                if (elderList.contains(maleList.get(i))) 
+                    elderList.remove(i);
+            }
+            dataset.setValue(" <= 18 años ", childList.size());
+            dataset.setValue(" 19 a 35 años ", youthList.size());
+            dataset.setValue(" 36 a 65 años ", adultList.size());
+            dataset.setValue(" 66 >= años ", childList.size());
+        }
+        else if (genderRange == 1 && ageRange == 1) {
+            for (int i = 0; i < femaleList.size(); i++) {
+                if (childList.contains(femaleList.get(i))) 
+                    childList.remove(i);
+            }
+            dataset.setValue(" <= 18 años ", childList.size());
+        }
+        else if (genderRange == 1 && ageRange == 2) {
+            for (int i = 0; i < femaleList.size(); i++) {
+                if (youthList.contains(femaleList.get(i))) 
+                    youthList.remove(i);
+            }
+            dataset.setValue(" 19 a 35 años ", youthList.size());
+        }
+        else if (genderRange == 1 && ageRange == 3) {
+            for (int i = 0; i < femaleList.size(); i++) {
+                if (adultList.contains(femaleList.get(i))) 
+                    adultList.remove(i);
+            }
+            dataset.setValue(" 36 a 65 años ", adultList.size());
+        }
+        else if (genderRange == 1 && ageRange == 4) {
+            for (int i = 0; i < femaleList.size(); i++) {
+                if (elderList.contains(femaleList.get(i))) 
+                    elderList.remove(i);
+            }
+            dataset.setValue(" 66 >= años ", elderList.size());
+        }
+        else if (genderRange == 2 && ageRange == 1) {
+            for (int i = 0; i < maleList.size(); i++) {
+                if (childList.contains(maleList.get(i))) 
+                    childList.remove(i);
+            }
+            dataset.setValue(" <= 18 años ", childList.size());
+        }
+        else if (genderRange == 2 && ageRange == 2) {
+            for (int i = 0; i < maleList.size(); i++) {
+                if (youthList.contains(maleList.get(i))) 
+                    youthList.remove(i);
+            }
+            dataset.setValue(" 19 a 35 años ", youthList.size());
+        }
+        else if (genderRange == 2 && ageRange == 3) {
+            for (int i = 0; i < maleList.size(); i++) {
+                if (adultList.contains(femaleList.get(i))) 
+                    adultList.remove(i);
+            }
+            dataset.setValue(" 35 a 55 años ", adultList.size());
+        }
+        else if (genderRange == 2 && ageRange == 4) {
+            for (int i = 0; i < maleList.size(); i++) {
+                if (elderList.contains(maleList.get(i))) 
+                    elderList.remove(i);
+            }
+            dataset.setValue(" 66 >= años ", elderList.size());
         }
         
         JFreeChart piechart = ChartFactory.createPieChart(
@@ -97,10 +201,11 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         BackButton = new javax.swing.JButton();
         GraphicUsersPanel = new javax.swing.JPanel();
         GenderFilter = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         AgeFilter = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        Age_FilterButton = new javax.swing.JRadioButton();
+        Gender_FilterButton = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -151,74 +256,99 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         GraphicUsersPanel.setLayout(GraphicUsersPanelLayout);
         GraphicUsersPanelLayout.setHorizontalGroup(
             GraphicUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 477, Short.MAX_VALUE)
         );
         GraphicUsersPanelLayout.setVerticalGroup(
             GraphicUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         GenderFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hombre", "Mujer" }));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setText("Filtro por Género");
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setText("Filtro por Edad");
-
-        AgeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18 años o menos", "19 a 35 años", "36 a 64 años", "65 años o más" }));
+        AgeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "18 años o menos", "19 a 35 años", "36 a 65 años", "66 años o más" }));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Gráfico Filtrado");
+        jLabel3.setText("Área de Graficado");
+
+        Age_FilterButton.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        Age_FilterButton.setForeground(new java.awt.Color(255, 255, 255));
+        Age_FilterButton.setText("Filtro por Edad");
+        Age_FilterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Age_FilterButtonActionPerformed(evt);
+            }
+        });
+
+        Gender_FilterButton.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        Gender_FilterButton.setForeground(new java.awt.Color(255, 255, 255));
+        Gender_FilterButton.setText("Filtro por Género");
+        Gender_FilterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Gender_FilterButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Filtros");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(GenderFilter, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Gender_FilterButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
+                    .addComponent(AgeFilter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(BackButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(GraphicButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(GraphicButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(GenderFilter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(AgeFilter, 0, 182, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                .addGap(64, 64, 64))
+                        .addComponent(Age_FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(406, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Gender_FilterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
                         .addComponent(GenderFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(41, 41, 41)
+                        .addComponent(Age_FilterButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(AgeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
+                        .addGap(70, 70, 70)
                         .addComponent(GraphicButton)
-                        .addGap(32, 32, 32)
-                        .addComponent(BackButton))
-                    .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(BackButton)))
                 .addGap(27, 27, 27))
         );
 
@@ -227,24 +357,44 @@ public class UserStatsGraphic extends javax.swing.JPanel {
 
     private void GraphicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GraphicButtonActionPerformed
         int genderRange = GenderFilter.getSelectedIndex();
-        showUserChart(genderRange);
+        int ageRange = AgeFilter.getSelectedIndex();
+        
+        
+        showUserChart(genderRange, ageRange);
     }//GEN-LAST:event_GraphicButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         mainFrame.showPage("AdminPage", this.previous);
     }//GEN-LAST:event_BackButtonActionPerformed
 
+    private void Age_FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Age_FilterButtonActionPerformed
+        // TODO add your handling code here:
+        if(Gender_FilterButton.isSelected())
+        GenderFilter.setVisible(true);
+        else
+        GenderFilter.setVisible(false);
+    }//GEN-LAST:event_Age_FilterButtonActionPerformed
+
+    private void Gender_FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Gender_FilterButtonActionPerformed
+        // TODO add your handling code here:
+        if(Age_FilterButton.isSelected())
+        AgeFilter.setVisible(true);
+        else
+        AgeFilter.setVisible(false);
+    }//GEN-LAST:event_Gender_FilterButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AgeFilter;
+    private javax.swing.JRadioButton Age_FilterButton;
     private javax.swing.JButton BackButton;
     private javax.swing.JComboBox<String> GenderFilter;
+    private javax.swing.JRadioButton Gender_FilterButton;
     private javax.swing.JButton GraphicButton;
     private javax.swing.JPanel GraphicUsersPanel;
     private javax.swing.JPanel PTitle;
     private javax.swing.JLabel Title;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

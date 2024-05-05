@@ -77,6 +77,7 @@ public class AdminPage extends javax.swing.JPanel {
         CountriesButton4 = new javax.swing.JButton();
         CategoriesButton = new javax.swing.JButton();
         UserStatsButton = new javax.swing.JButton();
+        ProductStatsButton = new javax.swing.JButton();
         EditCountries = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -495,6 +496,17 @@ public class AdminPage extends javax.swing.JPanel {
             }
         });
 
+        ProductStatsButton.setBackground(new java.awt.Color(51, 51, 51));
+        ProductStatsButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        ProductStatsButton.setForeground(new java.awt.Color(255, 255, 255));
+        ProductStatsButton.setText("Estadísticas  de Productos");
+        ProductStatsButton.setBorderPainted(false);
+        ProductStatsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductStatsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AdminMenuLayout = new javax.swing.GroupLayout(AdminMenu);
         AdminMenu.setLayout(AdminMenuLayout);
         AdminMenuLayout.setHorizontalGroup(
@@ -503,9 +515,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(AdminMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AdminMenuLayout.createSequentialGroup()
-                        .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AdminMenuLayout.createSequentialGroup()
                         .addComponent(CountriesButton3)
                         .addGap(18, 18, 18)
@@ -513,10 +523,11 @@ public class AdminPage extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(CountriesButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(CategoriesButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                        .addComponent(UserStatsButton)))
-                .addContainerGap())
+                        .addComponent(CategoriesButton))
+                    .addGroup(AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(UserStatsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ProductStatsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         AdminMenuLayout.setVerticalGroup(
             AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,9 +538,12 @@ public class AdminPage extends javax.swing.JPanel {
                     .addComponent(CountriesButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CountriesButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CountriesButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(283, 283, 283)
+                    .addComponent(CategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(UserStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(ProductStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
                 .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -2326,7 +2340,7 @@ public class AdminPage extends javax.swing.JPanel {
                         .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton27)
                             .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addSeriesLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -3672,6 +3686,10 @@ public class AdminPage extends javax.swing.JPanel {
         enterEpisode.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void ProductStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductStatsButtonActionPerformed
+        mainFrame.showPage("StatGraphics", new ProductStatsGraphic(mainFrame, this));
+    }//GEN-LAST:event_ProductStatsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
@@ -3707,6 +3725,7 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JList<String> EditProducts_series;
     private javax.swing.JButton InsertArtist_Button;
     private javax.swing.JTextField NewCountryTxtfield;
+    private javax.swing.JButton ProductStatsButton;
     private javax.swing.JButton RemoveCountryBtn;
     private javax.swing.JButton UpdateActor_Button;
     private javax.swing.JPanel UpdateArtist;

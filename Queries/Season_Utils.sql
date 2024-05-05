@@ -9,6 +9,7 @@ CREATE OR REPLACE PACKAGE Season_Utils IS
     -- Getter
     FUNCTION getSeasonNumber(pId NUMBER) RETURN VARCHAR2;
 END Season_Utils;
+/
 
 CREATE OR REPLACE PACKAGE BODY Season_Utils AS
     -- Insert

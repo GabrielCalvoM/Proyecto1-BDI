@@ -6,6 +6,7 @@ CREATE OR REPLACE PACKAGE Episode_Utils IS
     PROCEDURE deleteEpisode(pId NUMBER);
     PROCEDURE deleteAllEpisodes(pId_season NUMBER);
 END Episode_Utils;
+/
 
 CREATE OR REPLACE PACKAGE BODY Episode_Utils AS
     PROCEDURE insertEpisode(pNumber_episode NUMBER, pTitle VARCHAR2, pId_season NUMBER, pDuration NUMBER)

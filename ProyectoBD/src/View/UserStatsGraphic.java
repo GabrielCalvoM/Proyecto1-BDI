@@ -322,6 +322,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GraphicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GraphicButtonActionPerformed
+        GraphicUsersPanel.removeAll();
         int genderRange = GenderFilter.getSelectedIndex();
         int ageRange = AgeFilter.getSelectedIndex();
         

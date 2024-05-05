@@ -6,6 +6,7 @@ CREATE OR REPLACE PACKAGE Series_Utils IS
     PROCEDURE getAllSeries (seriesCursor OUT SYS_REFCURSOR);
     PROCEDURE getNseries(pNum NUMBER, seriesCursor OUT SYS_REFCURSOR);
 END Series_Utils;
+/
 
 CREATE OR REPLACE PACKAGE BODY Series_Utils AS
     -- Insert

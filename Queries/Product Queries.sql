@@ -4,8 +4,8 @@ CREATE OR REPLACE PACKAGE product_utils IS
                             pPrice NUMBER) RETURN NUMBER;
     PROCEDURE removeProduct(pId NUMBER);
     PROCEDURE getProduct(pId NUMBER, pTitle OUT VARCHAR2, pPremiere OUT NUMBER, 
-    pSynopsis OUT VARCHAR2, pTrailer OUT VARCHAR2, pPrice OUT NUMBER);               
-
+    pSynopsis OUT VARCHAR2, pTrailer OUT VARCHAR2, pPrice OUT NUMBER);     
+    PROCEDURE searchProducts(pSearch IN VARCHAR2, productCursor OUT SYS_REFCURSOR);
 END product_utils;
 
 -- Lógica de Procedimientos
@@ -51,5 +51,15 @@ CREATE OR REPLACE PACKAGE BODY product_utils AS
         FROM Product
         WHERE id_product = pId;
     END getProduct;
+    
+    PROCEDURE searchProducts(pSearch VARCHAR2, productCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN productCursor
+        FOR
+        SELECT id_product
+        FROM Product
+        WHERE title LIKE '%' || pSearch || '%';
+    END SearchProducts;
 
 END product_utils;

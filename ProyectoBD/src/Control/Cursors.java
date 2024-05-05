@@ -323,18 +323,6 @@ public class Cursors {
         return series;
     }
     
-    public static String getProductMainImg(int id) throws SQLException {
-        Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call productPhoto_utils.getProductMainImg(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.setInt(2, id);
-        stmt.execute();
-        String result = stmt.getString(1);
-        con.close();
-        stmt.close();
-        return result;
-    }
-    
     public static ArrayList<Integer> getArtistsInProduct(int idProd) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call productArtist_utils.getArtistsInProduct(?, ?)}");
@@ -851,6 +839,43 @@ public class Cursors {
             int sales = rs.getInt(2);
             Product product = getProduct(id);
             product.setSales(sales);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static ArrayList<String> getProductPhotos(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call productPhoto_utils.getProductPhotos(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<String> photos = new ArrayList<>();
+        while(rs.next()) {
+            String path = rs.getString(1);
+            photos.add(path);
+        }
+        con.close();
+        stmt.close();
+        return photos;
+    }
+    
+    public static ArrayList<Product> searchProducts(String searchTerm) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call product_utils.searchProducts(?,?)}");
+        stmt.setString(1, searchTerm);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
             products.add(product);
         }
         con.close();

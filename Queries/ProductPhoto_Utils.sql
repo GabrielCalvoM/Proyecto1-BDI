@@ -5,6 +5,7 @@ CREATE OR REPLACE PACKAGE ProductPhoto_Utils IS
     PROCEDURE deleteProductPhoto(pIdProduct NUMBER);
     -- Get
     FUNCTION getProductMainImg(pIdProduct NUMBER) RETURN VARCHAR2;
+    PROCEDURE getProductPhotos(pIdProduct NUMBER, photoCursor OUT SYS_REFCURSOR);
 END ProductPhoto_Utils;
 /
 
@@ -57,5 +58,17 @@ CREATE OR REPLACE PACKAGE BODY ProductPhoto_Utils AS
         WHERE pph.id_product = pIdProduct;
         RETURN vPath;
     END getProductMainImg;
+    
+    PROCEDURE getProductPhotos(pIdProduct NUMBER, photoCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN photoCursor
+        FOR
+        SELECT ph.picture
+        FROM productPhoto pph
+        LEFT JOIN photo ph ON pph.id_productphoto = ph.id_photo
+        WHERE pph.id_product = pIdProduct
+        ORDER BY ph.id_photo ASC;
+    END getProductPhotos;
 
 END ProductPhoto_Utils;

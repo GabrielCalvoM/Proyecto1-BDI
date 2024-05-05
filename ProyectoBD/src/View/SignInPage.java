@@ -7,15 +7,46 @@ import java.text.SimpleDateFormat;
 import javax.swing.ComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class SignInPage extends javax.swing.JPanel {
-    MainFrame mainFrame;
-    JPanel prev;
+    private MainFrame mainFrame;
+    private JPanel prev;
+    private final String keyString = "5360725634736478";
 
     public SignInPage(MainFrame mainFrame, JPanel prev) {
         this.prev = prev;
         this.mainFrame = mainFrame;
         initComponents();
+    }
+    
+    private byte[] encrypt(String input) throws Exception {
+        SecretKeySpec key = new SecretKeySpec(keyString.getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        return cipher.doFinal(input.getBytes());
+    }
+
+    private String decrypt(byte[] encrypted) throws Exception {
+        SecretKeySpec key = new SecretKeySpec(keyString.getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decryptedBytes = cipher.doFinal(encrypted);
+        return new String(decryptedBytes);
+    }
+    
+    private boolean isValidPassword(String password) {
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 
     /**
@@ -50,12 +81,12 @@ public class SignInPage extends javax.swing.JPanel {
         register_nameTxt = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         register_userTxt = new javax.swing.JTextField();
-        register_passwordTxt = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         register_genderCombo = new javax.swing.JComboBox<>();
         Register_date = new com.toedter.calendar.JDateChooser();
+        register_passwordTxt = new javax.swing.JTextField();
         RegisterPage2 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -268,9 +299,6 @@ public class SignInPage extends javax.swing.JPanel {
         register_userTxt.setBackground(new java.awt.Color(51, 51, 51));
         register_userTxt.setForeground(new java.awt.Color(255, 255, 255));
 
-        register_passwordTxt.setBackground(new java.awt.Color(51, 51, 51));
-        register_passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
-
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Contraseña");
@@ -282,6 +310,12 @@ public class SignInPage extends javax.swing.JPanel {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Género");
+
+        register_genderCombo.setBackground(new java.awt.Color(51, 51, 51));
+        register_genderCombo.setForeground(new java.awt.Color(255, 255, 255));
+
+        register_passwordTxt.setBackground(new java.awt.Color(51, 51, 51));
+        register_passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout RegisterPage1Layout = new javax.swing.GroupLayout(RegisterPage1);
         RegisterPage1.setLayout(RegisterPage1Layout);
@@ -295,49 +329,46 @@ public class SignInPage extends javax.swing.JPanel {
                         .addComponent(jButton8)
                         .addContainerGap(592, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RegisterPage1Layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
                                 .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(register_userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(35, 35, 35)
-                                .addComponent(register_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(register_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(RegisterPage1Layout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addGap(46, 46, 46)))
-                                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(RegisterPage1Layout.createSequentialGroup()
-                                        .addGap(84, 84, 84)
-                                        .addComponent(jButton6))
-                                    .addComponent(register_genderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Register_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(112, 112, 112)))
-                        .addGap(170, 170, 170))))
+                                        .addComponent(jButton6)
+                                        .addGap(112, 112, 112))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(34, 34, 34)
+                                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(register_userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Register_date, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(register_genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage1Layout.createSequentialGroup()
+                                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel17)
+                                            .addComponent(jLabel16))
+                                        .addGap(34, 34, 34)
+                                        .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(register_lastnameTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(register_nameTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(167, 167, 167))))
         );
         RegisterPage1Layout.setVerticalGroup(
             RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegisterPage1Layout.createSequentialGroup()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(register_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
                 .addGap(20, 20, 20)
                 .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register_lastnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,8 +379,8 @@ public class SignInPage extends javax.swing.JPanel {
                     .addComponent(jLabel19))
                 .addGap(18, 18, 18)
                 .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
+                    .addComponent(jLabel21)
+                    .addComponent(register_passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(RegisterPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel22)
@@ -455,7 +486,7 @@ public class SignInPage extends javax.swing.JPanel {
 
         accTypeCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         accTypeCombo.setForeground(new java.awt.Color(51, 51, 51));
-        accTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Admin", "" }));
+        accTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Admin" }));
 
         javax.swing.GroupLayout RegisterPage2Layout = new javax.swing.GroupLayout(RegisterPage2);
         RegisterPage2.setLayout(RegisterPage2Layout);
@@ -557,24 +588,26 @@ public class SignInPage extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int id = -1;
         int idUser;
+        String username = login_userTxt.getText();
+        String password = login_passwordTxt.getText();
         try {
-            id = Logic.verifyAccountCredentials(login_userTxt.getText(),
-                login_passwordTxt.getText());
+            byte[] encryptedBytes = encrypt(password);
+            password = Base64.getEncoder().encodeToString(encryptedBytes);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al encriptar.");
+            System.out.println(e);
+            return;
+        }
+        try {
+            id = Logic.verifyAccountCredentials(username,
+                password);
         }
         catch (Exception e) {
             mainFrame.showError("Error al leer de la base de datos.");
                          System.out.println(e);
         }
         if (id >= 0) {
-            try {
-                idUser = Cursors.getAccountUserId(id);
-            }
-            catch (Exception e) {
-            System.out.println("B");
-                mainFrame.showError("Error al leer de la base de datos.");
-                             System.out.println(e);
-                return;
-            }
             try {
                 mainFrame.userAccount = Cursors.getAccount(id);
             }
@@ -644,6 +677,14 @@ public class SignInPage extends javax.swing.JPanel {
             mainFrame.showError("Fecha inválida.");
             return;
         }
+        String password = register_passwordTxt.getText();
+        if (!isValidPassword(password)) {
+            mainFrame.showError("La contraseña no es segura: \n"
+                    + "* 8-16 caracteres \n"
+                    + "* Mayúsculas y minúsculas \n"
+                    + "* Mínimo 1 número \n");
+            return;
+        }
         CardLayout card = (CardLayout) SignInPage.getLayout();
         card.show(SignInPage, "RegisterPage2");
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -689,6 +730,19 @@ public class SignInPage extends javax.swing.JPanel {
         String lastName = register_lastnameTxt.getText();
         String username = register_userTxt.getText();
         String password = register_passwordTxt.getText();
+        try {
+            byte[] encryptedBytes = encrypt(password);
+            password = Base64.getEncoder().encodeToString(encryptedBytes);
+            if (password.length() > 100) {
+                mainFrame.showError("Contraseña encriptada muy larga.");
+                return;
+            }
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al encriptar");
+            System.out.println(e);
+            return;
+        }
         int index = register_genderCombo.getSelectedIndex();
         ListModel model = register_genderCombo.getModel();
         Gender gender = (Gender) model.getElementAt(index);
@@ -728,9 +782,9 @@ public class SignInPage extends javax.swing.JPanel {
             Insertions.insertAccount(username, password, idPerson, accType, 0);
             Insertions.createWishlist(idPerson);
             Insertions.createCart(idPerson);
-            System.out.println("Registered");
         }
         catch (Exception e) {
+            mainFrame.showError("Error al registrarse");
             System.out.println(e);
             return;
         }

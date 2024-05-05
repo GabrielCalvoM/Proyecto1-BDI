@@ -1,12 +1,16 @@
 package View;
 
 import Control.Cursors;
+import Model.Product;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 public class BestSellers extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel prev;
+    ArrayList<Product> products;
     
     public BestSellers(MainFrame mainFrame, JPanel prev) {
         this.mainFrame = mainFrame;
@@ -17,7 +21,12 @@ public class BestSellers extends javax.swing.JPanel {
     
     private void loadData(int topN) {
         try{
-            DefaultListModel model = mainFrame.buildListModel(Cursors.getTopOwnedProducts(topN));
+            products = Cursors.getTopOwnedProducts(topN);
+            DefaultListModel model = new DefaultListModel();
+            for (Product p : products) {
+                String element = p.getTitle() + " | " + p.getSales() + " ventas";
+                model.addElement(element);
+            }
             bestSellersList.setModel(model);
         }
         catch (Exception e) {
@@ -81,6 +90,11 @@ public class BestSellers extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,6 +220,25 @@ public class BestSellers extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int index = bestSellersList.getSelectedIndex();
+        if (index < 0) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        Product product = products.get(index);
+        try{
+            int isMovie = Cursors.isMovie(product.getId());
+            if (isMovie == 1)
+                mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+            else
+                mainFrame.showPage("ViewSeries", new ViewSeries(mainFrame, this, product));
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al mostrar producto.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

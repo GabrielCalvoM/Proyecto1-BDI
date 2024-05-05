@@ -27,9 +27,6 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
                 VALUES (s_useraccount.nextval, pUsername, pPassword, pId_User,
                 pId_AccountType, pId_Catalogue);
         COMMIT;
-    
-    
-    
     END insertAccount;
 
     -- Delete

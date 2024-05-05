@@ -113,7 +113,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        ErrorDialogTxt = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ErrorDialogTxt = new javax.swing.JTextArea();
         jScrollPane11 = new javax.swing.JScrollPane();
         MainPanel = new javax.swing.JPanel();
         emptyPanel = new javax.swing.JPanel();
@@ -168,7 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,8 +179,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ErrorDialogTxt.setEditable(false);
+        ErrorDialogTxt.setBackground(new java.awt.Color(51, 51, 51));
+        ErrorDialogTxt.setColumns(20);
+        ErrorDialogTxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ErrorDialogTxt.setForeground(new java.awt.Color(255, 255, 255));
-        ErrorDialogTxt.setText("Algo salió mal. Por favor intente de nuevo.");
+        ErrorDialogTxt.setLineWrap(true);
+        ErrorDialogTxt.setRows(5);
+        ErrorDialogTxt.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(ErrorDialogTxt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,17 +195,17 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ErrorDialogTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ErrorDialogTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout ErrorDialogLayout = new javax.swing.GroupLayout(ErrorDialog.getContentPane());
@@ -283,7 +291,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog ErrorDialog;
-    private javax.swing.JLabel ErrorDialogTxt;
+    private javax.swing.JTextArea ErrorDialogTxt;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel emptyPanel;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -293,6 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables

@@ -975,6 +975,7 @@ public class AdminPage extends javax.swing.JPanel {
         addArtist_bioTxt.setColumns(20);
         addArtist_bioTxt.setLineWrap(true);
         addArtist_bioTxt.setRows(5);
+        addArtist_bioTxt.setWrapStyleWord(true);
         jScrollPane5.setViewportView(addArtist_bioTxt);
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -988,6 +989,7 @@ public class AdminPage extends javax.swing.JPanel {
         addArtist_triviaTxt.setColumns(20);
         addArtist_triviaTxt.setLineWrap(true);
         addArtist_triviaTxt.setRows(5);
+        addArtist_triviaTxt.setWrapStyleWord(true);
         jScrollPane6.setViewportView(addArtist_triviaTxt);
 
         jButton15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1169,7 +1171,9 @@ public class AdminPage extends javax.swing.JPanel {
         editArtist_typeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actor", "Escritor" }));
 
         editArtist_bioTxt.setColumns(20);
+        editArtist_bioTxt.setLineWrap(true);
         editArtist_bioTxt.setRows(5);
+        editArtist_bioTxt.setWrapStyleWord(true);
         jScrollPane7.setViewportView(editArtist_bioTxt);
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1181,7 +1185,9 @@ public class AdminPage extends javax.swing.JPanel {
         jLabel44.setText("Dato de trivia");
 
         editArtist_triviaTxt.setColumns(20);
+        editArtist_triviaTxt.setLineWrap(true);
         editArtist_triviaTxt.setRows(5);
+        editArtist_triviaTxt.setWrapStyleWord(true);
         jScrollPane8.setViewportView(editArtist_triviaTxt);
 
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

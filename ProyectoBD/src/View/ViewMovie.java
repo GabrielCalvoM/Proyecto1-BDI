@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 public class ViewMovie extends javax.swing.JPanel {
     JPanel previousPanel;
@@ -20,6 +21,9 @@ public class ViewMovie extends javax.swing.JPanel {
     Product product;
     boolean isWished;
     boolean isInCart;
+    Artist director;
+    ArrayList<String> photos;
+    int currentPhoto = 0;
     
     public ViewMovie(MainFrame mainFrame, JPanel previousPanel,
             Product product) {
@@ -51,7 +55,10 @@ public class ViewMovie extends javax.swing.JPanel {
     private void loadInfo() {
         ArrayList<Integer> artistIds;
         try {
-            setLabelIcon(movie_img, Cursors.getProductMainImg(product.getId()));
+            photos =  Cursors.getProductPhotos(product.getId());
+            //setLabelIcon(movie_img, Cursors.getProductMainImg(product.getId()));
+            setLabelIcon(movie_img, photos.get(0));
+            currentPhoto = 0;
             artistIds = Cursors.getArtistsInProduct(product.getId());
         }
         catch (Exception e) {
@@ -79,6 +86,7 @@ public class ViewMovie extends javax.swing.JPanel {
                     break;
                 case 2:
                     movie_director.setText(artist.getName());
+                    director = artist;
                     break;
                 default:
                     break;
@@ -215,6 +223,8 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_trailer = new javax.swing.JButton();
         AdmMenuBackBtn2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        movie_viewActor1 = new javax.swing.JButton();
+        movie_viewActor2 = new javax.swing.JButton();
 
         ViewMovie.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -375,6 +385,24 @@ public class ViewMovie extends javax.swing.JPanel {
             }
         });
 
+        movie_viewActor1.setBackground(new java.awt.Color(51, 51, 51));
+        movie_viewActor1.setForeground(new java.awt.Color(255, 255, 255));
+        movie_viewActor1.setText("<");
+        movie_viewActor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movie_viewActor1ActionPerformed(evt);
+            }
+        });
+
+        movie_viewActor2.setBackground(new java.awt.Color(51, 51, 51));
+        movie_viewActor2.setForeground(new java.awt.Color(255, 255, 255));
+        movie_viewActor2.setText(">");
+        movie_viewActor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movie_viewActor2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ViewMovieLayout = new javax.swing.GroupLayout(ViewMovie);
         ViewMovie.setLayout(ViewMovieLayout);
         ViewMovieLayout.setHorizontalGroup(
@@ -392,12 +420,16 @@ public class ViewMovie extends javax.swing.JPanel {
                                         .addGap(6, 6, 6)
                                         .addComponent(movie_img, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(ViewMovieLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(movie_buy)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(movie_favorites))
+                                    .addGroup(ViewMovieLayout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(ViewMovieLayout.createSequentialGroup()
-                                                .addGap(16, 16, 16)
-                                                .addComponent(movie_favorites)))))
+                                                .addComponent(movie_viewActor1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(movie_viewActor2))
+                                            .addComponent(movie_buy))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ratingTxt)
@@ -446,48 +478,56 @@ public class ViewMovie extends javax.swing.JPanel {
                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewMovieLayout.createSequentialGroup()
                         .addComponent(movie_img, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(movie_buy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(movie_favorites)
-                        .addGap(54, 54, 54)
+                        .addGap(130, 130, 130)
                         .addComponent(AdmMenuBackBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(ViewMovieLayout.createSequentialGroup()
-                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(ViewMovieLayout.createSequentialGroup()
-                                .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ratingTxt)
-                                    .addComponent(jLabel75))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ViewMovieLayout.createSequentialGroup()
-                                        .addComponent(jLabel73)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane17))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(movie_category)
-                                    .addComponent(movie_viewActor, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(ViewMovieLayout.createSequentialGroup()
-                                .addComponent(jLabel76)
+                                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(ratingTxt)
+                                            .addComponent(jLabel75))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(ViewMovieLayout.createSequentialGroup()
+                                                .addComponent(jLabel73)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jScrollPane17))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(movie_category)
+                                            .addComponent(movie_viewActor, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(ViewMovieLayout.createSequentialGroup()
+                                        .addComponent(jLabel76)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(movie_viewWriter, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(movie_viewWriter, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(movie_director))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(movie_premier, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(movie_duration, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(movie_trailer)
-                            .addComponent(jButton1))
+                                .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(movie_director))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(movie_premier, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(movie_duration, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(movie_trailer)
+                                    .addComponent(jButton1)))
+                            .addGroup(ViewMovieLayout.createSequentialGroup()
+                                .addGap(207, 207, 207)
+                                .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(movie_viewActor1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(movie_viewActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(movie_buy)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(movie_favorites)
+                                .addGap(7, 7, 7)))
                         .addGap(65, 65, 65))))
         );
 
@@ -508,15 +548,32 @@ public class ViewMovie extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void movie_directorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_directorActionPerformed
-        // TODO add your handling code here:
+        if (director == null) {
+            return;
+        }
+        mainFrame.showPage("ViewArtist", new ViewArtist(mainFrame, this, director.getId()));
     }//GEN-LAST:event_movie_directorActionPerformed
 
     private void movie_viewActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_viewActorActionPerformed
-        // TODO add your handling code here:
+        int index = movie_actors.getSelectedIndex();
+        if (index == -1) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        ListModel model = movie_actors.getModel();
+        Artist artist = (Artist) model.getElementAt(index);
+        mainFrame.showPage("ViewArtist", new ViewArtist(mainFrame, this, artist.getId()));
     }//GEN-LAST:event_movie_viewActorActionPerformed
 
     private void movie_viewWriterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_viewWriterActionPerformed
-        // TODO add your handling code here:
+        int index = movie_writers.getSelectedIndex();
+        if (index == -1) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        ListModel model = movie_writers.getModel();
+        Artist artist = (Artist) model.getElementAt(index);
+        mainFrame.showPage("ViewArtist", new ViewArtist(mainFrame, this, artist.getId()));
     }//GEN-LAST:event_movie_viewWriterActionPerformed
 
     private void movie_buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_buyActionPerformed
@@ -592,6 +649,20 @@ public class ViewMovie extends javax.swing.JPanel {
         mainFrame.showPage("ReviewsPage", new ViewReviewsProduct(mainFrame, product, this));
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void movie_viewActor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_viewActor1ActionPerformed
+        if (currentPhoto > 0) {
+            currentPhoto--;
+            setLabelIcon(movie_img, photos.get(currentPhoto));
+        }
+    }//GEN-LAST:event_movie_viewActor1ActionPerformed
+
+    private void movie_viewActor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_viewActor2ActionPerformed
+        if (currentPhoto < photos.size()-1) {
+            currentPhoto++;
+            setLabelIcon(movie_img, photos.get(currentPhoto));
+        }
+    }//GEN-LAST:event_movie_viewActor2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdmMenuBackBtn2;
@@ -618,6 +689,8 @@ public class ViewMovie extends javax.swing.JPanel {
     private javax.swing.JLabel movie_title;
     private javax.swing.JButton movie_trailer;
     private javax.swing.JButton movie_viewActor;
+    private javax.swing.JButton movie_viewActor1;
+    private javax.swing.JButton movie_viewActor2;
     private javax.swing.JButton movie_viewWriter;
     private javax.swing.JList<String> movie_writers;
     private javax.swing.JLabel ratingTxt;

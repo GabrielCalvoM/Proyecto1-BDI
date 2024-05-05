@@ -4,6 +4,7 @@ import Model.*;
 import Control.*;
 import View.MainFrame;
 import java.awt.CardLayout;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -45,11 +46,14 @@ public class ViewProducts extends javax.swing.JPanel {
         seriesModel.setColumnIdentifiers(columns);
         
         try {
+            DecimalFormat decimalFormat = new DecimalFormat("#.#");
             for (Movie movie : movies) {
                 Product product = Cursors.getProduct(movie.getIdProduct());
                 Object[] row = new Object[3];
+                float rating = Cursors.getAverageRating(product.getId());
+                String ratingStr = rating > -1 ? decimalFormat.format(rating) : "-";
                 row[0] = product;
-                row[1] = "4.6";
+                row[1] = ratingStr;
                 row[2] = product.getPremier();
                 movieModel.addRow(row);
             }
@@ -57,8 +61,10 @@ public class ViewProducts extends javax.swing.JPanel {
             for (Series serie : series) {
                 Product product = Cursors.getProduct(serie.getIdProduct());
                 Object[] row = new Object[3];
+                float rating = Cursors.getAverageRating(product.getId());
+                String ratingStr = rating > -1 ? decimalFormat.format(rating) : "-";
                 row[0] = product;
-                row[1] = "4.6";
+                row[1] = ratingStr;
                 row[2] = product.getPremier();
                 seriesModel.addRow(row);
             }

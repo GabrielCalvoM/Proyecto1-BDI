@@ -40,35 +40,35 @@ public class MainMenu extends javax.swing.JPanel {
         try {
             if (menuMovies.size() < 1) return;
             movie1_name.setText(menuMovies.get(0).getName());
-            setLabelIcon(movie1_img, Cursors.getProductMainImg(menuMovies.get(0).getIdProduct()));
+            setLabelIcon(movie1_img, Cursors.getProductPhotos(menuMovies.get(0).getIdProduct()).get(0));
             if (menuMovies.size() < 2) return;
             movie2_name.setText(menuMovies.get(1).getName());
-            setLabelIcon(movie2_img, Cursors.getProductMainImg(menuMovies.get(1).getIdProduct()));
+            setLabelIcon(movie2_img, Cursors.getProductPhotos(menuMovies.get(1).getIdProduct()).get(0));
             if (menuMovies.size() < 3) return;
             movie3_name.setText(menuMovies.get(2).getName());
-            setLabelIcon(movie3_img, Cursors.getProductMainImg(menuMovies.get(2).getIdProduct()));
+            setLabelIcon(movie3_img, Cursors.getProductPhotos(menuMovies.get(2).getIdProduct()).get(0));
             if (menuMovies.size() < 4) return;
             movie4_name.setText(menuMovies.get(3).getName());
-            setLabelIcon(movie4_img, Cursors.getProductMainImg(menuMovies.get(3).getIdProduct()));
+            setLabelIcon(movie4_img, Cursors.getProductPhotos(menuMovies.get(3).getIdProduct()).get(0));
             if (menuMovies.size() < 5) return;
             movie5_name.setText(menuMovies.get(4).getName());
-            setLabelIcon(movie5_img, Cursors.getProductMainImg(menuMovies.get(4).getIdProduct()));
+            setLabelIcon(movie5_img, Cursors.getProductPhotos(menuMovies.get(4).getIdProduct()).get(0));
             
             if (menuSeries.size() < 1) return;
             series1_name.setText(menuSeries.get(0).getName());
-            setLabelIcon(series1_img, Cursors.getProductMainImg(menuSeries.get(0).getIdProduct()));
+            setLabelIcon(series1_img, Cursors.getProductPhotos(menuSeries.get(0).getIdProduct()).get(0));
             if (menuSeries.size() < 2) return;
             series2_name.setText(menuSeries.get(1).getName());
-            setLabelIcon(series2_img, Cursors.getProductMainImg(menuSeries.get(1).getIdProduct()));
+            setLabelIcon(series2_img, Cursors.getProductPhotos(menuSeries.get(1).getIdProduct()).get(0));
             if (menuSeries.size() < 3) return;
             series3_name.setText(menuSeries.get(2).getName());
-            setLabelIcon(series3_img, Cursors.getProductMainImg(menuSeries.get(2).getIdProduct()));
+            setLabelIcon(series3_img, Cursors.getProductPhotos(menuSeries.get(2).getIdProduct()).get(0));
             if (menuSeries.size() < 4) return;
             series4_name.setText(menuSeries.get(3).getName());
-            setLabelIcon(series4_img, Cursors.getProductMainImg(menuSeries.get(3).getIdProduct()));
+            setLabelIcon(series4_img, Cursors.getProductPhotos(menuSeries.get(3).getIdProduct()).get(0));
             if (menuSeries.size() < 5) return;
             series5_name.setText(menuSeries.get(4).getName());
-            setLabelIcon(series5_img, Cursors.getProductMainImg(menuSeries.get(4).getIdProduct()));
+            setLabelIcon(series5_img, Cursors.getProductPhotos(menuSeries.get(4).getIdProduct()).get(0));
         }
         catch (Exception e) {
             mainFrame.showError("Error al desplegar productos.");
@@ -108,8 +108,9 @@ public class MainMenu extends javax.swing.JPanel {
         MainMenu = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         MainMenuLbl = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchTxt = new javax.swing.JTextField();
         signInButton = new javax.swing.JButton();
+        signInButton1 = new javax.swing.JButton();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -164,10 +165,10 @@ public class MainMenu extends javax.swing.JPanel {
         MainMenuLbl.setForeground(new java.awt.Color(255, 255, 255));
         MainMenuLbl.setText("Belphegor");
 
-        jTextField1.setToolTipText("Buscar");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchTxt.setToolTipText("Buscar");
+        searchTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchTxtActionPerformed(evt);
             }
         });
 
@@ -180,6 +181,16 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
+        signInButton1.setBackground(new java.awt.Color(51, 51, 51));
+        signInButton1.setForeground(new java.awt.Color(255, 255, 255));
+        signInButton1.setText(">");
+        signInButton1.setToolTipText("Buscar");
+        signInButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -188,10 +199,12 @@ public class MainMenu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(MainMenuLbl)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(signInButton1)
                 .addGap(18, 18, 18)
                 .addComponent(signInButton)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,8 +212,9 @@ public class MainMenu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MainMenuLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signInButton))
+                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signInButton)
+                    .addComponent(signInButton1))
                 .addContainerGap())
         );
 
@@ -803,9 +817,9 @@ public class MainMenu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchTxtActionPerformed
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         if (mainFrame.userAccount == null) {
@@ -928,6 +942,10 @@ public class MainMenu extends javax.swing.JPanel {
          mainFrame.showPage("ArtistMenu", new ArtistMenu(mainFrame));
     }//GEN-LAST:event_ViewArtistBtnActionPerformed
 
+    private void signInButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButton1ActionPerformed
+        mainFrame.showPage("SearchPage", new SearchProducts(mainFrame, this, searchTxt.getText()));
+    }//GEN-LAST:event_signInButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainMenu;
@@ -958,7 +976,6 @@ public class MainMenu extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel movie1_img;
     private javax.swing.JLabel movie1_name;
     private javax.swing.JLabel movie2_img;
@@ -969,6 +986,7 @@ public class MainMenu extends javax.swing.JPanel {
     private javax.swing.JLabel movie4_name;
     private javax.swing.JLabel movie5_img;
     private javax.swing.JLabel movie5_name;
+    private javax.swing.JTextField searchTxt;
     private javax.swing.JLabel series1_img;
     private javax.swing.JLabel series1_name;
     private javax.swing.JLabel series2_img;
@@ -980,5 +998,6 @@ public class MainMenu extends javax.swing.JPanel {
     private javax.swing.JLabel series5_img;
     private javax.swing.JLabel series5_name;
     private javax.swing.JButton signInButton;
+    private javax.swing.JButton signInButton1;
     // End of variables declaration//GEN-END:variables
 }

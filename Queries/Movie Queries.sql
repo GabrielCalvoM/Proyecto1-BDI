@@ -16,16 +16,6 @@ CREATE OR REPLACE PACKAGE BODY movie_utils AS
         INSERT INTO proy1.Movie(id_movie, id_product, duration_movie)
         VALUES (pIdProduct, pIdProduct, pDuration);
         COMMIT;
-        
-    EXCEPTION
-        WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
-                                 permitida');
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-        
     END insertMovie;
     
     PROCEDURE removeMovie(pId NUMBER)

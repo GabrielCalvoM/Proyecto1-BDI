@@ -23,3 +23,6 @@ ALTER TABLE Episode
 ALTER TABLE Episode
     ADD
     CONSTRAINT fk_episode_season FOREIGN KEY (id_season) REFERENCES Season(id_season);
+    
+ALTER TABLE Episode
+    ADD duration_episode  NUMBER(3);

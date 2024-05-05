@@ -9,7 +9,6 @@ CREATE OR REPLACE PACKAGE product_utils IS
     pSynopsis OUT VARCHAR2, pTrailer OUT VARCHAR2, pPrice OUT NUMBER);               
 
 END product_utils;
-/
 
 -- L�gica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY product_utils AS
@@ -34,6 +33,12 @@ CREATE OR REPLACE PACKAGE BODY product_utils AS
     PROCEDURE removeProduct(pId NUMBER)
     IS
     BEGIN
+        DELETE FROM ProductCategory
+        WHERE id_product = pId;
+        DELETE FROM WishedProduct
+        WHERE id_product = pId;
+        DELETE FROM CartProduct
+        WHERE id_Product = pId;
         DELETE FROM Product
         WHERE id_product = pId;
         COMMIT;

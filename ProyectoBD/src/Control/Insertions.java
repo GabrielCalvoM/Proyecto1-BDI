@@ -110,13 +110,16 @@ public class Insertions {
         stmt.close();
     }
     
-    public static void insertSeries(int IdProduct) throws SQLException{
+    public static int insertSeries(int IdProduct) throws SQLException{
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call series_utils.insertSeries(?)}");
-        stmt.setInt(1, IdProduct);
+        CallableStatement stmt = con.prepareCall("{? = call series_utils.insertSeries(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setInt(2, IdProduct);
         stmt.execute();
+        int id = stmt.getInt(1);
         con.close();
         stmt.close();
+        return id;
     }
     
     public static int insertPhoto(String path) throws SQLException {
@@ -246,6 +249,31 @@ public class Insertions {
         CallableStatement stmt = con.prepareCall("{call nationality_utils.insertNationality(?, ?)}");
         stmt.setInt(1, idPerson);
         stmt.setInt(2, idCountry);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static int insertSeason(int number, int idSeries) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call season_utils.insertSeason(?,?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setInt(2, number);
+        stmt.setInt(3, idSeries);
+        stmt.execute();
+        int idSeason = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return idSeason;
+    }
+    
+    public static void insertEpisode(int number, String title, int idSeason, int duration) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call episode_utils.insertEpisode(?,?,?,?)}");
+        stmt.setInt(1, number);
+        stmt.setString(2, title);
+        stmt.setInt(3, idSeason);
+        stmt.setInt(4, duration);
         stmt.execute();
         con.close();
         stmt.close();

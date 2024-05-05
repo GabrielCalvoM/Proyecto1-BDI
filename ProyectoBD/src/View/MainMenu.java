@@ -72,6 +72,7 @@ public class MainMenu extends javax.swing.JPanel {
         }
         catch (Exception e) {
             mainFrame.showError("Error al desplegar productos.");
+            System.out.println(e);
         }
         
         

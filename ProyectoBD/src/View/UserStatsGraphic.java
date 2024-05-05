@@ -44,12 +44,16 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         ArrayList<Person> youthList = new ArrayList<>();
         ArrayList<Person> adultList = new ArrayList<>();
         ArrayList<Person> elderList = new ArrayList<>();
+        ArrayList<Person> childListM = new ArrayList<>();
+        ArrayList<Person> youthListM = new ArrayList<>();
+        ArrayList<Person> adultListM = new ArrayList<>();
+        ArrayList<Person> elderListM = new ArrayList<>();
         
         for (int i = 0; i < users.size(); i++) {
             // Datos de la persona
             Person user = users.get(i);
             int gender = user.getId_gender();
-            System.out.println(user.getId_gender());
+            //System.out.println(user.getId_gender());
             int year = Integer.parseInt(user.getBirthDate().substring(0, 4));
             int age = 2024 - year;
             
@@ -59,113 +63,94 @@ public class UserStatsGraphic extends javax.swing.JPanel {
             else if (age <= 35) youthList.add(user);
             else if (age <= 65) adultList.add(user);
             else if (age >= 66) elderList.add(user);
+            if (age <= 18 && gender == 1) childListM.add(user);
+            else if (age <= 35 && gender == 1) youthListM.add(user);
+            else if (age <= 65 && gender == 1) adultListM.add(user);
+            else if (age >= 66 && gender == 1) elderListM.add(user);
         }
        
         // Asignar datos por filtro
         DefaultPieDataset dataset = new DefaultPieDataset();
         
-        if (genderRange == 0 && ageRange == 0) {
-            dataset.setValue("Total", users.size());
+        // No Filters being Applied
+        if (genderRange == -1 && ageRange == -1) {
+            dataset.setValue("Todos", users.size());
         }
-        else if (genderRange != 0 && ageRange == 0) {
-            dataset.setValue("Hombres", maleList.size());
+        else if (genderRange != -1 && ageRange == -1) {
+            dataset.setValue("Hombes", maleList.size());
             dataset.setValue("Mujeres", femaleList.size());
         }
-        else if (genderRange == 0 && ageRange != 0) {
+        else if (genderRange == -1 && ageRange != -1) {
             dataset.setValue(" <= 18 años ", childList.size());
             dataset.setValue(" 19 a 35 años ", youthList.size());
             dataset.setValue(" 36 a 65 años ", adultList.size());
-            dataset.setValue(" 66 >= años ", childList.size());
-        }
-        else if (genderRange == 1 && ageRange == 0) {
-            for (int i = 0; i < femaleList.size(); i++) {
-                if (childList.contains(femaleList.get(i))) 
-                    childList.remove(i);
-                if (youthList.contains(femaleList.get(i))) 
-                    youthList.remove(i);
-                if (adultList.contains(femaleList.get(i))) 
-                    adultList.remove(i);
-                if (elderList.contains(femaleList.get(i))) 
-                    elderList.remove(i);
-            }
-            dataset.setValue(" <= 18 años ", childList.size());
-            dataset.setValue(" 19 a 35 años ", youthList.size());
-            dataset.setValue(" 36 a 65 años ", adultList.size());
-            dataset.setValue(" 66 >= años ", childList.size());
-        }
-        else if (genderRange == 2 && ageRange == 0) {
-            for (int i = 0; i < maleList.size(); i++) {
-                if (childList.contains(maleList.get(i))) 
-                    childList.remove(i);
-                if (youthList.contains(maleList.get(i))) 
-                    youthList.remove(i);
-                if (adultList.contains(maleList.get(i))) 
-                    adultList.remove(i);
-                if (elderList.contains(maleList.get(i))) 
-                    elderList.remove(i);
-            }
-            dataset.setValue(" <= 18 años ", childList.size());
-            dataset.setValue(" 19 a 35 años ", youthList.size());
-            dataset.setValue(" 36 a 65 años ", adultList.size());
-            dataset.setValue(" 66 >= años ", childList.size());
-        }
-        else if (genderRange == 1 && ageRange == 1) {
-            for (int i = 0; i < femaleList.size(); i++) {
-                if (childList.contains(femaleList.get(i))) 
-                    childList.remove(i);
-            }
-            dataset.setValue(" <= 18 años ", childList.size());
-        }
-        else if (genderRange == 1 && ageRange == 2) {
-            for (int i = 0; i < femaleList.size(); i++) {
-                if (youthList.contains(femaleList.get(i))) 
-                    youthList.remove(i);
-            }
-            dataset.setValue(" 19 a 35 años ", youthList.size());
-        }
-        else if (genderRange == 1 && ageRange == 3) {
-            for (int i = 0; i < femaleList.size(); i++) {
-                if (adultList.contains(femaleList.get(i))) 
-                    adultList.remove(i);
-            }
-            dataset.setValue(" 36 a 65 años ", adultList.size());
-        }
-        else if (genderRange == 1 && ageRange == 4) {
-            for (int i = 0; i < femaleList.size(); i++) {
-                if (elderList.contains(femaleList.get(i))) 
-                    elderList.remove(i);
-            }
-            dataset.setValue(" 66 >= años ", elderList.size());
-        }
-        else if (genderRange == 2 && ageRange == 1) {
-            for (int i = 0; i < maleList.size(); i++) {
-                if (childList.contains(maleList.get(i))) 
-                    childList.remove(i);
-            }
-            dataset.setValue(" <= 18 años ", childList.size());
-        }
-        else if (genderRange == 2 && ageRange == 2) {
-            for (int i = 0; i < maleList.size(); i++) {
-                if (youthList.contains(maleList.get(i))) 
-                    youthList.remove(i);
-            }
-            dataset.setValue(" 19 a 35 años ", youthList.size());
-        }
-        else if (genderRange == 2 && ageRange == 3) {
-            for (int i = 0; i < maleList.size(); i++) {
-                if (adultList.contains(femaleList.get(i))) 
-                    adultList.remove(i);
-            }
-            dataset.setValue(" 35 a 55 años ", adultList.size());
-        }
-        else if (genderRange == 2 && ageRange == 4) {
-            for (int i = 0; i < maleList.size(); i++) {
-                if (elderList.contains(maleList.get(i))) 
-                    elderList.remove(i);
-            }
             dataset.setValue(" 66 >= años ", elderList.size());
         }
         
+        // All Combinations
+        else if (genderRange == 0 && ageRange == 0) {
+            dataset.setValue("Hombres, <= 18 años ", childListM.size());
+            dataset.setValue("Hombres, 19 a 35 años ", youthListM.size());
+            dataset.setValue("Hombres, 36 a 65 años ", adultListM.size());
+            dataset.setValue("Hombres, 66 >= años ", elderListM.size());
+            dataset.setValue("Mujeres, <= 18 años ", childList.size() - childListM.size());
+            dataset.setValue("Mujeres, 19 a 35 años ", youthList.size() - youthListM.size());
+            dataset.setValue("Mujeres, 36 a 65 años ", adultList.size() - adultListM.size());
+            dataset.setValue("Mujeres, 66 >= años ", elderList.size() - elderListM.size());
+        }
+        else if (genderRange == 1 && ageRange == 0) {
+            dataset.setValue("Hombres, <= 18 años ", childListM.size());
+            dataset.setValue("Hombres, 19 a 35 años ", youthListM.size());
+            dataset.setValue("Hombres, 36 a 65 años ", adultListM.size());
+            dataset.setValue("Hombres, 66 >= años ", elderListM.size());
+        }
+        else if (genderRange == 2 && ageRange == 0) {
+            dataset.setValue("Mujeres, <= 18 años ", childList.size() - childListM.size());
+            dataset.setValue("Mujeres, 19 a 35 años ", youthList.size() - youthListM.size());
+            dataset.setValue("Mujeres, 36 a 65 años ", adultList.size() - adultListM.size());
+            dataset.setValue("Mujeres, 66 >= años ", elderList.size() - elderListM.size());
+        }
+        else if (genderRange == 0 && ageRange == 1) {
+            dataset.setValue("Hombres, <= 18 años ", childListM.size());
+            dataset.setValue("Mujeres, <= 18 años ", childList.size() - childListM.size());
+        }
+        else if (genderRange == 0 && ageRange == 2) {
+            dataset.setValue("Hombres, 19 a 35 años ", youthListM.size());
+            dataset.setValue("Mujeres, 19 a 35 años ", youthList.size() - youthListM.size());
+        }
+        else if (genderRange == 0 && ageRange == 3) {
+            dataset.setValue("Hombres, 36 a 65 años ", adultListM.size());
+            dataset.setValue("Mujeres, 36 a 65 años ", adultList.size() - adultListM.size());
+        }
+        else if (genderRange == 0 && ageRange == 4) {
+            dataset.setValue("Hombres, 66 >= años ", elderListM.size());
+            dataset.setValue("Mujeres, 66 >= años ", elderList.size() - elderListM.size());
+        }
+        else if (genderRange == 1 && ageRange == 1) {
+            dataset.setValue("Hombres, <= 18 años ", childListM.size());
+        }
+        else if (genderRange == 2 && ageRange == 1) {
+            dataset.setValue("Mujeres, <= 18 años ", childList.size() - childListM.size());
+        }
+        else if (genderRange == 1 && ageRange == 2) {
+            dataset.setValue("Hombres, 19 a 35 años ", youthListM.size());
+        }
+        else if (genderRange == 2 && ageRange == 2) {
+            dataset.setValue("Mujeres, 19 a 35 años ", youthList.size() - youthListM.size());
+        }
+        else if (genderRange == 1 && ageRange == 3) {
+            dataset.setValue("Hombres, 36 a 65 años ", adultListM.size());
+        }
+        else if (genderRange == 2 && ageRange == 3) {
+            dataset.setValue("Mujeres, 36 a 65 años ", adultList.size() - adultListM.size());
+        }
+        else if (genderRange == 1 && ageRange == 4) {
+            dataset.setValue("Hombres, 66 >= años ", elderListM.size());
+        }
+        else if (genderRange == 2 && ageRange == 4) {
+            dataset.setValue("Mujeres, 66 >= años ", elderList.size() - elderListM.size());
+        }
+            
         JFreeChart piechart = ChartFactory.createPieChart(
             "Usuarios del Sistema",
             dataset,
@@ -176,7 +161,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         
         ChartPanel panel = new ChartPanel(piechart);
         panel.setMouseWheelEnabled(false);
-        panel.setPreferredSize(new Dimension(400, 300));
+        panel.setPreferredSize(new Dimension(450, 400));
         
         GraphicUsersPanel.setLayout(new BorderLayout());
         GraphicUsersPanel.add(panel, BorderLayout.NORTH);
@@ -187,6 +172,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
 
         catch (Exception e) {
             mainFrame.showError("Error al leer de la base de datos.");
+            System.out.println(e.getMessage());
             return;
         }
     }
@@ -202,10 +188,8 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         GraphicUsersPanel = new javax.swing.JPanel();
         GenderFilter = new javax.swing.JComboBox<>();
         AgeFilter = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         Age_FilterButton = new javax.swing.JRadioButton();
         Gender_FilterButton = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -223,11 +207,11 @@ public class UserStatsGraphic extends javax.swing.JPanel {
             .addGroup(PTitleLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
         PTitleLayout.setVerticalGroup(
             PTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+            .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
         GraphicButton.setBackground(new java.awt.Color(51, 51, 51));
@@ -256,20 +240,16 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         GraphicUsersPanel.setLayout(GraphicUsersPanelLayout);
         GraphicUsersPanelLayout.setHorizontalGroup(
             GraphicUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         GraphicUsersPanelLayout.setVerticalGroup(
             GraphicUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         GenderFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hombre", "Mujer" }));
 
         AgeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "18 años o menos", "19 a 35 años", "36 a 65 años", "66 años o más" }));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Área de Graficado");
 
         Age_FilterButton.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         Age_FilterButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -288,10 +268,6 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                 Gender_FilterButtonActionPerformed(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Filtros");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -313,15 +289,10 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                             .addComponent(GraphicButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Age_FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(406, Short.MAX_VALUE))
+                        .addComponent(Age_FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,15 +300,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                 .addComponent(PTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
                         .addComponent(Gender_FilterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
                         .addComponent(GenderFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,8 +311,11 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                         .addGap(70, 70, 70)
                         .addComponent(GraphicButton)
                         .addGap(27, 27, 27)
-                        .addComponent(BackButton)))
-                .addGap(27, 27, 27))
+                        .addComponent(BackButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         GraphicButton.getAccessibleContext().setAccessibleParent(GraphicButton);
@@ -359,6 +325,8 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         int genderRange = GenderFilter.getSelectedIndex();
         int ageRange = AgeFilter.getSelectedIndex();
         
+        if (!Gender_FilterButton.isSelected()) genderRange = -1;
+        if (!Age_FilterButton.isSelected()) ageRange = -1;
         
         showUserChart(genderRange, ageRange);
     }//GEN-LAST:event_GraphicButtonActionPerformed
@@ -368,19 +336,11 @@ public class UserStatsGraphic extends javax.swing.JPanel {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void Age_FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Age_FilterButtonActionPerformed
-        // TODO add your handling code here:
-        if(Gender_FilterButton.isSelected())
-        GenderFilter.setVisible(true);
-        else
-        GenderFilter.setVisible(false);
+        // TODO add your handling code here
     }//GEN-LAST:event_Age_FilterButtonActionPerformed
 
     private void Gender_FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Gender_FilterButtonActionPerformed
-        // TODO add your handling code here:
-        if(Age_FilterButton.isSelected())
-        AgeFilter.setVisible(true);
-        else
-        AgeFilter.setVisible(false);
+        // TODO add your handling code here
     }//GEN-LAST:event_Gender_FilterButtonActionPerformed
 
 
@@ -394,7 +354,5 @@ public class UserStatsGraphic extends javax.swing.JPanel {
     private javax.swing.JPanel GraphicUsersPanel;
     private javax.swing.JPanel PTitle;
     private javax.swing.JLabel Title;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

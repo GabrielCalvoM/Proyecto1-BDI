@@ -78,7 +78,7 @@ public class ProductStatsGraphic extends javax.swing.JPanel {
         );
         
         ChartPanel panel = new ChartPanel(piechart);
-        panel.setMouseWheelEnabled(false);
+        panel.setMouseWheelEnabled(true);
         panel.setPreferredSize(new Dimension(450, 400));
         
         GraphicProductsPanel.setLayout(new BorderLayout());
@@ -222,6 +222,7 @@ public class ProductStatsGraphic extends javax.swing.JPanel {
 
     private void GraphicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GraphicButtonActionPerformed
         GraphicProductsPanel.removeAll();
+        GraphicButton.setVisible(false);
         String category = (String) CategoryFilter.getSelectedItem().toString();
         if (!Category_FilterButton.isSelected()) category = null;
         

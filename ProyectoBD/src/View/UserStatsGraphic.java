@@ -160,7 +160,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         );
         
         ChartPanel panel = new ChartPanel(piechart);
-        panel.setMouseWheelEnabled(false);
+        panel.setMouseWheelEnabled(true);
         panel.setPreferredSize(new Dimension(450, 400));
         
         GraphicUsersPanel.setLayout(new BorderLayout());
@@ -323,6 +323,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
 
     private void GraphicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GraphicButtonActionPerformed
         GraphicUsersPanel.removeAll();
+        GraphicButton.setVisible(false);
         int genderRange = GenderFilter.getSelectedIndex();
         int ageRange = AgeFilter.getSelectedIndex();
         

@@ -6,10 +6,15 @@ import Control.*;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class ManageAccount extends javax.swing.JPanel {
     MainFrame mainFrame;
@@ -49,6 +54,18 @@ public class ManageAccount extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         favoritesList = new javax.swing.JList<>();
         ViewProductBtn = new javax.swing.JButton();
+        Cart = new javax.swing.JPanel();
+        AppBar2 = new javax.swing.JPanel();
+        MainMenuLbl4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        ViewProductBtn1 = new javax.swing.JButton();
+        PayButton = new javax.swing.JButton();
+        total = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        cartTable = new javax.swing.JTable();
+        PayCheckBox = new javax.swing.JCheckBox();
+        PayTextField = new javax.swing.JTextField();
 
         setLayout(new java.awt.CardLayout());
 
@@ -256,15 +273,15 @@ public class ManageAccount extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jButton6))
                     .addGroup(FavoritesLayout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(282, 282, 282)
+                        .addComponent(ViewProductBtn))
                     .addGroup(FavoritesLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(FavoritesLayout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addComponent(ViewProductBtn)))
-                .addContainerGap(214, Short.MAX_VALUE))
+                        .addGap(189, 189, 189)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FavoritesLayout.setVerticalGroup(
             FavoritesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,12 +293,158 @@ public class ManageAccount extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ViewProductBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addContainerGap())
         );
 
         add(Favorites, "Favorites");
+
+        Cart.setBackground(new java.awt.Color(0, 0, 0));
+
+        AppBar2.setBackground(new java.awt.Color(51, 51, 51));
+
+        MainMenuLbl4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        MainMenuLbl4.setForeground(new java.awt.Color(255, 255, 255));
+        MainMenuLbl4.setText("Belphegor");
+
+        javax.swing.GroupLayout AppBar2Layout = new javax.swing.GroupLayout(AppBar2);
+        AppBar2.setLayout(AppBar2Layout);
+        AppBar2Layout.setHorizontalGroup(
+            AppBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AppBar2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AppBar2Layout.setVerticalGroup(
+            AppBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppBar2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl4, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Carrito:");
+
+        jButton7.setBackground(new java.awt.Color(51, 51, 51));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Atrás");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        ViewProductBtn1.setText("Ver");
+        ViewProductBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProductBtn1ActionPerformed(evt);
+            }
+        });
+
+        PayButton.setBackground(new java.awt.Color(51, 51, 51));
+        PayButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        PayButton.setForeground(new java.awt.Color(255, 255, 255));
+        PayButton.setText("Pagar");
+        PayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayButtonActionPerformed(evt);
+            }
+        });
+
+        total.setForeground(new java.awt.Color(255, 255, 255));
+        total.setText("Total: $44.87");
+
+        cartTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Producto", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(cartTable);
+
+        PayCheckBox.setText("Pago por Tarjeta");
+        PayCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayCheckBoxActionPerformed(evt);
+            }
+        });
+
+        PayTextField.setText("Ingrese su número de tarjeta.");
+        PayTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
+        Cart.setLayout(CartLayout);
+        CartLayout.setHorizontalGroup(
+            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(AppBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(CartLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addGap(264, 264, 264))
+                    .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ViewProductBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PayTextField)
+                            .addComponent(PayCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 124, Short.MAX_VALUE))
+                    .addComponent(PayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        CartLayout.setVerticalGroup(
+            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CartLayout.createSequentialGroup()
+                .addComponent(AppBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addComponent(PayCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton7))
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(total)
+                            .addComponent(ViewProductBtn1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        add(Cart, "Cart");
     }// </editor-fold>//GEN-END:initComponents
 
     private void favs_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favs_buttonActionPerformed
@@ -307,7 +470,34 @@ public class ManageAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_viewed_buttonActionPerformed
 
     private void cart_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cart_buttonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel cartModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        String[] columns = {"Producto", "Precio"};
+        cartModel.setColumnIdentifiers(columns);
+        float totalPrice = 0;
+        try {
+            int idCart = Cursors.getCartId(mainFrame.userAccount.getId_user());
+            ArrayList<Product> products = Cursors.getProductsInCart(idCart);
+            for (Product p : products) {
+                Object[] row = new Object[2];
+                row[0] = p;
+                row[1] = "$" + Float.toString(p.getPrice());
+                cartModel.addRow(row);
+                totalPrice += p.getPrice();
+            }
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al obtener carrito.");
+            return;
+        }
+        total.setText("Total: $" + Float.toString(totalPrice));
+        cartTable.setModel(cartModel);
+        CardLayout card = (CardLayout) this.getLayout();
+        card.show(this, "Cart");
     }//GEN-LAST:event_cart_buttonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -339,15 +529,84 @@ public class ManageAccount extends javax.swing.JPanel {
         mainFrame.showPage("AdminPage", new AdminPage(mainFrame, this));
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        CardLayout card = (CardLayout) this.getLayout();
+        card.show(this, "Menu");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void ViewProductBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductBtn1ActionPerformed
+        int index = cartTable.getSelectedRow();
+        if (index < 0) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        TableModel model = cartTable.getModel();
+        Product product = (Product) model.getValueAt(index, 0);
+        mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+    }//GEN-LAST:event_ViewProductBtn1ActionPerformed
+
+    private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
+        if (!PayCheckBox.isSelected() || PayTextField.getText().length() < 1) {
+            mainFrame.showError("Debe marcar la opción e ingresar su tarjeta");
+            return;
+        }
+        try {
+            int number = Integer.parseInt(PayTextField.getText());
+        }
+        catch(Exception e) {
+            mainFrame.showError("Ingrese un número de tarjeta válido.");
+            return;
+        }
+        try {
+            
+            int idUser = mainFrame.userAccount.getId_user();
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String purchaseDate = formatter.format(currentDate);
+            
+            TableModel model = cartTable.getModel();
+            
+            for (int i = 0; i < cartTable.getModel().getRowCount(); i++) {
+                Product product = (Product) model.getValueAt(i, 0);
+                int idProduct = product.getId();
+                Insertions.InsertOwnedProduct(idProduct, idUser, purchaseDate);
+                Deletions.deleteFromCart(idUser, idProduct);
+            }
+            
+            cartTable.removeAll();
+        }
+        catch(Exception e) {
+            mainFrame.showError("Error al escribir en la base de datos.");
+            System.out.println(e.getMessage());
+            return;
+        }
+    }//GEN-LAST:event_PayButtonActionPerformed
+
+    private void PayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PayTextFieldActionPerformed
+
+    private void PayCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PayCheckBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AppBar;
     private javax.swing.JPanel AppBar1;
+    private javax.swing.JPanel AppBar2;
+    private javax.swing.JPanel Cart;
     private javax.swing.JPanel Favorites;
     private javax.swing.JLabel MainMenuLbl2;
     private javax.swing.JLabel MainMenuLbl3;
+    private javax.swing.JLabel MainMenuLbl4;
     private javax.swing.JPanel Menu;
+    private javax.swing.JButton PayButton;
+    private javax.swing.JCheckBox PayCheckBox;
+    private javax.swing.JTextField PayTextField;
     private javax.swing.JButton ViewProductBtn;
+    private javax.swing.JButton ViewProductBtn1;
+    private javax.swing.JTable cartTable;
     private javax.swing.JButton cart_button;
     private javax.swing.JList<String> favoritesList;
     private javax.swing.JButton favs_button;
@@ -355,9 +614,13 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton owned_button;
+    private javax.swing.JLabel total;
     private javax.swing.JButton viewed_button;
     // End of variables declaration//GEN-END:variables
 }

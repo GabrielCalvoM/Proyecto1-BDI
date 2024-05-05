@@ -169,11 +169,41 @@ public class Insertions {
         stmt.close();
     }
     
+    public static void createCart(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call shoppingCart_utils.insertShoppingCart(?)}");
+        stmt.setInt(1, idUser);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
     public static void insertWishedProduct(int idProduct, int idWishlist) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.insertWishedProduct(?,?)}");
         stmt.setInt(1, idProduct);
         stmt.setInt(2, idWishlist);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertCartProduct(int idProduct, int idCart) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call cartProduct_utils.insertCartProduct(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idCart);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+       
+    public static void InsertOwnedProduct(int idProduct, int idUser, String purchaseDate) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.insertOwnedProduct(?,?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idUser);
+        stmt.setString(3, purchaseDate);
         stmt.execute();
         con.close();
         stmt.close();
@@ -196,6 +226,26 @@ public class Insertions {
         CallableStatement stmt = con.prepareCall("{call productCategory_utils.insertProductCategory(?,?)}");
         stmt.setInt(1, idProduct);
         stmt.setInt(2, idCategory);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertArtistPhoto(int idPhoto, int idArtist) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ArtistPhoto_utils.insertArtistPhoto(?,?)}");
+        stmt.setInt(1, idPhoto);
+        stmt.setInt(2, idArtist);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void insertNationality(int idPerson, int idCountry) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call nationality_utils.insertNationality(?, ?)}");
+        stmt.setInt(1, idPerson);
+        stmt.setInt(2, idCountry);
         stmt.execute();
         con.close();
         stmt.close();

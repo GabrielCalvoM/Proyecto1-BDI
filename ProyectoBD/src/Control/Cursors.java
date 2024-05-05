@@ -103,7 +103,7 @@ public class Cursors {
     }
     
     public static ArrayList<ArtistRelative> getArtistRelatives(int id_artist) throws SQLException {
-       Connection con = sysConnection.getConnection();
+        Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call ArtistRelative_Utils.getArtistRelatives(?, ?)}");
         stmt.setInt(1, id_artist);
         stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
@@ -393,6 +393,18 @@ public class Cursors {
         return result;
     }
     
+        public static int getCartId(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call shoppingCart_utils.getCartId(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.setInt(2, idUser);
+        stmt.execute();
+        int result = stmt.getInt(1);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
     public static int getAccountUserId(int idAccount) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{? = call account_utils.getUserId(?)}");
@@ -410,6 +422,25 @@ public class Cursors {
         CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.getProductsInWishlist(?,?)}");
         stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
         stmt.setInt(1, idWishlist);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static ArrayList<Product> getProductsInCart(int idCart) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call cartProduct_utils.getProductsInCart(?,?)}");
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(1, idCart);
         stmt.execute();
         
         ResultSet rs = (ResultSet) stmt.getObject(2);
@@ -497,5 +528,126 @@ public class Cursors {
         con.close();
         stmt.close();
         return category;
+    }
+    
+    public static ArrayList<String> getArtistPhotos(int id) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call artistPhoto_utils.getArtistPhoto(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(2, id);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        ArrayList<String> photos = new ArrayList<>();
+        
+        while(rs.next()) {
+            String photo = rs.getString(1);
+            photos.add(photo);
+        }
+        
+        con.close();
+        stmt.close();
+        return photos;
+    }
+    
+    public static ArrayList<String> getCouple(int idArtist) throws SQLException {
+        ArrayList<String> couple = new ArrayList();
+        
+        for (ArtistRelative relative : getArtistRelatives(idArtist)) {
+            if (relative.getId_relationType() == 1) {
+                couple.add(relative.getName_relative());
+            }
+        }
+        
+        return couple;
+    }
+    
+    public static ArrayList<String> getParents(int idArtist) throws SQLException {
+        ArrayList<String> parents = new ArrayList();
+        
+        for (ArtistRelative relative : getArtistRelatives(idArtist)) {
+            if (relative.getId_relationType() == 2) {
+                parents.add(relative.getName_relative());
+            }
+        }
+        
+        return parents;
+    }
+    
+    public static ArrayList<String> getSiblings(int idArtist) throws SQLException {
+        ArrayList<String> siblings = new ArrayList();
+        
+        for (ArtistRelative relative : getArtistRelatives(idArtist)) {
+            if (relative.getId_relationType() == 3) {
+                siblings.add(relative.getName_relative());
+            }
+        }
+        
+        return siblings;
+    }
+    
+    public static ArrayList<String> getChildren(int idArtist) throws SQLException {
+        ArrayList<String> children = new ArrayList();
+        
+        for (ArtistRelative relative : getArtistRelatives(idArtist)) {
+            if (relative.getId_relationType() == 4) {
+                children.add(relative.getName_relative());
+            }
+        }
+        
+        return children;
+    }
+    
+    public static ArrayList<Integer> getArtistProducts(int idArtist) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{?=call productArtist_utils.getAllProducts(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(2, idArtist);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        ArrayList<Integer> products = new ArrayList<>();
+        while(rs.next()) {
+            int product = rs.getInt(1);
+            products.add(product);
+        }
+        
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static String getCountry(int idCountry) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{? = call country_utils.getCountryName(?)}");
+        stmt.setInt(2, idCountry);
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.execute();
+        String name = stmt.getString(1);
+        con.close();
+        stmt.close();
+        return name;
+    }
+    
+    public static ArrayList<Country> getNationalities(int idPerson) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{?=call nationality_utils.getAllNationalities(?)}");
+        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.setInt(2, idPerson);
+        stmt.execute();
+        ResultSet rs = (ResultSet) stmt.getObject(1);
+        
+        
+        ArrayList<Country> nationalities = new ArrayList<>();
+        
+        while(rs.next()) {
+            int idCountry = rs.getInt(1);
+            String name = getCountry(idCountry);
+            nationalities.add(new Country(idCountry, name));
+        }
+        
+        con.close();
+        stmt.close();
+        return nationalities;
     }
 }

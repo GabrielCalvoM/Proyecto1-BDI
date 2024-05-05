@@ -79,10 +79,30 @@ public class Deletions {
         stmt.close();
     }
     
+    public static void deleteFromCart(int idCart, int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call cartProduct_utils.deleteCartProduct(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.setInt(2, idCart);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
     public static void deleteReview(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
         CallableStatement stmt = con.prepareCall("{call review_utils.deleteReview(?)}");
         stmt.setInt(1, id);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
+    
+    public static void deleteNationality(int idCountry, int idPerson) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call nationality_utils.deleteNationality(?, ?)}");
+        stmt.setInt(1, idCountry);
+        stmt.setInt(2, idPerson);
         stmt.execute();
         con.close();
         stmt.close();

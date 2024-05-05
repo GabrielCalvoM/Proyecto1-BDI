@@ -8,6 +8,7 @@ public class Artist {
     private String name;
     private String artistType;
     private String birthDate;
+    private int height;
 
     public Artist(int id, int id_artistType, String biography_artist, String trivia_data) {
         this.id = id;
@@ -25,6 +26,7 @@ public class Artist {
             this.birthDate = birth;
             this.biography_artist = bio;
             this.trivia_data = trivia;
+            this.height = height;
     }
     
     public Artist(int id, String name) {
@@ -54,6 +56,14 @@ public class Artist {
 
     public String getArtistType() {
         return artistType;
+    }
+    
+    public String getBirthDate() {
+        return this.birthDate;
+    }
+    
+    public int getHeight() {
+        return this.height;
     }
     
    @Override

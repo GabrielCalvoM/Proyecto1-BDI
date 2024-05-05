@@ -27,15 +27,7 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
             VALUES (s_ownedProduct.NEXTVAL, pProduct, pUser,
                     TO_DATE(pPurchase, 'DD-MM-YYYY'));
         COMMIT;
-    
-    EXCEPTION
-        WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE('Uno de los parámetros excede la longitud
-                                 permitida');
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
+
         
     END insertOwnedProduct;
     
@@ -47,17 +39,6 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         DELETE FROM ownedProduct
         WHERE id_ownedProduct = pId;
         COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
-            ROLLBACK;
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END deleteOwnedProduct;
 
@@ -70,15 +51,7 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         SET id_product = pProduct
         WHERE id_ownedProduct = pId;
         COMMIT;
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id '|| pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-    
+
     END setProduct;
     
     PROCEDURE setUser(pId IN NUMBER, pUser IN NUMBER)
@@ -90,14 +63,6 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         WHERE id_ownedProduct = pId;
         COMMIT;
         
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id '|| pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
-    
     END setUser;
 
 -- Getters
@@ -113,11 +78,6 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         WHERE id_ownedProduct = pId;
         RETURN (vProduct);
         
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END getProduct;
     
@@ -132,12 +92,6 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         FROM ownedProduct
         WHERE id_ownedProduct = pId;
         RETURN (vUser);
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END getUser;
     
@@ -152,13 +106,7 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         FROM ownedProduct
         WHERE id_ownedProduct = pId;
         RETURN (vPurchase);
-        
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-    
+
     END getPurchase;
 
 END ownedProduct_utils;

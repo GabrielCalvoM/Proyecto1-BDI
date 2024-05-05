@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE artist_Utils IS
+    CREATE OR REPLACE PACKAGE artist_Utils IS
     -- Insert
     PROCEDURE insertArtist(pId NUMBER, pId_type NUMBER, pBiography VARCHAR2, pTrivia VARCHAR2);
     -- Delete
@@ -90,7 +90,7 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
     IS
     BEGIN
         SELECT p.first_name, p.last_name, t.name_type, a.id_artisttype, a.biography_artist, a.trivia_data, 
-        p.birth_date, p.height_artist
+        TO_CHAR(p.birth_date, 'DD-MM-YYYY'), p.height_artist
         INTO pFirst_name, pLast_name, pArtistType, pArtistTypeId, pBiography, pTrivia, pDate, pHeight
         FROM Artist a
         JOIN Person p ON a.id_artist = p.id_person

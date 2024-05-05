@@ -3,6 +3,7 @@ CREATE OR REPLACE PACKAGE ownedProduct_utils IS
                                  pPurchase IN VARCHAR2);
     
     PROCEDURE deleteOwnedProduct(pId IN NUMBER);
+    PROCEDURE deleteProduct(pId_product NUMBER);
                                  
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER);
     PROCEDURE setUser(pId IN NUMBER, pUser IN NUMBER);
@@ -45,6 +46,14 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         COMMIT;
             
     END deleteOwnedProduct;
+    
+    PROCEDURE deleteProduct(pId_product NUMBER)
+    IS
+    BEGIN
+        DELETE FROM ownedProduct
+        WHERE id_ownedProduct = pId_product;
+        COMMIT;   
+    END deleteProduct;
 
 -- Setters
     PROCEDURE setProduct(pId IN NUMBER, pProduct IN NUMBER)
@@ -118,7 +127,7 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
     BEGIN
         OPEN productsCursor
         FOR
-        SELECT id_product
+        SELECT id_product, date_bought
         FROM OwnedProduct
         WHERE id_user = pId_User
         ORDER BY date_bought DESC;
@@ -129,7 +138,7 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
     BEGIN
         OPEN productsCursor
         FOR
-        SELECT id_product
+        SELECT id_product, date_bought
         FROM OwnedProduct
         WHERE id_user = pId_User AND
         date_bought >= ADD_MONTHS(SYSDATE, pMonths)

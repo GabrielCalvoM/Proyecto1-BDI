@@ -145,6 +145,19 @@ public class ViewMovie extends javax.swing.JPanel {
                 mainFrame.showError("Error al recuperar favoritos.");
                 System.out.println(e);
             }
+                try {
+                ArrayList<Product> ownedProducts = Cursors.getOwnedProducts(mainFrame.userAccount.getId_user());
+                for (Product p : ownedProducts) {
+                    if (product.getTitle().equals(p.getTitle())) {
+                        movie_buy.setText("Comprado");
+                        movie_buy.setEnabled(false);
+                    }
+                }
+            }
+            catch (Exception e) {
+                mainFrame.showError("Error al recuperar compras.");
+                System.out.println(e);
+            }
         }
     }
     
@@ -200,7 +213,6 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_buy = new javax.swing.JButton();
         movie_favorites = new javax.swing.JButton();
         movie_trailer = new javax.swing.JButton();
-        AdmMenuBackBtn1 = new javax.swing.JButton();
         AdmMenuBackBtn2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -235,7 +247,7 @@ public class ViewMovie extends javax.swing.JPanel {
 
         ratingTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ratingTxt.setForeground(new java.awt.Color(255, 255, 255));
-        ratingTxt.setText("4.8");
+        ratingTxt.setText("-");
 
         movie_synopsis.setEditable(false);
         movie_synopsis.setBackground(new java.awt.Color(51, 51, 51));
@@ -244,7 +256,6 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_synopsis.setForeground(new java.awt.Color(255, 255, 255));
         movie_synopsis.setLineWrap(true);
         movie_synopsis.setRows(5);
-        movie_synopsis.setText("Aqui va la sinopsis\n");
         movie_synopsis.setWrapStyleWord(true);
         jScrollPane16.setViewportView(movie_synopsis);
 
@@ -263,7 +274,7 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_director.setBackground(new java.awt.Color(0, 0, 0));
         movie_director.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         movie_director.setForeground(new java.awt.Color(255, 255, 255));
-        movie_director.setText("Cristopher Nolan");
+        movie_director.setText("-");
         movie_director.setBorder(null);
         movie_director.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,11 +285,6 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_actors.setBackground(new java.awt.Color(51, 51, 51));
         movie_actors.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         movie_actors.setForeground(new java.awt.Color(255, 255, 255));
-        movie_actors.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Leonardo DiCaprio", "Ellen Paige" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane17.setViewportView(movie_actors);
 
         jLabel75.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -288,11 +294,6 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_writers.setBackground(new java.awt.Color(51, 51, 51));
         movie_writers.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         movie_writers.setForeground(new java.awt.Color(255, 255, 255));
-        movie_writers.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Escritor 1", "Escritor 2", "Escritor 3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane18.setViewportView(movie_writers);
 
         jLabel76.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -319,15 +320,15 @@ public class ViewMovie extends javax.swing.JPanel {
 
         movie_premier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         movie_premier.setForeground(new java.awt.Color(255, 255, 255));
-        movie_premier.setText("Estreno: 2011");
+        movie_premier.setText("Estreno: -");
 
         movie_duration.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         movie_duration.setForeground(new java.awt.Color(255, 255, 255));
-        movie_duration.setText("Duración: 134 minutos");
+        movie_duration.setText("Duración: -");
 
         movie_buy.setBackground(new java.awt.Color(51, 51, 51));
         movie_buy.setForeground(new java.awt.Color(255, 255, 255));
-        movie_buy.setText("Comprar: $4.99");
+        movie_buy.setText("Comprar: $---");
         movie_buy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 movie_buyActionPerformed(evt);
@@ -351,16 +352,6 @@ public class ViewMovie extends javax.swing.JPanel {
         movie_trailer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 movie_trailerActionPerformed(evt);
-            }
-        });
-
-        AdmMenuBackBtn1.setBackground(new java.awt.Color(51, 51, 51));
-        AdmMenuBackBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        AdmMenuBackBtn1.setText("Atrás");
-        AdmMenuBackBtn1.setBorderPainted(false);
-        AdmMenuBackBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdmMenuBackBtn1ActionPerformed(evt);
             }
         });
 
@@ -420,7 +411,7 @@ public class ViewMovie extends javax.swing.JPanel {
                                     .addComponent(movie_premier)
                                     .addComponent(movie_duration)
                                     .addComponent(movie_trailer))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                                 .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ViewMovieLayout.createSequentialGroup()
                                         .addGap(20, 20, 20)
@@ -444,11 +435,6 @@ public class ViewMovie extends javax.swing.JPanel {
                     .addGroup(ViewMovieLayout.createSequentialGroup()
                         .addComponent(AdmMenuBackBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ViewMovieLayout.createSequentialGroup()
-                    .addGap(308, 308, 308)
-                    .addComponent(AdmMenuBackBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(302, Short.MAX_VALUE)))
         );
         ViewMovieLayout.setVerticalGroup(
             ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,32 +489,21 @@ public class ViewMovie extends javax.swing.JPanel {
                             .addComponent(movie_trailer)
                             .addComponent(jButton1))
                         .addGap(65, 65, 65))))
-            .addGroup(ViewMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ViewMovieLayout.createSequentialGroup()
-                    .addGap(223, 223, 223)
-                    .addComponent(AdmMenuBackBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(224, 224, 224)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(ViewMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ViewMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(ViewMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ViewMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -609,10 +584,6 @@ public class ViewMovie extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_movie_trailerActionPerformed
 
-    private void AdmMenuBackBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmMenuBackBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AdmMenuBackBtn1ActionPerformed
-
     private void AdmMenuBackBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmMenuBackBtn2ActionPerformed
         mainFrame.showPage("NewPage", previousPanel);
     }//GEN-LAST:event_AdmMenuBackBtn2ActionPerformed
@@ -623,7 +594,6 @@ public class ViewMovie extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AdmMenuBackBtn1;
     private javax.swing.JButton AdmMenuBackBtn2;
     private javax.swing.JLabel MainMenuLbl2;
     private javax.swing.JPanel ViewMovie;

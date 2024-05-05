@@ -3,6 +3,7 @@ create or replace PACKAGE WishedProduct_Utils IS
     PROCEDURE insertWishedProduct(pId_Product NUMBER, pId_Wishlist NUMBER);
     -- Delete
     PROCEDURE deleteWishedProduct(pId_product NUMBER, pId_Wishlist NUMBER);
+    PROCEDURE deleteProduct(pId_product NUMBER);
 
     PROCEDURE getProductsInWishlist(pId_Wishlist NUMBER, productsCursors OUT SYS_REFCURSOR);
 END WishedProduct_Utils;
@@ -34,6 +35,14 @@ create or replace PACKAGE BODY WishedProduct_Utils AS
         id_wishlist = pId_Wishlist;
         COMMIT;    
     END deleteWishedProduct;
+    
+    PROCEDURE deleteProduct(pId_product NUMBER)
+    IS
+    BEGIN
+        DELETE FROM proy1.WishedProduct
+        WHERE id_product = pId_product;
+        COMMIT;    
+    END deleteProduct;
 
     PROCEDURE getProductsInWishlist(pId_Wishlist NUMBER, productsCursors OUT SYS_REFCURSOR)
     IS

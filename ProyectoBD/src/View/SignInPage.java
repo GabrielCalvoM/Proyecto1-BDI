@@ -71,6 +71,8 @@ public class SignInPage extends javax.swing.JPanel {
         register_idTxt = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         register_countryCombo = new javax.swing.JComboBox<>();
+        jLabel32 = new javax.swing.JLabel();
+        accTypeCombo = new javax.swing.JComboBox<>();
 
         SignInPage.setBackground(new java.awt.Color(0, 0, 0));
         SignInPage.setLayout(new java.awt.CardLayout());
@@ -447,6 +449,14 @@ public class SignInPage extends javax.swing.JPanel {
         register_countryCombo.setForeground(new java.awt.Color(51, 51, 51));
         register_countryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
 
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Tipo");
+
+        accTypeCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        accTypeCombo.setForeground(new java.awt.Color(51, 51, 51));
+        accTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Admin", "" }));
+
         javax.swing.GroupLayout RegisterPage2Layout = new javax.swing.GroupLayout(RegisterPage2);
         RegisterPage2.setLayout(RegisterPage2Layout);
         RegisterPage2Layout.setHorizontalGroup(
@@ -459,7 +469,7 @@ public class SignInPage extends javax.swing.JPanel {
                         .addComponent(jButton9)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
+                        .addGap(0, 25, Short.MAX_VALUE)
                         .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
                                 .addComponent(jLabel25)
@@ -467,6 +477,7 @@ public class SignInPage extends javax.swing.JPanel {
                                 .addComponent(register_emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
                                 .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel32)
                                     .addComponent(jLabel29)
                                     .addComponent(jLabel24)
                                     .addComponent(jLabel30)
@@ -476,12 +487,13 @@ public class SignInPage extends javax.swing.JPanel {
                                     .addComponent(register_phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(register_typesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(register_idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(register_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(register_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(accTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(170, 170, 170))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterPage2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(registerButton)
-                .addGap(268, 268, 268))
+                .addGap(270, 270, 270))
         );
         RegisterPage2Layout.setVerticalGroup(
             RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,13 +515,17 @@ public class SignInPage extends javax.swing.JPanel {
                 .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(register_idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(register_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                    .addComponent(register_countryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31))
+                .addGap(21, 21, 21)
+                .addGroup(RegisterPage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(accTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(registerButton)
-                .addGap(39, 39, 39)
+                .addGap(36, 36, 36)
                 .addComponent(jButton9)
                 .addContainerGap())
         );
@@ -645,7 +661,7 @@ public class SignInPage extends javax.swing.JPanel {
             return;
         }
         int phone;
-        int idNumber;
+        long idNumber;
         try {
             phone = Integer.parseInt(register_phoneTxt.getText());
         }
@@ -654,7 +670,7 @@ public class SignInPage extends javax.swing.JPanel {
             return;
         }
         try {
-            idNumber = Integer.parseInt(register_idTxt.getText());
+            idNumber = Long.parseLong(register_idTxt.getText());
         }
         catch (Exception e) {
             mainFrame.showError("Ingrese una identificación válida.");
@@ -681,12 +697,35 @@ public class SignInPage extends javax.swing.JPanel {
         index = register_countryCombo.getSelectedIndex();
         model = register_countryCombo.getModel();
         Country country = (Country)model.getElementAt(index);
+        int accType = accTypeCombo.getSelectedIndex() == 0 ? 2 : 1;
+        
+        if (name.length() > 20) {
+            mainFrame.showError("");
+            return;
+        }
+        if (lastName.length() > 20) {
+            mainFrame.showError("");
+            return;
+        }
+        if (email.length() > 30) {
+            mainFrame.showError("");
+            return;
+        }
+        if (phone > 99999999) {
+            mainFrame.showError("");
+            return;
+        }
+        if (idNumber > 9999999999L) {
+            mainFrame.showError("");
+            return;
+        }
+        
         int idPerson;
         try {
             idPerson = Insertions.insertPerson(name, lastName, birthDate, 0, gender.getId());
             Insertions.insertUser(idPerson, email, phone, country.getId(),
                 idType.getId(), idNumber);
-            Insertions.insertAccount(username, password, idPerson, 2, 0);
+            Insertions.insertAccount(username, password, idPerson, accType, 0);
             Insertions.createWishlist(idPerson);
             Insertions.createCart(idPerson);
             System.out.println("Registered");
@@ -712,6 +751,7 @@ public class SignInPage extends javax.swing.JPanel {
     private javax.swing.JPanel RegisterPage2;
     private com.toedter.calendar.JDateChooser Register_date;
     private javax.swing.JPanel SignInPage;
+    private javax.swing.JComboBox<String> accTypeCombo;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -735,6 +775,7 @@ public class SignInPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel9;

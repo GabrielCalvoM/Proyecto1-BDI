@@ -36,6 +36,10 @@ CREATE OR REPLACE PACKAGE BODY Series_Utils AS
         DELETE FROM Series
         WHERE id_series = pId;
         productArtist_utils.deleteArtistsForProduct(vIdProduct);
+        wishedProduct_utils.deleteProduct(vIdProduct);
+        cartProduct_utils.deleteProduct(vIdProduct);
+        ownedProduct_utils.deleteProduct(vIdProduct);
+        viewedProduct_utils.deleteProduct(vIdProduct);
         product_utils.removeProduct(vIdProduct);
         COMMIT;
     END removeSeries;

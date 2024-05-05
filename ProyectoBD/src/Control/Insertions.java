@@ -30,7 +30,7 @@ public class Insertions {
     }
     
     public static void insertUser(int id, String email, int phone, int idCountry, 
-        int idType, int idNumber) throws SQLException {
+        int idType, long idNumber) throws SQLException {
             Connection con = sysConnection.getConnection();
             CallableStatement stmt = con.prepareCall("{call SysUser_utils.insertSysUser(?,?,?,?,?,?)}");
             stmt.setInt(1, id);
@@ -38,7 +38,7 @@ public class Insertions {
             stmt.setInt(3, phone);
             stmt.setInt(4, idCountry);
             stmt.setInt(5, idType);
-            stmt.setInt(6, idNumber);
+            stmt.setLong(6, idNumber);
             stmt.execute();
             con.close();
             stmt.close();

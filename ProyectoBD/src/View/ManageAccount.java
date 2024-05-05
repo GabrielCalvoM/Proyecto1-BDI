@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ import javax.swing.table.TableModel;
 public class ManageAccount extends javax.swing.JPanel {
     MainFrame mainFrame;
     JPanel prev;
+    ArrayList<Product> ownedProducts;
         
     public ManageAccount(MainFrame mainFrame, JPanel prev) {
         this.mainFrame = mainFrame;
@@ -708,11 +710,22 @@ public class ManageAccount extends javax.swing.JPanel {
     private void owned_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_owned_buttonActionPerformed
         try {
             int idUser = mainFrame.userAccount.getId_user();
-            DefaultListModel model = mainFrame.buildListModel(Cursors.getOwnedProducts(idUser));
+            ownedProducts = Cursors.getOwnedProducts(idUser);
+            DefaultListModel model = new DefaultListModel();
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+            for (Product p : ownedProducts) {
+                String dateStr = p.getDateBought();
+                Date date = inputFormat.parse(dateStr);
+                dateStr = outputFormat.format(date);
+                String element = p.getTitle() + " | " + dateStr;
+                model.addElement(element);
+            }
             ownedList.setModel(model);
         }
         catch (Exception e) {
             mainFrame.showError("Error al obtener compras.");
+            System.out.println(e);
             return;
         }
         CardLayout card = (CardLayout) this.getLayout();
@@ -908,8 +921,7 @@ public class ManageAccount extends javax.swing.JPanel {
             mainFrame.showError("Debe seleccionar un elemento.");
             return;
         }
-        ListModel model = ownedList.getModel();
-        Product product = (Product) model.getElementAt(index);
+        Product product = ownedProducts.get(index);
         try{
             int isMovie = Cursors.isMovie(product.getId());
             if (isMovie == 1)
@@ -925,18 +937,27 @@ public class ManageAccount extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             int idUser = mainFrame.userAccount.getId_user();
-            DefaultListModel model;
-            model = switch (ownedFilterCombo.getSelectedIndex()) {
-                case 0 -> mainFrame.buildListModel(Cursors.getOwnedProducts(idUser));
-                case 1 -> mainFrame.buildListModel(Cursors.getOwnedProductsFilter(idUser, -3));
-                case 2 -> mainFrame.buildListModel(Cursors.getOwnedProductsFilter(idUser, -6));
-                case 3 -> mainFrame.buildListModel(Cursors.getOwnedProductsFilter(idUser, -12));
-                default -> mainFrame.buildListModel(Cursors.getOwnedProducts(idUser));
+            ownedProducts = switch (ownedFilterCombo.getSelectedIndex()) {
+                case 0 -> Cursors.getOwnedProducts(idUser);
+                case 1 -> Cursors.getOwnedProductsFilter(idUser, -3);
+                case 2 -> Cursors.getOwnedProductsFilter(idUser, -6);
+                case 3 -> Cursors.getOwnedProductsFilter(idUser, -12);
+                default -> Cursors.getOwnedProducts(idUser);
             };
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+            DefaultListModel model = new DefaultListModel();
+            for (Product p : ownedProducts) {
+                String dateStr = p.getDateBought();
+                Date date = inputFormat.parse(dateStr);
+                dateStr = outputFormat.format(date);
+                String element = p.getTitle() + " | " + dateStr;
+                model.addElement(element);
+            }
             ownedList.setModel(model);
         }
         catch (Exception e) {
-            
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

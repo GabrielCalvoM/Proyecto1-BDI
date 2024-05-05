@@ -805,7 +805,9 @@ public class Cursors {
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
+            String date = rs.getString(2);
             Product product = getProduct(id);
+            product.setDateBought(date);
             products.add(product);
         }
         con.close();
@@ -825,7 +827,9 @@ public class Cursors {
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
+            String date = rs.getString(2);
             Product product = getProduct(id);
+            product.setDateBought(date);
             products.add(product);
         }
         con.close();

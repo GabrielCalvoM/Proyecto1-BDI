@@ -3,6 +3,7 @@ create or replace PACKAGE ViewedProduct_Utils IS
     PROCEDURE insertViewedProduct(pId_User NUMBER, pId_Product NUMBER);
     -- Delete
     PROCEDURE deleteViewedProduct(pId_User NUMBER, pId_product NUMBER);
+    PROCEDURE deleteProduct(pId_product NUMBER);
 
     PROCEDURE getViewedProducts(pId_User NUMBER, productsCursor OUT SYS_REFCURSOR);
 END ViewedProduct_Utils;
@@ -25,6 +26,14 @@ create or replace PACKAGE BODY ViewedProduct_Utils AS
         id_user = pId_User;
         COMMIT;
     END deleteViewedProduct;
+    
+    PROCEDURE deleteProduct(pId_product NUMBER)
+    IS
+    BEGIN
+        DELETE FROM ViewedProduct
+        WHERE id_product = pId_product;
+        COMMIT;
+    END deleteProduct;
     
     PROCEDURE getViewedProducts(pId_User NUMBER, productsCursor OUT SYS_REFCURSOR)
     IS

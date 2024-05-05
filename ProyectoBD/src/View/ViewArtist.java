@@ -522,30 +522,22 @@ public class ViewArtist extends javax.swing.JPanel {
     // Search the relatives of the artist and show them in lists
         try {
             DefaultListModel<String> model = mainFrame.buildListModel(Cursors.getParents(id));
-            if (!model.isEmpty()) {
-                this.artistParents.setModel(model);
-            }
+            this.artistParents.setModel(model);
         } catch (SQLException ex) {}
         
         try {
             DefaultListModel<String> model = mainFrame.buildListModel(Cursors.getChildren(id));
-            if (!model.isEmpty()) {
-                this.artistChildren.setModel(model);
-            }
+            this.artistChildren.setModel(model);
         } catch (SQLException ex) {}
         
         try {
             DefaultListModel<String> model = mainFrame.buildListModel(Cursors.getCouple(id));
-            if (!model.isEmpty()) {
-                this.artistCouple.setModel(model);
-            }
+            this.artistCouple.setModel(model);
         } catch (SQLException ex) {}
         
         try {
             DefaultListModel<String> model = mainFrame.buildListModel(Cursors.getSiblings(id));
-            if (!model.isEmpty()) {
-                this.artistSiblings.setModel(model);
-            }
+            this.artistSiblings.setModel(model);
         } catch (SQLException ex) {}
     }
     

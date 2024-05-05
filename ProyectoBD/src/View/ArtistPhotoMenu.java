@@ -191,7 +191,7 @@ public class ArtistPhotoMenu extends javax.swing.JPanel {
         
         if (photos.isEmpty()) {
             DefaultListModel model = new DefaultListModel();
-            model.addElement("No hay nacionalidades registradas");
+            model.addElement("No hay fotos registradas");
             this.artistPhotos.setModel(model);
             return;
         }

@@ -3,6 +3,7 @@ create or replace PACKAGE CartProduct_Utils IS
     PROCEDURE insertCartProduct(pId_Product NUMBER, pId_Cart NUMBER);
     -- Delete
     PROCEDURE deleteCartProduct(pId_product NUMBER, pId_Cart NUMBER);
+    PROCEDURE deleteProduct(pId_product NUMBER);
 
     PROCEDURE getProductsInCart(pId_Cart NUMBER, productsCursors OUT SYS_REFCURSOR);
 END CartProduct_Utils;
@@ -27,6 +28,14 @@ create or replace PACKAGE BODY CartProduct_Utils AS
         id_shoppingCart = pId_Cart;
         COMMIT;    
     END deleteCartProduct;
+    
+    PROCEDURE deleteProduct(pId_product NUMBER)
+    IS
+    BEGIN
+        DELETE FROM proy1.CartProduct
+        WHERE id_product = pId_product;
+        COMMIT;
+    END deleteProduct;
 
     PROCEDURE getProductsInCart(pId_Cart NUMBER, productsCursors OUT SYS_REFCURSOR)
     IS

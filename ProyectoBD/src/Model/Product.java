@@ -8,6 +8,7 @@ public class Product {
     String trailer;
     float price;
     int sales;
+    String dateBought;
 
     public Product(int id, String title, int premier, String synopsis, String trailer,
             float price) {
@@ -47,9 +48,18 @@ public class Product {
         return sales;
     }
 
+    public String getDateBought() {
+        return dateBought;
+    }
+
     public void setSales(int sales) {
         this.sales = sales;
     }
+
+    public void setDateBought(String dateBought) {
+        this.dateBought = dateBought;
+    }
+    
     
     
     @Override

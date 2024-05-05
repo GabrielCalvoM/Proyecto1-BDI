@@ -431,7 +431,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1032, Short.MAX_VALUE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,7 +547,7 @@ public class AdminPage extends javax.swing.JPanel {
                     .addGroup(AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(UserStatsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ProductStatsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(605, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         AdminMenuLayout.setVerticalGroup(
             AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,9 +564,9 @@ public class AdminPage extends javax.swing.JPanel {
                 .addComponent(UserStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(ProductStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
-                .addComponent(AdmMenuBackBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(281, 281, 281))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(AdmMenuBackBtn)
+                .addContainerGap())
         );
 
         AdminPage.add(AdminMenu, "adminMenu");
@@ -898,7 +898,7 @@ public class AdminPage extends javax.swing.JPanel {
                     .addComponent(DeleteDirector_Button)
                     .addComponent(UpdateWriter_Button)
                     .addComponent(DeleteWriter_Button))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn1)
                 .addContainerGap())
         );
@@ -920,7 +920,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(998, Short.MAX_VALUE))
+                .addContainerGap(488, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1047,9 +1047,9 @@ public class AdminPage extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddArtistLayout.createSequentialGroup()
-                        .addGap(6, 478, Short.MAX_VALUE)
+                        .addGap(6, 226, Short.MAX_VALUE)
                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                     .addComponent(jScrollPane5)
                     .addGroup(AddArtistLayout.createSequentialGroup()
                         .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1075,7 +1075,7 @@ public class AdminPage extends javax.swing.JPanel {
                         .addComponent(jLabel35)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addGroup(AddArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton16))
@@ -1122,7 +1122,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel36)
-                .addContainerGap(1024, Short.MAX_VALUE))
+                .addContainerGap(514, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1332,7 +1332,7 @@ public class AdminPage extends javax.swing.JPanel {
                         .addComponent(ArtistNationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ArtistPhotoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ArtistRelatives_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(UpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18))
@@ -1472,7 +1472,7 @@ public class AdminPage extends javax.swing.JPanel {
                         .addComponent(DeleteArtistRelative_Button, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                         .addComponent(jButton30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(UpdateArtistRelative_Button, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(592, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         ArtistRelative_SettingsLayout.setVerticalGroup(
             ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1512,7 +1512,7 @@ public class AdminPage extends javax.swing.JPanel {
                 .addGroup(ArtistRelative_SettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteArtistRelative_Button)
                     .addComponent(jButton29))
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         EditArtists.add(ArtistRelative_Settings, "card5");
@@ -1537,7 +1537,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel51)
-                .addContainerGap(983, Short.MAX_VALUE))
+                .addContainerGap(473, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1706,7 +1706,7 @@ public class AdminPage extends javax.swing.JPanel {
                                 .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn2)
                 .addContainerGap())
         );
@@ -1728,7 +1728,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel54)
-                .addContainerGap(985, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1901,7 +1901,7 @@ public class AdminPage extends javax.swing.JPanel {
                                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton25)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(EditCountBackBtn3))
                     .addGroup(addMovieLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1926,7 +1926,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel72)
-                .addContainerGap(985, Short.MAX_VALUE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2095,7 +2095,7 @@ public class AdminPage extends javax.swing.JPanel {
                                 .addComponent(priceTxt)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addMovie_categoryLbl3)
-                        .addGap(0, 677, Short.MAX_VALUE)))
+                        .addGap(0, 167, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addMovie2Layout.setVerticalGroup(
@@ -2165,7 +2165,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel62)
-                .addContainerGap(1018, Short.MAX_VALUE))
+                .addContainerGap(508, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2361,7 +2361,7 @@ public class AdminPage extends javax.swing.JPanel {
                                     .addGroup(addSeriesLayout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jButton2)))))
-                        .addGap(0, 535, Short.MAX_VALUE)))
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addSeriesLayout.setVerticalGroup(
@@ -2400,7 +2400,7 @@ public class AdminPage extends javax.swing.JPanel {
                             .addComponent(jLabel67))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(seasonsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 330, Short.MAX_VALUE))
+                        .addGap(85, 199, Short.MAX_VALUE))
                     .addGroup(addSeriesLayout.createSequentialGroup()
                         .addGroup(addSeriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addSeriesLayout.createSequentialGroup()
@@ -2436,7 +2436,7 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel73)
-                .addContainerGap(1018, Short.MAX_VALUE))
+                .addContainerGap(508, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2605,7 +2605,7 @@ public class AdminPage extends javax.swing.JPanel {
                                 .addComponent(seriesPriceTxt)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addMovie_categoryLbl7)
-                        .addGap(0, 677, Short.MAX_VALUE)))
+                        .addGap(0, 167, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addSeries2Layout.setVerticalGroup(
@@ -2763,13 +2763,13 @@ public class AdminPage extends javax.swing.JPanel {
             Deletions.deleteCountry(country.getId());
         }
         catch (Exception e) {
-            mainFrame.showError("Debe seleccionar un país de la lista.");
+            mainFrame.showError("Error al eliminar el país.");
         }
         try {
             EditCountries_CountryList.setModel(mainFrame.buildListModel(Cursors.getCountries()));
         }
         catch (Exception e) {
-            mainFrame.showError("Error al escribir en la base de datos.");
+            mainFrame.showError("Error al leer de la base de datos.");
         }
     }//GEN-LAST:event_RemoveCountryBtnActionPerformed
 
@@ -2800,10 +2800,10 @@ public class AdminPage extends javax.swing.JPanel {
             editArtist_genderCombo.setModel(gendersModel);
             DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
             editArtist_typeCombo.setModel(typesModel);
-            
+            editArtist_typeCombo.setSelectedIndex(0);
             editArtist_nameTxt.setText(person.getFirst_Name());
             editArtist_lastnameTxt.setText(person.getLast_Name());
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
             editArtist_date.setDate( format.parse((currentArtist.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
@@ -3446,7 +3446,7 @@ public class AdminPage extends javax.swing.JPanel {
             editArtist_genderCombo.setModel(gendersModel);
             DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
             editArtist_typeCombo.setModel(typesModel);
-            
+            editArtist_typeCombo.setSelectedIndex(1);
             editArtist_nameTxt.setText(person.getFirst_Name());
             editArtist_lastnameTxt.setText(person.getLast_Name());
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");
@@ -3476,7 +3476,7 @@ public class AdminPage extends javax.swing.JPanel {
             editArtist_genderCombo.setModel(gendersModel);
             DefaultComboBoxModel typesModel = mainFrame.buildComboModel(Cursors.getArtistTypes());
             editArtist_typeCombo.setModel(typesModel);
-            
+            editArtist_typeCombo.setSelectedIndex(2);
             editArtist_nameTxt.setText(person.getFirst_Name());
             editArtist_lastnameTxt.setText(person.getLast_Name());
             DateFormat format = new SimpleDateFormat("dd-MMM-yy");

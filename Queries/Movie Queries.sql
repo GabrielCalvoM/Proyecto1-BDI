@@ -31,6 +31,10 @@ CREATE OR REPLACE PACKAGE BODY movie_utils AS
         DELETE FROM Movie
         WHERE id_movie = pId;
         productArtist_utils.deleteArtistsForProduct(vIdProduct);
+        wishedProduct_utils.deleteProduct(vIdProduct);
+        cartProduct_utils.deleteProduct(vIdProduct);
+        ownedProduct_utils.deleteProduct(vIdProduct);
+        viewedProduct_utils.deleteProduct(vIdProduct);
         product_utils.removeProduct(vIdProduct);
         COMMIT;
     END removeMovie;

@@ -5,8 +5,8 @@ CREATE OR REPLACE PACKAGE Series_Utils IS
     PROCEDURE removeSeries(pId NUMBER);
     PROCEDURE getAllSeries (seriesCursor OUT SYS_REFCURSOR);
     PROCEDURE getNseries(pNum NUMBER, seriesCursor OUT SYS_REFCURSOR);
+    PROCEDURE getSeriesId(pId_product NUMBER, pId_series OUT NUMBER);
 END Series_Utils;
-/
 
 CREATE OR REPLACE PACKAGE BODY Series_Utils AS
     -- Insert
@@ -65,5 +65,13 @@ CREATE OR REPLACE PACKAGE BODY Series_Utils AS
         LEFT JOIN Product p ON s.id_product = p.id_product)
         WHERE ROWNUM <= pNum;
     END getNseries;
+    
+    PROCEDURE getSeriesId(pId_product NUMBER, pId_series OUT NUMBER)
+    IS
+    BEGIN
+        SELECT id_series INTO pId_series
+        FROM Series
+        WHERE id_product = pId_product;
+    END getSeriesId;
     
 END Series_Utils;

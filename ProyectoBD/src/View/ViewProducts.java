@@ -75,9 +75,6 @@ public class ViewProducts extends javax.swing.JPanel {
         ViewAllProducts = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         MainMenuLbl3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        MainMenu_SignInButton3 = new javax.swing.JButton();
-        jButton48 = new javax.swing.JButton();
         jLabel88 = new javax.swing.JLabel();
         jLabel89 = new javax.swing.JLabel();
         jScrollPane23 = new javax.swing.JScrollPane();
@@ -96,33 +93,6 @@ public class ViewProducts extends javax.swing.JPanel {
         MainMenuLbl3.setForeground(new java.awt.Color(255, 255, 255));
         MainMenuLbl3.setText("Belphegor");
 
-        jTextField4.setText("Buscar");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        MainMenu_SignInButton3.setBackground(new java.awt.Color(51, 51, 51));
-        MainMenu_SignInButton3.setForeground(new java.awt.Color(255, 255, 255));
-        MainMenu_SignInButton3.setText("Sign In");
-        MainMenu_SignInButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MainMenu_SignInButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton48.setBackground(new java.awt.Color(102, 102, 102));
-        jButton48.setFont(new java.awt.Font("Segoe UI", 1, 8)); // NOI18N
-        jButton48.setForeground(new java.awt.Color(204, 204, 204));
-        jButton48.setText("Admin");
-        jButton48.setBorderPainted(false);
-        jButton48.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton48ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -130,23 +100,13 @@ public class ViewProducts extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(MainMenuLbl3)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(MainMenu_SignInButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MainMenuLbl3, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MainMenu_SignInButton3)
-                    .addComponent(jButton48))
+                .addComponent(MainMenuLbl3, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -252,7 +212,7 @@ public class ViewProducts extends javax.swing.JPanel {
                 .addGroup(ViewAllProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel89)
                     .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(ViewAllProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel88)
                     .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -311,18 +271,6 @@ public class ViewProducts extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void MainMenu_SignInButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenu_SignInButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MainMenu_SignInButton3ActionPerformed
-
-    private void jButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton48ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton48ActionPerformed
-
     private void jButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton49ActionPerformed
         int index = viewProducts_movies.getSelectedRow();
         if (index < 0) {
@@ -331,22 +279,20 @@ public class ViewProducts extends javax.swing.JPanel {
         }
         TableModel model = viewProducts_movies.getModel();
         Product product = (Product) model.getValueAt(index, 0);
-        mainFrame.showPage("ViewMove", new ViewMovie(mainFrame, this,
+        mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this,
         product));
     }//GEN-LAST:event_jButton49ActionPerformed
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
-        TableModel model = viewProducts_series.getModel();
         int index = viewProducts_series.getSelectedRow();
+        if (index < 0) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        TableModel model = viewProducts_series.getModel();
         Product product = (Product) model.getValueAt(index, 0);
-        try {
-            //viewMovie(Cursors.getProduct(product.getId()));
-            //cambiar por viewSeries()
-        }
-        catch(Exception e) {
-            mainFrame.showError("Error al recuperar producto.");
-        }
-        //previousCard = "ViewAllProducts";
+        mainFrame.showPage("ViewSeries", new ViewSeries(mainFrame, this,
+        product));
     }//GEN-LAST:event_jButton50ActionPerformed
 
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
@@ -356,9 +302,7 @@ public class ViewProducts extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MainMenuLbl3;
-    private javax.swing.JButton MainMenu_SignInButton3;
     private javax.swing.JPanel ViewAllProducts;
-    private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton49;
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
@@ -367,7 +311,6 @@ public class ViewProducts extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable viewProducts_movies;
     private javax.swing.JTable viewProducts_series;
     // End of variables declaration//GEN-END:variables

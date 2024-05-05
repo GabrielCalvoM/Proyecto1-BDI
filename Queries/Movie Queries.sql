@@ -3,8 +3,9 @@ CREATE OR REPLACE PACKAGE movie_utils IS
     PROCEDURE removeMovie(pId NUMBER);
     PROCEDURE getAllMovies(movieCursor OUT SYS_REFCURSOR);
     PROCEDURE getNmovies(pNum NUMBER, movieCursor OUT SYS_REFCURSOR);
+    PROCEDURE getMovieDuration(pId_product NUMBER, pDuration OUT NUMBER);
+    PROCEDURE isMovie(pId_product NUMBER, pResult OUT NUMBER);
 END movie_utils;
-/
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY movie_utils AS
@@ -59,5 +60,32 @@ CREATE OR REPLACE PACKAGE BODY movie_utils AS
         LEFT JOIN Product p ON m.id_product = p.id_product)
         WHERE ROWNUM <= pNum;
     END getNmovies;
+    
+    PROCEDURE getMovieDuration(pId_product NUMBER, pDuration OUT NUMBER)
+    IS
+    BEGIN
+        SELECT duration_movie INTO pDuration
+        FROM Movie
+        WHERE id_product = pId_product;
+    END getMovieDuration;
+    
+    PROCEDURE isMovie(pId_product NUMBER, pResult OUT NUMBER)
+    IS
+    BEGIN
+        SELECT CASE
+                 WHEN COUNT(*) > 0 THEN 1
+                 ELSE -1
+               END
+        INTO pResult
+        FROM MOvie
+        WHERE id_product = pId_Product;
+    END isMovie;
 
 END movie_utils;
+
+DECLARE
+  vDuration NUMBER;
+BEGIN
+  movie_utils.getMovieDuration(pId_product => 0, pDuration => vDuration);
+  -- Use vDuration as needed
+END;

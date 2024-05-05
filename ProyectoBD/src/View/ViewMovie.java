@@ -30,7 +30,23 @@ public class ViewMovie extends javax.swing.JPanel {
         isInCart = false;
         initComponents();
         loadInfo();
+        addToHistory();
     }
+    
+    private void addToHistory() {
+        if (mainFrame.userAccount == null) {
+            return;
+        }
+        int idUser = mainFrame.userAccount.getId_user();
+        int idProduct = product.getId();
+        try {
+            Insertions.insertViewedProduct(idUser, idProduct);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     
     private void loadInfo() {
         ArrayList<Integer> artistIds;
@@ -69,10 +85,16 @@ public class ViewMovie extends javax.swing.JPanel {
             }
         }
         String category = "Categoría: -";
+        int duration = 0;
         try {
+            duration = Cursors.getMovieDuration(product.getId());
             category = "Categoría: " + Cursors.getProductCategory(product.getId());
         }
-        catch (Exception e) {}
+        catch (Exception e) {
+        }
+        String dur = duration > 0 ? "Duración: " + Integer.toString(duration) : "Duración: -";
+        dur = dur + " mins";
+        movie_duration.setText(dur);
         movie_category.setText(category);
         movie_actors.setModel(actorsModel);
         movie_writers.setModel(writersModel);

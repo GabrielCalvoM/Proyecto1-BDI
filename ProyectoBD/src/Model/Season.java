@@ -11,4 +11,22 @@ public class Season {
         this.number_season = number_season;
         this.id_series = id_series;
     }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public int getNumber_season() {
+        return number_season;
+    }
+
+    public int getId_series() {
+        return id_series;
+    }
+    
+    @Override 
+    public String toString() {
+        return "Temporada: " + Integer.toString(number_season);
+    }
 }

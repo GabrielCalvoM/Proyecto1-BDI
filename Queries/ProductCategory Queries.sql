@@ -14,7 +14,7 @@ CREATE OR REPLACE PACKAGE productCategory_utils IS
 END productCategory_utils;
 /
 
--- Lï¿½gica de Procedimientos
+-- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
 
 -- Insert
@@ -48,10 +48,10 @@ CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id '|| pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id '|| pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
     
     END setProduct;
@@ -67,10 +67,10 @@ CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ el registro con el id '|| pId);
+            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id '|| pId);
             ROLLBACK;
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
             ROLLBACK;
     
     END setCategory;
@@ -90,12 +90,12 @@ CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
     
     EXCEPTION
         WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es un nï¿½mero');
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es un número');
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ ningun registro con la categorï¿½a '||
+            DBMS_OUTPUT.PUT_LINE('No se encontró ningun registro con la categoría '||
                                  pCategory);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END getAllProducts;
     
@@ -106,19 +106,19 @@ CREATE OR REPLACE PACKAGE BODY productCategory_utils IS
     
     BEGIN
         OPEN categoryCursor FOR
-            SELECT id_productCategory, id_category
+            SELECT id_category
             FROM productCategory
             WHERE id_product = pProduct;
         RETURN (categoryCursor);
     
     EXCEPTION
         WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es un nï¿½mero');
+            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es un número');
         WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontrï¿½ ningun registro con el producto '||
+            DBMS_OUTPUT.PUT_LINE('No se encontró ningun registro con el producto '||
                                  pProduct);
         WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucediï¿½ un error inesperado');
+            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
     
     END getAllCategories;
     

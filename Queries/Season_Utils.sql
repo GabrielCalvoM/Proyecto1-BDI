@@ -8,8 +8,9 @@ CREATE OR REPLACE PACKAGE Season_Utils IS
     PROCEDURE updateSeasonNumber(pId NUMBER, pNewNum NUMBER);
     -- Getter
     FUNCTION getSeasonNumber(pId NUMBER) RETURN VARCHAR2;
+    
+    PROCEDURE getAllSeasons(pId_series NUMBER, seasonCursor OUT SYS_REFCURSOR);
 END Season_Utils;
-/
 
 CREATE OR REPLACE PACKAGE BODY Season_Utils AS
     -- Insert
@@ -63,14 +64,7 @@ CREATE OR REPLACE PACKAGE BODY Season_Utils AS
         UPDATE proy1.Season
         SET number_season = pNewNum
         WHERE id_Season = pId;
-        COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-    
+        COMMIT;    
     END updateSeasonNumber;
     
     -- Getter
@@ -84,5 +78,16 @@ CREATE OR REPLACE PACKAGE BODY Season_Utils AS
         RETURN 'Season ' || vNum;
     
     END getSeasonNumber;
+    
+    PROCEDURE getAllSeasons(pId_series NUMBER, seasonCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN seasonCursor
+        FOR
+        SELECT id_season, number_season
+        FROM Season
+        WHERE pId_series = id_series
+        ORDER BY number_season ASC;
+    END getAllSeasons;
 
 END Season_Utils;

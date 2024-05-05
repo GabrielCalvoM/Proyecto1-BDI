@@ -66,6 +66,25 @@ public class ManageAccount extends javax.swing.JPanel {
         cartTable = new javax.swing.JTable();
         PayCheckBox = new javax.swing.JCheckBox();
         PayTextField = new javax.swing.JTextField();
+        Viewed = new javax.swing.JPanel();
+        AppBar3 = new javax.swing.JPanel();
+        MainMenuLbl5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        viewedList = new javax.swing.JList<>();
+        ViewProductBtn2 = new javax.swing.JButton();
+        Owned = new javax.swing.JPanel();
+        AppBar4 = new javax.swing.JPanel();
+        MainMenuLbl6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ownedList = new javax.swing.JList<>();
+        ViewProductBtn3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        ownedFilterCombo = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -397,14 +416,18 @@ public class ManageAccount extends javax.swing.JPanel {
             CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(AppBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CartLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(jButton7)
-                        .addGap(264, 264, 264))
-                    .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(CartLayout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addGap(264, 264, 264))
+                            .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
                         .addComponent(ViewProductBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
@@ -412,7 +435,7 @@ public class ManageAccount extends javax.swing.JPanel {
                         .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(PayTextField)
                             .addComponent(PayCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 124, Short.MAX_VALUE))
+                        .addGap(0, 93, Short.MAX_VALUE))
                     .addComponent(PayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -432,19 +455,240 @@ public class ManageAccount extends javax.swing.JPanel {
                         .addComponent(PayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
+                        .addComponent(ViewProductBtn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7))
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(total)
-                            .addComponent(ViewProductBtn1))
+                        .addComponent(total)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         add(Cart, "Cart");
+
+        Viewed.setBackground(new java.awt.Color(0, 0, 0));
+
+        AppBar3.setBackground(new java.awt.Color(51, 51, 51));
+
+        MainMenuLbl5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        MainMenuLbl5.setForeground(new java.awt.Color(255, 255, 255));
+        MainMenuLbl5.setText("Belphegor");
+
+        javax.swing.GroupLayout AppBar3Layout = new javax.swing.GroupLayout(AppBar3);
+        AppBar3.setLayout(AppBar3Layout);
+        AppBar3Layout.setHorizontalGroup(
+            AppBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AppBar3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AppBar3Layout.setVerticalGroup(
+            AppBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppBar3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl5, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Vistos:");
+
+        jButton8.setBackground(new java.awt.Color(51, 51, 51));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Atrás");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        viewedList.setBackground(new java.awt.Color(51, 51, 51));
+        viewedList.setForeground(new java.awt.Color(255, 255, 255));
+        viewedList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Aun no tienes favoritos." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(viewedList);
+
+        ViewProductBtn2.setText("Ver");
+        ViewProductBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProductBtn2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ViewedLayout = new javax.swing.GroupLayout(Viewed);
+        Viewed.setLayout(ViewedLayout);
+        ViewedLayout.setHorizontalGroup(
+            ViewedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(AppBar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ViewedLayout.createSequentialGroup()
+                .addGroup(ViewedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewedLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton8))
+                    .addGroup(ViewedLayout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(ViewProductBtn2))
+                    .addGroup(ViewedLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ViewedLayout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ViewedLayout.setVerticalGroup(
+            ViewedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewedLayout.createSequentialGroup()
+                .addComponent(AppBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ViewProductBtn2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addContainerGap())
+        );
+
+        add(Viewed, "Viewed");
+
+        Owned.setBackground(new java.awt.Color(0, 0, 0));
+
+        AppBar4.setBackground(new java.awt.Color(51, 51, 51));
+
+        MainMenuLbl6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        MainMenuLbl6.setForeground(new java.awt.Color(255, 255, 255));
+        MainMenuLbl6.setText("Belphegor");
+
+        javax.swing.GroupLayout AppBar4Layout = new javax.swing.GroupLayout(AppBar4);
+        AppBar4.setLayout(AppBar4Layout);
+        AppBar4Layout.setHorizontalGroup(
+            AppBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AppBar4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AppBar4Layout.setVerticalGroup(
+            AppBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppBar4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MainMenuLbl6, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Compras:");
+
+        jButton9.setBackground(new java.awt.Color(51, 51, 51));
+        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Atrás");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        ownedList.setBackground(new java.awt.Color(51, 51, 51));
+        ownedList.setForeground(new java.awt.Color(255, 255, 255));
+        ownedList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Aun no tienes favoritos." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(ownedList);
+
+        ViewProductBtn3.setText("Ver");
+        ViewProductBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProductBtn3ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Filtro:");
+
+        ownedFilterCombo.setBackground(new java.awt.Color(51, 51, 51));
+        ownedFilterCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ownedFilterCombo.setForeground(new java.awt.Color(255, 255, 255));
+        ownedFilterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "3 meses", "6 meses", "1 año" }));
+
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Aplicar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OwnedLayout = new javax.swing.GroupLayout(Owned);
+        Owned.setLayout(OwnedLayout);
+        OwnedLayout.setHorizontalGroup(
+            OwnedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(AppBar4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(OwnedLayout.createSequentialGroup()
+                .addGroup(OwnedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OwnedLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton9))
+                    .addGroup(OwnedLayout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(ViewProductBtn3))
+                    .addGroup(OwnedLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(OwnedLayout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(OwnedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(OwnedLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(OwnedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(ownedFilterCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(OwnedLayout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jButton1)))))
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+        OwnedLayout.setVerticalGroup(
+            OwnedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OwnedLayout.createSequentialGroup()
+                .addComponent(AppBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(OwnedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(OwnedLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ownedFilterCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ViewProductBtn3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(jButton9)
+                .addContainerGap())
+        );
+
+        add(Owned, "Owned");
     }// </editor-fold>//GEN-END:initComponents
 
     private void favs_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favs_buttonActionPerformed
@@ -462,11 +706,31 @@ public class ManageAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_favs_buttonActionPerformed
 
     private void owned_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_owned_buttonActionPerformed
-        // TODO add your handling code here:
+        try {
+            int idUser = mainFrame.userAccount.getId_user();
+            DefaultListModel model = mainFrame.buildListModel(Cursors.getOwnedProducts(idUser));
+            ownedList.setModel(model);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al obtener compras.");
+            return;
+        }
+        CardLayout card = (CardLayout) this.getLayout();
+        card.show(this, "Owned");
     }//GEN-LAST:event_owned_buttonActionPerformed
 
     private void viewed_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewed_buttonActionPerformed
-        // TODO add your handling code here:
+        try {
+            int idUser = mainFrame.userAccount.getId_user();
+            DefaultListModel model = mainFrame.buildListModel(Cursors.getViewedProducts(idUser));
+            viewedList.setModel(model);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al obtener historial.");
+            return;
+        }
+        CardLayout card = (CardLayout) this.getLayout();
+        card.show(this, "Viewed");
     }//GEN-LAST:event_viewed_buttonActionPerformed
 
     private void cart_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cart_buttonActionPerformed
@@ -517,7 +781,16 @@ public class ManageAccount extends javax.swing.JPanel {
         }
         ListModel model = favoritesList.getModel();
         Product product = (Product) model.getElementAt(index);
-        mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+        try{
+            int isMovie = Cursors.isMovie(product.getId());
+            if (isMovie == 1)
+                mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+            else
+                mainFrame.showPage("ViewSeries", new ViewSeries(mainFrame, this, product));
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al mostrar producto.");
+        }
     }//GEN-LAST:event_ViewProductBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -542,7 +815,14 @@ public class ManageAccount extends javax.swing.JPanel {
         }
         TableModel model = cartTable.getModel();
         Product product = (Product) model.getValueAt(index, 0);
-        mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+        try {
+            int isMovie = Cursors.isMovie(product.getId());
+            if (isMovie == 1)
+                mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+            else
+                mainFrame.showPage("ViewSeries", new ViewSeries(mainFrame, this, product));
+        }
+        catch (Exception e) {}
     }//GEN-LAST:event_ViewProductBtn1ActionPerformed
 
     private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
@@ -570,16 +850,18 @@ public class ManageAccount extends javax.swing.JPanel {
                 Product product = (Product) model.getValueAt(i, 0);
                 int idProduct = product.getId();
                 Insertions.InsertOwnedProduct(idProduct, idUser, purchaseDate);
-                Deletions.deleteFromCart(idUser, idProduct);
+                int idCart = Cursors.getCartId(idUser);
+                Deletions.deleteFromCart(idCart, idProduct);
             }
-            
-            cartTable.removeAll();
+            DefaultTableModel tableModel = new DefaultTableModel();
+            cartTable.setModel(tableModel);
         }
         catch(Exception e) {
             mainFrame.showError("Error al escribir en la base de datos.");
             System.out.println(e.getMessage());
             return;
         }
+        mainFrame.showPage("Prev", prev);
     }//GEN-LAST:event_PayButtonActionPerformed
 
     private void PayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayTextFieldActionPerformed
@@ -590,37 +872,124 @@ public class ManageAccount extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_PayCheckBoxActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        CardLayout card = (CardLayout) this.getLayout();
+        card.show(this, "Menu");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void ViewProductBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductBtn2ActionPerformed
+        int index = viewedList.getSelectedIndex();
+        if (index < 0) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        ListModel model = viewedList.getModel();
+        Product product = (Product) model.getElementAt(index);
+        try{
+            int isMovie = Cursors.isMovie(product.getId());
+            if (isMovie == 1)
+                mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+            else
+                mainFrame.showPage("ViewSeries", new ViewSeries(mainFrame, this, product));
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al mostrar producto.");
+        }
+    }//GEN-LAST:event_ViewProductBtn2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        CardLayout card = (CardLayout) this.getLayout();
+        card.show(this, "Menu");
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void ViewProductBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductBtn3ActionPerformed
+        int index = ownedList.getSelectedIndex();
+        if (index < 0) {
+            mainFrame.showError("Debe seleccionar un elemento.");
+            return;
+        }
+        ListModel model = ownedList.getModel();
+        Product product = (Product) model.getElementAt(index);
+        try{
+            int isMovie = Cursors.isMovie(product.getId());
+            if (isMovie == 1)
+                mainFrame.showPage("ViewMovie", new ViewMovie(mainFrame, this, product));
+            else
+                mainFrame.showPage("ViewSeries", new ViewSeries(mainFrame, this, product));
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al mostrar producto.");
+        }
+    }//GEN-LAST:event_ViewProductBtn3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            int idUser = mainFrame.userAccount.getId_user();
+            DefaultListModel model;
+            model = switch (ownedFilterCombo.getSelectedIndex()) {
+                case 0 -> mainFrame.buildListModel(Cursors.getOwnedProducts(idUser));
+                case 1 -> mainFrame.buildListModel(Cursors.getOwnedProductsFilter(idUser, -3));
+                case 2 -> mainFrame.buildListModel(Cursors.getOwnedProductsFilter(idUser, -6));
+                case 3 -> mainFrame.buildListModel(Cursors.getOwnedProductsFilter(idUser, -12));
+                default -> mainFrame.buildListModel(Cursors.getOwnedProducts(idUser));
+            };
+            ownedList.setModel(model);
+        }
+        catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AppBar;
     private javax.swing.JPanel AppBar1;
     private javax.swing.JPanel AppBar2;
+    private javax.swing.JPanel AppBar3;
+    private javax.swing.JPanel AppBar4;
     private javax.swing.JPanel Cart;
     private javax.swing.JPanel Favorites;
     private javax.swing.JLabel MainMenuLbl2;
     private javax.swing.JLabel MainMenuLbl3;
     private javax.swing.JLabel MainMenuLbl4;
+    private javax.swing.JLabel MainMenuLbl5;
+    private javax.swing.JLabel MainMenuLbl6;
     private javax.swing.JPanel Menu;
+    private javax.swing.JPanel Owned;
     private javax.swing.JButton PayButton;
     private javax.swing.JCheckBox PayCheckBox;
     private javax.swing.JTextField PayTextField;
     private javax.swing.JButton ViewProductBtn;
     private javax.swing.JButton ViewProductBtn1;
+    private javax.swing.JButton ViewProductBtn2;
+    private javax.swing.JButton ViewProductBtn3;
+    private javax.swing.JPanel Viewed;
     private javax.swing.JTable cartTable;
     private javax.swing.JButton cart_button;
     private javax.swing.JList<String> favoritesList;
     private javax.swing.JButton favs_button;
     private javax.swing.JLabel helloTxt;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JComboBox<String> ownedFilterCombo;
+    private javax.swing.JList<String> ownedList;
     private javax.swing.JButton owned_button;
     private javax.swing.JLabel total;
+    private javax.swing.JList<String> viewedList;
     private javax.swing.JButton viewed_button;
     // End of variables declaration//GEN-END:variables
 }

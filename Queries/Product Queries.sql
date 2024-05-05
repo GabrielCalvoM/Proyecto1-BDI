@@ -3,14 +3,12 @@ CREATE OR REPLACE PACKAGE product_utils IS
                             pSynopsis IN VARCHAR2, pTrailer IN VARCHAR2, 
                             pPrice NUMBER) RETURN NUMBER;
     PROCEDURE removeProduct(pId NUMBER);
-    
-    PROCEDURE getAllProducts(productCursor OUT SYS_REFCURSOR);
     PROCEDURE getProduct(pId NUMBER, pTitle OUT VARCHAR2, pPremiere OUT NUMBER, 
     pSynopsis OUT VARCHAR2, pTrailer OUT VARCHAR2, pPrice OUT NUMBER);               
 
 END product_utils;
 
--- Lï¿½gica de Procedimientos
+-- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY product_utils AS
 
 -- Insert
@@ -42,20 +40,6 @@ CREATE OR REPLACE PACKAGE BODY product_utils AS
         DELETE FROM Product
         WHERE id_product = pId;
         COMMIT;
-    END;
-
--- Getters
-    PROCEDURE getAllProducts(productCursor OUT SYS_REFCURSOR)
-    IS
-    BEGIN 
-        OPEN productCursor
-        FOR
-        SELECT id_product, title, premiere_year, synopsis, trailer
-        FROM product;
-    EXCEPTION
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-            
     END;
     
     PROCEDURE getProduct(pId NUMBER, pTitle OUT VARCHAR2, pPremiere OUT NUMBER, 

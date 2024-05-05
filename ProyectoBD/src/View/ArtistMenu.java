@@ -56,7 +56,7 @@ public class ArtistMenu extends javax.swing.JPanel {
         directorPic1 = new javax.swing.JLabel();
         directorName1 = new javax.swing.JLabel();
         directorBtn1 = new javax.swing.JButton();
-        jButton38 = new javax.swing.JButton();
+        viewArtistsBtn = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         actorPic1 = new javax.swing.JLabel();
         actorBtn1 = new javax.swing.JButton();
@@ -197,14 +197,14 @@ public class ArtistMenu extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton38.setBackground(new java.awt.Color(0, 0, 0));
-        jButton38.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton38.setForeground(new java.awt.Color(255, 255, 255));
-        jButton38.setText("Ver todas");
-        jButton38.setBorder(null);
-        jButton38.addActionListener(new java.awt.event.ActionListener() {
+        viewArtistsBtn.setBackground(new java.awt.Color(0, 0, 0));
+        viewArtistsBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        viewArtistsBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewArtistsBtn.setText("Ver todos");
+        viewArtistsBtn.setBorder(null);
+        viewArtistsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton38ActionPerformed(evt);
+                viewArtistsBtnActionPerformed(evt);
             }
         });
 
@@ -454,7 +454,7 @@ public class ArtistMenu extends javax.swing.JPanel {
                     .addGroup(MainMenuLayout.createSequentialGroup()
                         .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton38)
+                        .addComponent(viewArtistsBtn)
                         .addGap(36, 36, 36))
                     .addGroup(MainMenuLayout.createSequentialGroup()
                         .addGroup(MainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,7 +483,7 @@ public class ArtistMenu extends javax.swing.JPanel {
                     .addGroup(MainMenuLayout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewArtistsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)
                         .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -518,9 +518,9 @@ public class ArtistMenu extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_signInButtonActionPerformed
 
-    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        mainFrame.showPage("ViewProducts", new ViewProducts(mainFrame, this));
-    }//GEN-LAST:event_jButton38ActionPerformed
+    private void viewArtistsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewArtistsBtnActionPerformed
+        mainFrame.showPage("viewAllArtists", new ViewAllArtists(mainFrame, this));
+    }//GEN-LAST:event_viewArtistsBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mainFrame.showPage("MainMenu", new MainMenu(mainFrame));
@@ -683,7 +683,6 @@ public class ArtistMenu extends javax.swing.JPanel {
     private javax.swing.JLabel directorPic1;
     private javax.swing.JLabel directorPic2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton38;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
@@ -696,6 +695,7 @@ public class ArtistMenu extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton signInButton;
+    private javax.swing.JButton viewArtistsBtn;
     private javax.swing.JButton writterBtn1;
     private javax.swing.JButton writterBtn2;
     private javax.swing.JLabel writterName1;

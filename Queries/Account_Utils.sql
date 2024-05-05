@@ -65,16 +65,6 @@ CREATE OR REPLACE PACKAGE BODY Account_Utils AS
         FROM UserAccount
         WHERE id_account = pId;
     END getAccount;
-
-    FUNCTION getUserId(pId NUMBER) RETURN NUMBER
-    IS
-        vId_user NUMBER;
-    BEGIN
-        SELECT id_user INTO vId_user
-        FROM UserAccount
-        WHERE pId = id_account;
-        RETURN vId_user;
-    END getUserId;
     
     FUNCTION checkUserPassword (pUsername VARCHAR, pPassword VARCHAR) 
     RETURN NUMBER

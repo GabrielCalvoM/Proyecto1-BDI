@@ -7,6 +7,7 @@ public class Product {
     String synopsis;
     String trailer;
     float price;
+    int sales;
 
     public Product(int id, String title, int premier, String synopsis, String trailer,
             float price) {
@@ -41,10 +42,18 @@ public class Product {
     public float getPrice() {
         return price;
     }
+
+    public int getSales() {
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
+    }
     
     
     @Override
     public String toString() {
-        return title + " (" + this.premier + ")";
+        return title;
     }
 }

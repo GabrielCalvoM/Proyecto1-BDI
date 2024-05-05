@@ -23,7 +23,6 @@ create or replace PACKAGE BODY WishedProduct_Utils AS
         WHEN OTHERS THEN
             dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
 
-
     END insertWishedProduct;
 
     -- Delete

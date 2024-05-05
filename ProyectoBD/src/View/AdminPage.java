@@ -82,6 +82,7 @@ public class AdminPage extends javax.swing.JPanel {
         CategoriesButton = new javax.swing.JButton();
         UserStatsButton = new javax.swing.JButton();
         ProductStatsButton = new javax.swing.JButton();
+        CountriesButton5 = new javax.swing.JButton();
         EditCountries = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -513,6 +514,17 @@ public class AdminPage extends javax.swing.JPanel {
             }
         });
 
+        CountriesButton5.setBackground(new java.awt.Color(51, 51, 51));
+        CountriesButton5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        CountriesButton5.setForeground(new java.awt.Color(255, 255, 255));
+        CountriesButton5.setText("Top Ventas");
+        CountriesButton5.setBorderPainted(false);
+        CountriesButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CountriesButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AdminMenuLayout = new javax.swing.GroupLayout(AdminMenu);
         AdminMenu.setLayout(AdminMenuLayout);
         AdminMenuLayout.setHorizontalGroup(
@@ -529,11 +541,13 @@ public class AdminPage extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(CountriesButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(CategoriesButton))
+                        .addComponent(CategoriesButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(CountriesButton5))
                     .addGroup(AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(UserStatsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ProductStatsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         AdminMenuLayout.setVerticalGroup(
             AdminMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,7 +558,8 @@ public class AdminPage extends javax.swing.JPanel {
                     .addComponent(CountriesButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CountriesButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CountriesButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CountriesButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(UserStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -3733,6 +3748,10 @@ public class AdminPage extends javax.swing.JPanel {
         mainFrame.showPage("artistPhotoMenu", new ArtistPhotoMenu(mainFrame, this, this.currentArtist));
     }//GEN-LAST:event_ArtistPhotoBtnActionPerformed
 
+    private void CountriesButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountriesButton5ActionPerformed
+        mainFrame.showPage("BestSellers", new BestSellers(mainFrame, this));
+    }//GEN-LAST:event_CountriesButton5ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
@@ -3749,6 +3768,7 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JButton CountriesButton2;
     private javax.swing.JButton CountriesButton3;
     private javax.swing.JButton CountriesButton4;
+    private javax.swing.JButton CountriesButton5;
     private javax.swing.JButton DeleteActor_Button;
     private javax.swing.JButton DeleteArtistRelative_Button;
     private javax.swing.JButton DeleteDirector_Button;

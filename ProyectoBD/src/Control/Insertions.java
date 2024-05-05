@@ -278,4 +278,14 @@ public class Insertions {
         con.close();
         stmt.close();
     }
+    
+    public static void insertViewedProduct(int idUser, int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call viewedProduct_utils.insertViewedProduct(?,?)}");
+        stmt.setInt(1, idUser);
+        stmt.setInt(2, idProduct);
+        stmt.execute();
+        con.close();
+        stmt.close();
+    }
 }

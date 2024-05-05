@@ -695,4 +695,162 @@ public class Cursors {
         stmt.close();
         return nationalities;
     }
+    
+    public static int getSeriesId(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call series_utils.getSeriesId(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.execute();
+        int id = stmt.getInt(2);
+        con.close();
+        stmt.close();
+        return id;
+    }
+    
+    public static int getMovieDuration(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call movie_utils.getMovieDuration(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.execute();
+        int duration = stmt.getInt(2);
+        con.close();
+        stmt.close();
+        return duration;
+    }
+    
+    public static ArrayList<Season> getSeasons(int idSeries) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call season_utils.getAllSeasons(?,?)}");
+        stmt.setInt(1, idSeries);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Season> seasons = new ArrayList<>();
+        int count = 1;
+        while(rs.next()) {
+            int idSeason = rs.getInt(1);
+            int numberSeason = rs.getInt(2);
+            Season season = new Season(idSeason, numberSeason, idSeries);
+            seasons.add(season);
+        }
+        con.close();
+        stmt.close();
+        return seasons;
+    }
+    
+    public static ArrayList<Episode> getEpisodes(int idSeason) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call episode_utils.getAllEpisodes(?,?)}");
+        stmt.setInt(1, idSeason);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Episode> episodes = new ArrayList<>();
+        int count = 1;
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            String title = rs.getString(2);
+            int duration = rs.getInt(3);
+            Episode ep = new Episode (count, title, duration);
+            episodes.add(ep);
+        }
+        con.close();
+        stmt.close();
+        return episodes;
+    }
+    
+    public static ArrayList<Product> getViewedProducts(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call viewedProduct_utils.getViewedProducts(?,?)}");
+        stmt.setInt(1, idUser);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static int isMovie(int idProduct) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call movie_utils.isMovie(?,?)}");
+        stmt.setInt(1, idProduct);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.execute();
+        int result = stmt.getInt(2);
+        con.close();
+        stmt.close();
+        return result;
+    }
+    
+    public static ArrayList<Product> getOwnedProducts(int idUser) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.getOwnedProducts(?,?)}");
+        stmt.setInt(1, idUser);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static ArrayList<Product> getOwnedProductsFilter(int idUser, int months) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.getProductsFilter(?,?,?)}");
+        stmt.setInt(1, idUser);
+        stmt.setInt(2, months);
+        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(3);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            Product product = getProduct(id);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
+    
+    public static ArrayList<Product> getTopOwnedProducts(int topN) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.getTopOwnedProducts(?,?)}");
+        stmt.setInt(1, topN);
+        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        stmt.execute();
+        
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            int sales = rs.getInt(2);
+            Product product = getProduct(id);
+            product.setSales(sales);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
 }

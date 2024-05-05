@@ -42,6 +42,6 @@ public class Episode {
     
     @Override 
     public String toString() {
-        return Integer.toString(epNumber) + ". " + title;
+        return title + " | " + Integer.toString(duration) + " mins";
     }
 }

@@ -10,9 +10,13 @@ CREATE OR REPLACE PACKAGE ownedProduct_utils IS
     FUNCTION  getProduct(pId IN NUMBER) RETURN NUMBER;
     FUNCTION  getUser(pId IN NUMBER) RETURN NUMBER;
     FUNCTION  getPurchase(pId IN NUMBER) RETURN VARCHAR2;
+    
+    PROCEDURE getOwnedProducts(pId_User NUMBER, productsCursor OUT SYS_REFCURSOR);
+    PROCEDURE getProductsFilter(pId_User NUMBER, pMonths NUMBER, productsCursor OUT SYS_REFCURSOR);
+    PROCEDURE getTopOwnedProducts(pTopN NUMBER, productsCursor OUT SYS_REFCURSOR);
 
 END ownedProduct_utils;
-/
+
 
 -- Lógica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
@@ -108,5 +112,41 @@ CREATE OR REPLACE PACKAGE BODY ownedProduct_utils AS
         RETURN (vPurchase);
 
     END getPurchase;
+    
+    PROCEDURE getOwnedProducts(pId_User NUMBER, productsCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN productsCursor
+        FOR
+        SELECT id_product
+        FROM OwnedProduct
+        WHERE id_user = pId_User
+        ORDER BY date_bought DESC;
+    END getOwnedProducts;
+    
+    PROCEDURE getProductsFilter(pId_User NUMBER, pMonths NUMBER, productsCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN productsCursor
+        FOR
+        SELECT id_product
+        FROM OwnedProduct
+        WHERE id_user = pId_User AND
+        date_bought >= ADD_MONTHS(SYSDATE, pMonths)
+        ORDER BY date_bought DESC;
+    END getProductsFilter;
+    
+    PROCEDURE getTopOwnedProducts(pTopN NUMBER, productsCursor OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN productsCursor
+        FOR
+        SELECT id_product, num_owners FROM
+            (SELECT id_product, COUNT(id_product) AS num_owners
+            FROM OwnedProduct
+            GROUP BY id_product
+            ORDER BY num_owners DESC)
+        WHERE ROWNUM <= pTopN;
+    END getTopOwnedProducts;
 
 END ownedProduct_utils;

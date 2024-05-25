@@ -46,13 +46,14 @@ public class ProductStatsGraphic extends javax.swing.JPanel {
         
         for (int i = 0; i < movies.size(); i++) {
             Movie m = movies.get(i);
-            if (category == Cursors.getProductCategory(m.getId())) {
+            System.out.println(m.getIdProduct());
+            if (category.equals(Cursors.getProductCategory(m.getIdProduct()))) {
                 moviesXcategory++;
             }
         }
         for (int i = 0; i < series.size(); i++) {
             Series s = series.get(i);
-            if (category == Cursors.getProductCategory(s.getId())) {
+            if (category.equals(Cursors.getProductCategory(s.getIdProduct()))) {
                 seriesXcategory++;
             }
         }
@@ -79,7 +80,7 @@ public class ProductStatsGraphic extends javax.swing.JPanel {
         
         ChartPanel panel = new ChartPanel(piechart);
         panel.setMouseWheelEnabled(true);
-        panel.setPreferredSize(new Dimension(450, 400));
+        panel.setPreferredSize(new Dimension(470, 415));
         
         GraphicProductsPanel.setLayout(new BorderLayout());
         GraphicProductsPanel.add(panel, BorderLayout.NORTH);

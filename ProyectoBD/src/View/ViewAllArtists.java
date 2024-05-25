@@ -126,7 +126,6 @@ public class ViewAllArtists extends javax.swing.JPanel {
         });
 
         signInBtn.setBackground(new java.awt.Color(102, 102, 102));
-        signInBtn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         signInBtn.setForeground(new java.awt.Color(204, 204, 204));
         signInBtn.setText("Sign In");
         signInBtn.setBorderPainted(false);
@@ -208,15 +207,15 @@ public class ViewAllArtists extends javax.swing.JPanel {
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)))
                     .addGroup(EditArtistsMenuLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditArtistsMenuLayout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addComponent(viewActorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117)
                         .addComponent(viewDirectorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(114, 114, 114)
-                        .addComponent(viewWritterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(viewWritterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EditArtistsMenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EditArtistsMenuLayout.setVerticalGroup(
@@ -238,9 +237,9 @@ public class ViewAllArtists extends javax.swing.JPanel {
                     .addComponent(viewActorBtn)
                     .addComponent(viewDirectorBtn)
                     .addComponent(viewWritterBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(BackBtn)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

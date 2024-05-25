@@ -47,6 +47,7 @@ public class ViewCategory extends javax.swing.JPanel {
         DelButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         CategoryList = new javax.swing.JList<>();
+        DelButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -98,7 +99,7 @@ public class ViewCategory extends javax.swing.JPanel {
         });
 
         DelButton.setBackground(new java.awt.Color(51, 51, 51));
-        DelButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        DelButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         DelButton.setForeground(new java.awt.Color(204, 204, 204));
         DelButton.setText("Eliminar");
         DelButton.setBorderPainted(false);
@@ -118,31 +119,45 @@ public class ViewCategory extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(CategoryList);
 
+        DelButton1.setBackground(new java.awt.Color(51, 51, 51));
+        DelButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        DelButton1.setForeground(new java.awt.Color(204, 204, 204));
+        DelButton1.setText("Editar");
+        DelButton1.setBorderPainted(false);
+        DelButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(WrittenCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(DelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DelButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(125, 125, 125))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(WrittenCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +172,11 @@ public class ViewCategory extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DelButton)
+                            .addComponent(DelButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(BackButton)
                         .addGap(29, 29, 29))))
         );
@@ -197,6 +214,26 @@ public class ViewCategory extends javax.swing.JPanel {
         }
         this.initializeCategory();
     }//GEN-LAST:event_DelButtonActionPerformed
+
+    private void DelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelButton1ActionPerformed
+        String name = this.WrittenCategory.getText();
+        if (name.length() > 15) {
+            mainFrame.showError("Nombre muy largo. (>15)");
+            return;
+        }
+        try {
+           int index = this.CategoryList.getSelectedIndex();
+           ListModel model = this.CategoryList.getModel();
+           String category = (String) model.getElementAt(index);
+           Updates.updateCategory(categories.get(category), name);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Debe llenar todos los datos.");
+            System.out.println(e.getMessage());
+            return;
+        }
+        this.initializeCategory();
+    }//GEN-LAST:event_DelButton1ActionPerformed
     
     private void initializeCategory() {
         try {
@@ -215,6 +252,7 @@ public class ViewCategory extends javax.swing.JPanel {
     private javax.swing.JButton BackButton;
     private javax.swing.JList<String> CategoryList;
     private javax.swing.JButton DelButton;
+    private javax.swing.JButton DelButton1;
     private javax.swing.JPanel PTitle;
     private javax.swing.JLabel Title;
     private javax.swing.JTextField WrittenCategory;

@@ -37,6 +37,10 @@ CREATE OR REPLACE PACKAGE BODY product_utils AS
         WHERE id_product = pId;
         DELETE FROM CartProduct
         WHERE id_Product = pId;
+        DELETE FROM ViewedProduct
+        WHERE id_product = pId;
+        DELETE FROM OwnedProduct
+        WHERE id_product = pId;
         DELETE FROM Product
         WHERE id_product = pId;
         COMMIT;

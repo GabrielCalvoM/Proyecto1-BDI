@@ -1,9 +1,9 @@
 CREATE TABLE product (
-    id_product      NUMBER(6),
+    id_product      NUMBER(8),
     title           VARCHAR2(30)    CONSTRAINT product_title_nn NOT NULL,
     premiere_year   NUMBER(4)       CONSTRAINT product_premiereYear_nn NOT NULL,
     synopsis        VARCHAR2(300)   CONSTRAINT product_synopsis_nn NOT NULL,
-    trailer         VARCHAR2(100)   CONSTRAINT product_trailer_nn NOT NULL,
+    trailer         VARCHAR2(200)   CONSTRAINT product_trailer_nn NOT NULL,
     price           NUMBER
 );
 

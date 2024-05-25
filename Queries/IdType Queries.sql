@@ -11,7 +11,7 @@ CREATE OR REPLACE PACKAGE idType_utils IS
 END idType_utils;
 /
 
--- Lógica de Procedimientos
+-- Lï¿½gica de Procedimientos
 CREATE OR REPLACE PACKAGE BODY idType_utils AS
 
 -- Insert
@@ -34,17 +34,6 @@ CREATE OR REPLACE PACKAGE BODY idType_utils AS
         DELETE FROM identificationType
         WHERE id_type = pId;
         COMMIT;
-    
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            DBMS_OUTPUT.PUT_LINE('El valor ingresado no es válido');
-            ROLLBACK;
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('No se encontró el registro con el id ' || pId);
-            ROLLBACK;
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('Sucedió un error inesperado');
-            ROLLBACK;
             
     END deleteType;
 

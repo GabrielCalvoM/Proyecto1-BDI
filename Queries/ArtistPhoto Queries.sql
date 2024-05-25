@@ -13,7 +13,7 @@ CREATE OR REPLACE PACKAGE BODY ArtistPhoto_Utils AS
     PROCEDURE insertArtistPhoto(pIdPhoto NUMBER, pIdArtist NUMBER)
     IS
     BEGIN
-        INSERT INTO proy1.artistPhoto
+        INSERT INTO proy1.artistPhoto (id_photo, id_artist)
                VALUES (pIdPhoto, pIdArtist);
         COMMIT;
 
@@ -37,13 +37,6 @@ CREATE OR REPLACE PACKAGE BODY ArtistPhoto_Utils AS
         WHERE id_photo NOT IN
         (SELECT id_photo FROM ArtistPhoto);
         COMMIT;
-
-    EXCEPTION
-        WHEN INVALID_NUMBER THEN
-            dbms_output.put_line('[ERROR] Invalid Parameters');
-        WHEN OTHERS THEN
-            dbms_output.put_line('[ERROR] Unexpected Error, please try again.');
-
     END deleteArtistPhoto;
     
     -- Get

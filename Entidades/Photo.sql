@@ -1,6 +1,6 @@
 CREATE TABLE photo (
     id_photo        NUMBER(8),
-    picture         BFILE       CONSTRAINT photo_picture_nn NOT NULL
+    picture         VARCHAR2(200)       CONSTRAINT photo_picture_nn NOT NULL
 );
 
 CREATE SEQUENCE s_photo

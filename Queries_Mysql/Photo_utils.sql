@@ -1,0 +1,19 @@
+DELIMITER //
+CREATE FUNCTION insertPhoto(pPath VARCHAR(255)) RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE vId_Photo INT;
+    INSERT INTO photo(picture)
+    VALUES (pPath);
+	SELECT LAST_INSERT_ID() INTO vId_Photo;
+    RETURN vId_Photo;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE removePhoto(pId INT)
+BEGIN
+    DELETE FROM Photo
+    WHERE id_photo = pId;
+END //
+DELIMITER ;

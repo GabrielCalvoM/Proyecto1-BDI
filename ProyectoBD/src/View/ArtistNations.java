@@ -176,14 +176,16 @@ public class ArtistNations extends javax.swing.JPanel {
         Country country = (Country) this.selNation.getSelectedItem();
         DefaultListModel model = (DefaultListModel) this.nationalities.getModel();
         
-        for (int i = 0; i < model.size(); i++) {
-            Country countryModel = (Country) model.getElementAt(i);
-            
-            if (countryModel.getId() == country.getId()) {
-                this.mainFrame.showError("La nacionalidad ya está registrada");
-                return;
+        try {
+            for (int i = 0; i < model.size(); i++) {
+                Country countryModel = (Country) model.getElementAt(i);
+
+                if (countryModel.getId() == country.getId()) {
+                    this.mainFrame.showError("La nacionalidad ya está registrada");
+                    return;
+                }
             }
-        }
+        } catch (Exception e) {}
         
         try {
             Insertions.insertNationality(this.artist.getId(), country.getId());

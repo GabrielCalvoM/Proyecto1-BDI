@@ -92,6 +92,7 @@ public class AdminPage extends javax.swing.JPanel {
         RemoveCountryBtn = new javax.swing.JButton();
         EditCountBackBtn = new javax.swing.JButton();
         NewCountryTxtfield = new javax.swing.JTextField();
+        RemoveCountryBtn1 = new javax.swing.JButton();
         EditArtists = new javax.swing.JPanel();
         EditArtistsMenu = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -645,6 +646,16 @@ public class AdminPage extends javax.swing.JPanel {
             }
         });
 
+        RemoveCountryBtn1.setBackground(new java.awt.Color(51, 51, 51));
+        RemoveCountryBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        RemoveCountryBtn1.setText("Editar");
+        RemoveCountryBtn1.setBorderPainted(false);
+        RemoveCountryBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveCountryBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EditCountriesLayout = new javax.swing.GroupLayout(EditCountries);
         EditCountries.setLayout(EditCountriesLayout);
         EditCountriesLayout.setHorizontalGroup(
@@ -665,11 +676,13 @@ public class AdminPage extends javax.swing.JPanel {
             .addGroup(EditCountriesLayout.createSequentialGroup()
                 .addGroup(EditCountriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditCountriesLayout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(RemoveCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EditCountriesLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(EditCountBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(EditCountBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EditCountriesLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(RemoveCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(RemoveCountryBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EditCountriesLayout.setVerticalGroup(
@@ -684,7 +697,9 @@ public class AdminPage extends javax.swing.JPanel {
                         .addComponent(AddCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(RemoveCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(EditCountriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RemoveCountryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RemoveCountryBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(EditCountBackBtn)
                 .addContainerGap())
@@ -1558,11 +1573,6 @@ public class AdminPage extends javax.swing.JPanel {
         EditProducts_movies.setBackground(new java.awt.Color(51, 51, 51));
         EditProducts_movies.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         EditProducts_movies.setForeground(new java.awt.Color(255, 255, 255));
-        EditProducts_movies.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Shutter Island", "Inception", "Interstellar", "Oppenheimer" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane9.setViewportView(EditProducts_movies);
 
         jScrollPane10.setBackground(new java.awt.Color(51, 51, 51));
@@ -1570,11 +1580,6 @@ public class AdminPage extends javax.swing.JPanel {
         EditProducts_series.setBackground(new java.awt.Color(51, 51, 51));
         EditProducts_series.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         EditProducts_series.setForeground(new java.awt.Color(255, 255, 255));
-        EditProducts_series.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Game Of Thrones", "House of the Dragon", "Attack on Titan", "Death Note" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         EditProducts_series.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 EditProducts_seriesAncestorAdded(evt);
@@ -1814,7 +1819,7 @@ public class AdminPage extends javax.swing.JPanel {
         jButton26.setBackground(new java.awt.Color(51, 51, 51));
         jButton26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton26.setForeground(new java.awt.Color(255, 255, 255));
-        jButton26.setText("Agregar");
+        jButton26.setText("Siguiente");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton26ActionPerformed(evt);
@@ -1956,11 +1961,6 @@ public class AdminPage extends javax.swing.JPanel {
 
         addMovie_availableActors.setBackground(new java.awt.Color(51, 51, 51));
         addMovie_availableActors.setForeground(new java.awt.Color(255, 255, 255));
-        addMovie_availableActors.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane19.setViewportView(addMovie_availableActors);
 
         addMovie_actors.setBackground(new java.awt.Color(51, 51, 51));
@@ -1982,11 +1982,6 @@ public class AdminPage extends javax.swing.JPanel {
 
         addMovie_availableWriters.setBackground(new java.awt.Color(51, 51, 51));
         addMovie_availableWriters.setForeground(new java.awt.Color(255, 255, 255));
-        addMovie_availableWriters.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane21.setViewportView(addMovie_availableWriters);
 
         jLabel78.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -2809,7 +2804,7 @@ public class AdminPage extends javax.swing.JPanel {
             editArtist_typeCombo.setSelectedIndex(0);
             editArtist_nameTxt.setText(person.getFirst_Name());
             editArtist_lastnameTxt.setText(person.getLast_Name());
-            DateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             editArtist_date.setDate( format.parse((currentArtist.getBirthDate())));
             editArtist_bioTxt.setText(currentArtist.getBiography_artist());
             editArtist_triviaTxt.setText(currentArtist.getTrivia_data());
@@ -2914,7 +2909,6 @@ public class AdminPage extends javax.swing.JPanel {
         String trivia = addArtist_triviaTxt.getText();
         
         int height;
-        System.out.println(addArtist_height.getSelectedItem().toString());
         try {
             height = Integer.parseInt(addArtist_height.getSelectedItem().toString());
         }
@@ -3414,7 +3408,7 @@ public class AdminPage extends javax.swing.JPanel {
         RelativeType type = (RelativeType) model.getElementAt(index);
         
         try {
-            int id_relative = Insertions.insertPerson(name, lastName, birthDate, 0, index);
+            int id_relative = Insertions.insertPerson(name, lastName, birthDate, 0, gender.getId());
             Insertions.insertArtistRelative(currentArtist.getId(), id_relative, type.getId());
         }
         catch (Exception e) {
@@ -3500,7 +3494,32 @@ public class AdminPage extends javax.swing.JPanel {
     }//GEN-LAST:event_UpdateWriter_ButtonActionPerformed
 
     private void UpdateArtistRelative_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateArtistRelative_ButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = ArtistRelative_List.getSelectedIndex();
+            ListModel model = ArtistRelative_List.getModel();
+            ArtistRelative relative = (ArtistRelative) model.getElementAt(index);
+            Updates.updateArtistRelative(relative.getId(), artistRelative_relationCombo.getSelectedIndex());
+            
+            int id_relative = relative.getId_relative();
+            String first_name = artistRelative_nameTxt.getText();
+            String last_name = artistRelative_lastnameTxt.getText();
+            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            String birthDate;
+            try {
+                birthDate = formatter.format(artistRelative_date.getDate());
+            }
+            catch (Exception e) {
+                mainFrame.showError("Fecha inválida.");
+                return;
+            }
+            Gender gender = (Gender) artistRelative_genderCombo.getSelectedItem();
+            
+            Updates.updatePerson(id_relative, first_name, last_name, birthDate, 0, gender.getId());
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al editar. Intente nuevamente.");
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_UpdateArtistRelative_ButtonActionPerformed
 
     private void DeleteArtistRelative_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteArtistRelative_ButtonActionPerformed
@@ -3837,6 +3856,31 @@ public class AdminPage extends javax.swing.JPanel {
         mainFrame.showPage("BestSellers", new BestSellers(mainFrame, this));
     }//GEN-LAST:event_CountriesButton5ActionPerformed
 
+    private void RemoveCountryBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveCountryBtn1ActionPerformed
+        String name = NewCountryTxtfield.getText();
+        if (name.length() > 20) {
+            mainFrame.showError("Nombre muy largo. (>20)");
+            return;
+        }
+        try {
+            int index = EditCountries_CountryList.getSelectedIndex();
+            ListModel model = EditCountries_CountryList.getModel();
+            Country country = (Country)model.getElementAt(index);
+            Updates.updateCountry(country.getId(), name);
+        }
+        catch (Exception e) {
+            mainFrame.showError("Debe llenar todos los datos.");
+            return;
+        }
+        NewCountryTxtfield.setText("");
+        try {
+            EditCountries_CountryList.setModel(mainFrame.buildListModel(Cursors.getCountries()));
+        }
+        catch (Exception e) {
+            mainFrame.showError("Error al leer de la base de datos.");
+        }
+    }//GEN-LAST:event_RemoveCountryBtn1ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddArtist;
@@ -3877,6 +3921,7 @@ public class AdminPage extends javax.swing.JPanel {
     private javax.swing.JTextField NewCountryTxtfield;
     private javax.swing.JButton ProductStatsButton;
     private javax.swing.JButton RemoveCountryBtn;
+    private javax.swing.JButton RemoveCountryBtn1;
     private javax.swing.JButton UpdateActor_Button;
     private javax.swing.JPanel UpdateArtist;
     private javax.swing.JButton UpdateArtistRelative_Button;

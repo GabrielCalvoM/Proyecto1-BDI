@@ -8,6 +8,8 @@ CREATE OR REPLACE PACKAGE category_utils IS
     FUNCTION  getCategory(pId IN NUMBER) RETURN VARCHAR2;
     PROCEDURE getAllCategories(categoryCursor OUT SYS_REFCURSOR);
     
+    PROCEDURE updateCategory(pId NUMBER, pName VARCHAR);
+    
 END category_utils;
 /
 
@@ -71,5 +73,14 @@ CREATE OR REPLACE PACKAGE BODY category_utils AS
         FROM Category;
 
     END getAllCategories;
+    
+    PROCEDURE updateCategory(pId NUMBER, pName VARCHAR)
+    IS    
+    BEGIN
+        UPDATE category
+        SET name = pName
+        WHERE id_category = pId;
+        COMMIT;
+    END updateCategory;
 
 END category_utils;

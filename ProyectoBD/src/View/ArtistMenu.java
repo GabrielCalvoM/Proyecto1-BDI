@@ -639,16 +639,16 @@ public class ArtistMenu extends javax.swing.JPanel {
         try {
             this.writters = Cursors.getArtistsOfType(3);
             
-            Artist writter1 = directors.get(0);
-            this.directorName1.setText(writter1.getName());
+            Artist writter1 = writters.get(0);
+            this.writterName1.setText(writter1.getName());
             this.setLabelIcon(this.writterPic1, Cursors.getArtistPhotos(writter1.getId()).get(0));
         } catch (Exception e) {
             System.out.println("No hay escritores");
         }
         
         try {
-            Artist writter2 = directors.get(1);
-            this.directorName2.setText(writter2.getName());
+            Artist writter2 = writters.get(1);
+            this.writterName2.setText(writter2.getName());
             this.setLabelIcon(this.writterPic2, Cursors.getArtistPhotos(writter2.getId()).get(0));
             
         } catch (Exception e) {

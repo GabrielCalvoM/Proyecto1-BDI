@@ -66,8 +66,12 @@ public class ManageAccount extends javax.swing.JPanel {
         total = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         cartTable = new javax.swing.JTable();
-        PayCheckBox = new javax.swing.JCheckBox();
         PayTextField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        vencimiento = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        pinTarjeta = new javax.swing.JTextField();
         Viewed = new javax.swing.JPanel();
         AppBar3 = new javax.swing.JPanel();
         MainMenuLbl5 = new javax.swing.JLabel();
@@ -398,17 +402,24 @@ public class ManageAccount extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(cartTable);
 
-        PayCheckBox.setText("Pago por Tarjeta");
-        PayCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PayCheckBoxActionPerformed(evt);
-            }
-        });
-
-        PayTextField.setText("Ingrese su número de tarjeta.");
         PayTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PayTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Vencimiento:");
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Número tarjeta");
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Pin");
+
+        pinTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinTarjetaActionPerformed(evt);
             }
         });
 
@@ -433,39 +444,57 @@ public class ManageAccount extends javax.swing.JPanel {
                         .addComponent(ViewProductBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PayTextField)
-                            .addComponent(PayCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 93, Short.MAX_VALUE))
-                    .addComponent(PayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PayButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(CartLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(PayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(pinTarjeta, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(vencimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         CartLayout.setVerticalGroup(
             CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CartLayout.createSequentialGroup()
                 .addComponent(AppBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(PayCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CartLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(ViewProductBtn1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton7))
+                            .addGroup(CartLayout.createSequentialGroup()
+                                .addComponent(total)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 25, Short.MAX_VALUE))))
                     .addGroup(CartLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(ViewProductBtn1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7))
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(total)
+                        .addComponent(PayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 25, Short.MAX_VALUE)))
+                        .addComponent(vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pinTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -811,7 +840,6 @@ public class ManageAccount extends javax.swing.JPanel {
             mainFrame.showError("No tiene permisos de administrador");
             return;
         }
-        System.out.println(mainFrame.userAccount.getId_accountType());
         mainFrame.showPage("AdminPage", new AdminPage(mainFrame, this));
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -839,17 +867,16 @@ public class ManageAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_ViewProductBtn1ActionPerformed
 
     private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
-        if (!PayCheckBox.isSelected() || PayTextField.getText().length() < 1) {
-            mainFrame.showError("Debe marcar la opción e ingresar su tarjeta");
-            return;
-        }
         try {
             int number = Integer.parseInt(PayTextField.getText());
+            int pin = Integer.parseInt(pinTarjeta.getText());
+            Date date = vencimiento.getDate();
         }
         catch(Exception e) {
-            mainFrame.showError("Ingrese un número de tarjeta válido.");
+            mainFrame.showError("Ingrese una tarjeta válida.");
             return;
         }
+        
         try {
             
             int idUser = mainFrame.userAccount.getId_user();
@@ -880,10 +907,6 @@ public class ManageAccount extends javax.swing.JPanel {
     private void PayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PayTextFieldActionPerformed
-
-    private void PayCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PayCheckBoxActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         CardLayout card = (CardLayout) this.getLayout();
@@ -961,6 +984,10 @@ public class ManageAccount extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void pinTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinTarjetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pinTarjetaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AppBar;
@@ -978,7 +1005,6 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JPanel Menu;
     private javax.swing.JPanel Owned;
     private javax.swing.JButton PayButton;
-    private javax.swing.JCheckBox PayCheckBox;
     private javax.swing.JTextField PayTextField;
     private javax.swing.JButton ViewProductBtn;
     private javax.swing.JButton ViewProductBtn1;
@@ -1002,6 +1028,9 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1009,7 +1038,9 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> ownedFilterCombo;
     private javax.swing.JList<String> ownedList;
     private javax.swing.JButton owned_button;
+    private javax.swing.JTextField pinTarjeta;
     private javax.swing.JLabel total;
+    private com.toedter.calendar.JDateChooser vencimiento;
     private javax.swing.JList<String> viewedList;
     private javax.swing.JButton viewed_button;
     // End of variables declaration//GEN-END:variables

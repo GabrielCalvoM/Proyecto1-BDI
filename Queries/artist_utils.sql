@@ -33,6 +33,8 @@ CREATE OR REPLACE PACKAGE BODY Artist_Utils AS
     PROCEDURE deleteArtist(pId NUMBER)
     IS
     BEGIN
+        artistPhoto_utils.deleteArtistPhoto(pId);
+        artistRelative_utils.deleteArtist(pId);
         DELETE FROM Artist
         WHERE pID = id_artist;
         DELETE FROM Person

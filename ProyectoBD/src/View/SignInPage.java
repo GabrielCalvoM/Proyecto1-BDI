@@ -586,7 +586,7 @@ public class SignInPage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int id = -1;
+        int id = 0;
         int idUser;
         String username = login_userTxt.getText();
         String password = login_passwordTxt.getText();
@@ -605,9 +605,9 @@ public class SignInPage extends javax.swing.JPanel {
         }
         catch (Exception e) {
             mainFrame.showError("Error al leer de la base de datos.");
-                         System.out.println(e);
+            System.out.println(e);
         }
-        if (id >= 0) {
+        if (id > 0) {
             try {
                 mainFrame.userAccount = Cursors.getAccount(id);
             }
@@ -629,7 +629,7 @@ public class SignInPage extends javax.swing.JPanel {
             register_genderCombo.setModel(modelGenders);
         }
         catch(Exception e) {
-            
+            System.out.println(e);
         }
         
         CardLayout card = (CardLayout) SignInPage.getLayout();
@@ -734,7 +734,7 @@ public class SignInPage extends javax.swing.JPanel {
             byte[] encryptedBytes = encrypt(password);
             password = Base64.getEncoder().encodeToString(encryptedBytes);
             if (password.length() > 100) {
-                mainFrame.showError("Contraseña encriptada muy larga.");
+                mainFrame.showError("Contraseña muy larga.");
                 return;
             }
         }
@@ -779,7 +779,7 @@ public class SignInPage extends javax.swing.JPanel {
             idPerson = Insertions.insertPerson(name, lastName, birthDate, 0, gender.getId());
             Insertions.insertUser(idPerson, email, phone, country.getId(),
                 idType.getId(), idNumber);
-            Insertions.insertAccount(username, password, idPerson, accType, 0);
+            Insertions.insertAccount(username, password, idPerson, accType, 1);
             Insertions.createWishlist(idPerson);
             Insertions.createCart(idPerson);
         }
@@ -788,7 +788,7 @@ public class SignInPage extends javax.swing.JPanel {
             System.out.println(e);
             return;
         }
-        Account account = new Account(0, username, password, idPerson, 2, 0);
+        Account account = new Account(0, username, password, idPerson, accType, 1);
         mainFrame.userAccount = account;
         mainFrame.showPage("MainMenu", new MainMenu(mainFrame));
     }//GEN-LAST:event_registerButtonActionPerformed

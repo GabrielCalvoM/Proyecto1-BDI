@@ -501,8 +501,8 @@ public class ViewArtist extends javax.swing.JPanel {
         String birth = artist.getBirthDate();
         String bio = artist.getBiography_artist();
         String trivia = artist.getTrivia_data();
-        int height = artist.getHeight();
-        
+        int heightInt = artist.getHeight();
+        String height = heightInt > 0 ? Integer.toString(heightInt) + " cm" : "-";
         this.artistName.setText(name);
         this.artistRole.setText("Rol: " + type);
         this.birthDate.setText("<html>Fecha de Nacimiento:<br>" +
@@ -510,7 +510,7 @@ public class ViewArtist extends javax.swing.JPanel {
         this.biography.setText(bio);
         this.triviaData.setText(trivia);
         this.artistHeight.setText("<html>Altura:<br>" +
-                                         height + " cm</html>");
+                                         height);
         
         this.initializeRelatives(idArtist);
         this.initializeProducts(idArtist);

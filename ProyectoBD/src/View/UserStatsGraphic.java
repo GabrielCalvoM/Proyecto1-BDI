@@ -161,7 +161,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
         
         ChartPanel panel = new ChartPanel(piechart);
         panel.setMouseWheelEnabled(true);
-        panel.setPreferredSize(new Dimension(450, 400));
+        panel.setPreferredSize(new Dimension(470, 415));
         
         GraphicUsersPanel.setLayout(new BorderLayout());
         GraphicUsersPanel.add(panel, BorderLayout.NORTH);
@@ -207,7 +207,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
             .addGroup(PTitleLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(357, Short.MAX_VALUE))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
         PTitleLayout.setVerticalGroup(
             PTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,9 +290,9 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Age_FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +301,7 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(Gender_FilterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Gender_FilterButton, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
                         .addComponent(GenderFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
@@ -311,11 +311,12 @@ public class UserStatsGraphic extends javax.swing.JPanel {
                         .addGap(70, 70, 70)
                         .addComponent(GraphicButton)
                         .addGap(27, 27, 27)
-                        .addComponent(BackButton))
+                        .addComponent(BackButton)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(GraphicUsersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         GraphicButton.getAccessibleContext().setAccessibleParent(GraphicButton);

@@ -9,10 +9,8 @@ import java.util.HashMap;
 public class Cursors {
     public static ArrayList<Country> getCountries() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call country_utils.getCountries(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getCountries()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Country> countries = new ArrayList<>();
         while(rs.next()) {
@@ -28,10 +26,8 @@ public class Cursors {
     
     public static ArrayList<IdType> getIdTypes() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call idType_utils.getTypes(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getTypes()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<IdType> types = new ArrayList<>();
         while(rs.next()) {
@@ -45,12 +41,10 @@ public class Cursors {
         return types;
     }
     
-    public static ArrayList<Gender> getGenders() throws SQLException {
+    public static ArrayList<Gender> getGenders() throws SQLException {        
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call gender_utils.getGenders(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getGenders()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Gender> genders = new ArrayList<>();
         while(rs.next()) {
@@ -66,10 +60,8 @@ public class Cursors {
     
     public static ArrayList<ArtistType> getArtistTypes() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call artist_utils.getArtistTypes(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getArtistTypes()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<ArtistType> types = new ArrayList<>();
         while(rs.next()) {
@@ -85,10 +77,8 @@ public class Cursors {
     
     public static ArrayList<RelativeType> getRelativeTypes() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call relativeType_utils.getRelativeTypes(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getRelativeTypes(?)}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<RelativeType> types = new ArrayList<>();
         while(rs.next()) {
@@ -104,12 +94,9 @@ public class Cursors {
     
     public static ArrayList<ArtistRelative> getArtistRelatives(int id_artist) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call ArtistRelative_Utils.getArtistRelatives(?, ?)}");
+        CallableStatement stmt = con.prepareCall("{call getArtistRelatives(?)}");
         stmt.setInt(1, id_artist);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        
-        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<ArtistRelative> relatives = new ArrayList<>();
         while(rs.next()) {
@@ -130,11 +117,9 @@ public class Cursors {
     
     public static ArrayList<Artist> getArtistsOfType(int idType) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call artist_utils.getArtistsOfType(?, ?)}");
+        CallableStatement stmt = con.prepareCall("{call getArtistsOfType(?)}");
         stmt.setInt(1, idType);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Artist> artists = new ArrayList<>();
         while(rs.next()) {
@@ -151,12 +136,12 @@ public class Cursors {
     
     public static Person getPerson(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call person_utils.getPerson(?,?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getPerson(?,?,?,?,?)}");
         stmt.setInt(1, id);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.VARCHAR);
+        stmt.registerOutParameter(3, Types.VARCHAR);
+        stmt.registerOutParameter(4, Types.VARCHAR);
+        stmt.registerOutParameter(5, Types.INTEGER);
         stmt.execute();
         
        String name = (String) stmt.getObject(2);
@@ -171,16 +156,16 @@ public class Cursors {
     
     public static Artist getArtist(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call artist_utils.getArtist(?,?,?,?,?,?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getArtist(?,?,?,?,?,?,?,?,?)}");
         stmt.setInt(1, id);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.NUMBER);
-        stmt.registerOutParameter(6, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(7, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(8, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(9, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.VARCHAR);
+        stmt.registerOutParameter(3, Types.VARCHAR);
+        stmt.registerOutParameter(4, Types.VARCHAR);
+        stmt.registerOutParameter(5, Types.INTEGER);
+        stmt.registerOutParameter(6, Types.VARCHAR);
+        stmt.registerOutParameter(7, Types.VARCHAR);
+        stmt.registerOutParameter(8, Types.VARCHAR);
+        stmt.registerOutParameter(9, Types.INTEGER);
         stmt.execute();
         
        String name = (String) stmt.getObject(2);
@@ -200,13 +185,13 @@ public class Cursors {
     
     public static Product getProduct(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call product_utils.getProduct(?,?,?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getProduct(?,?,?,?,?,?)}");
         stmt.setInt(1, id);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.NUMBER);
-        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(5, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(6, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.VARCHAR);
+        stmt.registerOutParameter(3, Types.INTEGER);
+        stmt.registerOutParameter(4, Types.VARCHAR);
+        stmt.registerOutParameter(5, Types.VARCHAR);
+        stmt.registerOutParameter(6, Types.INTEGER);
         stmt.execute();
         String title = stmt.getString(2);
         int year = stmt.getInt(3);
@@ -221,10 +206,8 @@ public class Cursors {
     
     public static ArrayList<Product> getProducts() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call product_utils.getAllProducts(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllProducts()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
@@ -243,10 +226,8 @@ public class Cursors {
     
     public static ArrayList<Movie> getMovies() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call movie_utils.getAllMovies(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllMovies()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Movie> movies = new ArrayList<>();
         while(rs.next()) {
@@ -263,10 +244,8 @@ public class Cursors {
     
     public static ArrayList<Series> getSeries() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call series_utils.getAllSeries(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllSeries()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Series> series = new ArrayList<>();
         while(rs.next()) {
@@ -283,11 +262,9 @@ public class Cursors {
     
     public static ArrayList<Movie> getNmovies(int n) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call movie_utils.getNmovies(?, ?)}");
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        CallableStatement stmt = con.prepareCall("{call getNmovies(?)}");
         stmt.setInt(1, n);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Movie> movies = new ArrayList<>();
         while(rs.next()) {
@@ -304,11 +281,9 @@ public class Cursors {
     
     public static ArrayList<Series> getNseries(int n) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call series_utils.getNseries(?, ?)}");
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        CallableStatement stmt = con.prepareCall("{call getNseries(?)}");
         stmt.setInt(1, n);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Series> series = new ArrayList<>();
         while(rs.next()) {
@@ -325,11 +300,9 @@ public class Cursors {
     
     public static ArrayList<Integer> getArtistsInProduct(int idProd) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call productArtist_utils.getArtistsInProduct(?, ?)}");
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        CallableStatement stmt = con.prepareCall("{call getArtistsInProduct(?)}");
         stmt.setInt(1, idProd);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Integer> artistIds = new ArrayList<>();
         while(rs.next()) {
@@ -343,8 +316,8 @@ public class Cursors {
     
     public static int getTypeOfArtist(int idArtist) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call artist_utils.getTypeOfArtist(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        CallableStatement stmt = con.prepareCall("{? = call getTypeOfArtist(?)}");
+        stmt.registerOutParameter(1, Types.INTEGER);
         stmt.setInt(2, idArtist);
         stmt.execute();
         int result = stmt.getInt(1);
@@ -355,10 +328,8 @@ public class Cursors {
         
     public static HashMap<String, Integer> getCategories() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllCategories()}");
+        ResultSet rs = stmt.executeQuery();
         
         HashMap<String, Integer> categories = new HashMap<>();
         while(rs.next()) {
@@ -373,10 +344,8 @@ public class Cursors {
     
     public static ArrayList<Person> getUsersPersonalData() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call sysUser_utils.getAllUsers(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllUsers()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Person> users = new ArrayList<>();
         while(rs.next()) {
@@ -397,10 +366,8 @@ public class Cursors {
     
     public static ArrayList<Category> getCategoriesArr() throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call category_utils.getAllCategories(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllCategories()}");
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Category> categories = new ArrayList<>();
         while(rs.next()) {
@@ -416,8 +383,8 @@ public class Cursors {
     
     public static int getWishlistId(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call wishlist_utils.getWishlistId(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        CallableStatement stmt = con.prepareCall("{? = call getWishlistId(?)}");
+        stmt.registerOutParameter(1, Types.INTEGER);
         stmt.setInt(2, idUser);
         stmt.execute();
         int result = stmt.getInt(1);
@@ -428,8 +395,8 @@ public class Cursors {
     
         public static int getCartId(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call shoppingCart_utils.getCartId(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        CallableStatement stmt = con.prepareCall("{? = call getCartId(?)}");
+        stmt.registerOutParameter(1, Types.INTEGER);
         stmt.setInt(2, idUser);
         stmt.execute();
         int result = stmt.getInt(1);
@@ -440,8 +407,8 @@ public class Cursors {
     
     public static int getAccountUserId(int idAccount) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call account_utils.getUserId(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        CallableStatement stmt = con.prepareCall("{? = call getUserId(?)}");
+        stmt.registerOutParameter(1, Types.INTEGER);
         stmt.setInt(2, idAccount);
         stmt.execute();
         int result = stmt.getInt(1);
@@ -452,12 +419,10 @@ public class Cursors {
     
     public static ArrayList<Product> getProductsInWishlist(int idWishlist) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call wishedProduct_utils.getProductsInWishlist(?,?)}");
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        CallableStatement stmt = con.prepareCall("{call getProductsInWishlist(?)}");
         stmt.setInt(1, idWishlist);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -471,12 +436,10 @@ public class Cursors {
     
     public static ArrayList<Product> getProductsInCart(int idCart) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call cartProduct_utils.getProductsInCart(?,?)}");
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+        CallableStatement stmt = con.prepareCall("{call getProductsInCart(?)}");
         stmt.setInt(1, idCart);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -490,11 +453,11 @@ public class Cursors {
     
     public static Account getAccount(int idAccount) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call account_utils.getAccount(?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getAccount(?,?,?,?)}");
         stmt.setInt(1, idAccount);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.VARCHAR);
-        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.NUMBER);
-        stmt.registerOutParameter(4, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.VARCHAR);
+        stmt.registerOutParameter(3, Types.INTEGER);
+        stmt.registerOutParameter(4, Types.INTEGER);
         stmt.execute();
         String username = stmt.getString(2);
         int id_user = stmt.getInt(3);
@@ -507,12 +470,10 @@ public class Cursors {
     
     public static ArrayList<Review> getProductReviews(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call review_utils.getProductReviews(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getProductReviews(?)}");
         stmt.setInt(1, idProduct);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Review> reviews = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -529,9 +490,9 @@ public class Cursors {
     
     public static String getUsernameByUserId(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call account_utils.getUsernameByUserId(?)}");
+        CallableStatement stmt = con.prepareCall("{? = call getUsernameByUserId(?)}");
         stmt.setInt(2, idUser);
-        stmt.registerOutParameter(1,  oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(1,  Types.VARCHAR);
         stmt.execute();
         String username = stmt.getString(1);
         con.close();
@@ -541,9 +502,9 @@ public class Cursors {
     
     public static float getAverageRating(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call review_utils.getAverageRating(?)}");
+        CallableStatement stmt = con.prepareCall("{? = call getAverageRating(?)}");
         stmt.setInt(2, idProduct);
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.FLOAT);
+        stmt.registerOutParameter(1, Types.FLOAT);
         stmt.execute();
         float result = stmt.getFloat(1);
         con.close();
@@ -553,9 +514,9 @@ public class Cursors {
     
     public static String getProductCategory(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call productCategory_utils.getProductCategory(?)}");
+        CallableStatement stmt = con.prepareCall("{? = call getProductCategory(?)}");
         stmt.setInt(2, idProduct);
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(1, Types.VARCHAR);
         stmt.execute();
         String category = stmt.getString(1);
         con.close();
@@ -565,12 +526,10 @@ public class Cursors {
     
     public static ArrayList<String> getArtistPhotos(int id) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call artistPhoto_utils.getArtistPhoto(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.setInt(2, id);
-        stmt.execute();
+        CallableStatement stmt = con.prepareCall("{call getArtistPhoto(?)}");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(1);
         ArrayList<String> photos = new ArrayList<>();
         
         while(rs.next()) {
@@ -633,11 +592,9 @@ public class Cursors {
     
     public static ArrayList<Integer> getArtistProducts(int idArtist) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{?=call productArtist_utils.getAllProducts(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.setInt(2, idArtist);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllProducts(?)}");
+        stmt.setInt(1, idArtist);
+        ResultSet rs = stmt.executeQuery();
         
         ArrayList<Integer> products = new ArrayList<>();
         while(rs.next()) {
@@ -652,9 +609,9 @@ public class Cursors {
     
     public static String getCountry(int idCountry) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call country_utils.getCountryName(?)}");
+        CallableStatement stmt = con.prepareCall("{? = call getCountryName(?)}");
         stmt.setInt(2, idCountry);
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+        stmt.registerOutParameter(1, Types.VARCHAR);
         stmt.execute();
         String name = stmt.getString(1);
         con.close();
@@ -664,11 +621,9 @@ public class Cursors {
     
     public static ArrayList<Country> getNationalities(int idPerson) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{?=call nationality_utils.getAllNationalities(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.setInt(2, idPerson);
-        stmt.execute();
-        ResultSet rs = (ResultSet) stmt.getObject(1);
+        CallableStatement stmt = con.prepareCall("{call getAllNationalities(?)}");
+        stmt.setInt(1, idPerson);
+        ResultSet rs = stmt.executeQuery();
         
         
         ArrayList<Country> nationalities = new ArrayList<>();
@@ -686,9 +641,9 @@ public class Cursors {
     
     public static int getSeriesId(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call series_utils.getSeriesId(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getSeriesId(?,?)}");
         stmt.setInt(1, idProduct);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.INTEGER);
         stmt.execute();
         int id = stmt.getInt(2);
         con.close();
@@ -698,9 +653,9 @@ public class Cursors {
     
     public static int getMovieDuration(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call movie_utils.getMovieDuration(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getMovieDuration(?,?)}");
         stmt.setInt(1, idProduct);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.INTEGER);
         stmt.execute();
         int duration = stmt.getInt(2);
         con.close();
@@ -710,12 +665,10 @@ public class Cursors {
     
     public static ArrayList<Season> getSeasons(int idSeries) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call season_utils.getAllSeasons(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getAllSeasons(?)}");
         stmt.setInt(1, idSeries);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Season> seasons = new ArrayList<>();
         int count = 1;
         while(rs.next()) {
@@ -731,12 +684,10 @@ public class Cursors {
     
     public static ArrayList<Episode> getEpisodes(int idSeason) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call episode_utils.getAllEpisodes(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getAllEpisodes(?)}");
         stmt.setInt(1, idSeason);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
-        
-        ResultSet rs = (ResultSet) stmt.getObject(2);
+        ResultSet rs = stmt.executeQuery();
+                
         ArrayList<Episode> episodes = new ArrayList<>();
         int count = 1;
         while(rs.next()) {
@@ -753,12 +704,10 @@ public class Cursors {
     
     public static ArrayList<Product> getViewedProducts(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call viewedProduct_utils.getViewedProducts(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getViewedProducts(?)}");
         stmt.setInt(1, idUser);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -772,9 +721,9 @@ public class Cursors {
     
     public static int isMovie(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call movie_utils.isMovie(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call isMovie(?,?)}");
         stmt.setInt(1, idProduct);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.NUMBER);
+        stmt.registerOutParameter(2, Types.INTEGER);
         stmt.execute();
         int result = stmt.getInt(2);
         con.close();
@@ -784,12 +733,10 @@ public class Cursors {
     
     public static ArrayList<Product> getOwnedProducts(int idUser) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.getOwnedProducts(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getOwnedProducts(?)}");
         stmt.setInt(1, idUser);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -805,13 +752,11 @@ public class Cursors {
     
     public static ArrayList<Product> getOwnedProductsFilter(int idUser, int months) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.getProductsFilter(?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getProductsFilter(?,?)}");
         stmt.setInt(1, idUser);
         stmt.setInt(2, months);
-        stmt.registerOutParameter(3, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(3);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -827,12 +772,10 @@ public class Cursors {
     
     public static ArrayList<Product> getTopOwnedProducts(int topN) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call ownedProduct_utils.getTopOwnedProducts(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getTopOwnedProducts(?)}");
         stmt.setInt(1, topN);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);
@@ -848,12 +791,10 @@ public class Cursors {
     
     public static ArrayList<String> getProductPhotos(int idProduct) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call productPhoto_utils.getProductPhotos(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call getProductPhotos(?)}");
         stmt.setInt(1, idProduct);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<String> photos = new ArrayList<>();
         while(rs.next()) {
             String path = rs.getString(1);
@@ -866,12 +807,10 @@ public class Cursors {
     
     public static ArrayList<Product> searchProducts(String searchTerm) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call product_utils.searchProducts(?,?)}");
+        CallableStatement stmt = con.prepareCall("{call searchProducts(?)}");
         stmt.setString(1, searchTerm);
-        stmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-        stmt.execute();
+        ResultSet rs = stmt.executeQuery();
         
-        ResultSet rs = (ResultSet) stmt.getObject(2);
         ArrayList<Product> products = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt(1);

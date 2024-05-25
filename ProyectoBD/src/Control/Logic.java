@@ -7,8 +7,8 @@ import Model.*;
 public class Logic {
     public static int verifyAccountCredentials(String username, String password) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call account_utils.checkUserPassword(?, ?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        CallableStatement stmt = con.prepareCall("{? = call checkUserPassword(?, ?)}");
+        stmt.registerOutParameter(1, Types.INTEGER);
         stmt.setString(2, username);
         stmt.setString(3, password);
         stmt.execute();
@@ -18,11 +18,18 @@ public class Logic {
     
     public static boolean getUsernameUnique(String username) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{? = call account_utils.getUsernameUnique(?)}");
-        stmt.registerOutParameter(1, oracle.jdbc.OracleTypes.NUMBER);
+        CallableStatement stmt = con.prepareCall("{? = call getUsernameUnique(?)}");
+        
+        // Use standard JDBC types instead of Oracle-specific types
+        stmt.registerOutParameter(1, Types.INTEGER);
         stmt.setString(2, username);
+        
         stmt.execute();
+        
         int result = stmt.getInt(1);
+        
+        stmt.close();
+        con.close();
         return result < 1;
     }
     

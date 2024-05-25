@@ -3,6 +3,7 @@ CREATE OR REPLACE PACKAGE ArtistRelative_Utils IS
     PROCEDURE insertArtistRelative(pId_Artist NUMBER, pId_Relative NUMBER, pId_RelationType NUMBER);
     -- Delete
     PROCEDURE deleteArtistRelative(pId NUMBER);
+    PROCEDURE deleteArtist(pId_Artist NUMBER);
     -- Update
     PROCEDURE updateArtistRelativeRelation (pId NUMBER, pId_Relation NUMBER);
     
@@ -37,6 +38,14 @@ CREATE OR REPLACE PACKAGE BODY ArtistRelative_Utils AS
         COMMIT;
         
     END deleteArtistRelative;
+    
+    PROCEDURE deleteArtist(pId_Artist NUMBER)
+    IS
+    BEGIN
+        DELETE FROM proy1.ArtistRelative
+        WHERE id_artist = pId_artist;
+        COMMIT;
+    END deleteArtist;
     
     -- Update
     PROCEDURE updateArtistRelativeRelation (pId NUMBER, pId_Relation NUMBER)

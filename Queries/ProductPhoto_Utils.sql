@@ -7,14 +7,14 @@ CREATE OR REPLACE PACKAGE ProductPhoto_Utils IS
     FUNCTION getProductMainImg(pIdProduct NUMBER) RETURN VARCHAR2;
     PROCEDURE getProductPhotos(pIdProduct NUMBER, photoCursor OUT SYS_REFCURSOR);
 END ProductPhoto_Utils;
-/
+
 
 CREATE OR REPLACE PACKAGE BODY ProductPhoto_Utils AS
     -- Insert
     PROCEDURE insertProductPhoto(pId_Photo NUMBER, pId_Product NUMBER)
     IS
     BEGIN
-        INSERT INTO proy1.ProductPhoto
+        INSERT INTO proy1.ProductPhoto (id_productphoto, id_product)
                VALUES (pId_Photo, pId_product);
         COMMIT;
     

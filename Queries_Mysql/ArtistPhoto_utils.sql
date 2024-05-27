@@ -35,4 +35,3 @@ BEGIN
     WHERE aph.id_artist = pIdArtist;
 END//
 DELIMITER ;
-

@@ -530,8 +530,7 @@ public class Cursors {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         
-        ArrayList<String> photos = new ArrayList<>();
-        
+        ArrayList<String> photos = new ArrayList<>(); 
         while(rs.next()) {
             String photo = rs.getString(1);
             photos.add(photo);
@@ -592,7 +591,7 @@ public class Cursors {
     
     public static ArrayList<Integer> getArtistProducts(int idArtist) throws SQLException {
         Connection con = sysConnection.getConnection();
-        CallableStatement stmt = con.prepareCall("{call getAllProducts(?)}");
+        CallableStatement stmt = con.prepareCall("{call getArtistProducts(?)}");
         stmt.setInt(1, idArtist);
         ResultSet rs = stmt.executeQuery();
         

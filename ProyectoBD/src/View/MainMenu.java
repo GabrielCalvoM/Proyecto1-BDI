@@ -30,7 +30,7 @@ public class MainMenu extends javax.swing.JPanel {
     //Loads movies and series to the main menu.
         try {
             menuMovies = Cursors.getNmovies(5);
-            //menuSeries = Cursors.getNseries(5);
+            menuSeries = Cursors.getNseries(5);
         }
         catch (Exception e) {
             System.out.println(e);

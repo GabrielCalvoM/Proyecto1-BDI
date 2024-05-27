@@ -22,3 +22,12 @@ BEGIN
     WHERE id_product = pIdProduct;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE getArtistProducts(pArtist INT)
+BEGIN
+	SELECT id_product
+	FROM productArtist
+	WHERE id_artist = pArtist;
+END //
+DELIMITER ;

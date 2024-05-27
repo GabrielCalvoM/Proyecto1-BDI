@@ -542,19 +542,17 @@ public class ViewArtist extends javax.swing.JPanel {
     }
     
     private void initializeProducts(int idArtist) {
-        ArrayList<Integer> idProducts;
+        ArrayList<Integer> idProducts = new ArrayList<>();
         ArrayList<String> productNames = new ArrayList();
         
         try {
             idProducts = Cursors.getArtistProducts(idArtist);
         } catch (Exception e) {
-            System.out.println("Error al cargar los productos");
-            return;
+            System.out.println(e);
         }
         
         if (idProducts.isEmpty()) {
             System.out.println("No hay productos");
-            return;
         }
         
         for (int id : idProducts) {

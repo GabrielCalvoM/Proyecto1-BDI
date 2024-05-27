@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class ViewMovie extends javax.swing.JPanel {
     JPanel previousPanel;
@@ -50,7 +52,18 @@ public class ViewMovie extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+   
+     public static void openBrowser(String url) {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Error al abrir navegador.");
+        }
+    }
     
     private void loadInfo() {
         ArrayList<Integer> artistIds;
@@ -638,7 +651,7 @@ public class ViewMovie extends javax.swing.JPanel {
     }//GEN-LAST:event_movie_favoritesActionPerformed
 
     private void movie_trailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movie_trailerActionPerformed
-        // TODO add your handling code here:
+        openBrowser(product.getTrailer());
     }//GEN-LAST:event_movie_trailerActionPerformed
 
     private void AdmMenuBackBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmMenuBackBtn2ActionPerformed

@@ -158,9 +158,9 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="movie_img" min="-2" pref="195" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="movie_viewActor1" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="movie_viewActor2" alignment="0" min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="movie_viewActor1" min="-2" pref="17" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="movie_buy" max="-2" attributes="0"/>

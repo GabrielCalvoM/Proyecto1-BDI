@@ -741,7 +741,7 @@ public class ManageAccount extends javax.swing.JPanel {
             int idUser = mainFrame.userAccount.getId_user();
             ownedProducts = Cursors.getOwnedProducts(idUser);
             DefaultListModel model = new DefaultListModel();
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
             for (Product p : ownedProducts) {
                 String dateStr = p.getDateBought();
@@ -962,12 +962,12 @@ public class ManageAccount extends javax.swing.JPanel {
             int idUser = mainFrame.userAccount.getId_user();
             ownedProducts = switch (ownedFilterCombo.getSelectedIndex()) {
                 case 0 -> Cursors.getOwnedProducts(idUser);
-                case 1 -> Cursors.getOwnedProductsFilter(idUser, -3);
-                case 2 -> Cursors.getOwnedProductsFilter(idUser, -6);
-                case 3 -> Cursors.getOwnedProductsFilter(idUser, -12);
+                case 1 -> Cursors.getOwnedProductsFilter(idUser, 3);
+                case 2 -> Cursors.getOwnedProductsFilter(idUser, 6);
+                case 3 -> Cursors.getOwnedProductsFilter(idUser, 12);
                 default -> Cursors.getOwnedProducts(idUser);
             };
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
             DefaultListModel model = new DefaultListModel();
             for (Product p : ownedProducts) {

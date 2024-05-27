@@ -30,7 +30,7 @@ public class BestSellers extends javax.swing.JPanel {
             bestSellersList.setModel(model);
         }
         catch (Exception e) {
-            
+            System.out.println(e);
         }
     }
 

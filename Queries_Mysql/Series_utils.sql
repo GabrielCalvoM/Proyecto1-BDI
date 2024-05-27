@@ -26,6 +26,7 @@ BEGIN
 	CALL deleteProductPhoto(vIdProduct);
 	CALL deleteAllSeasons(pId);
     CALL deleteArtistsForProduct(vIdProduct);
+	CALL deleteProductCategory(vIdProduct);
     CALL deleteProductWished(vIdProduct);
     CALL deleteProductCart(vIdProduct);
     CALL deleteProductOwned(vIdProduct);
@@ -46,7 +47,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE getNseries(IN pNum INT)
 BEGIN
-    SELECT p.title, s.id_series, s.id_product
+    SELECT title, id_series, id_product
     FROM (
         SELECT p.title, s.id_series, s.id_product
         FROM Series s
@@ -55,6 +56,8 @@ BEGIN
     LIMIT pNum;
 END //
 DELIMITER ;
+
+DROP PROCEDURE getNseries;
 
 DELIMITER //
 CREATE PROCEDURE getSeriesId(IN pId_product INT, OUT pId_series INT)

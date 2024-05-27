@@ -22,6 +22,7 @@ BEGIN
     
 	CALL deleteProductPhoto(vIdProduct);
     CALL deleteArtistsForProduct(vIdProduct);
+    CALL deleteProductCategory(vIdProduct);
     CALL deleteProductWished(vIdProduct);
     CALL deleteProductCart(vIdProduct);
     CALL deleteProductOwned(vIdProduct);

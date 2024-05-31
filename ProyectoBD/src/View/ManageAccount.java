@@ -48,6 +48,7 @@ public class ManageAccount extends javax.swing.JPanel {
         cart_button = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        owned_button1 = new javax.swing.JButton();
         Favorites = new javax.swing.JPanel();
         AppBar1 = new javax.swing.JPanel();
         MainMenuLbl3 = new javax.swing.JLabel();
@@ -188,6 +189,17 @@ public class ManageAccount extends javax.swing.JPanel {
             }
         });
 
+        owned_button1.setBackground(new java.awt.Color(51, 51, 51));
+        owned_button1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        owned_button1.setForeground(new java.awt.Color(255, 255, 255));
+        owned_button1.setText("Mejor calificados");
+        owned_button1.setBorderPainted(false);
+        owned_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                owned_button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
@@ -196,7 +208,13 @@ public class ManageAccount extends javax.swing.JPanel {
             .addGroup(MenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
+                    .addGroup(MenuLayout.createSequentialGroup()
+                        .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton5)
+                            .addComponent(helloTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 441, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(MenuLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(favs_button)
@@ -205,11 +223,10 @@ public class ManageAccount extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(viewed_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(owned_button))
-                    .addComponent(helloTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(owned_button)
+                        .addGap(18, 18, 18)
+                        .addComponent(owned_button1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +239,8 @@ public class ManageAccount extends javax.swing.JPanel {
                     .addComponent(favs_button, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewed_button, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cart_button, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(owned_button, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(owned_button, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(owned_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
@@ -988,6 +1006,10 @@ public class ManageAccount extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_pinTarjetaActionPerformed
 
+    private void owned_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_owned_button1ActionPerformed
+        mainFrame.showPage("TopRated", new TopRated(mainFrame, this));
+    }//GEN-LAST:event_owned_button1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AppBar;
@@ -1038,6 +1060,7 @@ public class ManageAccount extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> ownedFilterCombo;
     private javax.swing.JList<String> ownedList;
     private javax.swing.JButton owned_button;
+    private javax.swing.JButton owned_button1;
     private javax.swing.JTextField pinTarjeta;
     private javax.swing.JLabel total;
     private com.toedter.calendar.JDateChooser vencimiento;

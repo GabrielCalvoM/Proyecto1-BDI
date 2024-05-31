@@ -820,4 +820,23 @@ public class Cursors {
         stmt.close();
         return products;
     }
+    
+    public static ArrayList<Product> getTopRatedDate(String date) throws SQLException {
+        Connection con = sysConnection.getConnection();
+        CallableStatement stmt = con.prepareCall("{call getTopRatedDate(?)}");
+        stmt.setDate(1, Date.valueOf(date));
+        ResultSet rs = stmt.executeQuery();
+        
+        ArrayList<Product> products = new ArrayList<>();
+        while(rs.next()) {
+            int id = rs.getInt(1);
+            float rating = rs.getFloat(2);
+            Product product = getProduct(id);
+            product.setRating(rating);
+            products.add(product);
+        }
+        con.close();
+        stmt.close();
+        return products;
+    }
 }

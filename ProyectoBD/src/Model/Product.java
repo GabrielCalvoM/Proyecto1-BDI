@@ -9,6 +9,7 @@ public class Product {
     float price;
     int sales;
     String dateBought;
+    float rating;
 
     public Product(int id, String title, int premier, String synopsis, String trailer,
             float price) {
@@ -52,6 +53,15 @@ public class Product {
         return dateBought;
     }
 
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+    
+
     public void setSales(int sales) {
         this.sales = sales;
     }
@@ -59,7 +69,6 @@ public class Product {
     public void setDateBought(String dateBought) {
         this.dateBought = dateBought;
     }
-    
     
     
     @Override
